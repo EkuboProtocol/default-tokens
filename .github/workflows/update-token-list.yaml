@@ -1,0 +1,62 @@
+name: Update authoritative token list
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - curated-tokens.json
+      - token-list.schema.json
+      - scripts/update-tokens.ts
+      - src/sources.ts
+      - src/cloudflare-images.ts
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: update-authoritative-token-list
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: oven-sh/setup-bun@v2
+      - run: bun ci
+      - run: bun test
+      - run: bun run typecheck
+
+      - name: Regenerate tokens from every configured source
+        env:
+          PG_CONNECTION_STRING: ${{ secrets.PG_CONNECTION_STRING }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_IMAGES_DELIVERY_HASH: ${{ vars.CLOUDFLARE_IMAGES_DELIVERY_HASH }}
+          CLOUDFLARE_IMAGES_VARIANT: ${{ vars.CLOUDFLARE_IMAGES_VARIANT || 'logo' }}
+        run: bun run update-tokens
+
+      - name: Validate generated artifacts
+        env:
+          CLOUDFLARE_IMAGES_DELIVERY_HASH: ${{ vars.CLOUDFLARE_IMAGES_DELIVERY_HASH }}
+          CLOUDFLARE_IMAGES_VARIANT: ${{ vars.CLOUDFLARE_IMAGES_VARIANT || 'logo' }}
+        run: bun run validate
+
+      - name: Commit the auditable token-list update
+        run: |
+          git add tokens.json token-sources.json image-sources.json
+          if git diff --cached --quiet; then
+            echo "Token list is already current"
+            exit 0
+          fi
+          git config user.name "ekubo-token-list[bot]"
+          git config user.email "ekubo-token-list[bot]@users.noreply.github.com"
+          git commit -m "Update generated token list"
+          git push origin HEAD:main

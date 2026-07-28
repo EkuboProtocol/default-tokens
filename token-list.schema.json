@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/EkuboProtocol/default-tokens/main/token-list.schema.json",
+  "title": "Ekubo authoritative token list",
+  "description": "Token metadata and directed cross-chain bridge relationships synchronized into the Ekubo database.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "tokens", "bridge_relationships"],
+  "properties": {
+    "$schema": {
+      "const": "./token-list.schema.json"
+    },
+    "tokens": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/token"
+      }
+    },
+    "bridge_relationships": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/bridgeRelationship"
+      },
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "integerString": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*|0x[0-9a-fA-F]+)$"
+    },
+    "address": {
+      "type": "string",
+      "pattern": "^0x[0-9a-fA-F]+$"
+    },
+    "token": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "chain_id",
+        "token_address",
+        "token_name",
+        "token_symbol",
+        "token_decimals",
+        "logo_url",
+        "visibility_priority",
+        "sort_order"
+      ],
+      "properties": {
+        "chain_id": {
+          "$ref": "#/$defs/integerString"
+        },
+        "token_address": {
+          "$ref": "#/$defs/address"
+        },
+        "token_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "token_symbol": {
+          "type": "string",
+          "minLength": 1
+        },
+        "token_decimals": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        },
+        "total_supply": {
+          "type": ["string", "null"],
+          "pattern": "^(0|[1-9][0-9]*)$"
+        },
+        "logo_url": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^https?://"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "visibility_priority": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "sort_order": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        }
+      }
+    },
+    "bridgeRelationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_chain_id",
+        "source_token_address",
+        "source_bridge_address",
+        "dest_chain_id",
+        "dest_token_address"
+      ],
+      "properties": {
+        "source_chain_id": {
+          "$ref": "#/$defs/integerString"
+        },
+        "source_token_address": {
+          "$ref": "#/$defs/address"
+        },
+        "source_bridge_address": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/address"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "dest_chain_id": {
+          "$ref": "#/$defs/integerString"
+        },
+        "dest_token_address": {
+          "$ref": "#/$defs/address"
+        }
+      }
+    }
+  }
+}
