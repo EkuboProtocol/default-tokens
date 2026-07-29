@@ -61,3 +61,21 @@ test("does not retry a permanent source response", async () => {
   ).rejects.toThrow("403");
   expect(requests).toBe(1);
 });
+
+test("sends custom authentication headers without dropping the user agent", async () => {
+  let requestHeaders: Headers | undefined;
+  await fetchJson("test list", "https://example.com/list.json", {
+    headers: {
+      "x-cg-pro-api-key": "secret",
+    },
+    fetch: (async (_input, init) => {
+      requestHeaders = new Headers(init?.headers);
+      return Response.json({ tokens: [] });
+    }) as typeof fetch,
+  });
+
+  expect(requestHeaders?.get("x-cg-pro-api-key")).toBe("secret");
+  expect(requestHeaders?.get("user-agent")).toBe(
+    "EkuboProtocol/default-tokens",
+  );
+});

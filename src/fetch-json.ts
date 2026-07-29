@@ -1,5 +1,6 @@
 type FetchJsonConfig = {
   fetch?: typeof globalThis.fetch;
+  headers?: HeadersInit;
   sleep?: (milliseconds: number) => Promise<void>;
   maxRetries?: number;
   timeoutMs?: number;
@@ -38,15 +39,17 @@ export async function fetchJson<T>(
       new Promise<void>((resolve) => setTimeout(resolve, milliseconds)));
   const maxRetries = config.maxRetries ?? 3;
   const timeoutMs = config.timeoutMs ?? 60_000;
+  const headers = new Headers(config.headers);
+  if (!headers.has("User-Agent")) {
+    headers.set("User-Agent", "EkuboProtocol/default-tokens");
+  }
 
   for (let attempt = 0; ; attempt++) {
     let response: Response | undefined;
     let failure: Error;
     try {
       response = await fetchImplementation(url, {
-        headers: {
-          "User-Agent": "EkuboProtocol/default-tokens",
-        },
+        headers,
         signal: AbortSignal.timeout(timeoutMs),
       });
       if (!response.ok) {

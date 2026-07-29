@@ -37,6 +37,11 @@ export type TokenSource = {
   visibilityPriority?: number;
 };
 
+export type CoinGeckoTokenSource = TokenSource & {
+  assetPlatformId: string;
+  expectedChainId: string;
+};
+
 export type TokenListBridgeInfo = {
   tokenAddress?: string;
   originBridgeAddress?: string | null;

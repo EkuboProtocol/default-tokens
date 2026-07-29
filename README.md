@@ -28,7 +28,8 @@ Generation uses first-source-wins precedence:
 1. Ekubo's curated tokens.
 2. Tokens registered through Ekubo's onchain token registry.
 3. The standard token lists in their declared order in `src/sources.ts`.
-4. AVNU's Starknet lists.
+4. CoinGecko Pro token lists for explicitly mapped production chains.
+5. AVNU's Starknet lists.
 
 The updater starts from the curated inputs each time. Removed remote tokens do
 not linger merely because they appeared in an older generated file. Git commits
@@ -58,6 +59,8 @@ Configure these repository secrets:
   committed list during database synchronization.
 - `CLOUDFLARE_ACCOUNT_ID`: Cloudflare account containing Ekubo Images.
 - `CLOUDFLARE_API_TOKEN`: token with Cloudflare Images Write permission.
+- `COINGECKO_API_KEY`: CoinGecko Pro API key. The updater sends it only in the
+  `x-cg-pro-api-key` request header.
 
 Configure these repository variables:
 
@@ -79,6 +82,16 @@ sources are resolved through an HTTP gateway. Every generated URL is normalized
 to the configured variant. A failed refresh retains the token's previously
 hosted image; otherwise an unreachable logo is recorded as `null` without
 failing the entire token-list update.
+
+CoinGecko enrichment first checks `/asset_platforms` against the explicit
+platform-to-chain mappings in `src/sources.ts`, then downloads each mapped
+chain's standard token list from `/token_lists/{asset_platform_id}/all.json`.
+The updater rejects a source if CoinGecko changes the mapping or returns a token
+for another chain. Requests are sequential and use the shared retry and
+rate-limit handling. `/coins/list` and `/coins/markets` are not fetched because
+they do not provide complete token rows for the current schema; per-contract
+endpoints are reserved for a future bounded enrichment cache rather than one
+request per token on every run.
 
 ## Local development
 

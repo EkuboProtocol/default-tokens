@@ -43,6 +43,7 @@ jobs:
           CLOUDFLARE_IMAGES_DELIVERY_HASH: ${{ vars.CLOUDFLARE_IMAGES_DELIVERY_HASH }}
           CLOUDFLARE_IMAGES_VARIANT: ${{ vars.CLOUDFLARE_IMAGES_VARIANT || 'logo' }}
           CLOUDFLARE_IMAGES_REQUEST_INTERVAL_MS: ${{ vars.CLOUDFLARE_IMAGES_REQUEST_INTERVAL_MS || '300' }}
+          COINGECKO_API_KEY: ${{ secrets.COINGECKO_API_KEY }}
         run: bun run update-tokens
 
       - name: Validate generated artifacts
