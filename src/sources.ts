@@ -13,6 +13,7 @@ function coinGeckoTokenSource(
     url: `${COINGECKO_PRO_API_BASE_URL}/token_lists/${assetPlatformId}/all.json`,
     assetPlatformId,
     expectedChainId: String(expectedChainId),
+    visibilityPriority: 0,
   };
 }
 
@@ -40,6 +41,7 @@ export const REMOTE_TOKEN_LISTS: TokenSource[] = [
   {
     name: "CoinGecko All Token List",
     url: "https://tokens.coingecko.com/uniswap/all.json",
+    visibilityPriority: 0,
   },
   {
     name: "Aave Token List",
