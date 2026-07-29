@@ -176,6 +176,53 @@ test("downloads and uploads image bytes when Cloudflare cannot fetch the source"
   expect(fileUploads).toBe(1);
 });
 
+test("downloads image bytes for Cloudflare origin error 5455", async () => {
+  const sourceUrl = "https://protected.example/token.png";
+  let fileUploads = 0;
+  const images = new CloudflareImages({
+    accountId: "account",
+    apiToken: "token",
+    deliveryHash: "delivery",
+    variant: "logo",
+    requestIntervalMs: 0,
+    fetch: (async (input, init) => {
+      const url = String(input);
+      if (url.startsWith("https://imagedelivery.net/")) {
+        return new Response(null, { status: 404 });
+      }
+      if (url === sourceUrl) {
+        return new Response(new Uint8Array([1, 2, 3]), {
+          headers: { "content-type": "image/png" },
+        });
+      }
+
+      const form = init?.body as FormData;
+      if (form.get("url")) {
+        return cloudflareResponse(
+          {
+            success: false,
+            errors: [
+              {
+                code: 5455,
+                message: "Error while fetching image via URL.",
+              },
+            ],
+          },
+          424,
+        );
+      }
+      fileUploads++;
+      return cloudflareResponse({
+        success: true,
+        result: { id: "token-logos/id" },
+      });
+    }) as typeof fetch,
+  });
+
+  await images.host(sourceUrl);
+  expect(fileUploads).toBe(1);
+});
+
 test("resolves IPFS sources through an HTTP gateway", async () => {
   const sourceUrl = "ipfs://QmMixedCaseCid/logo.png";
   const observed: { uploadedUrl: FormDataEntryValue | null } = {
@@ -390,6 +437,59 @@ test("uses an alternate token-list logo when the curated source is blocked", asy
   );
   expect(tokens[0]?.logo_url).toEndWith("/logo");
   expect(cache[primaryUrl]).toBe(cache[fallbackUrl]);
+});
+
+test("reconciles a shared failed source after another token finds a fallback", async () => {
+  const primaryUrl = "https://protected.example/shared.png";
+  const fallbackUrl = "https://fallback.example/shared.png";
+  const images = new CloudflareImages({
+    accountId: "account",
+    apiToken: "token",
+    deliveryHash: "delivery",
+    variant: "logo",
+    requestIntervalMs: 0,
+    fetch: (async (input, init) => {
+      const url = String(input);
+      if (url.startsWith("https://imagedelivery.net/")) {
+        return new Response(null, { status: 404 });
+      }
+      if (url === primaryUrl) return new Response(null, { status: 403 });
+
+      const form = init?.body as FormData;
+      if (form.get("url") === primaryUrl) {
+        return cloudflareResponse(
+          {
+            success: false,
+            errors: [{ code: 5454, message: "Error during the fetch: 403" }],
+          },
+          403,
+        );
+      }
+      return cloudflareResponse({
+        success: true,
+        result: { id: "token-logos/fallback" },
+      });
+    }) as typeof fetch,
+  });
+  const tokens = [
+    token("0x1", primaryUrl),
+    token("0x2", primaryUrl),
+  ];
+
+  await hostTokenLogos({
+    tokens,
+    previousTokens: [],
+    imageSourceCache: {},
+    logoCandidates: new Map([
+      ["1:2", [primaryUrl, fallbackUrl]],
+    ]),
+    cloudflare: images,
+  });
+
+  expect(tokens[0]?.logo_url).toBe(tokens[1]?.logo_url);
+  expect(tokens[0]?.logo_url).toStartWith(
+    "https://imagedelivery.net/delivery/",
+  );
 });
 
 test("retains a previous hosted logo when a source temporarily removes it", async () => {

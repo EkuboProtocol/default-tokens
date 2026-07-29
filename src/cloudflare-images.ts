@@ -108,7 +108,11 @@ function isOriginFetchFailure(error: CloudflareApiError): boolean {
   return (
     error.response.errors?.some(
       ({ code, message }) =>
-        code === 5454 || /(?:during the fetch|fetching the image)/i.test(message ?? ""),
+        code === 5454 ||
+        code === 5455 ||
+        /(?:during the fetch|fetch(?:ing)? (?:the )?image)/i.test(
+          message ?? "",
+        ),
     ) ?? false
   );
 }
@@ -494,6 +498,11 @@ export async function hostTokenLogos({
     ]),
   );
   const pendingBySource = new Map<string, Promise<string>>();
+  const unresolved: {
+    token: Token;
+    candidates: string[];
+    lastError: unknown;
+  }[] = [];
   const stats = {
     alreadyHosted: 0,
     cached: 0,
@@ -565,11 +574,8 @@ export async function hostTokenLogos({
       return;
     }
 
-    console.warn(
-      `Could not host any of ${candidates.length} logo source(s) for ${token.chain_id}:${token.token_address}; omitting it: ${errorMessage(lastError)}`,
-    );
     token.logo_url = null;
-    stats.omitted++;
+    unresolved.push({ token, candidates, lastError });
   }
 
   const workerCount = Math.min(10, tokens.length);
@@ -581,6 +587,29 @@ export async function hostTokenLogos({
       }
     }),
   );
+
+  // A later token may have associated a failed primary source with a
+  // successful fallback. Reconcile those aliases before recording omissions.
+  for (const { token, candidates, lastError } of unresolved) {
+    const hosted = candidates
+      .map((candidate) => imageSourceCache[candidate])
+      .find(
+        (candidate): candidate is string =>
+          candidate !== undefined && cloudflare.isHostedByUs(candidate),
+      );
+    if (hosted) {
+      const normalized = cloudflare.normalizeHostedUrl(hosted);
+      imageSourceCache[candidates[0]!] = normalized;
+      token.logo_url = normalized;
+      stats.cached++;
+      continue;
+    }
+
+    console.warn(
+      `Could not host any of ${candidates.length} logo source(s) for ${token.chain_id}:${token.token_address}; omitting it: ${errorMessage(lastError)}`,
+    );
+    stats.omitted++;
+  }
 
   console.log(
     `Token logos: ${stats.alreadyHosted} already hosted, ${stats.cached} cached, ${stats.resolved} resolved, ${stats.retained} retained, ${stats.omitted} omitted`,
