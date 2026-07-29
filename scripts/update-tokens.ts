@@ -6,8 +6,15 @@ import {
   hostTokenLogos,
   type ImageSourceCache,
 } from "../src/cloudflare-images";
+import {
+  type CoinGeckoAssetPlatform,
+  validateCoinGeckoAssetPlatforms,
+  validateCoinGeckoTokenList,
+} from "../src/coingecko";
 import { fetchJson } from "../src/fetch-json";
 import {
+  COINGECKO_PRO_API_BASE_URL,
+  COINGECKO_PRO_TOKEN_LISTS,
   CURATED_SOURCE,
   REMOTE_TOKEN_LISTS,
   STARKNET_AVNU_TOKEN_SOURCES,
@@ -28,6 +35,7 @@ import type {
   BridgeRelationship,
   StandardTokenList,
   TokenListDocument,
+  TokenSource,
 } from "../src/types";
 
 const root = resolve(import.meta.dir, "..");
@@ -96,6 +104,69 @@ function addRelationship(
   };
   const key = bridgeRelationshipKey(normalized);
   if (replace || !relationships.has(key)) relationships.set(key, normalized);
+}
+
+function addStandardTokenList(
+  accumulator: TokenAccumulator,
+  relationships: Map<string, BridgeRelationship>,
+  source: TokenSource,
+  list: StandardTokenList,
+): number {
+  if (!Array.isArray(list.tokens)) {
+    throw new Error(`${source.name} did not return a token list`);
+  }
+
+  let added = 0;
+  for (const token of list.tokens) {
+    try {
+      added += Number(
+        accumulator.add(
+          {
+            chain_id: String(token.chainId),
+            token_address: token.address,
+            token_name: token.name,
+            token_symbol: token.symbol,
+            token_decimals: token.decimals,
+            logo_url: token.logoURI ?? null,
+            visibility_priority: source.visibilityPriority ?? -1,
+            sort_order: 0,
+          },
+          source.name,
+          source.url,
+        ),
+      );
+    } catch (error) {
+      console.warn(
+        `Skipping invalid token from ${source.name}: ${token.address}`,
+        error,
+      );
+    }
+
+    const sourceAddress = normalizeTokenAddress(
+      token.address,
+      String(token.chainId),
+    );
+    if (!sourceAddress) continue;
+
+    for (const [destinationChainId, info] of Object.entries(
+      token.extensions?.bridgeInfo ?? {},
+    )) {
+      if (!info?.tokenAddress) continue;
+      addRelationship(
+        relationships,
+        {
+          source_chain_id: String(token.chainId),
+          source_token_address: sourceAddress,
+          source_bridge_address: info.originBridgeAddress ?? null,
+          dest_chain_id: destinationChainId,
+          dest_token_address: info.tokenAddress,
+        },
+        true,
+      );
+    }
+  }
+
+  return added;
 }
 
 async function addRegisteredTokens(
@@ -184,59 +255,45 @@ async function main(): Promise<void> {
 
   for (const source of REMOTE_TOKEN_LISTS) {
     const list = await fetchJson<StandardTokenList>(source.name, source.url);
-    if (!Array.isArray(list.tokens)) {
-      throw new Error(`${source.name} did not return a token list`);
-    }
+    const added = addStandardTokenList(
+      accumulator,
+      relationships,
+      source,
+      list,
+    );
+    console.log(`Added ${added} tokens from ${source.name}`);
+  }
 
-    let added = 0;
-    for (const token of list.tokens) {
-      try {
-        added += Number(
-          accumulator.add(
-            {
-              chain_id: String(token.chainId),
-              token_address: token.address,
-              token_name: token.name,
-              token_symbol: token.symbol,
-              token_decimals: token.decimals,
-              logo_url: token.logoURI ?? null,
-              visibility_priority: source.visibilityPriority ?? -1,
-              sort_order: 0,
-            },
-            source.name,
-            source.url,
-          ),
-        );
-      } catch (error) {
-        console.warn(
-          `Skipping invalid token from ${source.name}: ${token.address}`,
-          error,
-        );
-      }
+  const coinGeckoApiKey = process.env.COINGECKO_API_KEY?.trim();
+  if (!coinGeckoApiKey) {
+    throw new Error(
+      "COINGECKO_API_KEY is required to download the CoinGecko Pro token lists",
+    );
+  }
+  const coinGeckoHeaders = {
+    "x-cg-pro-api-key": coinGeckoApiKey,
+  };
+  const coinGeckoPlatforms = await fetchJson<CoinGeckoAssetPlatform[]>(
+    "CoinGecko Pro asset platforms",
+    `${COINGECKO_PRO_API_BASE_URL}/asset_platforms`,
+    { headers: coinGeckoHeaders },
+  );
+  validateCoinGeckoAssetPlatforms(
+    coinGeckoPlatforms,
+    COINGECKO_PRO_TOKEN_LISTS,
+  );
 
-      const sourceAddress = normalizeTokenAddress(
-        token.address,
-        String(token.chainId),
-      );
-      if (!sourceAddress) continue;
-
-      for (const [destinationChainId, info] of Object.entries(
-        token.extensions?.bridgeInfo ?? {},
-      )) {
-        if (!info?.tokenAddress) continue;
-        addRelationship(
-          relationships,
-          {
-            source_chain_id: String(token.chainId),
-            source_token_address: sourceAddress,
-            source_bridge_address: info.originBridgeAddress ?? null,
-            dest_chain_id: destinationChainId,
-            dest_token_address: info.tokenAddress,
-          },
-          true,
-        );
-      }
-    }
+  for (const source of COINGECKO_PRO_TOKEN_LISTS) {
+    const list = await fetchJson<StandardTokenList>(source.name, source.url, {
+      headers: coinGeckoHeaders,
+    });
+    validateCoinGeckoTokenList(list, source);
+    const added = addStandardTokenList(
+      accumulator,
+      relationships,
+      source,
+      list,
+    );
     console.log(`Added ${added} tokens from ${source.name}`);
   }
 
