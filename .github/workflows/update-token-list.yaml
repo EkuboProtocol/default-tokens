@@ -7,9 +7,10 @@ on:
     paths:
       - curated-tokens.json
       - token-list.schema.json
+      - package.json
+      - bun.lock
       - scripts/update-tokens.ts
-      - src/sources.ts
-      - src/cloudflare-images.ts
+      - src/**
   schedule:
     - cron: "17 */6 * * *"
   workflow_dispatch:

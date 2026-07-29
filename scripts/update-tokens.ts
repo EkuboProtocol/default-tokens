@@ -6,6 +6,7 @@ import {
   hostTokenLogos,
   type ImageSourceCache,
 } from "../src/cloudflare-images";
+import { fetchJson } from "../src/fetch-json";
 import {
   CURATED_SOURCE,
   REMOTE_TOKEN_LISTS,
@@ -66,21 +67,6 @@ async function writeJson(path: string, value: unknown): Promise<void> {
     resolve(root, path),
     `${JSON.stringify(value, null, 2)}\n`,
   );
-}
-
-async function fetchJson<T>(name: string, url: string): Promise<T> {
-  const response = await fetch(url, {
-    headers: {
-      "User-Agent": "EkuboProtocol/default-tokens",
-    },
-    signal: AbortSignal.timeout(60_000),
-  });
-  if (!response.ok) {
-    throw new Error(
-      `Failed to download ${name} from ${url}: ${response.status} ${response.statusText}`,
-    );
-  }
-  return (await response.json()) as T;
 }
 
 function addRelationship(

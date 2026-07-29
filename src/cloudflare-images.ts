@@ -56,16 +56,29 @@ async function parseCloudflareResponse(
 ): Promise<CloudflareResponse> {
   const text = await response.text();
   try {
-    return JSON.parse(text) as CloudflareResponse;
+    const parsed = JSON.parse(text) as unknown;
+    if (
+      parsed !== null &&
+      typeof parsed === "object" &&
+      "success" in parsed &&
+      typeof parsed.success === "boolean"
+    ) {
+      return parsed as CloudflareResponse;
+    }
   } catch {
-    return {
-      success: false,
-      errors: [{ message: text || response.statusText }],
-    };
+    // Fall through to a normalized error response.
   }
+  return {
+    success: false,
+    errors: [{ message: text || response.statusText }],
+  };
 }
 
-function retryAfterMilliseconds(response: Response, attempt: number): number {
+function retryAfterMilliseconds(
+  response: Response,
+  attempt: number,
+  now = Date.now(),
+): number {
   const retryAfter = response.headers.get("retry-after");
   if (retryAfter) {
     const seconds = Number(retryAfter);
@@ -73,7 +86,7 @@ function retryAfterMilliseconds(response: Response, attempt: number): number {
       return Math.ceil(seconds * 1_000);
     }
     const date = Date.parse(retryAfter);
-    if (Number.isFinite(date)) return Math.max(0, date - Date.now());
+    if (Number.isFinite(date)) return Math.max(0, date - now);
   }
   return Math.min(300_000, 1_000 * 2 ** attempt);
 }
@@ -95,6 +108,22 @@ function sourceFilename(sourceUrl: string): string {
   const pathname = new URL(sourceUrl).pathname;
   const candidate = pathname.split("/").pop() || "logo";
   return candidate.replace(/[^a-zA-Z0-9._-]/g, "_").slice(0, 255) || "logo";
+}
+
+function fetchableSourceUrl(sourceUrl: string): string {
+  if (/^ipfs:\/\//i.test(sourceUrl)) {
+    const ipfsPath = sourceUrl
+      .slice(sourceUrl.indexOf("://") + 3)
+      .replace(/^ipfs\//i, "");
+    if (!ipfsPath) throw new Error(`Invalid IPFS image URL: ${sourceUrl}`);
+    return `https://ipfs.io/ipfs/${ipfsPath}`;
+  }
+
+  const parsed = new URL(sourceUrl);
+  if (parsed.protocol !== "https:" && parsed.protocol !== "http:") {
+    throw new Error(`Unsupported image URL protocol: ${sourceUrl}`);
+  }
+  return parsed.toString();
 }
 
 export class CloudflareImages {
@@ -173,20 +202,40 @@ export class CloudflareImages {
 
     for (let attempt = 0; ; attempt++) {
       await this.waitForApiSlot();
-      const response = await this.config.fetch(url, {
-        ...init,
-        headers: {
-          ...init.headers,
-          Authorization: `Bearer ${this.config.apiToken}`,
-        },
-      });
+      let response: Response;
+      try {
+        response = await this.config.fetch(url, {
+          ...init,
+          headers: {
+            ...init.headers,
+            Authorization: `Bearer ${this.config.apiToken}`,
+          },
+        });
+      } catch (error) {
+        if (attempt >= this.config.maxRetries) {
+          throw new FatalCloudflareImagesError(
+            `Cloudflare Images request failed after ${attempt + 1} attempts: ${errorMessage(error)}`,
+            { cause: error },
+          );
+        }
+        const delay = Math.min(300_000, 1_000 * 2 ** attempt);
+        console.warn(
+          `Cloudflare Images request failed; retrying in ${Math.ceil(delay / 1_000)}s: ${errorMessage(error)}`,
+        );
+        await this.config.sleep(delay);
+        continue;
+      }
       const body = await parseCloudflareResponse(response);
       const retryable = response.status === 429 || response.status >= 500;
       if (!retryable || attempt >= this.config.maxRetries) {
         return { response, body };
       }
 
-      const delay = retryAfterMilliseconds(response, attempt);
+      const delay = retryAfterMilliseconds(
+        response,
+        attempt,
+        this.config.now(),
+      );
       if (response.status === 429) {
         this.apiBlockedUntil = Math.max(
           this.apiBlockedUntil,
@@ -320,17 +369,15 @@ export class CloudflareImages {
       return this.normalizeHostedUrl(sourceUrl);
     }
 
-    const parsed = new URL(sourceUrl);
-    if (parsed.protocol !== "https:" && parsed.protocol !== "http:") {
-      throw new Error(`Unsupported image URL protocol: ${sourceUrl}`);
-    }
-
+    const resolvedSourceUrl = fetchableSourceUrl(sourceUrl);
     const imageId = this.imageId(sourceUrl);
     if (await this.deliveryExists(imageId)) return this.deliveryUrl(imageId);
 
     let image: CloudflareImage;
     try {
-      image = await this.upload(imageId, sourceUrl, { url: sourceUrl });
+      image = await this.upload(imageId, sourceUrl, {
+        url: resolvedSourceUrl,
+      });
     } catch (error) {
       if (
         error instanceof FatalCloudflareImagesError ||
@@ -342,7 +389,7 @@ export class CloudflareImages {
       console.warn(
         `Cloudflare could not fetch ${sourceUrl}; downloading it in the runner`,
       );
-      const file = await this.downloadSourceImage(sourceUrl);
+      const file = await this.downloadSourceImage(resolvedSourceUrl);
       image = await this.upload(imageId, sourceUrl, { file });
     }
     return this.deliveryUrl(imageId, image.variants);
@@ -384,7 +431,14 @@ export async function hostTokenLogos({
       ...(token.logo_url ? [token.logo_url] : []),
       ...(logoCandidates.get(key) ?? []),
     ].filter((url, index, urls) => urls.indexOf(url) === index);
-    if (candidates.length === 0) return;
+    if (candidates.length === 0) {
+      const previousLogo = previousByKey.get(key)?.logo_url;
+      if (previousLogo && cloudflare.isHostedByUs(previousLogo)) {
+        token.logo_url = cloudflare.normalizeHostedUrl(previousLogo);
+        stats.retained++;
+      }
+      return;
+    }
 
     let lastError: unknown;
     for (const candidateUrl of candidates) {

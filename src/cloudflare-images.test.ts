@@ -134,6 +134,37 @@ test("downloads and uploads image bytes when Cloudflare cannot fetch the source"
   expect(fileUploads).toBe(1);
 });
 
+test("resolves IPFS sources through an HTTP gateway", async () => {
+  const sourceUrl = "ipfs://QmMixedCaseCid/logo.png";
+  const observed: { uploadedUrl: FormDataEntryValue | null } = {
+    uploadedUrl: null,
+  };
+  const images = new CloudflareImages({
+    accountId: "account",
+    apiToken: "token",
+    deliveryHash: "delivery",
+    variant: "logo",
+    requestIntervalMs: 0,
+    fetch: (async (input, init) => {
+      const url = String(input);
+      if (url.startsWith("https://imagedelivery.net/")) {
+        return new Response(null, { status: 404 });
+      }
+      const form = init?.body as FormData;
+      observed.uploadedUrl = form.get("url");
+      return cloudflareResponse({
+        success: true,
+        result: { id: "token-logos/id" },
+      });
+    }) as typeof fetch,
+  });
+
+  await images.host(sourceUrl);
+  expect(observed.uploadedUrl).toBe(
+    "https://ipfs.io/ipfs/QmMixedCaseCid/logo.png",
+  );
+});
+
 test("honors Retry-After and retries a rate-limited upload", async () => {
   let now = 0;
   const sleeps: number[] = [];
@@ -172,6 +203,33 @@ test("honors Retry-After and retries a rate-limited upload", async () => {
   await images.host("https://example.com/token.png");
   expect(uploads).toBe(2);
   expect(sleeps).toContain(1_000);
+});
+
+test("retries a transient Cloudflare API network failure", async () => {
+  let apiRequests = 0;
+  const images = new CloudflareImages({
+    accountId: "account",
+    apiToken: "token",
+    deliveryHash: "delivery",
+    variant: "logo",
+    requestIntervalMs: 0,
+    sleep: async () => {},
+    fetch: (async (input) => {
+      const url = String(input);
+      if (url.startsWith("https://imagedelivery.net/")) {
+        return new Response(null, { status: 404 });
+      }
+      apiRequests++;
+      if (apiRequests === 1) throw new TypeError("network unavailable");
+      return cloudflareResponse({
+        success: true,
+        result: { id: "token-logos/id" },
+      });
+    }) as typeof fetch,
+  });
+
+  await images.host("https://example.com/token.png");
+  expect(apiRequests).toBe(2);
 });
 
 test("uploads one deterministic image for tokens sharing a logo", async () => {
@@ -292,6 +350,27 @@ test("uses an alternate token-list logo when the curated source is blocked", asy
   expect(cache[primaryUrl]).toBe(cache[fallbackUrl]);
 });
 
+test("retains a previous hosted logo when a source temporarily removes it", async () => {
+  const hosted =
+    "https://imagedelivery.net/delivery/token-logos/existing/logo";
+  const current = token("0x1", hosted);
+  current.logo_url = null;
+
+  await hostTokenLogos({
+    tokens: [current],
+    previousTokens: [token("0x1", hosted)],
+    imageSourceCache: {},
+    cloudflare: new CloudflareImages({
+      accountId: "account",
+      apiToken: "token",
+      deliveryHash: "delivery",
+      variant: "logo",
+    }),
+  });
+
+  expect((current as Token).logo_url).toBe(hosted);
+});
+
 test("does not turn an exhausted Cloudflare outage into missing logos", async () => {
   const images = new CloudflareImages({
     accountId: "account",
@@ -309,6 +388,50 @@ test("does not turn an exhausted Cloudflare outage into missing logos", async ()
         { success: false, errors: [{ code: 971, message: "throttle" }] },
         429,
       );
+    }) as typeof fetch,
+  });
+
+  expect(
+    images.host("https://example.com/token.png"),
+  ).rejects.toBeInstanceOf(FatalCloudflareImagesError);
+});
+
+test("treats a malformed exhausted rate-limit response as fatal", async () => {
+  const images = new CloudflareImages({
+    accountId: "account",
+    apiToken: "token",
+    deliveryHash: "delivery",
+    variant: "logo",
+    requestIntervalMs: 0,
+    maxRetries: 0,
+    fetch: (async (input) => {
+      const url = String(input);
+      if (url.startsWith("https://imagedelivery.net/")) {
+        return new Response(null, { status: 404 });
+      }
+      return cloudflareResponse(null, 429);
+    }) as typeof fetch,
+  });
+
+  expect(
+    images.host("https://example.com/token.png"),
+  ).rejects.toBeInstanceOf(FatalCloudflareImagesError);
+});
+
+test("does not turn an exhausted Cloudflare network outage into missing logos", async () => {
+  const images = new CloudflareImages({
+    accountId: "account",
+    apiToken: "token",
+    deliveryHash: "delivery",
+    variant: "logo",
+    requestIntervalMs: 0,
+    maxRetries: 0,
+    fetch: (async (input) => {
+      const url = String(input);
+      if (url.startsWith("https://imagedelivery.net/")) {
+        return new Response(null, { status: 404 });
+      }
+      throw new TypeError("network unavailable");
     }) as typeof fetch,
   });
 
