@@ -54,6 +54,32 @@ test("the first source wins while preserving provenance", () => {
   expect([...accumulator.provenance.values()][0]?.source_name).toBe("curated");
 });
 
+test("retains alternate logo sources for duplicate token metadata", () => {
+  const accumulator = new TokenAccumulator();
+  const token = {
+    chain_id: "1",
+    token_address: "0x1",
+    token_name: "Token",
+    token_symbol: "TKN",
+    token_decimals: 18,
+    logo_url: "https://primary.example/logo.png",
+    visibility_priority: 1,
+    sort_order: 0,
+  };
+
+  accumulator.add(token, "curated", "curated-tokens.json");
+  accumulator.add(
+    { ...token, logo_url: "https://fallback.example/logo.png" },
+    "remote",
+    "https://example.com/list.json",
+  );
+
+  expect(accumulator.logoCandidates.get("1:1")).toEqual([
+    "https://primary.example/logo.png",
+    "https://fallback.example/logo.png",
+  ]);
+});
+
 test("rejects duplicate bridge relationship identities", () => {
   const relationship = {
     source_chain_id: "1",

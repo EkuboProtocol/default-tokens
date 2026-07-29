@@ -65,13 +65,18 @@ Configure these repository variables:
   `https://imagedelivery.net/<hash>/...`.
 - `CLOUDFLARE_IMAGES_VARIANT`: the public token-logo variant; defaults to
   `logo`.
+- `CLOUDFLARE_IMAGES_REQUEST_INTERVAL_MS`: minimum delay between Cloudflare
+  Images API requests; defaults to `300` milliseconds to stay below the global
+  API limit.
 
 Cloudflare uploads use a deterministic custom ID derived from the upstream URL.
 That makes retries idempotent and lets tokens on multiple chains share a hosted
-image. Every generated URL is normalized to the configured variant. A failed
-refresh retains the token's previously hosted image. A new remote token with a
-broken logo is included with `logo_url: null`; a broken curated logo fails
-generation so a hand-curated asset is never silently lost.
+image. The updater checks that deterministic delivery URL before uploading,
+paces API requests, and honors rate-limit retry headers. If Cloudflare cannot
+fetch an upstream URL, the runner downloads the image and uploads its bytes.
+Every generated URL is normalized to the configured variant. A failed refresh
+retains the token's previously hosted image; otherwise an unreachable logo is
+recorded as `null` without failing the entire token-list update.
 
 ## Local development
 

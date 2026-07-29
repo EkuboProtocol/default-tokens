@@ -60,6 +60,7 @@ export function bridgeRelationshipKey(
 export class TokenAccumulator {
   readonly tokens = new Map<string, Token>();
   readonly provenance = new Map<string, TokenProvenance>();
+  readonly logoCandidates = new Map<string, string[]>();
 
   add(token: Token, sourceName: string, sourceUrl: string): boolean {
     const normalizedAddress = normalizeTokenAddress(
@@ -76,6 +77,13 @@ export class TokenAccumulator {
     validateToken(normalizedToken);
 
     const key = tokenKey(normalizedToken.chain_id, normalizedAddress);
+    if (normalizedToken.logo_url) {
+      const candidates = this.logoCandidates.get(key) ?? [];
+      if (!candidates.includes(normalizedToken.logo_url)) {
+        candidates.push(normalizedToken.logo_url);
+        this.logoCandidates.set(key, candidates);
+      }
+    }
     if (this.tokens.has(key)) return false;
 
     this.tokens.set(key, normalizedToken);

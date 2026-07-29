@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import type { Token, TokenProvenance } from "./types";
+import type { Token } from "./types";
 import { tokenKey } from "./token-list";
 
 type CloudflareImage = {
@@ -13,6 +13,8 @@ type CloudflareResponse = {
   errors?: { code?: number; message?: string }[];
 };
 
+type FetchFunction = typeof globalThis.fetch;
+
 export type ImageSourceCache = Record<string, string>;
 
 type CloudflareImagesConfig = {
@@ -20,20 +22,100 @@ type CloudflareImagesConfig = {
   apiToken: string;
   deliveryHash: string;
   variant: string;
+  requestIntervalMs?: number;
+  maxRetries?: number;
+  fetch?: FetchFunction;
+  sleep?: (milliseconds: number) => Promise<void>;
+  now?: () => number;
 };
 
+type NormalizedConfig = Required<CloudflareImagesConfig>;
+
+class CloudflareApiError extends Error {
+  constructor(
+    readonly status: number,
+    readonly response: CloudflareResponse,
+    message: string,
+  ) {
+    super(message);
+  }
+}
+
+export class FatalCloudflareImagesError extends Error {}
+
 function responseError(response: CloudflareResponse): string {
-  return (
+  const message =
     response.errors
       ?.map(({ code, message }) => `${code ?? "unknown"}: ${message ?? ""}`)
-      .join(", ") || "unknown Cloudflare Images error"
+      .join(", ") || "unknown Cloudflare Images error";
+  return message.length > 500 ? `${message.slice(0, 500)}…` : message;
+}
+
+async function parseCloudflareResponse(
+  response: Response,
+): Promise<CloudflareResponse> {
+  const text = await response.text();
+  try {
+    return JSON.parse(text) as CloudflareResponse;
+  } catch {
+    return {
+      success: false,
+      errors: [{ message: text || response.statusText }],
+    };
+  }
+}
+
+function retryAfterMilliseconds(response: Response, attempt: number): number {
+  const retryAfter = response.headers.get("retry-after");
+  if (retryAfter) {
+    const seconds = Number(retryAfter);
+    if (Number.isFinite(seconds) && seconds >= 0) {
+      return Math.ceil(seconds * 1_000);
+    }
+    const date = Date.parse(retryAfter);
+    if (Number.isFinite(date)) return Math.max(0, date - Date.now());
+  }
+  return Math.min(300_000, 1_000 * 2 ** attempt);
+}
+
+function errorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
+function isOriginFetchFailure(error: CloudflareApiError): boolean {
+  return (
+    error.response.errors?.some(
+      ({ code, message }) =>
+        code === 5454 || /(?:during the fetch|fetching the image)/i.test(message ?? ""),
+    ) ?? false
   );
+}
+
+function sourceFilename(sourceUrl: string): string {
+  const pathname = new URL(sourceUrl).pathname;
+  const candidate = pathname.split("/").pop() || "logo";
+  return candidate.replace(/[^a-zA-Z0-9._-]/g, "_").slice(0, 255) || "logo";
 }
 
 export class CloudflareImages {
   readonly deliveryPrefix: string;
+  private readonly config: NormalizedConfig;
+  private requestGate = Promise.resolve();
+  private nextApiRequestAt = 0;
+  private apiBlockedUntil = 0;
 
-  constructor(private readonly config: CloudflareImagesConfig) {
+  constructor(config: CloudflareImagesConfig) {
+    this.config = {
+      ...config,
+      requestIntervalMs: config.requestIntervalMs ?? 300,
+      maxRetries: config.maxRetries ?? 8,
+      fetch: config.fetch ?? globalThis.fetch,
+      sleep:
+        config.sleep ??
+        ((milliseconds) =>
+          new Promise((resolve) => setTimeout(resolve, milliseconds))),
+      now: config.now ?? Date.now,
+    };
     this.deliveryPrefix = `https://imagedelivery.net/${config.deliveryHash}/`;
   }
 
@@ -62,62 +144,175 @@ export class CloudflareImages {
     );
   }
 
-  private async get(imageId: string): Promise<CloudflareImage | null> {
-    const response = await fetch(
-      `https://api.cloudflare.com/client/v4/accounts/${this.config.accountId}/images/v1/${encodeURIComponent(imageId)}`,
-      {
-        headers: {
-          Authorization: `Bearer ${this.config.apiToken}`,
-        },
-      },
-    );
-    if (response.status === 404) return null;
+  private async waitForApiSlot(): Promise<void> {
+    let release = () => {};
+    const previous = this.requestGate;
+    this.requestGate = new Promise<void>((resolve) => {
+      release = resolve;
+    });
 
-    const body = (await response.json()) as CloudflareResponse;
-    if (!response.ok || !body.success || !body.result) {
-      throw new Error(
-        `Cloudflare image lookup failed (${response.status}): ${responseError(body)}`,
+    await previous;
+    try {
+      const waitUntil = Math.max(
+        this.nextApiRequestAt,
+        this.apiBlockedUntil,
       );
+      const delay = waitUntil - this.config.now();
+      if (delay > 0) await this.config.sleep(delay);
+      this.nextApiRequestAt =
+        this.config.now() + this.config.requestIntervalMs;
+    } finally {
+      release();
     }
-    return body.result;
   }
 
-  private async create(
+  private async fetchApi(
+    init: RequestInit,
+  ): Promise<{ response: Response; body: CloudflareResponse }> {
+    const url = `https://api.cloudflare.com/client/v4/accounts/${this.config.accountId}/images/v1`;
+
+    for (let attempt = 0; ; attempt++) {
+      await this.waitForApiSlot();
+      const response = await this.config.fetch(url, {
+        ...init,
+        headers: {
+          ...init.headers,
+          Authorization: `Bearer ${this.config.apiToken}`,
+        },
+      });
+      const body = await parseCloudflareResponse(response);
+      const retryable = response.status === 429 || response.status >= 500;
+      if (!retryable || attempt >= this.config.maxRetries) {
+        return { response, body };
+      }
+
+      const delay = retryAfterMilliseconds(response, attempt);
+      if (response.status === 429) {
+        this.apiBlockedUntil = Math.max(
+          this.apiBlockedUntil,
+          this.config.now() + delay,
+        );
+      } else {
+        await this.config.sleep(delay);
+      }
+      console.warn(
+        `Cloudflare Images returned ${response.status}; retrying in ${Math.ceil(delay / 1_000)}s`,
+      );
+    }
+  }
+
+  private async deliveryExists(imageId: string): Promise<boolean> {
+    try {
+      const response = await this.config.fetch(this.deliveryUrl(imageId), {
+        method: "HEAD",
+        cache: "no-store",
+      });
+      return response.ok;
+    } catch {
+      return false;
+    }
+  }
+
+  private form(
     imageId: string,
     sourceUrl: string,
-  ): Promise<CloudflareImage> {
+    image: { url: string } | { file: File },
+  ): FormData {
     const form = new FormData();
-    form.set("url", sourceUrl);
+    if ("url" in image) form.set("url", image.url);
+    else form.set("file", image.file);
     form.set("id", imageId);
     form.set("requireSignedURLs", "false");
     form.set(
       "metadata",
       JSON.stringify({
-        source: sourceUrl,
+        source: sourceUrl.slice(0, 800),
         managedBy: "EkuboProtocol/default-tokens",
       }),
     );
+    return form;
+  }
 
-    const response = await fetch(
-      `https://api.cloudflare.com/client/v4/accounts/${this.config.accountId}/images/v1`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${this.config.apiToken}`,
-        },
-        body: form,
-      },
-    );
-    const body = (await response.json()) as CloudflareResponse;
-    if (!response.ok || !body.success || !body.result) {
-      // A concurrent run may have created the deterministic ID.
-      const existing = await this.get(imageId);
-      if (existing) return existing;
+  private async upload(
+    imageId: string,
+    sourceUrl: string,
+    image: { url: string } | { file: File },
+  ): Promise<CloudflareImage> {
+    const { response, body } = await this.fetchApi({
+      method: "POST",
+      body: this.form(imageId, sourceUrl, image),
+    });
+    if (response.ok && body.success && body.result) return body.result;
+
+    // A previous or concurrent run may already have created this custom ID.
+    if (await this.deliveryExists(imageId)) return { id: imageId };
+
+    const message = `Cloudflare image upload failed (${response.status}): ${responseError(body)}`;
+    const error = new CloudflareApiError(response.status, body, message);
+    if (
+      response.status === 429 ||
+      response.status >= 500 ||
+      ((response.status === 401 || response.status === 403) &&
+        !isOriginFetchFailure(error))
+    ) {
+      throw new FatalCloudflareImagesError(message, { cause: error });
+    }
+    throw error;
+  }
+
+  private async downloadSourceImage(sourceUrl: string): Promise<File> {
+    const parsed = new URL(sourceUrl);
+    let response: Response | undefined;
+    let networkError: unknown;
+
+    for (let attempt = 0; attempt < 3; attempt++) {
+      try {
+        response = await this.config.fetch(sourceUrl, {
+          headers: {
+            Accept: "image/avif,image/webp,image/svg+xml,image/*,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.8",
+            Referer: `${parsed.origin}/`,
+            "User-Agent":
+              "Mozilla/5.0 (compatible; EkuboTokenList/1.0; +https://github.com/EkuboProtocol/default-tokens)",
+          },
+          redirect: "follow",
+          signal: AbortSignal.timeout(30_000),
+        });
+      } catch (error) {
+        networkError = error;
+        if (attempt < 2) {
+          await this.config.sleep(1_000 * 2 ** attempt);
+          continue;
+        }
+        break;
+      }
+      if (response.ok) break;
+      if (response.status !== 429 && response.status < 500) break;
+      await this.config.sleep(1_000 * 2 ** attempt);
+    }
+
+    if (!response?.ok) {
       throw new Error(
-        `Cloudflare image upload failed (${response.status}): ${responseError(body)}`,
+        `Source image download failed (${response?.status ?? errorMessage(networkError)}): ${sourceUrl}`,
       );
     }
-    return body.result;
+
+    const declaredLength = Number(response.headers.get("content-length"));
+    if (Number.isFinite(declaredLength) && declaredLength > 10_000_000) {
+      throw new Error(`Source image exceeds the 10 MB upload limit: ${sourceUrl}`);
+    }
+    const contentType =
+      response.headers.get("content-type")?.split(";")[0]?.trim() ||
+      "application/octet-stream";
+    if (contentType === "text/html") {
+      throw new Error(`Source returned HTML instead of an image: ${sourceUrl}`);
+    }
+
+    const bytes = await response.arrayBuffer();
+    if (bytes.byteLength > 10_000_000) {
+      throw new Error(`Source image exceeds the 10 MB upload limit: ${sourceUrl}`);
+    }
+    return new File([bytes], sourceFilename(sourceUrl), { type: contentType });
   }
 
   async host(sourceUrl: string): Promise<string> {
@@ -131,23 +326,40 @@ export class CloudflareImages {
     }
 
     const imageId = this.imageId(sourceUrl);
-    const existing = await this.get(imageId);
-    const image = existing ?? (await this.create(imageId, sourceUrl));
+    if (await this.deliveryExists(imageId)) return this.deliveryUrl(imageId);
+
+    let image: CloudflareImage;
+    try {
+      image = await this.upload(imageId, sourceUrl, { url: sourceUrl });
+    } catch (error) {
+      if (
+        error instanceof FatalCloudflareImagesError ||
+        !(error instanceof CloudflareApiError) ||
+        !isOriginFetchFailure(error)
+      ) {
+        throw error;
+      }
+      console.warn(
+        `Cloudflare could not fetch ${sourceUrl}; downloading it in the runner`,
+      );
+      const file = await this.downloadSourceImage(sourceUrl);
+      image = await this.upload(imageId, sourceUrl, { file });
+    }
     return this.deliveryUrl(imageId, image.variants);
   }
 }
 
 export async function hostTokenLogos({
   tokens,
-  provenance,
   previousTokens,
   imageSourceCache,
+  logoCandidates = new Map(),
   cloudflare,
 }: {
   tokens: Token[];
-  provenance: TokenProvenance[];
   previousTokens: Token[];
   imageSourceCache: ImageSourceCache;
+  logoCandidates?: Map<string, string[]>;
   cloudflare: CloudflareImages;
 }): Promise<ImageSourceCache> {
   const previousByKey = new Map(
@@ -156,67 +368,76 @@ export async function hostTokenLogos({
       token,
     ]),
   );
-  const provenanceByKey = new Map(
-    provenance.map((source) => [
-      tokenKey(source.chain_id, source.token_address),
-      source,
-    ]),
-  );
   const pendingBySource = new Map<string, Promise<string>>();
+  const stats = {
+    alreadyHosted: 0,
+    cached: 0,
+    resolved: 0,
+    retained: 0,
+    omitted: 0,
+  };
   let nextIndex = 0;
 
   async function hostOne(token: Token): Promise<void> {
-    const sourceUrl = token.logo_url;
-    if (!sourceUrl) return;
-    if (cloudflare.isHostedByUs(sourceUrl)) {
-      token.logo_url = cloudflare.normalizeHostedUrl(sourceUrl);
-      return;
-    }
+    const key = tokenKey(token.chain_id, token.token_address);
+    const candidates = [
+      ...(token.logo_url ? [token.logo_url] : []),
+      ...(logoCandidates.get(key) ?? []),
+    ].filter((url, index, urls) => urls.indexOf(url) === index);
+    if (candidates.length === 0) return;
 
-    const cached = imageSourceCache[sourceUrl];
-    if (cached && cloudflare.isHostedByUs(cached)) {
-      token.logo_url = cloudflare.normalizeHostedUrl(cached);
-      return;
-    }
-
-    try {
-      let pending = pendingBySource.get(sourceUrl);
-      if (!pending) {
-        pending = cloudflare.host(sourceUrl);
-        pendingBySource.set(sourceUrl, pending);
-      }
-      const hosted = await pending;
-      imageSourceCache[sourceUrl] = hosted;
-      token.logo_url = hosted;
-      console.log(`Hosted token logo: ${sourceUrl} -> ${hosted}`);
-    } catch (error) {
-      const key = tokenKey(token.chain_id, token.token_address);
-      const previousLogo = previousByKey.get(key)?.logo_url;
-      if (previousLogo && cloudflare.isHostedByUs(previousLogo)) {
-        const normalizedPreviousLogo =
-          cloudflare.normalizeHostedUrl(previousLogo);
-        console.warn(
-          `Could not refresh ${sourceUrl}; retaining ${normalizedPreviousLogo}`,
-          error,
-        );
-        token.logo_url = normalizedPreviousLogo;
+    let lastError: unknown;
+    for (const candidateUrl of candidates) {
+      if (cloudflare.isHostedByUs(candidateUrl)) {
+        token.logo_url = cloudflare.normalizeHostedUrl(candidateUrl);
+        stats.alreadyHosted++;
         return;
       }
 
-      const source = provenanceByKey.get(key);
-      if (source?.source_url === "curated-tokens.json") {
-        throw new Error(
-          `Could not host curated logo for ${token.chain_id}:${token.token_address}`,
-          { cause: error },
-        );
+      const cached = imageSourceCache[candidateUrl];
+      if (cached && cloudflare.isHostedByUs(cached)) {
+        const hosted = cloudflare.normalizeHostedUrl(cached);
+        imageSourceCache[candidates[0]!] = hosted;
+        token.logo_url = hosted;
+        stats.cached++;
+        return;
       }
 
-      console.warn(
-        `Could not host ${sourceUrl}; omitting the unhosted logo`,
-        error,
-      );
-      token.logo_url = null;
+      try {
+        let pending = pendingBySource.get(candidateUrl);
+        if (!pending) {
+          pending = cloudflare.host(candidateUrl);
+          pendingBySource.set(candidateUrl, pending);
+        }
+        const hosted = await pending;
+        imageSourceCache[candidateUrl] = hosted;
+        imageSourceCache[candidates[0]!] = hosted;
+        token.logo_url = hosted;
+        stats.resolved++;
+        return;
+      } catch (error) {
+        if (error instanceof FatalCloudflareImagesError) throw error;
+        lastError = error;
+      }
     }
+
+    const previousLogo = previousByKey.get(key)?.logo_url;
+    if (previousLogo && cloudflare.isHostedByUs(previousLogo)) {
+      const normalizedPreviousLogo =
+        cloudflare.normalizeHostedUrl(previousLogo);
+      console.warn(
+        `Could not refresh any of ${candidates.length} logo source(s); retaining ${normalizedPreviousLogo}: ${errorMessage(lastError)}`,
+      );
+      token.logo_url = normalizedPreviousLogo;
+      stats.retained++;
+      return;
+    }
+
+    console.warn(
+      `Could not host any of ${candidates.length} logo source(s) for ${token.chain_id}:${token.token_address}; omitting it: ${errorMessage(lastError)}`,
+    );
+    token.logo_url = null;
+    stats.omitted++;
   }
 
   const workerCount = Math.min(10, tokens.length);
@@ -229,6 +450,9 @@ export async function hostTokenLogos({
     }),
   );
 
+  console.log(
+    `Token logos: ${stats.alreadyHosted} already hosted, ${stats.cached} cached, ${stats.resolved} resolved, ${stats.retained} retained, ${stats.omitted} omitted`,
+  );
   return Object.fromEntries(
     Object.entries(imageSourceCache).sort(([a], [b]) => a.localeCompare(b)),
   );

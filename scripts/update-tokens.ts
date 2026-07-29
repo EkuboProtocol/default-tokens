@@ -337,6 +337,9 @@ async function main(): Promise<void> {
   const cloudflareDeliveryHash =
     process.env.CLOUDFLARE_IMAGES_DELIVERY_HASH;
   const cloudflareVariant = process.env.CLOUDFLARE_IMAGES_VARIANT ?? "logo";
+  const cloudflareRequestIntervalMs = Number(
+    process.env.CLOUDFLARE_IMAGES_REQUEST_INTERVAL_MS ?? "300",
+  );
   if (
     !cloudflareAccountId ||
     !cloudflareApiToken ||
@@ -346,20 +349,29 @@ async function main(): Promise<void> {
       "CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_API_TOKEN, and CLOUDFLARE_IMAGES_DELIVERY_HASH are required",
     );
   }
+  if (
+    !Number.isFinite(cloudflareRequestIntervalMs) ||
+    cloudflareRequestIntervalMs < 0
+  ) {
+    throw new Error(
+      "CLOUDFLARE_IMAGES_REQUEST_INTERVAL_MS must be a non-negative number",
+    );
+  }
 
   const tokens = [...accumulator.tokens.values()];
   const provenance = [...accumulator.provenance.values()];
   const bridgeRelationships = [...relationships.values()];
   const cache = await hostTokenLogos({
     tokens,
-    provenance,
     previousTokens: previousDocument.tokens,
     imageSourceCache,
+    logoCandidates: accumulator.logoCandidates,
     cloudflare: new CloudflareImages({
       accountId: cloudflareAccountId,
       apiToken: cloudflareApiToken,
       deliveryHash: cloudflareDeliveryHash,
       variant: cloudflareVariant,
+      requestIntervalMs: cloudflareRequestIntervalMs,
     }),
   });
 

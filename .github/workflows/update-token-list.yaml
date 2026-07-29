@@ -41,6 +41,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_IMAGES_DELIVERY_HASH: ${{ vars.CLOUDFLARE_IMAGES_DELIVERY_HASH }}
           CLOUDFLARE_IMAGES_VARIANT: ${{ vars.CLOUDFLARE_IMAGES_VARIANT || 'logo' }}
+          CLOUDFLARE_IMAGES_REQUEST_INTERVAL_MS: ${{ vars.CLOUDFLARE_IMAGES_REQUEST_INTERVAL_MS || '300' }}
         run: bun run update-tokens
 
       - name: Validate generated artifacts
