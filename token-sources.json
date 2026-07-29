@@ -1,0 +1,1784 @@
+[
+  {
+    "chain_id": "1",
+    "token_address": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0xa3931d71877C0E7a3148CB7Eb4463524FEc27fbD",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0xdC035D45d973E3EC169d2276DDab16f1e407384F",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x1aBaEA1f7C830bD89Acc67eC4af516284b1bC33c",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x5f98805A4E8be255a32880FDeC7F6728C6568bA0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x09fD37d9AA613789c517e76DF1c53aEce2b60Df4",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x0000000000000000000000000000000000000000",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0xae78736Cd615f374D3085123A210448E74Fc6393",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0xCa14007Eff0dB1f8135f4C25B34De49AB0d42766",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x04C46E830Bb56ce22735d5d8Fc9CB90309317d0f",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x23B608675a2B2fB1890d3ABBd85c5775c51691d5",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x7c1156e515aa1a2e851674120074968c905aaf37",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x15700b564ca08d9439c58ca5053166e8317aa138",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x00000000eFE302BEAA2b3e6e1b18d08D69a9012a",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x4c9EDD5852cd905f086C759E8383e09bff1E68B3",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x6440f144b7e50D6a8439336510312d2F54beB01D",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0xd9Fcd98c322942075A5C3860693e9f4f03AAE07b",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x66a1E37c9b0eAddca17d3662D6c05F4DECf3e110",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x9D39A5DE30e57443BfF2A8307A4256c8797A3497",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x40d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x6BEF15D938d4E72056AC92Ea4bDD0D76B1C4ad29",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x0c93b16cb1D8691E629514Fc98f02cbaD340Da3C",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x7C5097b11B7Bc856f603Fb60287833cf9a829fe3",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x57e114B691Db790C35207b2e685D4A43181e6061",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0xCd5fE23C85820F7B72D0926FC9b05b43E359b7ee",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0xf939E0A03FB07F59A73314E73794Be0E57ac1b4E",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x01791F726B4103694969820be083196cC7c045fF",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x4956b52ae2ff65d74ca2d61207523288e4528f96",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x6dea81c8171d0ba574754ef6f8b412f2ed88c54d",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x48C3399719B582dD63eB5AADf12A40B4C3f52FA2",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0xf1C9acDc66974dFB6dEcB12aA385b9cD01190E38",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x232CE3bd40fCd6f80f3d55A522d03f25Df784Ee2",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x0000000000000000000000000000000000000000",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x5fc5360d0400a0fd4f2af552add042d716f1d168",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xd0601CE157Db5bdC3162BbaC2a2C8aF5320D9EEC",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xfF080c8ce2E5feadaCa0Da81314Ae59D232d4afD",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x322F0929c4625eD5bAd873c95208D54E1c003b2d",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xB90A19fF0Af67f7779afF50A882A9CfF42446400",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x86923f96303D656E4aa86D9d42D1e57ad2023fdC",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x117cc2133c37B721F49dE2A7a74833232B3B4C0C",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xe93237C50D904957Cf27E7B1133b510C669c2e74",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x894E1EC2D74FFE5AEF8Dc8A9e84686acCB964F2A",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xc72b96e0E48ecd4DC75E1e45396e26300BC39681",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xD5f3879160bc7c32ebb4dC785F8a4F505888de68",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x411eFb0E7f985935DAec3D4C3ebaEa0d0AD7D89f",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xdF0992E440dD0be65BD8439b609d6D4366bf1CB5",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xc0D6457C16Cc70d6790Dd43521C899C87ce02f35",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xaF3D76f1834A1d425780943C99Ea8A608f8a93f9",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x2e0847E8910a9732eB3fb1bb4b70a580ADAD4FE3",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xa30FA36Db767ad9eD3f7a60fC79526fB4d56D344",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x12f190a9F9d7D37a250758b26824B97CE941bF54",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x5f10A1C971B69e47e059e1dC91901B59b3fB49C3",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xb0992820E760d836549ba69BC7598b4af75dEE03",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x4a0E65A3EcceC6dBe60AE065F2e7bb85Fae35eEa",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x92FD66527192E3e61d4DDd13322Aa222DE86F9B5",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x822CC93fFD030293E9842c30BBD678F530701867",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xd917B029C761D264c6A312BBbcDA868658eF86a6",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x6330D8C3178a418788dF01a47479c0ce7CCF450b",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xad25Ac6C84D497db898fa1E8387bf6Af3532a1c4",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x3b14C39E89D60D627b42a1A4CA45b5bb45Fc12e2",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x5c90450Bbb4273D7b2f17CF6917AEB237A569679",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x0f17206447090e464C277571124dD2688E48AEA9",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x8eF20885F94e3D9bc7eB3080279188Bd5ED7c08C",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x941AE714EC6D8130c7B75d67160Ca08f1e7d11Dd",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x62fd0668e10D8B72339BE2DCF7643001688ff13B",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x59818904ab4cE163b3cE4FfB64f2D6Ca02c434B4",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xcf6B2D875361be807EAfa57458c80f28521F9333",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xec262a75e413fAfD0dF80480274532C79D42da09",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x7c04E6A3368F2A1DE3874f0e80d2e0A1a9915da6",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xC583c60aeF9Dc401Da72cEC1B404743a93cea1Cc",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x284358abc07F9359f19f4b5b4aC91901Be2597Ba",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x0E6e67Ba88e7b5d9B67636A215c76779B948dE79",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x58FfE4a942d3885bAa22D7520691F611EF09e7AA",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x521Cf887E6531c6F667b5BC4D896E5d9bfE8EB2E",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x1b0E319c6A659F002271B69dB8A7df2F911c153E",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xF0AB0c93bE6F41369d302e55db1A96b3c430212D",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x4EA005168D7F09a7A0Ba9D1DEf21a479950E44C2",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xbE6702d7b70315376dC48a3293f24f0982F86386",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x7dc013eB55e436f30d7ED1AFE4E36d6e45e3c3f7",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x75742c18BC1f1C5c5f448f4C9D9C6F66dafAAa38",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xcBB95BBF36099d34dA091dc6Fa6F49EfA257Cee3",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x15Cd20759CE7F3285c29A319dE2D1A2e098c6f43",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xc01aA1fECeC0605b13bc84874ff7256C0f5F562a",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x7f0aBeF0C07280F82c6a08ead09dEd6BAE2C13Fc",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x9D9c6684F596F66a64C030B93A886D51Fd4D7931",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x0C3260aF4B8f13a69c4c2dFb84fD667890CDFa14",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x1AF6446f07eb1d97c546AFC8c9544cBDF3AD5137",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x98E75885157C80992A8D41b696D8c9C6Fb30A926",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x156E175DD063a8cE274C50654eF40e0032b3fbcF",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xE0444EF8BF4eD74f74FD73686e2ddF4C1c5591E8",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x558378E000D634A36593E338eBacdd6207640EfE",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xb8DBf92F9741c9ac1c32115E78581f23509916FD",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x47F93d52cBeC7C6D2CfC080e154002370a60dAEA",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xea72Ecca2d0f6bFA1394DBBCff85b52CD4233931",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xf9B46d3D1B22199D4D1025a9cEDB540A33F1a2d5",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x408c14038a04f7bD235329E26d2bf569ee20e250",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x36046893810a7E7fCE501229d57dc3FC8c8716d0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x8cF07C5A878945185d327aAa6e33FAa95F95e7bF",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x92Ef19E82bD8fF36661DE838D5eaE7e5CEF0EfFE",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x8005d266423c7ea827372c9c864491e5786600ea",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x5e81213613b6B86EaB4c6c50d718d34359459786",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xa5D4968421bA94814Be3B136b15cf422101aC1a3",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xDdf2266b79abf0B48898959B0ed6E6adf512be74",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x56d23beE5f41A7120170b0c603Dae30128e460e9",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xA8eB3BCcbf2017eE7CBfb652eB51CF2E1B153289",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x95052ddcd5DC25641657424A8Cf04834997E1730",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xF53F66751B1Eff985311b693531E3290F600c410",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xAd622320e520de39e72d41EF07438C3Fd3354875",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x89776d4Cd68193597A2fC132cfaC1fDe36CCeA8a",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x25C288E6D899b9BC30160965aD9644c67e73bE0C",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x4189F0c66EBBB0bfeF1C31f763131361EF32f77C",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x4e62068525Ab11FE768e29dfD00ef909B9803016",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x27c99fBde9D0d2AA4f4Bfb4943f237843DdF6958",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xf1953DAB6FaD537488d5A022361FfAa8B4c95eC6",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x4D21483a44Bf67a86b77E3dA301411880797D452",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x44c4F142009036cF477eD2d09932051843137CF1",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xeB30663bDFf0622Ef4e4E5cBb4E975F19f33f51D",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x48961813349333209994750ffA89b3c5C22eC969",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x282e87451E10fA6679BC7D76C69BE44cD3fC777C",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xB1BF26c1D20ff267A4f93550d1E0d06ac40a114B",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x39EC44Bee4F6A116c6F9B8De566848a985C53C60",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x05b37Fb53A299a1b874A619e1c4C404D52C36F4C",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x82DA4646242e1D962e96e932269Dc644c94a9CaA",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x1Cdad396DB64BDa184d5182A97Dd9B3C62100b7D",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x9651342CeA770aE9a2969Ba2A52611523146aef9",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xf23250dac154D05Bb671CB0d0eBEf3c635c79CE2",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xF0C4BF4C582cb3836e98394b1d4e7B7281101bE8",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0xBEF75684C43c4ea7BD18Dd532a2244674Ee8b926",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x9b23573b156B52565012F5cE02CDF60AFBaa70Be",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "421614",
+    "token_address": "0x0000000000000000000000000000000000000000",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "421614",
+    "token_address": "0x75faf114eafb1bdbe2f0316df893fd58ce46aa4d",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "8453",
+    "token_address": "0x0000000000000000000000000000000000000000",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "8453",
+    "token_address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0x0000000000000000000000000000000000000000",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0xaf88d065e77c8cc2239327c5edb3a432268e5831",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0x0A08E175c0350dF6119d21e32FE628799F804179",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0x040d1edc9569d4bab2d15287dc5a4f10f56a56b8",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0x912ce59144191c1204e64559fe8253a0e49e6548",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0x0c880f6761f1af8d9aa9c466984b80dab9a8c9e8",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0xf97f4df75117a78c1a5a0dbb814af92458539fb4",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0xba5ddd1f9d7f570dc94a51479a000e3bce967196",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "84532",
+    "token_address": "0x0000000000000000000000000000000000000000",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "84532",
+    "token_address": "0x036cbd53842c5426634e7929541ec2318f3dcf7e",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "11155111",
+    "token_address": "0x0000000000000000000000000000000000000000",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "11155111",
+    "token_address": "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "11155111",
+    "token_address": "0x08210F9170F89Ab7658F0B5E3fF39b0E03C594D4",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "11155111",
+    "token_address": "0xaA8E23Fb1079EA71e0a56F48a2aA51851D8433D0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "11155111",
+    "token_address": "0x618C25b11a5e9B5Ad60B04bb64FcBdfBad7621d1",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "11155111",
+    "token_address": "0xCa14007Eff0dB1f8135f4C25B34De49AB0d42766",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x02342f9d4eb0d47cb3f9de41fa1dbac6d154824d63e66b363eeb256683fea3bc",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x03fe2b97c1fd336e750087d68b9b867997fd64a2661ff3ca5a7c771641e8e7ac",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x04daa17763b286d1e59b97c283c0b8c949994c361e426a28f743c67bdfe9a32f",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x033068f6539f8e6e6b131e6b2b814e6c34a5224bc66947c47dab9dfee93b35fb",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x053c91253bc9682c04929ca02ed00b3e423f6710d2ee7e0d5ebb06f3ecf368a8",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x070a76fd48ca0ef910631754d77dd822147fe98a569b826ec85e3c33fde586ac",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x068f5c6a61780768455de69077e07e89787839bf8166decfbf92b645209c0fb8",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x00da114221cb83fa859dbdb4c44beeaa0bb37c7537ad5ae66fe5e0efd20e6eb3",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x05574eb6b8789a91466f902c380d978e472db68170ff82a5b650b95a58ddf4ad",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x042b8f0484674ca266ac5d08e4ac6a3fe65bd3129795def2dca5c34ecc5f96d2",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x0057912720381af14b0e5c87aa4718ed5e527eab60b3801ebf702ab09139e38b",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x0319111a5037cbec2b3e638cc34a3474e2d2608299f3e62866e9cc683208c610",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x0124aeb495b947201f5fac96fd1138e326ad86195b98df6dec9009158a533b49",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x01fa2fb85f624600112040e1f3a848f53a37ed5a7385810063d5fe6887280333",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x009c6b4fb13dfaa025c1383ed6190af8ed8cbb09d9588a3bb020feb152442406",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x0058efd0e73c33a848ffaa88738d128ebf0af98ea78cf3c14dc757bb02d39ffb",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x04578fffc279e61b5cb0267a5f8e24b6089d40f93158fbbad2cb23b8622c9233",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x070dd1f88cc973de315c10b2da4e196554c20e925d630474e257a0a4d9d363dc",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x049210ffc442172463f3177147c1aeaa36c51d152c1b0630f2364c300d4f48ee",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x039877a272619050ab8b0e3e0a19b58d076fc2ce84da1dc73b699590e629f2b8",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x0410466536b5ae074f7fea81e5533b8134a9fa08b3dd077dd9db08f64997d113",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x055c3868c743e92c470701799388cb3fb1d922dcec271150d10462c6948e3cf4",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x06f15ec4b6ff0b7f7a216c4b2ccdefc96cbf114d6242292ca82971592f62273b",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0xd3d60f69d76b6639fc51ae1447480ecdf0ba1ea3f6162e3230be0a40ef2a6b",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x03650d77855a4f05b9dd0acff3936cfffd693624754a96d90e4d5876e06c231d",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x00585c32b625999e6e5e78645ff8df7a9001cf5cf3eb6b80ccdd16cb64bd3a34",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x075afe6402ad5a5c20dd25e10ec3b3986acaa647b77e4ae24b0cbc9a54a27a87",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x023ed2ba4fb5709302c5dfd739fa7613359042f143286c115b6c7f7dc2601015",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x00c530f2c0aa4c16a0806365b0898499fba372e5df7a7172dc6fe9ba777e8007",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x004878d1148318a31829523ee9c6a5ee563af6cd87f90a30809e5b0d27db8a9b",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x256c74b33f5734c68402cd9433dfa77856f62c6940f54591874527cf898a924",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x51c4b1fe3bf6774b87ad0b15ef5d1472759076e42944fff9b9f641ff13e5bbe",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x004380de5819e2e989b5e8b978ea2811fd36fdbc5c12fcfb3a2b444098888665",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x316ec509f7ad89b7e6e03d15a436df634454f95e815536d616af03edc850fa3",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x00357cba05d61beb5fe378429d25013dc5fe0f67878b541747b0675c5ebecee1",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x52bdb85297e6b0c87d8ec98c5195a4324ff731676d64d9bee2e9e8710e8ea52",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x040daf98c49c6104002428958456208455a03825198fa7646bd793a321f4fc82",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x498edfaf50ca5855666a700c25dd629d577eb9afccdf3b5977aec79aee55ada",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x01bfe97d729138fc7c2d93c77d6d1d8a24708d5060608017d9b384adf38f04c7",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x078d7dfcddb44667153513bd837ff534ef395484f4b6cf28faa25b2c46e063d9",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x028d709c875c0ceac3dce7065bec5328186dc89fe254527084d1689910954b0a",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x0356f304b154d29d2a8fe22f1cb9107a9b564a733cf6b4cc47fd121ac1af90c9",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x45cd05ee2caaac3459b87e5e2480099d201be2f62243f839f00e10dde7f500c",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x00acc2fa3bb7f6a6726c14d9e142d51fe3984dbfa32b5907e1e76425177875e2",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x439a1c010e3e1bb2d43d43411000893c0042bd88f6c701611a0ea914d426da4",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0xce635e3f241b0ae78c46a929d84a9101910188f9c4024eaa7559556503c31a",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x40d8907cec0f7ae9c364dfb12485a1314d84c129bf1898d2f3d4b7fcc7d44f4",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x66ed5c928ee027a9419ace1cbea8389885161db5572a7c5c4fef2310e9bf494",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x1720cf6318bff45e62acc588680ae3cd4d5f8465b1d52cb710533c9299b031a",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x3b6448d09dcd023507376402686261f5d6739455fa02f804907b066e488da66",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0xdff9dca192609c4e86ab3be22c7ec1e968876c992d21986f3c542be97fa2f",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x6fe21d2d4a8a05bdb70f09c9250af9870020d5dcc35f410b4a39d6605c3e353",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x67ba235c569c23877064b2ac6ebd4d79f32d3c00f5fab8e28a3b5700b957f6",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x3956a5301e99522038a2e7dcb9c2a89bf087ffa79310ee0a508b5538efd8ddd",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x555d713e59d4ff96b7960447e9bc9e79bfdeab5b0eea74e3df81bce61cfbc77",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x1d655ac834d38df7921074fc1588411e202b1af83307cbd996983aff52db3a8",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x3d9b66720959d0e7687b898292c10e62e78626f2dba5e1909961a2ce3f86612",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0xe03ea8ae385f64754820af5c01c36abf1b8130dd6797d3fd9d430e4114e876",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x5620aa7170cd66dbcbc37d03087bfe4633ffef91d3e4d97b501de906004f79b",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x625c1f789b03ebebc7a9322366f38ebad1f693b84b2abd8cb8f5b2748b0cdd5",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x35e24c02409c3cfe8d5646399a62c4d102bb782938d5f5180e92c9c62d3faf7",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x4485f5a6e16562e1c761cd348e63256d00389e3ddf4f5d98afe7ab44c57c481",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x367f838f85a2f5e1580d6f011e4476f581083314cff8721ba3dda9706076eed",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x2f8dd022568af8f9f718aa37707a9b858529db56910633a160456838b6cbcbc",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x68b6e23cbbd58a644700f55e96c83580921e9f521b6e5175396b53ba7910e7d",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x3bf856515bece3c93f5061b7941b8645f817a0acab93c758b8c7b4bc0afa3c6",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x0695b08ecdfdd828c2e6267da62f59e6d7543e690ef56a484df25c8566b332a5",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x264be95a4a2ace20add68cb321acdccd2f9f8440ee1c7abd85da44ddab01085",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0xac965f9e67164723c16735a9da8dbc9eb8e43b1bd0323591e87c056badf606",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x67e4ac00a241be06ba6afc11fa2715ec7da0c42c05a67ef6ecfcfeda725aaa8",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x3bc86299bee061c7c8d7546ccb62b9daf9bffc653b1508facb722c6593874bc",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x57a3f1ee475e072ce3be41785c0e889b7295d7a0dcc22b992c5b9408dbeb280",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x27719173cfe10f1aa38d2aaed0a075b6077290f1e817aa3485d2b828394f4d9",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x02019e47a0bc54ea6b4853c6123ffc8158ea3ae2af4166928b0de6e89f06de6c",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x40e81cfeb176bfdbc5047bbc55eb471cfab20a6b221f38d8fda134e1bfffca4",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x3a19ae3995994bdc49e70930c2e098cad914ad2cb57ecfdf7b86d1f7a1a87ba",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x058922561acec1B2ef422786ba240c401ac9eD224120cCa11B69494695B2CF8e",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x0185dDDb74EF29d40d49559EeDa62a108AAF013A29f966920f4b7116Acc084a6",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x01d8362fcb5a754ed6493c52bad7019210aae268c388b30ec20cec8cfa9408c5",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x062b7d46189cc075a100c468d529f06aa7fe6e4b55e58991744cee1b8548c5bc",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x042dd777885ad2c116be96d4d634abc90a26a790ffb5871e037dd5ae7d2ec86b",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x01e6545cab7ba4ac866768ba5e1bd540893762286ed3fea7f9c02bfa147e135b",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x02411565ef1a14decfbe83d2e987cced918cd752508a3d9c55deb67148d14d17",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x04DD39DE0a588F5e1c7A8377e1BEf2C49CAAeE49a11433429d2c48F587b3A492",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x6a567e68c805323525fe1649adb80b03cddf92c23d2629a6779f54192dffc13",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x0787150e306e6eae6e3f79dea881770e8bbff2c1b8eb490f969669ee945b3135",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x047751b3532fabca89b0f2e35ca1cb45e5a7b11d5e3d3663dfa1f4406b45fd88",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x43a35c1425a0125ef8c171f1a75c6f31ef8648edcc8324b55ce1917db3f9b91",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x7dd3c80de9fcc5545f0cb83678826819c79619ed7992cc06ff81fc67cd2efe0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x580f3dc564a7b82f21d40d404b3842d490ae7205e6ac07b1b7af2b4a5183dc9",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x02CaB84694E1bE6AF2CE65b1Ae28A76009e8ec99EC4bC17047386abf20cbb688",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x023A312eCE4A275E38c9fC169E3be7B5613a0cB55FE1BEce4422b09A88434573",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x036834A40984312F7f7de8D31e3f6305B325389eAEeA5B1c0664b2fB936461a4",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x046E4E83Fe6A22f243F73d0f2E4cDBc4e9eBd868050e9F7E9CbD90F1436d8b44",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x04887629C229B4eE8E82f3dB4cDdEB1B2c0F084d46f229672623Bd1282Df5931",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x041b4e5dc3e9d859f12b62913489633bbd5b5c8c6ec0ea0bca2fdd4469534111",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x0593e034dda23eea82d2ba9a30960ed42cf4a01502cc2351dc9b9881f9931a68",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x04e4fb1a9ca7e84bae609b9dc0078ad7719e49187ae7e425bb47d131710eddac",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x04be8945e61dc3e19ebadd1579a6bd53b262f51ba89e6f8b0c4bc9a7e3c633fc",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x035f581b050a39958b7188ab5c75daaa1f9d3571a0c032203038c898663f31f8",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x0452810188C4Cb3AEbD63711a3b445755BC0D6C4f27B923fDd99B1A118858136",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x74238dfa02063792077820584c925b679a013cbab38e5ca61af5627d1eda736",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x01E70AeDFfd376afe33CEbdF51ED5365131Dccb2A5B2cb36d02B785442912B9b",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x2e82800f97afded96e8e88f9788f2d8f097edb04c9e9b920ceb1ec11f265158",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x04fcAf2a7b4A072Fe57c59BEEe807322D34Ed65000D78611c909a46FEAd07fb1",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x02f94539f80158f9a48a7acf3747718dfbec9b6f639e2742c1fb44ae7ab5aa04",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x051D8401eeF82153D10179238F5221489d0b4Faae88c8b0b071734f44E647dd8",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x05ce53b9b68fb8e9ecab9283a96d97948914733fd6ed8d9a53a276a419497841",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494f",
+    "token_address": "0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494f",
+    "token_address": "0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494f",
+    "token_address": "0x01fad7c03b2ea7fbef306764e20977f8d4eae6191b3a54e4514cc5fc9d19e569",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494f",
+    "token_address": "0x07ab0b8855a61f480b4423c46c32fa7c553f0aac3531bbddaa282d86244f7a23",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494f",
+    "token_address": "0x053b40a647cedfca6ca84f542a0fe36736031905a9639a7f19a3c1e66bfd5080",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494f",
+    "token_address": "0x06f2a0dfeff180133de890ad69c6ba294574c5f34a67890fd22464f348c4d03c",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494f",
+    "token_address": "0x020d208b9e57a7f92bfa9f61135446e0961afc340378be97dbd317453c0950ae",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494f",
+    "token_address": "0x4d204547803c53c80c3ce46d5f6542166d7d947c3fdd185ed8fb3cdfb4ad3f",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494f",
+    "token_address": "0x2ebbfafc2e40f66fc4e729a21270c36d7277dbeba5e5dda61884a998ecdadc8",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494f",
+    "token_address": "0x703911a6196ef674fc635de02763dcd4ccc16d7cf736f68a9483cc44eccaa94",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494f",
+    "token_address": "0x02BB2FB3837DcD4229404B422908da95109D94191c4b075b2D0F192f1a18f2AC",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494f",
+    "token_address": "0xabbd6f1e590eb83addd87ba5ac27960d859b1f17d11a3c1cd6a0006704b141",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494f",
+    "token_address": "0x715649d4c493ca350743e43915b88d2e6838b1c78ddc23d6d9385446b9d6844",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4663",
+    "token_address": "0x570C5aa79c798E7A418412cC8399ae5bcCe570C5",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "46630",
+    "token_address": "0x570C5aa79c798E7A418412cC8399ae5bcCe570C5",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "46630",
+    "token_address": "0xC9f9c86933092BbbfFF3CCb4b105A4A94bf3Bd4E",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "46630",
+    "token_address": "0x5884aD2f920c162CFBbACc88C9C51AA75eC09E02",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "46630",
+    "token_address": "0x1FBE1a0e43594b3455993B5dE5Fd0A7A266298d0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "46630",
+    "token_address": "0x3b8262A63d25f0477c4DDE23F83cfe22Cb768C93",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "46630",
+    "token_address": "0x71178BAc73cBeb415514eB542a8995b82669778d",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "46630",
+    "token_address": "0x0000000000000000000000000000000000000000",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "46630",
+    "token_address": "0x9367e29667db75Cb91788330a8509b3B4ac66c8f",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x016f9def00daef9f1874dd932b081096f50aec2fe61df31a81bc5707a7522443",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x049eaed2a1bA2F2Eb6Ac2661ffd2d79231CdD7d5293D9448Df49c5986C9897aE",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x029023e0a455d19d6887bc13727356070089527b79e6feb562ffe1afd6711dbe",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x016dea82a6588ca9fb7200125fa05631b1c1735a313e24afe9c90301e441a796",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x0103eafe79f8631932530cc687dfcdeb013c883a82619ebf81be393e2953a87a",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x01c3c8284d7EED443b42F47e764032a56eAf50A9079D67993B633930E3689814",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4326",
+    "token_address": "0xFAfDdbb3FC7688494971a79cc65DCa3EF82079E7",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4326",
+    "token_address": "0x0000000000000000000000000000000000000000",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "4326",
+    "token_address": "0x28B7E77f82B25B95953825F1E3eA0E36c1c29861",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  }
+]

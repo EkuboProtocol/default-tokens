@@ -1,0 +1,55 @@
+name: Sync authoritative token list to database
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - tokens.json
+      - token-list.schema.json
+      - scripts/sync-database.ts
+      - src/**
+      - package.json
+      - bun.lock
+  workflow_run:
+    workflows:
+      - Update authoritative token list
+    types:
+      - completed
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: sync-authoritative-token-list
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    if: >-
+      github.event_name != 'workflow_run' ||
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: oven-sh/setup-bun@v2
+      - run: bun ci
+      - run: bun test
+      - run: bun run typecheck
+      - name: Validate the exact committed inputs
+        env:
+          CLOUDFLARE_IMAGES_DELIVERY_HASH: ${{ vars.CLOUDFLARE_IMAGES_DELIVERY_HASH }}
+          CLOUDFLARE_IMAGES_VARIANT: ${{ vars.CLOUDFLARE_IMAGES_VARIANT || 'logo' }}
+        run: bun run validate
+      - name: Sync committed metadata into Postgres
+        env:
+          PG_CONNECTION_STRING: ${{ secrets.PG_CONNECTION_STRING }}
+          CLOUDFLARE_IMAGES_DELIVERY_HASH: ${{ vars.CLOUDFLARE_IMAGES_DELIVERY_HASH }}
+          CLOUDFLARE_IMAGES_VARIANT: ${{ vars.CLOUDFLARE_IMAGES_VARIANT || 'logo' }}
+        run: bun run sync-database
