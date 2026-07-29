@@ -2,7 +2,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import postgres from "postgres";
 import {
-  CloudflareImages,
+  createCloudflareImages,
   hostTokenLogos,
   type ImageSourceCache,
 } from "../src/cloudflare-images";
@@ -352,7 +352,7 @@ async function main(): Promise<void> {
     previousTokens: previousDocument.tokens,
     imageSourceCache,
     logoCandidates: accumulator.logoCandidates,
-    cloudflare: new CloudflareImages({
+    cloudflare: await createCloudflareImages({
       accountId: cloudflareAccountId,
       apiToken: cloudflareApiToken,
       deliveryHash: cloudflareDeliveryHash,

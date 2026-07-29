@@ -7,22 +7,31 @@ type CloudflareImage = {
   variants?: string[];
 };
 
-type CloudflareResponse = {
+type CloudflareEnvelope<T> = {
   success: boolean;
-  result?: CloudflareImage;
+  result?: T;
   errors?: { code?: number; message?: string }[];
+};
+
+type CloudflareResponse = CloudflareEnvelope<CloudflareImage>;
+
+type CloudflareBatchToken = {
+  token: string;
+  expiresAt?: string;
 };
 
 type FetchFunction = typeof globalThis.fetch;
 
 export type ImageSourceCache = Record<string, string>;
 
-type CloudflareImagesConfig = {
+export type CloudflareImagesConfig = {
   accountId: string;
   apiToken: string;
   deliveryHash: string;
   variant: string;
+  uploadUrl?: string;
   requestIntervalMs?: number;
+  batchRequestIntervalMs?: number;
   maxRetries?: number;
   fetch?: FetchFunction;
   sleep?: (milliseconds: number) => Promise<void>;
@@ -43,7 +52,7 @@ class CloudflareApiError extends Error {
 
 export class FatalCloudflareImagesError extends Error {}
 
-function responseError(response: CloudflareResponse): string {
+function responseError(response: CloudflareEnvelope<unknown>): string {
   const message =
     response.errors
       ?.map(({ code, message }) => `${code ?? "unknown"}: ${message ?? ""}`)
@@ -51,9 +60,9 @@ function responseError(response: CloudflareResponse): string {
   return message.length > 500 ? `${message.slice(0, 500)}…` : message;
 }
 
-async function parseCloudflareResponse(
+async function parseCloudflareResponse<T>(
   response: Response,
-): Promise<CloudflareResponse> {
+): Promise<CloudflareEnvelope<T>> {
   const text = await response.text();
   try {
     const parsed = JSON.parse(text) as unknown;
@@ -63,7 +72,7 @@ async function parseCloudflareResponse(
       "success" in parsed &&
       typeof parsed.success === "boolean"
     ) {
-      return parsed as CloudflareResponse;
+      return parsed as CloudflareEnvelope<T>;
     }
   } catch {
     // Fall through to a normalized error response.
@@ -126,6 +135,73 @@ function fetchableSourceUrl(sourceUrl: string): string {
   return parsed.toString();
 }
 
+export async function createCloudflareImages(
+  config: CloudflareImagesConfig,
+): Promise<CloudflareImages> {
+  const fetchImplementation = config.fetch ?? globalThis.fetch;
+  const sleep =
+    config.sleep ??
+    ((milliseconds: number) =>
+      new Promise<void>((resolve) => setTimeout(resolve, milliseconds)));
+  const maxRetries = Math.min(config.maxRetries ?? 8, 3);
+  const batchTokenUrl =
+    `https://api.cloudflare.com/client/v4/accounts/${config.accountId}` +
+    "/images/v1/batch_token";
+  let failure = "unknown response";
+
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    let response: Response | undefined;
+    try {
+      response = await fetchImplementation(batchTokenUrl, {
+        headers: {
+          Authorization: `Bearer ${config.apiToken}`,
+        },
+        signal: AbortSignal.timeout(30_000),
+      });
+      const body = await parseCloudflareResponse<CloudflareBatchToken>(
+        response,
+      );
+      if (
+        response.ok &&
+        body.success &&
+        typeof body.result?.token === "string"
+      ) {
+        console.log("Using the Cloudflare Images batch upload API");
+        return new CloudflareImages({
+          ...config,
+          apiToken: body.result.token,
+          uploadUrl: "https://batch.imagedelivery.net/images/v1",
+          requestIntervalMs: config.batchRequestIntervalMs ?? 10,
+        });
+      }
+
+      failure = `${response.status}: ${responseError(body)}`;
+      if (
+        response.status !== 429 &&
+        response.status < 500
+      ) {
+        break;
+      }
+    } catch (error) {
+      failure = errorMessage(error);
+    }
+
+    if (attempt >= maxRetries) break;
+    const delay = response
+      ? retryAfterMilliseconds(response, attempt)
+      : Math.min(30_000, 1_000 * 2 ** attempt);
+    console.warn(
+      `Could not obtain a Cloudflare Images batch token; retrying in ${Math.ceil(delay / 1_000)}s: ${failure}`,
+    );
+    await sleep(delay);
+  }
+
+  console.warn(
+    `Cloudflare Images batch API unavailable; using the paced standard API: ${failure}`,
+  );
+  return new CloudflareImages(config);
+}
+
 export class CloudflareImages {
   readonly deliveryPrefix: string;
   private readonly config: NormalizedConfig;
@@ -136,7 +212,11 @@ export class CloudflareImages {
   constructor(config: CloudflareImagesConfig) {
     this.config = {
       ...config,
+      uploadUrl:
+        config.uploadUrl ??
+        `https://api.cloudflare.com/client/v4/accounts/${config.accountId}/images/v1`,
       requestIntervalMs: config.requestIntervalMs ?? 300,
+      batchRequestIntervalMs: config.batchRequestIntervalMs ?? 10,
       maxRetries: config.maxRetries ?? 8,
       fetch: config.fetch ?? globalThis.fetch,
       sleep:
@@ -198,13 +278,11 @@ export class CloudflareImages {
   private async fetchApi(
     init: RequestInit,
   ): Promise<{ response: Response; body: CloudflareResponse }> {
-    const url = `https://api.cloudflare.com/client/v4/accounts/${this.config.accountId}/images/v1`;
-
     for (let attempt = 0; ; attempt++) {
       await this.waitForApiSlot();
       let response: Response;
       try {
-        response = await this.config.fetch(url, {
+        response = await this.config.fetch(this.config.uploadUrl, {
           ...init,
           headers: {
             ...init.headers,
@@ -225,7 +303,7 @@ export class CloudflareImages {
         await this.config.sleep(delay);
         continue;
       }
-      const body = await parseCloudflareResponse(response);
+      const body = await parseCloudflareResponse<CloudflareImage>(response);
       const retryable = response.status === 429 || response.status >= 500;
       if (!retryable || attempt >= this.config.maxRetries) {
         return { response, body };

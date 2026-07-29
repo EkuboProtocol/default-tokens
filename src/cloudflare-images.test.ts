@@ -2,6 +2,7 @@ import { expect, test } from "bun:test";
 import {
   CloudflareImages,
   FatalCloudflareImagesError,
+  createCloudflareImages,
   hostTokenLogos,
 } from "./cloudflare-images";
 import type { Token } from "./types";
@@ -52,6 +53,47 @@ test("recognizes only the configured Cloudflare Images account", () => {
       "https://imagedelivery.net/delivery/id/logo128pad",
     ),
   ).toBe("https://imagedelivery.net/delivery/id/logo");
+});
+
+test("uses a Cloudflare batch token for uploads", async () => {
+  let batchTokenRequests = 0;
+  let batchUploads = 0;
+  const images = await createCloudflareImages({
+    accountId: "account",
+    apiToken: "api-token",
+    deliveryHash: "delivery",
+    variant: "logo",
+    batchRequestIntervalMs: 0,
+    fetch: (async (input, init) => {
+      const url = String(input);
+      if (url.endsWith("/images/v1/batch_token")) {
+        batchTokenRequests++;
+        expect(new Headers(init?.headers).get("authorization")).toBe(
+          "Bearer api-token",
+        );
+        return cloudflareResponse({
+          success: true,
+          result: { token: "batch-token" },
+        });
+      }
+      if (url.startsWith("https://imagedelivery.net/")) {
+        return new Response(null, { status: 404 });
+      }
+      expect(url).toBe("https://batch.imagedelivery.net/images/v1");
+      expect(new Headers(init?.headers).get("authorization")).toBe(
+        "Bearer batch-token",
+      );
+      batchUploads++;
+      return cloudflareResponse({
+        success: true,
+        result: { id: "token-logos/id" },
+      });
+    }) as typeof fetch,
+  });
+
+  await images.host("https://example.com/token.png");
+  expect(batchTokenRequests).toBe(1);
+  expect(batchUploads).toBe(1);
 });
 
 test("uses the deterministic delivery URL without uploading an existing image", async () => {
