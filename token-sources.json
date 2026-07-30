@@ -60348,6 +60348,18 @@
     "source_url": "https://tokenlist.tempo.xyz/list/4217"
   },
   {
+    "chain_id": "4217",
+    "token_address": "0x20c00000000000000000000030fdd4a919e93fcf",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c00000000000000000000058d0b8b2cfdb358c",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
     "chain_id": "42431",
     "token_address": "0x20c0000000000000000000000000000000000000",
     "source_name": "Tempo Testnet Token List",
