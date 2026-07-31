@@ -11,10 +11,17 @@ import {
   validateCoinGeckoAssetPlatforms,
   validateCoinGeckoTokenList,
 } from "../src/coingecko";
+import {
+  enrichCoinGeckoSupplies,
+  indexCoinGeckoTokenIds,
+  type CoinGeckoCoin,
+  type CoinGeckoMarket,
+} from "../src/coingecko-supply";
 import { fetchJson } from "../src/fetch-json";
 import {
   COINGECKO_PRO_API_BASE_URL,
   COINGECKO_PRO_TOKEN_LISTS,
+  COINGECKO_SUPPLY_PLATFORMS,
   CURATED_SOURCE,
   REMOTE_TOKEN_LISTS,
   STARKNET_AVNU_TOKEN_SOURCES,
@@ -41,6 +48,7 @@ import type {
 const root = resolve(import.meta.dir, "..");
 const withoutRegistrations = process.argv.includes("--without-registrations");
 const addressRegex = /^0x[a-fA-F0-9]+$/;
+const coinGeckoMarketBatchSize = 200;
 
 type AvnuToken = {
   name: string;
@@ -48,6 +56,9 @@ type AvnuToken = {
   symbol: string;
   decimals: number;
   logoUri?: string;
+  extensions?: {
+    coingeckoId?: string;
+  };
 };
 
 type AvnuTokenResponse = {
@@ -75,6 +86,49 @@ async function writeJson(path: string, value: unknown): Promise<void> {
     resolve(root, path),
     `${JSON.stringify(value, null, 2)}\n`,
   );
+}
+
+async function fetchCoinGeckoMarkets(
+  coinIds: string[],
+  headers: HeadersInit,
+): Promise<CoinGeckoMarket[]> {
+  const markets: CoinGeckoMarket[] = [];
+  for (
+    let offset = 0;
+    offset < coinIds.length;
+    offset += coinGeckoMarketBatchSize
+  ) {
+    const batch = coinIds.slice(offset, offset + coinGeckoMarketBatchSize);
+    const parameters = new URLSearchParams({
+      vs_currency: "usd",
+      ids: batch.join(","),
+      per_page: String(batch.length),
+      page: "1",
+      sparkline: "false",
+      locale: "en",
+      precision: "full",
+    });
+    const response = await fetchJson<CoinGeckoMarket[]>(
+      `CoinGecko Pro markets batch ${offset / coinGeckoMarketBatchSize + 1}`,
+      `${COINGECKO_PRO_API_BASE_URL}/coins/markets?${parameters}`,
+      { headers },
+    );
+    if (!Array.isArray(response)) {
+      throw new Error("CoinGecko Pro markets did not return an array");
+    }
+    const requestedIds = new Set(batch);
+    const unexpectedMarket = response.find(
+      (market) =>
+        typeof market.id === "string" && !requestedIds.has(market.id),
+    );
+    if (unexpectedMarket?.id) {
+      throw new Error(
+        `CoinGecko Pro markets returned unexpected coin ${unexpectedMarket.id}`,
+      );
+    }
+    markets.push(...response);
+  }
+  return markets;
 }
 
 function addRelationship(
@@ -133,6 +187,7 @@ function addStandardTokenList(
           },
           source.name,
           source.url,
+          token.extensions?.coinGeckoId ?? token.extensions?.coingeckoId,
         ),
       );
     } catch (error) {
@@ -332,6 +387,7 @@ async function main(): Promise<void> {
           },
           source.name,
           source.url,
+          token.extensions?.coingeckoId,
         ),
       );
     }
@@ -375,6 +431,45 @@ async function main(): Promise<void> {
   }
   console.log(`Discovered ${relationships.size} bridge relationships`);
 
+  const tokens = [...accumulator.tokens.values()];
+  const coinGeckoCoins = await fetchJson<CoinGeckoCoin[]>(
+    "CoinGecko Pro coins list",
+    `${COINGECKO_PRO_API_BASE_URL}/coins/list?include_platform=true`,
+    { headers: coinGeckoHeaders },
+  );
+  const { idsByToken, ambiguousTokenKeys } = indexCoinGeckoTokenIds(
+    tokens,
+    coinGeckoCoins,
+    coinGeckoPlatforms,
+    COINGECKO_SUPPLY_PLATFORMS,
+    accumulator.coinGeckoIds,
+  );
+  const coinGeckoMarkets = await fetchCoinGeckoMarkets(
+    [...new Set(idsByToken.values())].sort(),
+    coinGeckoHeaders,
+  );
+  const supplyStats = enrichCoinGeckoSupplies(
+    tokens,
+    idsByToken,
+    coinGeckoMarkets,
+  );
+  const totalSupplyCount = tokens.filter(
+    (token) => token.total_supply != null,
+  ).length;
+  const circulatingSupplyCount = tokens.filter(
+    (token) => token.circulating_supply != null,
+  ).length;
+  console.log(
+    [
+      `CoinGecko supply enrichment mapped ${supplyStats.tokensWithCoinGeckoId}/${tokens.length} tokens (${ambiguousTokenKeys.length} ambiguous)`,
+      `found market data for ${supplyStats.tokensWithMarketData}`,
+      `added ${supplyStats.circulatingSuppliesAdded} circulating and ${supplyStats.totalSuppliesAdded} total supplies`,
+      `finished with ${circulatingSupplyCount} circulating and ${totalSupplyCount} total supplies`,
+      `skipped ${supplyStats.invalidSupplyValues} invalid values`,
+      `observed ${supplyStats.inconsistentCoinGeckoSupplies} upstream supply inconsistencies`,
+    ].join(", "),
+  );
+
   const cloudflareAccountId = process.env.CLOUDFLARE_ACCOUNT_ID;
   const cloudflareApiToken = process.env.CLOUDFLARE_API_TOKEN;
   const cloudflareDeliveryHash =
@@ -401,7 +496,6 @@ async function main(): Promise<void> {
     );
   }
 
-  const tokens = [...accumulator.tokens.values()];
   const provenance = [...accumulator.provenance.values()];
   const bridgeRelationships = [...relationships.values()];
   const cache = await hostTokenLogos({

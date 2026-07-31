@@ -5,6 +5,7 @@ export type Token = {
   token_symbol: string;
   token_decimals: number;
   total_supply?: string | null;
+  circulating_supply?: string | null;
   logo_url: string | null;
   visibility_priority: number;
   sort_order: number;
@@ -42,6 +43,12 @@ export type CoinGeckoTokenSource = TokenSource & {
   expectedChainId: string;
 };
 
+export type CoinGeckoSupplyPlatform = {
+  assetPlatformId: string;
+  chainId: string;
+  expectedChainIdentifier: string | null;
+};
+
 export type TokenListBridgeInfo = {
   tokenAddress?: string;
   originBridgeAddress?: string | null;
@@ -57,6 +64,8 @@ export type StandardTokenListToken = {
   logoURI?: string;
   extensions?: {
     bridgeInfo?: Record<string, TokenListBridgeInfo>;
+    coinGeckoId?: string;
+    coingeckoId?: string;
   };
 };
 

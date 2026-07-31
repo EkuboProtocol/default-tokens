@@ -5,6 +5,7 @@ import {
   normalizeTokenAddress,
   tokenKey,
   validateBridgeRelationships,
+  validateToken,
 } from "./token-list";
 
 describe("token normalization", () => {
@@ -80,6 +81,30 @@ test("retains alternate logo sources for duplicate token metadata", () => {
   ]);
 });
 
+test("retains CoinGecko IDs from lower-precedence duplicate sources", () => {
+  const accumulator = new TokenAccumulator();
+  const token = {
+    chain_id: "1",
+    token_address: "0x1",
+    token_name: "Token",
+    token_symbol: "TKN",
+    token_decimals: 18,
+    logo_url: null,
+    visibility_priority: 1,
+    sort_order: 0,
+  };
+
+  accumulator.add(token, "curated", "curated-tokens.json");
+  accumulator.add(
+    token,
+    "remote",
+    "https://example.com/list.json",
+    "token-id",
+  );
+
+  expect([...accumulator.coinGeckoIds.get("1:1")!]).toEqual(["token-id"]);
+});
+
 test("rejects duplicate bridge relationship identities", () => {
   const relationship = {
     source_chain_id: "1",
@@ -111,4 +136,23 @@ test("requires every non-null logo to use the configured delivery account", () =
   expect(() => assertHostedLogos([token], "different-account")).toThrow(
     "non-Cloudflare logo",
   );
+});
+
+test("accepts raw supplies and rejects negative circulating supply", () => {
+  const token = {
+    chain_id: "1",
+    token_address: "0x1",
+    token_name: "Token",
+    token_symbol: "TKN",
+    token_decimals: 6,
+    total_supply: "1000000",
+    circulating_supply: "750000",
+    logo_url: null,
+    visibility_priority: 0,
+    sort_order: 0,
+  };
+  expect(() => validateToken(token)).not.toThrow();
+  expect(() =>
+    validateToken({ ...token, circulating_supply: "-1" }),
+  ).toThrow("Circulating supply cannot be negative");
 });

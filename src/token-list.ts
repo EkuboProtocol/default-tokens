@@ -61,8 +61,14 @@ export class TokenAccumulator {
   readonly tokens = new Map<string, Token>();
   readonly provenance = new Map<string, TokenProvenance>();
   readonly logoCandidates = new Map<string, string[]>();
+  readonly coinGeckoIds = new Map<string, Set<string>>();
 
-  add(token: Token, sourceName: string, sourceUrl: string): boolean {
+  add(
+    token: Token,
+    sourceName: string,
+    sourceUrl: string,
+    coinGeckoId?: string,
+  ): boolean {
     const normalizedAddress = normalizeTokenAddress(
       token.token_address,
       token.chain_id,
@@ -83,6 +89,12 @@ export class TokenAccumulator {
         candidates.push(normalizedToken.logo_url);
         this.logoCandidates.set(key, candidates);
       }
+    }
+    const normalizedCoinGeckoId = coinGeckoId?.trim();
+    if (normalizedCoinGeckoId) {
+      const coinGeckoIds = this.coinGeckoIds.get(key) ?? new Set<string>();
+      coinGeckoIds.add(normalizedCoinGeckoId);
+      this.coinGeckoIds.set(key, coinGeckoIds);
     }
     if (this.tokens.has(key)) return false;
 
@@ -120,7 +132,17 @@ export function validateToken(token: Token): void {
     throw new Error(`Invalid sort order: ${token.sort_order}`);
   }
   if (token.total_supply != null) {
-    parseInteger(token.total_supply, "total supply");
+    const totalSupply = parseInteger(token.total_supply, "total supply");
+    if (totalSupply < 0n) throw new Error("Total supply cannot be negative");
+  }
+  if (token.circulating_supply != null) {
+    const circulatingSupply = parseInteger(
+      token.circulating_supply,
+      "circulating supply",
+    );
+    if (circulatingSupply < 0n) {
+      throw new Error("Circulating supply cannot be negative");
+    }
   }
   if (token.logo_url != null) {
     new URL(token.logo_url);

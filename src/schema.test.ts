@@ -10,6 +10,8 @@ const validDocument = {
       token_name: "Token",
       token_symbol: "TKN",
       token_decimals: 18,
+      total_supply: "1000",
+      circulating_supply: "750",
       logo_url: null,
       visibility_priority: 0,
       sort_order: 0,
@@ -33,6 +35,14 @@ test("schema accepts tokens and bridge relationships in one document", () => {
 test("schema rejects unknown token fields", () => {
   const invalid = structuredClone(validDocument);
   Object.assign(invalid.tokens[0]!, { untracked_metadata: true });
+  expect(() => validateTokenListSchema(invalid)).toThrow(
+    "does not match token-list.schema.json",
+  );
+});
+
+test("schema rejects negative supplies", () => {
+  const invalid = structuredClone(validDocument);
+  invalid.tokens[0]!.circulating_supply = "-1";
   expect(() => validateTokenListSchema(invalid)).toThrow(
     "does not match token-list.schema.json",
   );

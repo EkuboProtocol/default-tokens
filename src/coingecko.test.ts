@@ -6,6 +6,7 @@ import {
 import {
   COINGECKO_PRO_API_BASE_URL,
   COINGECKO_PRO_TOKEN_LISTS,
+  COINGECKO_SUPPLY_PLATFORMS,
   REMOTE_TOKEN_LISTS,
 } from "./sources";
 import type { CoinGeckoTokenSource } from "./types";
@@ -43,6 +44,30 @@ describe("CoinGecko Pro source configuration", () => {
       expect(candidate.url).toBe(
         `${COINGECKO_PRO_API_BASE_URL}/token_lists/${candidate.assetPlatformId}/all.json`,
       );
+    }
+  });
+
+  test("uses one reviewed chain mapping per supply platform", () => {
+    expect(
+      new Set(
+        COINGECKO_SUPPLY_PLATFORMS.map(
+          (candidate) => candidate.assetPlatformId,
+        ),
+      ).size,
+    ).toBe(COINGECKO_SUPPLY_PLATFORMS.length);
+    expect(
+      new Set(
+        COINGECKO_SUPPLY_PLATFORMS.map((candidate) => candidate.chainId),
+      ).size,
+    ).toBe(COINGECKO_SUPPLY_PLATFORMS.length);
+    for (const source of COINGECKO_PRO_TOKEN_LISTS) {
+      expect(
+        COINGECKO_SUPPLY_PLATFORMS.some(
+          (candidate) =>
+            candidate.assetPlatformId === source.assetPlatformId &&
+            candidate.chainId === source.expectedChainId,
+        ),
+      ).toBe(true);
     }
   });
 

@@ -6,6 +6,7 @@ import type {
 export type CoinGeckoAssetPlatform = {
   id?: string;
   chain_identifier?: number | null;
+  native_coin_id?: string | null;
 };
 
 export function validateCoinGeckoAssetPlatforms(

@@ -1,7 +1,13 @@
-import type { CoinGeckoTokenSource, TokenSource } from "./types";
+import type {
+  CoinGeckoSupplyPlatform,
+  CoinGeckoTokenSource,
+  TokenSource,
+} from "./types";
 
 export const COINGECKO_PRO_API_BASE_URL =
   "https://pro-api.coingecko.com/api/v3";
+
+export const STARKNET_MAINNET_CHAIN_ID = 0x534e5f4d41494en;
 
 function coinGeckoTokenSource(
   assetPlatformId: string,
@@ -99,6 +105,24 @@ export const COINGECKO_PRO_TOKEN_LISTS: CoinGeckoTokenSource[] = [
   coinGeckoTokenSource("aurora", 1313161554, "Aurora"),
 ];
 
+export const COINGECKO_SUPPLY_PLATFORMS: CoinGeckoSupplyPlatform[] = [
+  {
+    assetPlatformId: "ethereum",
+    chainId: "1",
+    expectedChainIdentifier: "1",
+  },
+  ...COINGECKO_PRO_TOKEN_LISTS.map((source) => ({
+    assetPlatformId: source.assetPlatformId,
+    chainId: source.expectedChainId,
+    expectedChainIdentifier: source.expectedChainId,
+  })),
+  {
+    assetPlatformId: "starknet",
+    chainId: STARKNET_MAINNET_CHAIN_ID.toString(),
+    expectedChainIdentifier: null,
+  },
+];
+
 export const STARKNET_AVNU_TOKEN_SOURCES = [
   {
     name: "AVNU Starknet tokens",
@@ -128,5 +152,3 @@ export const STARKNET_BRIDGE_TOKEN_LISTS = [
     l2ChainId: 0x534e5f4d41494fn,
   },
 ] as const;
-
-export const STARKNET_MAINNET_CHAIN_ID = 0x534e5f4d41494en;
