@@ -13,7 +13,8 @@ lists.
   sync. Its top-level `tokens` and `bridge_relationships` arrays keep both kinds
   of authoritative metadata in one reviewable file.
 - `token-list.schema.json` is the JSON Schema for both curated and generated
-  token-list documents.
+  token-list documents, including nullable raw `total_supply` and
+  `circulating_supply` values.
 - `token-sources.json` records the winning source for every generated token.
 - `image-sources.json` records upstream-to-Cloudflare logo migrations so
   repeated runs do not upload the same image again.
@@ -34,6 +35,24 @@ Generation uses first-source-wins precedence:
 The updater starts from the curated inputs each time. Removed remote tokens do
 not linger merely because they appeared in an older generated file. Git commits
 show every metadata, provenance, bridge, and hosted-logo change.
+
+After token discovery, the updater combines CoinGecko IDs declared by an input
+source with exact chain-and-contract mappings from
+`/coins/list?include_platform=true`, then reads
+`total_supply` and `circulating_supply` from batched `/coins/markets` requests.
+The reviewed platform mappings in `src/sources.ts` are checked against
+CoinGecko's `/asset_platforms` response before enrichment. Ambiguous contract
+mappings are skipped. Existing curated or onchain-registered total supply wins;
+CoinGecko fills missing totals and circulating supply. CoinGecko reports supply
+in whole-token units, so the updater converts it to an integer in the token's
+indivisible units before writing JSON.
+
+Supply is best-effort market metadata, not an onchain accounting invariant.
+CoinGecko may report a global economic supply for an asset deployed on multiple
+chains, and circulating supply can change between six-hour updates. A missing,
+invalid, ambiguous, or unavailable value remains `null`. Consumers compute FDV
+and market cap as `usd_price * raw_supply / 10 ^ token_decimals` and should
+preserve the distinction between unknown and zero.
 
 ## Automation
 
@@ -60,7 +79,8 @@ Configure these repository secrets:
 - `CLOUDFLARE_ACCOUNT_ID`: Cloudflare account containing Ekubo Images.
 - `CLOUDFLARE_API_TOKEN`: token with Cloudflare Images Write permission.
 - `COINGECKO_API_KEY`: CoinGecko Pro API key. The updater sends it only in the
-  `x-cg-pro-api-key` request header.
+  `x-cg-pro-api-key` request header. It is used for token lists, exact contract
+  mapping, and batched market-supply enrichment.
 
 Configure these repository variables:
 
@@ -87,11 +107,21 @@ CoinGecko enrichment first checks `/asset_platforms` against the explicit
 platform-to-chain mappings in `src/sources.ts`, then downloads each mapped
 chain's standard token list from `/token_lists/{asset_platform_id}/all.json`.
 The updater rejects a source if CoinGecko changes the mapping or returns a token
-for another chain. Requests are sequential and use the shared retry and
-rate-limit handling. `/coins/list` and `/coins/markets` are not fetched because
-they do not provide complete token rows for the current schema; per-contract
-endpoints are reserved for a future bounded enrichment cache rather than one
-request per token on every run.
+for another chain. Supply enrichment uses one complete `/coins/list` request
+and bounded batches of up to 200 coin IDs per `/coins/markets` request; it never
+makes one request per token. Requests are sequential and use the shared retry
+and rate-limit handling.
+
+Alchemy's ERC-20 Token API is intentionally not used for this enrichment. Its
+token metadata response provides name, symbol, decimals, and logo, while its
+other fungible-token endpoints are wallet balance and allowance queries. It
+does not currently provide ERC-20 circulating supply, total supply, or holder
+count. NFT owner endpoints are not applicable to fungible tokens.
+
+The indexer migration that adds `erc20_tokens.circulating_supply` must be
+applied before this repository's database sync is deployed. The sync writes
+both supply columns and deliberately fails instead of silently dropping the new
+field when the target schema is stale.
 
 ## Local development
 

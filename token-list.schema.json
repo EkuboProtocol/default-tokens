@@ -70,6 +70,10 @@
           "type": ["string", "null"],
           "pattern": "^(0|[1-9][0-9]*)$"
         },
+        "circulating_supply": {
+          "type": ["string", "null"],
+          "pattern": "^(0|[1-9][0-9]*)$"
+        },
         "logo_url": {
           "oneOf": [
             {

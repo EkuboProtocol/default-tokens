@@ -20,12 +20,8 @@ async function readJson<T>(path: string): Promise<T> {
   return JSON.parse(await readFile(resolve(root, path), "utf8")) as T;
 }
 
-async function syncTokens(
-  sql: TransactionSql,
-  tokens: Token[],
-): Promise<number> {
-  if (tokens.length === 0) return 0;
-  const rows = tokens.map((token) => ({
+export function databaseTokenRows(tokens: Token[]) {
+  return tokens.map((token) => ({
     ...token,
     chain_id: parseInteger(token.chain_id, "chain ID").toString(),
     token_address: parseInteger(
@@ -33,7 +29,16 @@ async function syncTokens(
       "token address",
     ).toString(),
     total_supply: token.total_supply ?? null,
+    circulating_supply: token.circulating_supply ?? null,
   }));
+}
+
+async function syncTokens(
+  sql: TransactionSql,
+  tokens: Token[],
+): Promise<number> {
+  if (tokens.length === 0) return 0;
+  const rows = databaseTokenRows(tokens);
   let count = 0;
   for (let offset = 0; offset < rows.length; offset += 1_000) {
     const batch = rows.slice(offset, offset + 1_000);
@@ -47,7 +52,8 @@ async function syncTokens(
         logo_url = EXCLUDED.logo_url,
         visibility_priority = EXCLUDED.visibility_priority,
         sort_order = EXCLUDED.sort_order,
-        total_supply = EXCLUDED.total_supply
+        total_supply = EXCLUDED.total_supply,
+        circulating_supply = EXCLUDED.circulating_supply
       WHERE erc20_tokens.token_name IS DISTINCT FROM EXCLUDED.token_name
          OR erc20_tokens.token_symbol IS DISTINCT FROM EXCLUDED.token_symbol
          OR erc20_tokens.token_decimals IS DISTINCT FROM EXCLUDED.token_decimals
@@ -55,6 +61,7 @@ async function syncTokens(
          OR erc20_tokens.visibility_priority IS DISTINCT FROM EXCLUDED.visibility_priority
          OR erc20_tokens.sort_order IS DISTINCT FROM EXCLUDED.sort_order
          OR erc20_tokens.total_supply IS DISTINCT FROM EXCLUDED.total_supply
+         OR erc20_tokens.circulating_supply IS DISTINCT FROM EXCLUDED.circulating_supply
     `;
     count += result.count;
   }
@@ -144,7 +151,9 @@ async function main(): Promise<void> {
   }
 }
 
-main().catch((error) => {
-  console.error("Database token sync failed", error);
-  process.exitCode = 1;
-});
+if (import.meta.main) {
+  main().catch((error) => {
+    console.error("Database token sync failed", error);
+    process.exitCode = 1;
+  });
+}
