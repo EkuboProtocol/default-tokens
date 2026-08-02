@@ -105559,13 +105559,13 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0x448bc811f60eac772775dd53421380e8d4dc4338",
+    "token_address": "0x5181b7dd097b42d7787ee78efab86f43d4e12f44",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
   {
     "chain_id": "42161",
-    "token_address": "0x6d80113e533a2c0fe82eabd35f1875dcea89ea97",
+    "token_address": "0x3d9907f9a368ad0a51be60f7da3b97cf940982d8",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -105577,7 +105577,19 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0xa753a7395cae905cd615da0b82a53e0560f250af",
+    "token_address": "0xa90424d5d3e770e8644103ab503ed775dd1318fd",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0xa34c5e0abe843e10461e2c9586ea03e55dbcc495",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0x17d8186ed8f68059124190d147174d0f6697dc40",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -105595,13 +105607,7 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0xcf6c2bb97a8978321c9e207afe8a2037fa9be45c",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0xe98fc055c99decd8da0c111b090885d5d15c774e",
+    "token_address": "0x5837e4189819637853a357af36650902347f5e73",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -105631,7 +105637,19 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0x2363fd1235c1b6d3a5088ddf8df3a0b3a30c5293",
+    "token_address": "0x8ffdf2de812095b1d19cb146e4c004587c0a0692",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0x4ecf61a6c2fab8a047ceb3b3b263b401763e9d49",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0x625e7708f30ca75bfd92586e17077590c60eb4cd",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -105643,25 +105661,19 @@
   },
   {
     "chain_id": "42161",
+    "token_address": "0xae2f842ef90c0d5213259ab82639d5bbf649b08e",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
     "token_address": "0xd71a6adbc40c2674591cdb11b8c7ae03a880b06e",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
   {
     "chain_id": "42161",
-    "token_address": "0x3557ba345b01efa20a1bddc61f573bfd87195081",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0x13a78809528b02ad5e7c42f39232d332761dfb1d",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0x7e325091e5525d3ea4d54a1488ecca8d1df732f3",
+    "token_address": "0x02a6c1789c3b4fdb1a7a3dfa39f90e5d3c94f4f9",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -105679,13 +105691,43 @@
   },
   {
     "chain_id": "42161",
+    "token_address": "0x6d80113e533a2c0fe82eabd35f1875dcea89ea97",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0xa753a7395cae905cd615da0b82a53e0560f250af",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0x2297aebd383787a160dd0d9f71508148769342e3",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
     "token_address": "0x03183ce31b1656b72a55fa6056e287f50c35bbeb",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
   {
     "chain_id": "42161",
-    "token_address": "0x9d275685dc284c8eb1c79f6aba7a63dc75ec890a",
+    "token_address": "0x3557ba345b01efa20a1bddc61f573bfd87195081",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0xd089b4cb88dacf4e27be869a00e9f7e2e3c18193",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0x6533afac2e7bccb20dca161449a13a32d391fb00",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -105698,6 +105740,18 @@
   {
     "chain_id": "42161",
     "token_address": "0x7ce42e8a5a42eb15f0c9a08ee9a079d99b1d83cf",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0xad5cdc3340904285b8159089974a99a1a09eb4c0",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0xc845b2894dbddd03858fd2d643b4ef725fe0849d",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -105721,37 +105775,13 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0x4ce13a79f45c1be00bdabd38b764ac28c082704e",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0x4ecf61a6c2fab8a047ceb3b3b263b401763e9d49",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
     "token_address": "0x655a6beebf2361a19549a99486ff65f709bd2646",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
   {
     "chain_id": "42161",
-    "token_address": "0x17d8186ed8f68059124190d147174d0f6697dc40",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
     "token_address": "0x30a538effd91acefb1b12ce9bc0074ed18c9dfc9",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0x5621737f42dae558b81269fcb9e9e70c19aa6b35",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -105769,7 +105799,7 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0x1ac765b5bea23184802c7d2d497f7c33f1444a9e",
+    "token_address": "0xd4939d69b31fbe981ed6904a3af43ee1dc777aab",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -105787,19 +105817,7 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0xb08d8becab1bf76a9ce3d2d5fa946f65ec1d3e83",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0xd089b4cb88dacf4e27be869a00e9f7e2e3c18193",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0xe5f6d3b2405abdfe6f660e63202b25d23763160d",
+    "token_address": "0xdfb8be6f8c87f74295a87de951974362cedcfa30",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -105829,7 +105847,13 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0xf1264873436a0771e440e2b28072fafcc5eebd01",
+    "token_address": "0xe98fc055c99decd8da0c111b090885d5d15c774e",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0xebee37aaf2905b7bda7e3b928043862e982e8f32",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -105847,7 +105871,7 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0xd3443ee1e91af28e5fb858fbd0d72a63ba8046e0",
+    "token_address": "0xd8b95b1987741849ca7e71e976aeb535fd2e55a2",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -105859,19 +105883,19 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0x374c5fb7979d5fdbaad2d95409e235e5cbdfd43c",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
     "token_address": "0x0f76d32cdccdcbd602a55af23eaf58fd1ee17245",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
   {
     "chain_id": "42161",
-    "token_address": "0x90a2a4c76b5d8c0bc892a69ea28aa775a8f2dd48",
+    "token_address": "0x548308e91ec9f285c7bff05295badbd56a6e4971",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0x09e18590e8f76b6cf471b3cd75fe1a1a9d2b2c2b",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -105883,13 +105907,19 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0xd8b95b1987741849ca7e71e976aeb535fd2e55a2",
+    "token_address": "0x1c43d05be7e5b54d506e3ddb6f0305e8a66cd04e",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
   {
     "chain_id": "42161",
     "token_address": "0xef261714f7e5ba6b86f4780eb6e3bf26b10729cf",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0x364f210f430ec2448fc68a49203040f6124096f0",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -105902,6 +105932,24 @@
   {
     "chain_id": "42161",
     "token_address": "0xd41f1f0cf89fd239ca4c1f8e8ada46345c86b0a4",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0xd3443ee1e91af28e5fb858fbd0d72a63ba8046e0",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0x97e7962bcd091e7ecfb583fc96289b1e1553ac6e",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0x11e969e9b3f89cb16d686a03cd8508c9fc0361af",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -105925,6 +105973,12 @@
   },
   {
     "chain_id": "42161",
+    "token_address": "0x6d482cec5f9dd1f05ccee9fd3ff79b246170f8e2",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
     "token_address": "0x28c7747d7ea25ed3ddcd075c6ccc3634313a0f59",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
@@ -105932,6 +105986,12 @@
   {
     "chain_id": "42161",
     "token_address": "0x89233399708c18ac6887f90a2b4cd8ba5fedd06e",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0x90a2a4c76b5d8c0bc892a69ea28aa775a8f2dd48",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -105949,25 +106009,7 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0xa34c5e0abe843e10461e2c9586ea03e55dbcc495",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0xbe023308ac2ef7e1c3799f4e6a3003ee6d342635",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
     "token_address": "0x1cd9a56c8c2ea913c70319a44da75e99255aa46f",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0xe92f673ca36c5e2efd2de7628f815f84807e803f",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -105979,7 +106021,25 @@
   },
   {
     "chain_id": "42161",
+    "token_address": "0x1ac765b5bea23184802c7d2d497f7c33f1444a9e",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
     "token_address": "0x5af01e4d2beff2b01a8f3992e875edd8d67469d2",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0x602eb0d99a5e3e76d1510372c4d2020e12eaea8a",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0x63db244bc895b3accec6698ce11b0dbd1d3e1c44",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -105997,13 +106057,13 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0x83a32f2818b6754f7d58af0e559fa9d3fa99ce13",
+    "token_address": "0xe1385fdd5ffb10081cd52c56584f25efa9084015",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
   {
     "chain_id": "42161",
-    "token_address": "0xc845b2894dbddd03858fd2d643b4ef725fe0849d",
+    "token_address": "0x83a32f2818b6754f7d58af0e559fa9d3fa99ce13",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -106015,19 +106075,7 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0x1c43d05be7e5b54d506e3ddb6f0305e8a66cd04e",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
     "token_address": "0xc83563177290bdd391db56553ed828413b7689bc",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0xad5cdc3340904285b8159089974a99a1a09eb4c0",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -106063,6 +106111,12 @@
   },
   {
     "chain_id": "42161",
+    "token_address": "0xe5f6d3b2405abdfe6f660e63202b25d23763160d",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
     "token_address": "0xeaad46f4146ded5a47b55aa7f6c48c191deaec88",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
@@ -106070,12 +106124,6 @@
   {
     "chain_id": "42161",
     "token_address": "0x772598e9e62155d7fdfe65fdf01eb5a53a8465be",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0x3d9907f9a368ad0a51be60f7da3b97cf940982d8",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -106093,13 +106141,13 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0xaf072f109a2c173d822a4fe9af311a1b18f83d19",
+    "token_address": "0x12992613fdd35abe95dec5a4964331b1ee23b50d",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
   {
     "chain_id": "42161",
-    "token_address": "0x12992613fdd35abe95dec5a4964331b1ee23b50d",
+    "token_address": "0xaba5e0c80e9f58e391214689fb342049c0d31892",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -106111,25 +106159,13 @@
   },
   {
     "chain_id": "42161",
+    "token_address": "0x4ce13a79f45c1be00bdabd38b764ac28c082704e",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
     "token_address": "0x344c796cc2474e4b779d0e81765afb91d7741a42",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0xe1a6bda42fbafae38607598386a1050613c1a64b",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0xa2b1335256cd663da89f650180508dd1f0dc3baa",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0x11e969e9b3f89cb16d686a03cd8508c9fc0361af",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -106141,19 +106177,31 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0xa150245f155778e749185c9446e9e59e406674ef",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
     "token_address": "0x4ff50c17df0d1b788d021acd85039810a1aa68a1",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
   {
     "chain_id": "42161",
+    "token_address": "0x092baadb7def4c3981454dd9c0a0d7ff07bcfc86",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
     "token_address": "0x292975973200064b1c6453505aeac5be697f5233",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0x903d5990119bc799423e9c25c56518ba7dd19474",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0x374c5fb7979d5fdbaad2d95409e235e5cbdfd43c",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -106177,12 +106225,6 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0x2297aebd383787a160dd0d9f71508148769342e3",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
     "token_address": "0x38bac69cbbd28156796e4163b2b6dcb81e336565",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
@@ -106190,12 +106232,6 @@
   {
     "chain_id": "42161",
     "token_address": "0x229917ac2842eaab42060a1a9213ca78e01b572a",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0x903d5990119bc799423e9c25c56518ba7dd19474",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -106231,24 +106267,6 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0xeedb0273c5af792745180e9ff568cd01550ffa13",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0x1412632f2b89e87bfa20c1318a43ced25f1d7b76",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0xf8a80d1cb9cfd70d03d655d9df42339846f3b3c8",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
     "token_address": "0x3096e7bfd0878cc65be71f8899bc4cfb57187ba3",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
@@ -106261,31 +106279,25 @@
   },
   {
     "chain_id": "42161",
+    "token_address": "0x3e76bb02286bfeaa89dd35f11253f2cbce634f91",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0x94fcd9c18f99538c0f7c61c5500ca79f0d5c4dab",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
     "token_address": "0xab635f839f81a12dc8db8ab31006af14e26292fe",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
   {
     "chain_id": "42161",
-    "token_address": "0x97e7962bcd091e7ecfb583fc96289b1e1553ac6e",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
     "token_address": "0x872bad41cfc8ba731f811fea8b2d0b9fd6369585",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0x0c709396739b9cfb72bcea6ac691ce0ddf66479c",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0x092baadb7def4c3981454dd9c0a0d7ff07bcfc86",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -106309,7 +106321,7 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0x94fcd9c18f99538c0f7c61c5500ca79f0d5c4dab",
+    "token_address": "0x0c709396739b9cfb72bcea6ac691ce0ddf66479c",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -106327,7 +106339,7 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0xd4939d69b31fbe981ed6904a3af43ee1dc777aab",
+    "token_address": "0x1412632f2b89e87bfa20c1318a43ced25f1d7b76",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -106339,13 +106351,19 @@
   },
   {
     "chain_id": "42161",
+    "token_address": "0xaf072f109a2c173d822a4fe9af311a1b18f83d19",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
     "token_address": "0xc262bea18cb810cc7715ee48fe3cbd3d79b4afe1",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
   {
     "chain_id": "42161",
-    "token_address": "0x02a6c1789c3b4fdb1a7a3dfa39f90e5d3c94f4f9",
+    "token_address": "0xb08d8becab1bf76a9ce3d2d5fa946f65ec1d3e83",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -106370,12 +106388,6 @@
   {
     "chain_id": "42161",
     "token_address": "0xe018c227bc84e44c96391d3067fab5a9a46b7e62",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0xc9d23ed2adb0f551369946bd377f8644ce1ca5c4",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -106435,6 +106447,12 @@
   },
   {
     "chain_id": "42161",
+    "token_address": "0x7f6501d3b98ee91f9b9535e4b0ac710fb0f9e0bc",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
     "token_address": "0x6eed78e2780d82be4e37d9937c27bcf32c8da072",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
@@ -106453,7 +106471,7 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0xa90424d5d3e770e8644103ab503ed775dd1318fd",
+    "token_address": "0xf1264873436a0771e440e2b28072fafcc5eebd01",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -106465,19 +106483,31 @@
   },
   {
     "chain_id": "42161",
+    "token_address": "0xe92f673ca36c5e2efd2de7628f815f84807e803f",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
     "token_address": "0x43397505ecec36ea4188c34cf504ca3ac7da32d6",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
   {
     "chain_id": "42161",
-    "token_address": "0x548308e91ec9f285c7bff05295badbd56a6e4971",
+    "token_address": "0x2363fd1235c1b6d3a5088ddf8df3a0b3a30c5293",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
   {
     "chain_id": "42161",
-    "token_address": "0xae2f842ef90c0d5213259ab82639d5bbf649b08e",
+    "token_address": "0xeedb0273c5af792745180e9ff568cd01550ffa13",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0x96702be57cd9777f835117a809c7124fe4ec989a",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -106496,6 +106526,12 @@
   {
     "chain_id": "42161",
     "token_address": "0xa6a65ac27e76cd53cb790473e4345c46e5ebf961",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0xaedf7656fbb47c5b97dd529ac1d0e807e051f2dd",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -106525,31 +106561,13 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0x3e76bb02286bfeaa89dd35f11253f2cbce634f91",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0xaedf7656fbb47c5b97dd529ac1d0e807e051f2dd",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
     "token_address": "0x836975c507bff631fcd7fba875e9127c8a50dba6",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
   {
     "chain_id": "42161",
-    "token_address": "0x602eb0d99a5e3e76d1510372c4d2020e12eaea8a",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0x63db244bc895b3accec6698ce11b0dbd1d3e1c44",
+    "token_address": "0x9d275685dc284c8eb1c79f6aba7a63dc75ec890a",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -106567,25 +106585,25 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0x09e18590e8f76b6cf471b3cd75fe1a1a9d2b2c2b",
+    "token_address": "0xc9d23ed2adb0f551369946bd377f8644ce1ca5c4",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
   {
     "chain_id": "42161",
-    "token_address": "0x0c1c1c109fe34733fca54b82d7b46b75cfb71f6e",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0x96702be57cd9777f835117a809c7124fe4ec989a",
+    "token_address": "0x0a1a1a107e45b7ced86833863f482bc5f4ed82ef",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
   {
     "chain_id": "42161",
     "token_address": "0xa6d12574efb239fc1d2099732bd8b5dc6306897f",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0xbe023308ac2ef7e1c3799f4e6a3003ee6d342635",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -106615,7 +106633,31 @@
   },
   {
     "chain_id": "42161",
+    "token_address": "0x5621737f42dae558b81269fcb9e9e70c19aa6b35",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0xe1a6bda42fbafae38607598386a1050613c1a64b",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
     "token_address": "0x68d6d2545f14751baf36c417c2cc7cdf8da8a15b",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0xcf6c2bb97a8978321c9e207afe8a2037fa9be45c",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
+    "token_address": "0x7e325091e5525d3ea4d54a1488ecca8d1df732f3",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -106627,13 +106669,19 @@
   },
   {
     "chain_id": "42161",
+    "token_address": "0xf8a80d1cb9cfd70d03d655d9df42339846f3b3c8",
+    "source_name": "CoinGecko Pro Arbitrum One Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
+  },
+  {
+    "chain_id": "42161",
     "token_address": "0x93e62845c1dd5822ebc807ab71a5fb750decd15a",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
   {
     "chain_id": "42161",
-    "token_address": "0x0a1a1a107e45b7ced86833863f482bc5f4ed82ef",
+    "token_address": "0x13a78809528b02ad5e7c42f39232d332761dfb1d",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -106645,25 +106693,25 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0x8ffdf2de812095b1d19cb146e4c004587c0a0692",
+    "token_address": "0xa2b1335256cd663da89f650180508dd1f0dc3baa",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
   {
     "chain_id": "42161",
-    "token_address": "0x6d482cec5f9dd1f05ccee9fd3ff79b246170f8e2",
+    "token_address": "0xa150245f155778e749185c9446e9e59e406674ef",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
   {
     "chain_id": "42161",
-    "token_address": "0x364f210f430ec2448fc68a49203040f6124096f0",
+    "token_address": "0x2380f2673c640fb67e2d6b55b44c62f0e0e69da9",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
   {
     "chain_id": "42161",
-    "token_address": "0xe1385fdd5ffb10081cd52c56584f25efa9084015",
+    "token_address": "0x448bc811f60eac772775dd53421380e8d4dc4338",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -106681,12 +106729,6 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0xebee37aaf2905b7bda7e3b928043862e982e8f32",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
     "token_address": "0x266e5923f6118f8b340ca5a23ae7f71897361476",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
@@ -106699,19 +106741,7 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0xdfb8be6f8c87f74295a87de951974362cedcfa30",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
     "token_address": "0xcec3ba7029d54d005275d3510960cfe433811c59",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0x5837e4189819637853a357af36650902347f5e73",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
@@ -106723,31 +106753,7 @@
   },
   {
     "chain_id": "42161",
-    "token_address": "0x2380f2673c640fb67e2d6b55b44c62f0e0e69da9",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0xaba5e0c80e9f58e391214689fb342049c0d31892",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0x625e7708f30ca75bfd92586e17077590c60eb4cd",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0x7f6501d3b98ee91f9b9535e4b0ac710fb0f9e0bc",
-    "source_name": "CoinGecko Pro Arbitrum One Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
-  },
-  {
-    "chain_id": "42161",
-    "token_address": "0x6533afac2e7bccb20dca161449a13a32d391fb00",
+    "token_address": "0x0c1c1c109fe34733fca54b82d7b46b75cfb71f6e",
     "source_name": "CoinGecko Pro Arbitrum One Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/arbitrum-one/all.json"
   },
