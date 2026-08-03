@@ -111445,157 +111445,19 @@
   },
   {
     "chain_id": "43114",
-    "token_address": "0x7979871595b80433183950ab6c6457752b585805",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0xa77e70d0af1ac7ff86726740db1bd065c3566937",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0x14a84f1a61ccd7d1be596a6cc11fe33a36bc1646",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0x18e3605b13f10016901eac609b9e188cf7c18973",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0xd7da0de6ef4f51d6206bf2a35fcd2030f54c3f7b",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0xbde79b2a371ea759a85901e4a185d03399c089c1",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0x4bf8cf8e8a20d965d585097256ecf2be98a5fbd8",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0x634608ed64c61ca9e741f8095193c0bfa0fa19cc",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0x7f9c841feadddb4bdbb2a161ca40bebc4f215a9a",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0xe061aa40be525a13296cb4bf69f513242349d708",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0x42069000770c482fed048e1da03a5f82773abd69",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0xdf788ad40181894da035b827cdf55c523bf52f67",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0x6c14c1898c843ff66ca51e87244690bbc28df215",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0xe7d69acbc00d0ec5d9c02162310ee21daa77f69c",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0xd211b17dfe8288d4fb0dd8eeff07a6c48fc679d5",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0xf99516bc189af00ff8effd5a1f2295b67d70a90e",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0xebb5d4959b2fba6318fbda7d03cd44ae771fc999",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0x0da67235dd5787d67955420c84ca1cecd4e5bb3b",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0x5954ff4099ac47c4d6d098a9216f3278bb8c9506",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0xaaab9d12a30504559b0c5a9a5977fee4a6081c6b",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
     "token_address": "0x14eb40fb7900185c01adc6a5b8ac506d8a600e3c",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
   {
     "chain_id": "43114",
-    "token_address": "0x0a10d108e2d81ccc793e37b56206c84bf96ddc57",
+    "token_address": "0x7979871595b80433183950ab6c6457752b585805",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
   {
     "chain_id": "43114",
-    "token_address": "0xeec951bfdeb358371a19512c6c33cdd840d47db0",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0xa9ef87eb3fdc2f08ef5ee401326f7331d4d312cf",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0x8ad25b0083c9879942a64f00f20a70d3278f6187",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0x038dbe3d967bb8389190446dacdfe7b95b44f73d",
+    "token_address": "0x2f5de51823e514de04475ba8db1eeba5b244ba84",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
@@ -111607,43 +111469,49 @@
   },
   {
     "chain_id": "43114",
-    "token_address": "0x714f020c54cc9d104b6f4f6998c63ce2a31d1888",
+    "token_address": "0xa77e70d0af1ac7ff86726740db1bd065c3566937",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
   {
     "chain_id": "43114",
-    "token_address": "0xd402298a793948698b9a63311404fbbee944eafd",
+    "token_address": "0x4bf8cf8e8a20d965d585097256ecf2be98a5fbd8",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
   {
     "chain_id": "43114",
-    "token_address": "0x297731eb3cab3834525fc9ea061fd71d8f4645c9",
+    "token_address": "0x42069000770c482fed048e1da03a5f82773abd69",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
   {
     "chain_id": "43114",
-    "token_address": "0x107d2b7c619202d994a4d044c762dd6f8e0c5326",
+    "token_address": "0x513c7e3a9c69ca3e22550ef58ac1c0088e918fff",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
   {
     "chain_id": "43114",
-    "token_address": "0x67ea3abd5cee0b99d743155051c191b09135f93c",
+    "token_address": "0x5ac34c53a04b9aaa0bf047e7291fb4e8a48f2a18",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
   {
     "chain_id": "43114",
-    "token_address": "0xae6241f806f0e1af82bf9b16b83447ab1f62283e",
+    "token_address": "0x45cf39eeb437fa95bb9b52c0105254a6bd25d01e",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
   {
     "chain_id": "43114",
-    "token_address": "0xcd94a87696fac69edae3a70fe5725307ae1c43f6",
+    "token_address": "0x7f9c841feadddb4bdbb2a161ca40bebc4f215a9a",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0xf99516bc189af00ff8effd5a1f2295b67d70a90e",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
@@ -111655,7 +111523,13 @@
   },
   {
     "chain_id": "43114",
-    "token_address": "0xffff003a6bad9b743d658048742935fffe2b6ed7",
+    "token_address": "0xebb5d4959b2fba6318fbda7d03cd44ae771fc999",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0xeec951bfdeb358371a19512c6c33cdd840d47db0",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
@@ -111667,55 +111541,7 @@
   },
   {
     "chain_id": "43114",
-    "token_address": "0x7cc9c624efa62c2decf0a2a028f7885ecea95a17",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0x13b1f0579bc895b2ffb835f295fd9b63fef36da0",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0xccf580e697b8bba73748ba881c1872dd4fb01cda",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0x6f43ff77a9c0cf552b5b653268fbfe26a052429b",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0x6e6080e15f8c0010d333d8caeead29292adb78f7",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0x97cf07b5401b76d69bf48a4f6fdf63684e0748e0",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0x4586af10ecceed4e383e3f2ec93b6c61e26500b5",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0x31c994ac062c1970c086260bc61babb708643fac",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0x6b1ecf0c181afff3d7096b26c3d2bc31f55ceab9",
+    "token_address": "0xa9ef87eb3fdc2f08ef5ee401326f7331d4d312cf",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
@@ -111727,13 +111553,97 @@
   },
   {
     "chain_id": "43114",
+    "token_address": "0x8ad25b0083c9879942a64f00f20a70d3278f6187",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0x96178a1443039e806f8ffd56dce7a80f2161aaa2",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0x107d2b7c619202d994a4d044c762dd6f8e0c5326",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0xae6241f806f0e1af82bf9b16b83447ab1f62283e",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0xd211b17dfe8288d4fb0dd8eeff07a6c48fc679d5",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0x7cc9c624efa62c2decf0a2a028f7885ecea95a17",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0x24de8771bc5ddb3362db529fc3358f2df3a0e346",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0x31c994ac062c1970c086260bc61babb708643fac",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
     "token_address": "0xb8d7710f7d8349a506b75dd184f05777c82dad0c",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
   {
     "chain_id": "43114",
-    "token_address": "0x2d324fd1ca86d90f61b0965d2db2f86d22ea4b74",
+    "token_address": "0x14a84f1a61ccd7d1be596a6cc11fe33a36bc1646",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0xccf580e697b8bba73748ba881c1872dd4fb01cda",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0x6e6080e15f8c0010d333d8caeead29292adb78f7",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0xff7f8f301f7a706e3cfd3d2275f5dc0b9ee8009b",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0x6c14c1898c843ff66ca51e87244690bbc28df215",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0xd7da0de6ef4f51d6206bf2a35fcd2030f54c3f7b",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0x714f020c54cc9d104b6f4f6998c63ce2a31d1888",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
@@ -111751,7 +111661,13 @@
   },
   {
     "chain_id": "43114",
-    "token_address": "0x0256b279d973c8d687264ac3eb36be09232d4474",
+    "token_address": "0x46b9144771cb3195d66e4eda643a7493fadcaf9d",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0x8eb270e296023e9d92081fdf967ddd7878724424",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
@@ -111763,7 +111679,13 @@
   },
   {
     "chain_id": "43114",
-    "token_address": "0xff7f8f301f7a706e3cfd3d2275f5dc0b9ee8009b",
+    "token_address": "0xd402298a793948698b9a63311404fbbee944eafd",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0xe7d69acbc00d0ec5d9c02162310ee21daa77f69c",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
@@ -111787,19 +111709,19 @@
   },
   {
     "chain_id": "43114",
+    "token_address": "0x4586af10ecceed4e383e3f2ec93b6c61e26500b5",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0x97cf07b5401b76d69bf48a4f6fdf63684e0748e0",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
     "token_address": "0x4f3c5c53279536ffcfe8bcafb78e612e933d53c6",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0x79ea4e536f598dcd67c76ee3829f84ab9e72a558",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0x46b9144771cb3195d66e4eda643a7493fadcaf9d",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
@@ -111811,13 +111733,37 @@
   },
   {
     "chain_id": "43114",
-    "token_address": "0x093783055f9047c2bff99c4e414501f8a147bc69",
+    "token_address": "0x79ea4e536f598dcd67c76ee3829f84ab9e72a558",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
   {
     "chain_id": "43114",
-    "token_address": "0x5ac34c53a04b9aaa0bf047e7291fb4e8a48f2a18",
+    "token_address": "0x18e3605b13f10016901eac609b9e188cf7c18973",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0x2d324fd1ca86d90f61b0965d2db2f86d22ea4b74",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0x038dbe3d967bb8389190446dacdfe7b95b44f73d",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0x0da67235dd5787d67955420c84ca1cecd4e5bb3b",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0x6f43ff77a9c0cf552b5b653268fbfe26a052429b",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
@@ -111847,25 +111793,37 @@
   },
   {
     "chain_id": "43114",
+    "token_address": "0x5954ff4099ac47c4d6d098a9216f3278bb8c9506",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
     "token_address": "0xbbaaa0420d474b34be197f95a323c2ff3829e811",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
   {
     "chain_id": "43114",
-    "token_address": "0x87bbfc9dcb66caa8ce7582a3f17b60a25cd8a248",
+    "token_address": "0xcd94a87696fac69edae3a70fe5725307ae1c43f6",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
   {
     "chain_id": "43114",
-    "token_address": "0x8eb270e296023e9d92081fdf967ddd7878724424",
+    "token_address": "0x3c594084dc7ab1864ac69dfd01ab77e8f65b83b7",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
   {
     "chain_id": "43114",
-    "token_address": "0x2f5de51823e514de04475ba8db1eeba5b244ba84",
+    "token_address": "0x6b1ecf0c181afff3d7096b26c3d2bc31f55ceab9",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0x13b1f0579bc895b2ffb835f295fd9b63fef36da0",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
@@ -111883,13 +111841,31 @@
   },
   {
     "chain_id": "43114",
-    "token_address": "0x513c7e3a9c69ca3e22550ef58ac1c0088e918fff",
+    "token_address": "0x111111111111ed1d73f860f57b2798b683f2d325",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
   {
     "chain_id": "43114",
-    "token_address": "0x111111111111ed1d73f860f57b2798b683f2d325",
+    "token_address": "0x297731eb3cab3834525fc9ea061fd71d8f4645c9",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0xaaab9d12a30504559b0c5a9a5977fee4a6081c6b",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0x634608ed64c61ca9e741f8095193c0bfa0fa19cc",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0xe061aa40be525a13296cb4bf69f513242349d708",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
@@ -111901,19 +111877,19 @@
   },
   {
     "chain_id": "43114",
+    "token_address": "0x0a10d108e2d81ccc793e37b56206c84bf96ddc57",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
     "token_address": "0x73f49d00ac1b520f94d11248808c40774aeb0802",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
   {
     "chain_id": "43114",
-    "token_address": "0x3c594084dc7ab1864ac69dfd01ab77e8f65b83b7",
-    "source_name": "CoinGecko Pro Avalanche Token List",
-    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
-  },
-  {
-    "chain_id": "43114",
-    "token_address": "0x45cf39eeb437fa95bb9b52c0105254a6bd25d01e",
+    "token_address": "0xdf788ad40181894da035b827cdf55c523bf52f67",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
@@ -111925,7 +111901,31 @@
   },
   {
     "chain_id": "43114",
-    "token_address": "0x24de8771bc5ddb3362db529fc3358f2df3a0e346",
+    "token_address": "0xffff003a6bad9b743d658048742935fffe2b6ed7",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0x0256b279d973c8d687264ac3eb36be09232d4474",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0x093783055f9047c2bff99c4e414501f8a147bc69",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0x87bbfc9dcb66caa8ce7582a3f17b60a25cd8a248",
+    "source_name": "CoinGecko Pro Avalanche Token List",
+    "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0x67ea3abd5cee0b99d743155051c191b09135f93c",
     "source_name": "CoinGecko Pro Avalanche Token List",
     "source_url": "https://pro-api.coingecko.com/api/v3/token_lists/avalanche/all.json"
   },
