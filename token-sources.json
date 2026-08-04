@@ -14940,6 +14940,12 @@
     "source_url": "latest_token_registrations_view"
   },
   {
+    "chain_id": "23448594291968334",
+    "token_address": "0x22f65d1580fdd5c674c637f87335d0175a83747b03839b0e675fd1735ed7a8",
+    "source_name": "Ekubo onchain token registrations",
+    "source_url": "latest_token_registrations_view"
+  },
+  {
     "chain_id": "1",
     "token_address": "0x111111111117dC0aa78b770fA6A738034120C302",
     "source_name": "Uniswap Default Token List",
