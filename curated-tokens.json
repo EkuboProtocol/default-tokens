@@ -2970,6 +2970,16 @@
       "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/2f33224e-bca7-4d35-8c33-ffaedda78f00/logo",
       "visibility_priority": 3,
       "sort_order": 1
+    },
+    {
+      "chain_id": "0x534e5f4d41494e",
+      "token_address": "0x011f5982a30ff9c9cd31957357496d1e2e2aec4539b82f29c3ee74b24aae5e13",
+      "token_name": "Strongwillium",
+      "token_symbol": "STRONG",
+      "token_decimals": 18,
+      "logo_url": "https://raw.githubusercontent.com/EzeZezE-Strongwill/strongwillium-token-assets/master/STRONG-512.png",
+      "visibility_priority": 0,
+      "sort_order": 0
     }
   ],
   "bridge_relationships": []
