@@ -99,11 +99,33 @@ export const COINGECKO_PRO_TOKEN_LISTS: CoinGeckoTokenSource[] = [
   coinGeckoTokenSource("arbitrum-one", 42161, "Arbitrum One"),
   coinGeckoTokenSource("celo", 42220, "Celo"),
   coinGeckoTokenSource("avalanche", 43114, "Avalanche"),
+  coinGeckoTokenSource("ink", 57073, "Ink"),
   coinGeckoTokenSource("linea", 59144, "Linea"),
+  coinGeckoTokenSource("berachain", 80094, "Berachain"),
   coinGeckoTokenSource("blast", 81457, "Blast"),
   coinGeckoTokenSource("zora-network", 7777777, "Zora"),
   coinGeckoTokenSource("aurora", 1313161554, "Aurora"),
 ];
+
+// The chains the Ekubo wallet MCP server configures on first run, from
+// `default_networks()` in `ekubo-wallet-core`. That wallet vendors this
+// repository's `tokens.json` as its compiled-in default list, and a chain with
+// no source here leaves it rendering bare addresses on an approval screen for
+// a network it ships configured. Every entry must be covered by a source
+// above; Ethereum comes from the public CoinGecko list in
+// `REMOTE_TOKEN_LISTS`, the rest from `COINGECKO_PRO_TOKEN_LISTS`.
+export const WALLET_DEFAULT_NETWORK_CHAIN_IDS = [
+  "1", // Ethereum Mainnet
+  "10", // OP Mainnet
+  "100", // Gnosis
+  "143", // Monad
+  "4326", // MegaETH
+  "4663", // Robinhood Chain
+  "8453", // Base
+  "42161", // Arbitrum One
+  "57073", // Ink
+  "80094", // Berachain
+] as const;
 
 export const COINGECKO_SUPPLY_PLATFORMS: CoinGeckoSupplyPlatform[] = [
   {

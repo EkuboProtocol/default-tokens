@@ -8,6 +8,7 @@ import {
   COINGECKO_PRO_TOKEN_LISTS,
   COINGECKO_SUPPLY_PLATFORMS,
   REMOTE_TOKEN_LISTS,
+  WALLET_DEFAULT_NETWORK_CHAIN_IDS,
 } from "./sources";
 import type { CoinGeckoTokenSource } from "./types";
 
@@ -66,6 +67,31 @@ describe("CoinGecko Pro source configuration", () => {
           (candidate) =>
             candidate.assetPlatformId === source.assetPlatformId &&
             candidate.chainId === source.expectedChainId,
+        ),
+      ).toBe(true);
+    }
+  });
+
+  test("covers every chain the wallet MCP server configures by default", () => {
+    const ethereumChainId = "1";
+    for (const chainId of WALLET_DEFAULT_NETWORK_CHAIN_IDS) {
+      expect(
+        COINGECKO_SUPPLY_PLATFORMS.some(
+          (candidate) => candidate.chainId === chainId,
+        ),
+      ).toBe(true);
+      if (chainId === ethereumChainId) {
+        // Ethereum has no Pro source; the public CoinGecko list covers it.
+        expect(
+          REMOTE_TOKEN_LISTS.some(
+            (candidate) => candidate.name === "CoinGecko All Token List",
+          ),
+        ).toBe(true);
+        continue;
+      }
+      expect(
+        COINGECKO_PRO_TOKEN_LISTS.some(
+          (candidate) => candidate.expectedChainId === chainId,
         ),
       ).toBe(true);
     }

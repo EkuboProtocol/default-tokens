@@ -32,6 +32,13 @@ Generation uses first-source-wins precedence:
 4. CoinGecko Pro token lists for explicitly mapped production chains.
 5. AVNU's Starknet lists.
 
+The explicit CoinGecko Pro mappings cover every chain the Ekubo wallet MCP
+server configures on first run, because that wallet vendors `tokens.json` as
+its compiled-in default token list and a missing chain leaves it showing bare
+addresses on an approval screen. `WALLET_DEFAULT_NETWORK_CHAIN_IDS` in
+`src/sources.ts` pins that set, and a test fails if one of those chains loses
+its source.
+
 The updater starts from the curated inputs each time. Removed remote tokens do
 not linger merely because they appeared in an older generated file. Git commits
 show every metadata, provenance, bridge, and hosted-logo change.
