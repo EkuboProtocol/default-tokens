@@ -23,6 +23,7 @@ import {
   COINGECKO_PRO_TOKEN_LISTS,
   COINGECKO_SUPPLY_PLATFORMS,
   CURATED_SOURCE,
+  NATIVE_CURRENCIES,
   REMOTE_TOKEN_LISTS,
   STARKNET_AVNU_TOKEN_SOURCES,
   STARKNET_BRIDGE_TOKEN_LISTS,
@@ -36,6 +37,7 @@ import {
   bridgeRelationshipKey,
   normalizeTokenAddress,
   validateBridgeRelationships,
+  validateNativeCurrencies,
   validateTokenList,
 } from "../src/token-list";
 import type {
@@ -285,6 +287,12 @@ async function main(): Promise<void> {
   const curatedDocument =
     await readJson<TokenListDocument>("curated-tokens.json");
   validateTokenListSchema(curatedDocument, "curated-tokens.json");
+  validateNativeCurrencies(
+    curatedDocument.tokens,
+    NATIVE_CURRENCIES,
+    "curated",
+    "curated-tokens.json",
+  );
   const previousDocument = await readJson<TokenListDocument>(
     "tokens.json",
     curatedDocument,
@@ -514,6 +522,12 @@ async function main(): Promise<void> {
 
   validateTokenList(tokens);
   validateBridgeRelationships(bridgeRelationships);
+  validateNativeCurrencies(
+    tokens,
+    NATIVE_CURRENCIES,
+    "generated",
+    "tokens.json",
+  );
   assertHostedLogos(tokens, cloudflareDeliveryHash, cloudflareVariant);
   const tokenList = {
     $schema: "./token-list.schema.json",

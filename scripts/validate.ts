@@ -1,10 +1,12 @@
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { validateTokenListSchema } from "../src/schema";
+import { NATIVE_CURRENCIES } from "../src/sources";
 import {
   assertHostedLogos,
   tokenKey,
   validateBridgeRelationships,
+  validateNativeCurrencies,
   validateTokenList,
 } from "../src/token-list";
 import type {
@@ -29,8 +31,20 @@ validateTokenListSchema(tokenList, "tokens.json");
 const { tokens, bridge_relationships: relationships } = tokenList;
 validateTokenList(curated.tokens);
 validateBridgeRelationships(curated.bridge_relationships);
+validateNativeCurrencies(
+  curated.tokens,
+  NATIVE_CURRENCIES,
+  "curated",
+  "curated-tokens.json",
+);
 validateTokenList(tokens);
 validateBridgeRelationships(relationships);
+validateNativeCurrencies(
+  tokens,
+  NATIVE_CURRENCIES,
+  "generated",
+  "tokens.json",
+);
 assertHostedLogos(
   tokens,
   process.env.CLOUDFLARE_IMAGES_DELIVERY_HASH,

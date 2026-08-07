@@ -24,6 +24,16 @@ Bridge relationships are directed. `source_bridge_address` identifies the
 escrow or bridge contract on the source chain; `null` means the asset is minted
 natively on both chains.
 
+Token address zero is a chain's native currency, the asset its gas is paid in.
+`normalizeTokenAddress` folds `0x0`, `0xEeee…eEEeE`, and `0x455448` into that
+one address, so a chain has exactly one native row. `NATIVE_CURRENCIES` in
+`src/sources.ts` names the asset for every chain a list is fetched for,
+`curated-tokens.json` carries the row itself rather than inheriting it from a
+third-party list, and validation fails if a curated row is missing or if any
+source names a different asset at address zero — ETH on Berachain, say. Tempo
+is deliberately absent: it has no native currency, and gas there is paid in
+stablecoins.
+
 Generation uses first-source-wins precedence:
 
 1. Ekubo's curated tokens.

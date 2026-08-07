@@ -1,5 +1,6 @@
 import type {
   BridgeRelationship,
+  NativeCurrency,
   Token,
   TokenProvenance,
 } from "./types";
@@ -156,6 +157,68 @@ export function validateTokenList(tokens: Token[]): void {
     const key = tokenKey(token.chain_id, token.token_address);
     if (seen.has(key)) throw new Error(`Duplicate token: ${key}`);
     seen.add(key);
+  }
+}
+
+/**
+ * Check the native-currency row every listed EVM chain keeps at token address
+ * zero, which is where `normalizeTokenAddress` folds every spelling of a
+ * native asset.
+ *
+ * The two documents this runs over are held to different standards. The
+ * curated input owns these rows, so a chain missing one is a defect, and a
+ * native row for a chain nobody reviewed is one too. The generated document
+ * inherits the curated rows on the next update run, and it also collects
+ * incidental chains from broad third-party lists; demanding a reviewed native
+ * for every chain that drifts in would fail the automated update over a chain
+ * this repository never chose to serve. What must hold there is narrower, and
+ * it is the point of the check either way: no source may put another asset's
+ * name on a listed chain's address zero.
+ */
+export function validateNativeCurrencies(
+  tokens: Token[],
+  natives: readonly NativeCurrency[],
+  document: "curated" | "generated",
+  label: string,
+): void {
+  const expected = new Map(
+    natives.map((native) => [parseInteger(native.chainId, "chain ID"), native]),
+  );
+  const seen = new Set<bigint>();
+
+  for (const token of tokens) {
+    // Every spelling of a native asset, not just the all-zero one: a list is
+    // free to write `0xEeee…eEEeE`, and it means the same row.
+    if (normalizeTokenAddress(token.token_address, token.chain_id) !== "0x0") {
+      continue;
+    }
+    const chainId = parseInteger(token.chain_id, "chain ID");
+    const native = expected.get(chainId);
+    if (!native) {
+      if (document === "generated") continue;
+      throw new Error(
+        `${label} holds a token at address zero on unlisted chain ${token.chain_id}; add that chain's native currency to NATIVE_CURRENCIES`,
+      );
+    }
+    if (
+      token.token_symbol !== native.symbol ||
+      token.token_name !== native.name ||
+      token.token_decimals !== native.decimals
+    ) {
+      throw new Error(
+        `${label} names address zero on chain ${token.chain_id} ${token.token_name} (${token.token_symbol}, ${token.token_decimals} decimals); that chain pays gas in ${native.name} (${native.symbol}, ${native.decimals} decimals)`,
+      );
+    }
+    seen.add(chainId);
+  }
+
+  if (document === "generated") return;
+  for (const [chainId, native] of expected) {
+    if (!seen.has(chainId)) {
+      throw new Error(
+        `${label} has no ${native.symbol} row at address zero for chain ${chainId}`,
+      );
+    }
   }
 }
 

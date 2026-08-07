@@ -2970,6 +2970,206 @@
       "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/2f33224e-bca7-4d35-8c33-ffaedda78f00/logo",
       "visibility_priority": 3,
       "sort_order": 1
+    },
+    {
+      "chain_id": "10",
+      "token_address": "0x0000000000000000000000000000000000000000",
+      "token_name": "Ether",
+      "token_symbol": "ETH",
+      "token_decimals": 18,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/e07829b7-0382-4e03-7ecd-a478c5aa9f00/logo",
+      "visibility_priority": 3,
+      "sort_order": 3
+    },
+    {
+      "chain_id": "56",
+      "token_address": "0x0000000000000000000000000000000000000000",
+      "token_name": "BNB",
+      "token_symbol": "BNB",
+      "token_decimals": 18,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/631e1f9a315090248dcd5834a0601b45dc1e8ad6310fff51d19a55f0c0a7c3ec/logo",
+      "visibility_priority": 3,
+      "sort_order": 3
+    },
+    {
+      "chain_id": "100",
+      "token_address": "0x0000000000000000000000000000000000000000",
+      "token_name": "xDAI",
+      "token_symbol": "xDAI",
+      "token_decimals": 18,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/b6caf6bc98d87018fc0f53d90caf71e3f675d8652cd456ac1a3b71d78d21333d/logo",
+      "visibility_priority": 3,
+      "sort_order": 3
+    },
+    {
+      "chain_id": "130",
+      "token_address": "0x0000000000000000000000000000000000000000",
+      "token_name": "Ether",
+      "token_symbol": "ETH",
+      "token_decimals": 18,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/e07829b7-0382-4e03-7ecd-a478c5aa9f00/logo",
+      "visibility_priority": 3,
+      "sort_order": 3
+    },
+    {
+      "chain_id": "137",
+      "token_address": "0x0000000000000000000000000000000000000000",
+      "token_name": "Polygon Ecosystem Token",
+      "token_symbol": "POL",
+      "token_decimals": 18,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/bb7fb79b5f58c5fa2f7c270f4c8fd2687d09ea85b86a822e08a0fef0e058de4a/logo",
+      "visibility_priority": 3,
+      "sort_order": 3
+    },
+    {
+      "chain_id": "143",
+      "token_address": "0x0000000000000000000000000000000000000000",
+      "token_name": "Monad",
+      "token_symbol": "MON",
+      "token_decimals": 18,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/95334711eca76a9c7a23ff9f502c30eb567676e40d58a10e8cca3cc6a5768474/logo",
+      "visibility_priority": 3,
+      "sort_order": 3
+    },
+    {
+      "chain_id": "196",
+      "token_address": "0x0000000000000000000000000000000000000000",
+      "token_name": "OKB",
+      "token_symbol": "OKB",
+      "token_decimals": 18,
+      "logo_url": "https://coin-images.coingecko.com/coins/images/4463/large/WeChat_Image_20220118095654.png?1696505053",
+      "visibility_priority": 3,
+      "sort_order": 3
+    },
+    {
+      "chain_id": "250",
+      "token_address": "0x0000000000000000000000000000000000000000",
+      "token_name": "Fantom Token",
+      "token_symbol": "FTM",
+      "token_decimals": 18,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/55314491bef91c40de9938b014f918b6a16f2927fdd53544a22a2ac741fb840f/logo",
+      "visibility_priority": 3,
+      "sort_order": 3
+    },
+    {
+      "chain_id": "324",
+      "token_address": "0x0000000000000000000000000000000000000000",
+      "token_name": "Ether",
+      "token_symbol": "ETH",
+      "token_decimals": 18,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/e07829b7-0382-4e03-7ecd-a478c5aa9f00/logo",
+      "visibility_priority": 3,
+      "sort_order": 3
+    },
+    {
+      "chain_id": "480",
+      "token_address": "0x0000000000000000000000000000000000000000",
+      "token_name": "Ether",
+      "token_symbol": "ETH",
+      "token_decimals": 18,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/e07829b7-0382-4e03-7ecd-a478c5aa9f00/logo",
+      "visibility_priority": 3,
+      "sort_order": 3
+    },
+    {
+      "chain_id": "1868",
+      "token_address": "0x0000000000000000000000000000000000000000",
+      "token_name": "Ether",
+      "token_symbol": "ETH",
+      "token_decimals": 18,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/e07829b7-0382-4e03-7ecd-a478c5aa9f00/logo",
+      "visibility_priority": 3,
+      "sort_order": 3
+    },
+    {
+      "chain_id": "8217",
+      "token_address": "0x0000000000000000000000000000000000000000",
+      "token_name": "Kaia",
+      "token_symbol": "KAIA",
+      "token_decimals": 18,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/3268c52846fc5be5e56c44a03a59bcd2402a288c116a8ea74365ca0f7d99033e/logo",
+      "visibility_priority": 3,
+      "sort_order": 3
+    },
+    {
+      "chain_id": "42220",
+      "token_address": "0x0000000000000000000000000000000000000000",
+      "token_name": "Celo",
+      "token_symbol": "CELO",
+      "token_decimals": 18,
+      "logo_url": "https://coin-images.coingecko.com/coins/images/11090/large/InjXBNx9_400x400.jpg?1696511031",
+      "visibility_priority": 3,
+      "sort_order": 3
+    },
+    {
+      "chain_id": "43114",
+      "token_address": "0x0000000000000000000000000000000000000000",
+      "token_name": "Avalanche",
+      "token_symbol": "AVAX",
+      "token_decimals": 18,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/a58094ab0dfd0466ec35e4b69fa7156b6742318c408662df7b80c2d004abf975/logo",
+      "visibility_priority": 3,
+      "sort_order": 3
+    },
+    {
+      "chain_id": "57073",
+      "token_address": "0x0000000000000000000000000000000000000000",
+      "token_name": "Ether",
+      "token_symbol": "ETH",
+      "token_decimals": 18,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/e07829b7-0382-4e03-7ecd-a478c5aa9f00/logo",
+      "visibility_priority": 3,
+      "sort_order": 3
+    },
+    {
+      "chain_id": "59144",
+      "token_address": "0x0000000000000000000000000000000000000000",
+      "token_name": "Ether",
+      "token_symbol": "ETH",
+      "token_decimals": 18,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/e07829b7-0382-4e03-7ecd-a478c5aa9f00/logo",
+      "visibility_priority": 3,
+      "sort_order": 3
+    },
+    {
+      "chain_id": "80094",
+      "token_address": "0x0000000000000000000000000000000000000000",
+      "token_name": "Berachain",
+      "token_symbol": "BERA",
+      "token_decimals": 18,
+      "logo_url": "https://coin-images.coingecko.com/coins/images/25235/large/BERA.png?1738822008",
+      "visibility_priority": 3,
+      "sort_order": 3
+    },
+    {
+      "chain_id": "81457",
+      "token_address": "0x0000000000000000000000000000000000000000",
+      "token_name": "Ether",
+      "token_symbol": "ETH",
+      "token_decimals": 18,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/e07829b7-0382-4e03-7ecd-a478c5aa9f00/logo",
+      "visibility_priority": 3,
+      "sort_order": 3
+    },
+    {
+      "chain_id": "7777777",
+      "token_address": "0x0000000000000000000000000000000000000000",
+      "token_name": "Ether",
+      "token_symbol": "ETH",
+      "token_decimals": 18,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/e07829b7-0382-4e03-7ecd-a478c5aa9f00/logo",
+      "visibility_priority": 3,
+      "sort_order": 3
+    },
+    {
+      "chain_id": "1313161554",
+      "token_address": "0x0000000000000000000000000000000000000000",
+      "token_name": "Ether",
+      "token_symbol": "ETH",
+      "token_decimals": 18,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/e07829b7-0382-4e03-7ecd-a478c5aa9f00/logo",
+      "visibility_priority": 3,
+      "sort_order": 3
     }
   ],
   "bridge_relationships": []

@@ -1,6 +1,7 @@
 import type {
   CoinGeckoSupplyPlatform,
   CoinGeckoTokenSource,
+  NativeCurrency,
   TokenSource,
 } from "./types";
 
@@ -126,6 +127,54 @@ export const WALLET_DEFAULT_NETWORK_CHAIN_IDS = [
   "57073", // Ink
   "80094", // Berachain
 ] as const;
+
+// The asset gas is paid in on each EVM chain in this list, recorded at token
+// address zero. `normalizeTokenAddress` folds `0x0`, `0xEeee…eEEeE`, and
+// `0x455448` into one address, so a chain has exactly one native row, and
+// `curated-tokens.json` carries it: a wallet rendering a native transfer
+// should not depend on a third-party list continuing to publish the row.
+// Names, symbols, and decimals are taken from each chain's own published
+// profile and pinned here so a remote list cannot relabel a native asset —
+// putting ETH on Berachain, say — without failing validation.
+//
+// Tempo (4217, 42431) is deliberately absent. It has no native currency; gas
+// there is paid in stablecoins, so nothing belongs at address zero.
+export const NATIVE_CURRENCIES: NativeCurrency[] = [
+  { chainId: "1", name: "Ether", symbol: "ETH", decimals: 18 },
+  { chainId: "10", name: "Ether", symbol: "ETH", decimals: 18 },
+  { chainId: "56", name: "BNB", symbol: "BNB", decimals: 18 },
+  { chainId: "100", name: "xDAI", symbol: "xDAI", decimals: 18 },
+  { chainId: "130", name: "Ether", symbol: "ETH", decimals: 18 },
+  {
+    chainId: "137",
+    name: "Polygon Ecosystem Token",
+    symbol: "POL",
+    decimals: 18,
+  },
+  { chainId: "143", name: "Monad", symbol: "MON", decimals: 18 },
+  { chainId: "196", name: "OKB", symbol: "OKB", decimals: 18 },
+  { chainId: "250", name: "Fantom Token", symbol: "FTM", decimals: 18 },
+  { chainId: "324", name: "Ether", symbol: "ETH", decimals: 18 },
+  { chainId: "480", name: "Ether", symbol: "ETH", decimals: 18 },
+  { chainId: "1868", name: "Ether", symbol: "ETH", decimals: 18 },
+  { chainId: "4326", name: "Ether", symbol: "ETH", decimals: 18 },
+  { chainId: "4663", name: "Ether", symbol: "ETH", decimals: 18 },
+  { chainId: "8217", name: "Kaia", symbol: "KAIA", decimals: 18 },
+  { chainId: "8453", name: "Ether", symbol: "ETH", decimals: 18 },
+  { chainId: "42161", name: "Ether", symbol: "ETH", decimals: 18 },
+  { chainId: "42220", name: "Celo", symbol: "CELO", decimals: 18 },
+  { chainId: "43114", name: "Avalanche", symbol: "AVAX", decimals: 18 },
+  { chainId: "46630", name: "Ether", symbol: "ETH", decimals: 18 },
+  { chainId: "57073", name: "Ether", symbol: "ETH", decimals: 18 },
+  { chainId: "59144", name: "Ether", symbol: "ETH", decimals: 18 },
+  { chainId: "80094", name: "Berachain", symbol: "BERA", decimals: 18 },
+  { chainId: "81457", name: "Ether", symbol: "ETH", decimals: 18 },
+  { chainId: "84532", name: "Ether", symbol: "ETH", decimals: 18 },
+  { chainId: "421614", name: "Ether", symbol: "ETH", decimals: 18 },
+  { chainId: "7777777", name: "Ether", symbol: "ETH", decimals: 18 },
+  { chainId: "11155111", name: "Ether", symbol: "ETH", decimals: 18 },
+  { chainId: "1313161554", name: "Ether", symbol: "ETH", decimals: 18 },
+];
 
 export const COINGECKO_SUPPLY_PLATFORMS: CoinGeckoSupplyPlatform[] = [
   {

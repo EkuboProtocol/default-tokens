@@ -43,6 +43,13 @@ export type CoinGeckoTokenSource = TokenSource & {
   expectedChainId: string;
 };
 
+export type NativeCurrency = {
+  chainId: string;
+  name: string;
+  symbol: string;
+  decimals: number;
+};
+
 export type CoinGeckoSupplyPlatform = {
   assetPlatformId: string;
   chainId: string;
