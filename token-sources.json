@@ -1782,6 +1782,126 @@
     "source_url": "curated-tokens.json"
   },
   {
+    "chain_id": "10",
+    "token_address": "0x0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "56",
+    "token_address": "0x0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "100",
+    "token_address": "0x0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "130",
+    "token_address": "0x0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "137",
+    "token_address": "0x0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "143",
+    "token_address": "0x0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "196",
+    "token_address": "0x0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "250",
+    "token_address": "0x0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "324",
+    "token_address": "0x0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "480",
+    "token_address": "0x0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1868",
+    "token_address": "0x0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "8217",
+    "token_address": "0x0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "42220",
+    "token_address": "0x0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "43114",
+    "token_address": "0x0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "57073",
+    "token_address": "0x0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "59144",
+    "token_address": "0x0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "80094",
+    "token_address": "0x0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "81457",
+    "token_address": "0x0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "7777777",
+    "token_address": "0x0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
+    "chain_id": "1313161554",
+    "token_address": "0x0",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
     "chain_id": "23448594291968335",
     "token_address": "0x6d9390042f6b6e0231d0de5fc436504b1ee18a204409f55eea41014c773d5ce",
     "source_name": "Ekubo onchain token registrations",
@@ -25177,12 +25297,6 @@
   },
   {
     "chain_id": "100",
-    "token_address": "0x0",
-    "source_name": "1inch Token List",
-    "source_url": "https://tokens.1inch.eth.link"
-  },
-  {
-    "chain_id": "100",
     "token_address": "0x3a97704a1b25f08aa230ae53b352e2e72ef52843",
     "source_name": "1inch Token List",
     "source_url": "https://tokens.1inch.eth.link"
@@ -25562,12 +25676,6 @@
   {
     "chain_id": "137",
     "token_address": "0x071ac29d569a47ebffb9e57517f855cb577dcc4c",
-    "source_name": "1inch Token List",
-    "source_url": "https://tokens.1inch.eth.link"
-  },
-  {
-    "chain_id": "137",
-    "token_address": "0x0",
     "source_name": "1inch Token List",
     "source_url": "https://tokens.1inch.eth.link"
   },
@@ -26077,12 +26185,6 @@
   },
   {
     "chain_id": "10",
-    "token_address": "0x0",
-    "source_name": "1inch Token List",
-    "source_url": "https://tokens.1inch.eth.link"
-  },
-  {
-    "chain_id": "10",
     "token_address": "0x217d47011b23bb961eb6d93ca9945b7501a5bb11",
     "source_name": "1inch Token List",
     "source_url": "https://tokens.1inch.eth.link"
@@ -26443,19 +26545,7 @@
   },
   {
     "chain_id": "250",
-    "token_address": "0x0",
-    "source_name": "1inch Token List",
-    "source_url": "https://tokens.1inch.eth.link"
-  },
-  {
-    "chain_id": "250",
     "token_address": "0xf16e81dce15b08f326220742020379b855b87df9",
-    "source_name": "1inch Token List",
-    "source_url": "https://tokens.1inch.eth.link"
-  },
-  {
-    "chain_id": "8217",
-    "token_address": "0x0",
     "source_name": "1inch Token List",
     "source_url": "https://tokens.1inch.eth.link"
   },
@@ -26666,12 +26756,6 @@
   {
     "chain_id": "1313161554",
     "token_address": "0x4988a896b1227218e4a686fde5eabdcabd91571f",
-    "source_name": "1inch Token List",
-    "source_url": "https://tokens.1inch.eth.link"
-  },
-  {
-    "chain_id": "1313161554",
-    "token_address": "0x0",
     "source_name": "1inch Token List",
     "source_url": "https://tokens.1inch.eth.link"
   },
@@ -32425,12 +32509,6 @@
   },
   {
     "chain_id": "43114",
-    "token_address": "0x0",
-    "source_name": "1inch Token List",
-    "source_url": "https://tokens.1inch.eth.link"
-  },
-  {
-    "chain_id": "43114",
     "token_address": "0x53f7c5869a859f0aec3d334ee8b4cf01e3492f21",
     "source_name": "1inch Token List",
     "source_url": "https://tokens.1inch.eth.link"
@@ -33056,12 +33134,6 @@
   {
     "chain_id": "56",
     "token_address": "0xffba7529ac181c2ee1844548e6d7061c9a597df4",
-    "source_name": "1inch Token List",
-    "source_url": "https://tokens.1inch.eth.link"
-  },
-  {
-    "chain_id": "56",
-    "token_address": "0x0",
     "source_name": "1inch Token List",
     "source_url": "https://tokens.1inch.eth.link"
   },
@@ -34698,12 +34770,6 @@
     "source_url": "https://tokens.1inch.eth.link"
   },
   {
-    "chain_id": "324",
-    "token_address": "0x0",
-    "source_name": "1inch Token List",
-    "source_url": "https://tokens.1inch.eth.link"
-  },
-  {
     "chain_id": "100",
     "token_address": "0xf9a932df2010bd3d0e0f47bc61b7104ab82874da",
     "source_name": "1inch Token List",
@@ -36206,12 +36272,6 @@
   {
     "chain_id": "59144",
     "token_address": "0x3aab2285ddcddad8edf438c1bab47e1a9d05a9b4",
-    "source_name": "1inch Token List",
-    "source_url": "https://tokens.1inch.eth.link"
-  },
-  {
-    "chain_id": "59144",
-    "token_address": "0x0",
     "source_name": "1inch Token List",
     "source_url": "https://tokens.1inch.eth.link"
   },
@@ -62636,12 +62696,6 @@
   {
     "chain_id": "143",
     "token_address": "0x866A2BF4E572CbcF37D5071A7a58503Bfb36be1b",
-    "source_name": "Monad Token List",
-    "source_url": "https://raw.githubusercontent.com/monad-crypto/token-list/refs/heads/main/tokenlist-mainnet.json"
-  },
-  {
-    "chain_id": "143",
-    "token_address": "0x0",
     "source_name": "Monad Token List",
     "source_url": "https://raw.githubusercontent.com/monad-crypto/token-list/refs/heads/main/tokenlist-mainnet.json"
   },
