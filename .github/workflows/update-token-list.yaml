@@ -12,7 +12,9 @@ on:
       - scripts/update-tokens.ts
       - src/**
   schedule:
-    - cron: "17 */6 * * *"
+    # Daily. Token lists and circulating supply do not move on a six-hour
+    # timescale, and a push to main already reruns this when a source changes.
+    - cron: "17 5 * * *"
   workflow_dispatch:
 
 concurrency:
@@ -54,7 +56,7 @@ jobs:
 
       - name: Commit the auditable token-list update
         run: |
-          git add tokens.json token-sources.json image-sources.json
+          git add tokens.json token-sources.json image-sources.json coingecko-markets.json
           if git diff --cached --quiet; then
             echo "Token list is already current"
             exit 0

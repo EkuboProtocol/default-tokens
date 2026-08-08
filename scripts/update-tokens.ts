@@ -12,6 +12,13 @@ import {
   validateCoinGeckoTokenList,
 } from "../src/coingecko";
 import {
+  emptyMarketCache,
+  marketsFromCache,
+  mergeMarketRefresh,
+  selectMarketIdsToRefresh,
+  type CoinGeckoMarketCache,
+} from "../src/coingecko-markets";
+import {
   enrichCoinGeckoSupplies,
   indexCoinGeckoTokenIds,
   type CoinGeckoCoin,
@@ -50,7 +57,8 @@ import type {
 const root = resolve(import.meta.dir, "..");
 const withoutRegistrations = process.argv.includes("--without-registrations");
 const addressRegex = /^0x[a-fA-F0-9]+$/;
-const coinGeckoMarketBatchSize = 200;
+// 250 is the per_page ceiling the markets endpoint accepts.
+const coinGeckoMarketBatchSize = 250;
 
 type AvnuToken = {
   name: string;
@@ -452,14 +460,28 @@ async function main(): Promise<void> {
     COINGECKO_SUPPLY_PLATFORMS,
     accumulator.coinGeckoIds,
   );
-  const coinGeckoMarkets = await fetchCoinGeckoMarkets(
-    [...new Set(idsByToken.values())].sort(),
-    coinGeckoHeaders,
+  // Supplies are cached across runs and refreshed on a rotation, so a run costs
+  // a slice of the coin list rather than all of it. See src/coingecko-markets.ts.
+  const coinIds = [...new Set(idsByToken.values())].sort();
+  const previousMarketCache = await readJson<CoinGeckoMarketCache>(
+    "coingecko-markets.json",
+    emptyMarketCache(),
+  );
+  const refreshedIds = selectMarketIdsToRefresh(coinIds, previousMarketCache);
+  const marketCache = mergeMarketRefresh({
+    cache: previousMarketCache,
+    coinIds,
+    refreshedIds,
+    markets: await fetchCoinGeckoMarkets(refreshedIds, coinGeckoHeaders),
+    refreshedAt: new Date().toISOString(),
+  });
+  console.log(
+    `Refreshed CoinGecko supplies for ${refreshedIds.length}/${coinIds.length} coins (slot ${previousMarketCache.rotation_slot ?? 0} of ${marketCache.rotation_slots})`,
   );
   const supplyStats = enrichCoinGeckoSupplies(
     tokens,
     idsByToken,
-    coinGeckoMarkets,
+    marketsFromCache(marketCache),
   );
   const totalSupplyCount = tokens.filter(
     (token) => token.total_supply != null,
@@ -540,6 +562,7 @@ async function main(): Promise<void> {
     writeJson("tokens.json", tokenList),
     writeJson("token-sources.json", provenance),
     writeJson("image-sources.json", cache),
+    writeJson("coingecko-markets.json", marketCache),
   ]);
 
   console.log(
