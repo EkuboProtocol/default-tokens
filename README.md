@@ -18,6 +18,9 @@ lists.
 - `token-sources.json` records the winning source for every generated token.
 - `image-sources.json` records upstream-to-Cloudflare logo migrations so
   repeated runs do not upload the same image again.
+- `coingecko-markets.json` caches the circulating and total supply CoinGecko
+  reports for every referenced coin, alongside the rotation cursor described
+  below.
 - `src/sources.ts` is the reviewable catalog of every remote token source.
 
 Bridge relationships are directed. `source_bridge_address` identifies the
@@ -64,17 +67,28 @@ CoinGecko fills missing totals and circulating supply. CoinGecko reports supply
 in whole-token units, so the updater converts it to an integer in the token's
 indivisible units before writing JSON.
 
+Reading every referenced coin's supply on every run was this repository's
+largest source of CoinGecko requests, so supplies are cached in
+`coingecko-markets.json` instead. A run refreshes the coins that are new to the
+cache plus one rotation slice of the rest, which covers every coin within
+`rotation_slots` runs — a week at the daily schedule — for a small fixed cost
+per run. The cursor lives in the artifact so the schedule survives across runs.
+A coin CoinGecko returns nothing for is cached as empty rather than dropped, so
+it is not re-requested until its slot comes round again, and coins no longer
+referenced by any token are pruned. Deleting the file is safe: the next run
+rebuilds it in one full pass.
+
 Supply is best-effort market metadata, not an onchain accounting invariant.
 CoinGecko may report a global economic supply for an asset deployed on multiple
-chains, and circulating supply can change between six-hour updates. A missing,
+chains, and circulating supply can change between updates. A missing,
 invalid, ambiguous, or unavailable value remains `null`. Consumers compute FDV
 and market cap as `usd_price * raw_supply / 10 ^ token_decimals` and should
 preserve the distinction between unknown and zero.
 
 ## Automation
 
-`Update authoritative token list` runs every six hours and can be started with
-`workflow_dispatch`. It fetches all declared sources, reads onchain
+`Update authoritative token list` runs daily, on a push to `main` that changes
+an input, and through `workflow_dispatch`. It fetches all declared sources, reads onchain
 registrations through a read-only database connection, hosts every available
 external logo in Cloudflare Images, validates the result, and commits changed
 generated files to `main`. JSON Schema validation runs before a generated
