@@ -1,0 +1,27 @@
+{
+  "scripts/update-tokens.ts": {
+    "complexity": {
+      "count": 2
+    }
+  },
+  "src/cloudflare-images.ts": {
+    "complexity": {
+      "count": 3
+    }
+  },
+  "src/coingecko-supply.ts": {
+    "complexity": {
+      "count": 3
+    }
+  },
+  "src/fetch-json.ts": {
+    "complexity": {
+      "count": 1
+    }
+  },
+  "src/token-list.ts": {
+    "complexity": {
+      "count": 1
+    }
+  }
+}
