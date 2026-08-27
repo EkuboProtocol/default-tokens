@@ -110,13 +110,23 @@ export class TokenAccumulator {
   }
 }
 
-export function validateToken(token: Token): void {
+// Who the token is: the chain and address that identify it, and the name and
+// symbol that render it.
+function validateTokenIdentity(token: Token): void {
   parseInteger(token.chain_id, "chain ID");
   if (!normalizeTokenAddress(token.token_address, token.chain_id)) {
     throw new Error(`Invalid token address: ${token.token_address}`);
   }
   if (!token.token_name) throw new Error("Token name cannot be empty");
   if (!token.token_symbol) throw new Error("Token symbol cannot be empty");
+  if (token.logo_url != null) {
+    new URL(token.logo_url);
+  }
+}
+
+// The integer columns. `token_decimals` is bounded by the smallint the database
+// stores it in, not by anything about tokens.
+function validateTokenIntegers(token: Token): void {
   if (
     !Number.isInteger(token.token_decimals) ||
     token.token_decimals < 0 ||
@@ -132,6 +142,10 @@ export function validateToken(token: Token): void {
   if (!Number.isInteger(token.sort_order)) {
     throw new Error(`Invalid sort order: ${token.sort_order}`);
   }
+}
+
+// Both supplies are optional, and both are big enough to need bigint parsing.
+function validateTokenSupplies(token: Token): void {
   if (token.total_supply != null) {
     const totalSupply = parseInteger(token.total_supply, "total supply");
     if (totalSupply < 0n) throw new Error("Total supply cannot be negative");
@@ -145,9 +159,12 @@ export function validateToken(token: Token): void {
       throw new Error("Circulating supply cannot be negative");
     }
   }
-  if (token.logo_url != null) {
-    new URL(token.logo_url);
-  }
+}
+
+export function validateToken(token: Token): void {
+  validateTokenIdentity(token);
+  validateTokenIntegers(token);
+  validateTokenSupplies(token);
 }
 
 export function validateTokenList(tokens: Token[]): void {
