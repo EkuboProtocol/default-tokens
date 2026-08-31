@@ -34,6 +34,13 @@ export const TOKEN_REGISTRY_SOURCE = {
   url: "latest_token_registrations_view",
 } as const;
 
+// Where a token row comes from when a rate-limited source is skipped and the
+// previous generated list is folded back in. See `backfillPreviousTokens`.
+export const PREVIOUS_OUTPUT_SOURCE = {
+  name: "Previous generated token list",
+  url: "tokens.json",
+} as const;
+
 export const REMOTE_TOKEN_LISTS: TokenSource[] = [
   {
     name: "Uniswap Default Token List",

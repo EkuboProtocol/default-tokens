@@ -1,3 +1,23 @@
+export class FetchJsonError extends Error {
+  readonly status: number | undefined;
+
+  constructor(
+    message: string,
+    options: ErrorOptions & { status?: number } = {},
+  ) {
+    super(message, options);
+    this.name = "FetchJsonError";
+    this.status = options.status;
+  }
+}
+
+// A source is rate limited when it answered 429 and kept answering it through
+// every retry. Any other failure — a 500, a timeout, unparseable JSON — is not
+// a quota problem and must not be mistaken for one.
+export function isRateLimited(error: unknown): boolean {
+  return error instanceof FetchJsonError && error.status === 429;
+}
+
 type FetchJsonConfig = {
   fetch?: typeof globalThis.fetch;
   headers?: HeadersInit;
@@ -53,15 +73,16 @@ export async function fetchJson<T>(
         signal: AbortSignal.timeout(timeoutMs),
       });
       if (!response.ok) {
-        failure = new Error(
+        failure = new FetchJsonError(
           `Failed to download ${name} from ${url}: ${response.status} ${response.statusText}`,
+          { status: response.status },
         );
         if (!isRetryableStatus(response.status)) throw failure;
       } else {
         try {
           return (await response.json()) as T;
         } catch (error) {
-          failure = new Error(
+          failure = new FetchJsonError(
             `Failed to parse ${name} from ${url}: ${errorMessage(error)}`,
             { cause: error },
           );

@@ -24,13 +24,14 @@ import {
   type CoinGeckoCoin,
   type CoinGeckoMarket,
 } from "../src/coingecko-supply";
-import { fetchJson } from "../src/fetch-json";
+import { fetchJson, isRateLimited } from "../src/fetch-json";
 import {
   COINGECKO_PRO_API_BASE_URL,
   COINGECKO_PRO_TOKEN_LISTS,
   COINGECKO_SUPPLY_PLATFORMS,
   CURATED_SOURCE,
   NATIVE_CURRENCIES,
+  PREVIOUS_OUTPUT_SOURCE,
   REMOTE_TOKEN_LISTS,
   STARKNET_AVNU_TOKEN_SOURCES,
   STARKNET_BRIDGE_TOKEN_LISTS,
@@ -41,7 +42,9 @@ import { validateTokenListSchema } from "../src/schema";
 import {
   TokenAccumulator,
   assertHostedLogos,
+  backfillPreviousTokens,
   bridgeRelationshipKey,
+  restorePreviousSupplies,
   normalizeTokenAddress,
   validateBridgeRelationships,
   validateNativeCurrencies,
@@ -50,6 +53,7 @@ import {
 import type {
   BridgeRelationship,
   StandardTokenList,
+  Token,
   TokenListDocument,
   TokenSource,
 } from "../src/types";
@@ -139,6 +143,123 @@ async function fetchCoinGeckoMarkets(
     markets.push(...response);
   }
   return markets;
+}
+
+// CoinGecko is the only source whose quota can go away underneath a scheduled
+// run, and losing it must not fail the run or delete the rows it contributed:
+// the phase is skipped and the previous generated list is folded back in.
+function warnCoinGeckoSkipped(phase: string, error: unknown): void {
+  console.warn(
+    `CoinGecko is rate limited (429): SKIPPING ${phase}. This run publishes the previous run's CoinGecko data, so it is degraded, not current — check the COINGECKO_API_KEY plan and quota.`,
+  );
+  console.warn(error instanceof Error ? error.message : String(error));
+}
+
+async function addCoinGeckoProTokenLists(
+  accumulator: TokenAccumulator,
+  relationships: Map<string, BridgeRelationship>,
+  headers: HeadersInit,
+): Promise<CoinGeckoAssetPlatform[] | null> {
+  try {
+    const platforms = await fetchJson<CoinGeckoAssetPlatform[]>(
+      "CoinGecko Pro asset platforms",
+      `${COINGECKO_PRO_API_BASE_URL}/asset_platforms`,
+      { headers },
+    );
+    validateCoinGeckoAssetPlatforms(platforms, COINGECKO_PRO_TOKEN_LISTS);
+
+    for (const source of COINGECKO_PRO_TOKEN_LISTS) {
+      const list = await fetchJson<StandardTokenList>(source.name, source.url, {
+        headers,
+      });
+      validateCoinGeckoTokenList(list, source);
+      const added = addStandardTokenList(
+        accumulator,
+        relationships,
+        source,
+        list,
+      );
+      console.log(`Added ${added} tokens from ${source.name}`);
+    }
+    return platforms;
+  } catch (error) {
+    if (!isRateLimited(error)) throw error;
+    warnCoinGeckoSkipped("the CoinGecko Pro token lists", error);
+    return null;
+  }
+}
+
+function logSupplyStats(
+  tokens: Token[],
+  supplyStats: ReturnType<typeof enrichCoinGeckoSupplies>,
+  ambiguousTokenCount: number,
+): void {
+  const totalSupplyCount = tokens.filter(
+    (token) => token.total_supply != null,
+  ).length;
+  const circulatingSupplyCount = tokens.filter(
+    (token) => token.circulating_supply != null,
+  ).length;
+  console.log(
+    [
+      `CoinGecko supply enrichment mapped ${supplyStats.tokensWithCoinGeckoId}/${tokens.length} tokens (${ambiguousTokenCount} ambiguous)`,
+      `found market data for ${supplyStats.tokensWithMarketData}`,
+      `added ${supplyStats.circulatingSuppliesAdded} circulating and ${supplyStats.totalSuppliesAdded} total supplies`,
+      `finished with ${circulatingSupplyCount} circulating and ${totalSupplyCount} total supplies`,
+      `skipped ${supplyStats.invalidSupplyValues} invalid values`,
+      `observed ${supplyStats.inconsistentCoinGeckoSupplies} upstream supply inconsistencies`,
+    ].join(", "),
+  );
+}
+
+async function refreshCoinGeckoSupplies(options: {
+  tokens: Token[];
+  accumulator: TokenAccumulator;
+  platforms: CoinGeckoAssetPlatform[];
+  headers: HeadersInit;
+  previousMarketCache: CoinGeckoMarketCache;
+}): Promise<{ marketCache: CoinGeckoMarketCache; skipped: boolean }> {
+  const { tokens, accumulator, platforms, headers, previousMarketCache } =
+    options;
+  try {
+    const coinGeckoCoins = await fetchJson<CoinGeckoCoin[]>(
+      "CoinGecko Pro coins list",
+      `${COINGECKO_PRO_API_BASE_URL}/coins/list?include_platform=true`,
+      { headers },
+    );
+    const { idsByToken, ambiguousTokenKeys } = indexCoinGeckoTokenIds(
+      tokens,
+      coinGeckoCoins,
+      platforms,
+      COINGECKO_SUPPLY_PLATFORMS,
+      accumulator.coinGeckoIds,
+    );
+    // Supplies are cached across runs and refreshed on a rotation, so a run
+    // costs a slice of the coin list rather than all of it. See
+    // src/coingecko-markets.ts.
+    const coinIds = [...new Set(idsByToken.values())].sort();
+    const refreshedIds = selectMarketIdsToRefresh(coinIds, previousMarketCache);
+    const marketCache = mergeMarketRefresh({
+      cache: previousMarketCache,
+      coinIds,
+      refreshedIds,
+      markets: await fetchCoinGeckoMarkets(refreshedIds, headers),
+      refreshedAt: new Date().toISOString(),
+    });
+    console.log(
+      `Refreshed CoinGecko supplies for ${refreshedIds.length}/${coinIds.length} coins (slot ${previousMarketCache.rotation_slot ?? 0} of ${marketCache.rotation_slots})`,
+    );
+    logSupplyStats(
+      tokens,
+      enrichCoinGeckoSupplies(tokens, idsByToken, marketsFromCache(marketCache)),
+      ambiguousTokenKeys.length,
+    );
+    return { marketCache, skipped: false };
+  } catch (error) {
+    if (!isRateLimited(error)) throw error;
+    warnCoinGeckoSkipped("the CoinGecko supply refresh", error);
+    return { marketCache: previousMarketCache, skipped: true };
+  }
 }
 
 function addRelationship(
@@ -344,29 +465,11 @@ async function main(): Promise<void> {
   const coinGeckoHeaders = {
     "x-cg-pro-api-key": coinGeckoApiKey,
   };
-  const coinGeckoPlatforms = await fetchJson<CoinGeckoAssetPlatform[]>(
-    "CoinGecko Pro asset platforms",
-    `${COINGECKO_PRO_API_BASE_URL}/asset_platforms`,
-    { headers: coinGeckoHeaders },
+  const coinGeckoPlatforms = await addCoinGeckoProTokenLists(
+    accumulator,
+    relationships,
+    coinGeckoHeaders,
   );
-  validateCoinGeckoAssetPlatforms(
-    coinGeckoPlatforms,
-    COINGECKO_PRO_TOKEN_LISTS,
-  );
-
-  for (const source of COINGECKO_PRO_TOKEN_LISTS) {
-    const list = await fetchJson<StandardTokenList>(source.name, source.url, {
-      headers: coinGeckoHeaders,
-    });
-    validateCoinGeckoTokenList(list, source);
-    const added = addStandardTokenList(
-      accumulator,
-      relationships,
-      source,
-      list,
-    );
-    console.log(`Added ${added} tokens from ${source.name}`);
-  }
 
   const trackedAvnuAddresses = new Set<string>();
   for (const source of STARKNET_AVNU_TOKEN_SOURCES) {
@@ -447,58 +550,39 @@ async function main(): Promise<void> {
   }
   console.log(`Discovered ${relationships.size} bridge relationships`);
 
+  if (!coinGeckoPlatforms) {
+    const backfill = backfillPreviousTokens(
+      accumulator,
+      previousDocument.tokens,
+      PREVIOUS_OUTPUT_SOURCE.name,
+      PREVIOUS_OUTPUT_SOURCE.url,
+    );
+    console.warn(
+      `Backfilled ${backfill.tokensRestored} tokens and ${backfill.suppliesRestored} supplies from the previous generated list`,
+    );
+  }
+
   const tokens = [...accumulator.tokens.values()];
-  const coinGeckoCoins = await fetchJson<CoinGeckoCoin[]>(
-    "CoinGecko Pro coins list",
-    `${COINGECKO_PRO_API_BASE_URL}/coins/list?include_platform=true`,
-    { headers: coinGeckoHeaders },
-  );
-  const { idsByToken, ambiguousTokenKeys } = indexCoinGeckoTokenIds(
-    tokens,
-    coinGeckoCoins,
-    coinGeckoPlatforms,
-    COINGECKO_SUPPLY_PLATFORMS,
-    accumulator.coinGeckoIds,
-  );
-  // Supplies are cached across runs and refreshed on a rotation, so a run costs
-  // a slice of the coin list rather than all of it. See src/coingecko-markets.ts.
-  const coinIds = [...new Set(idsByToken.values())].sort();
   const previousMarketCache = await readJson<CoinGeckoMarketCache>(
     "coingecko-markets.json",
     emptyMarketCache(),
   );
-  const refreshedIds = selectMarketIdsToRefresh(coinIds, previousMarketCache);
-  const marketCache = mergeMarketRefresh({
-    cache: previousMarketCache,
-    coinIds,
-    refreshedIds,
-    markets: await fetchCoinGeckoMarkets(refreshedIds, coinGeckoHeaders),
-    refreshedAt: new Date().toISOString(),
-  });
-  console.log(
-    `Refreshed CoinGecko supplies for ${refreshedIds.length}/${coinIds.length} coins (slot ${previousMarketCache.rotation_slot ?? 0} of ${marketCache.rotation_slots})`,
-  );
-  const supplyStats = enrichCoinGeckoSupplies(
-    tokens,
-    idsByToken,
-    marketsFromCache(marketCache),
-  );
-  const totalSupplyCount = tokens.filter(
-    (token) => token.total_supply != null,
-  ).length;
-  const circulatingSupplyCount = tokens.filter(
-    (token) => token.circulating_supply != null,
-  ).length;
-  console.log(
-    [
-      `CoinGecko supply enrichment mapped ${supplyStats.tokensWithCoinGeckoId}/${tokens.length} tokens (${ambiguousTokenKeys.length} ambiguous)`,
-      `found market data for ${supplyStats.tokensWithMarketData}`,
-      `added ${supplyStats.circulatingSuppliesAdded} circulating and ${supplyStats.totalSuppliesAdded} total supplies`,
-      `finished with ${circulatingSupplyCount} circulating and ${totalSupplyCount} total supplies`,
-      `skipped ${supplyStats.invalidSupplyValues} invalid values`,
-      `observed ${supplyStats.inconsistentCoinGeckoSupplies} upstream supply inconsistencies`,
-    ].join(", "),
-  );
+  const supplyRefresh = coinGeckoPlatforms
+    ? await refreshCoinGeckoSupplies({
+        tokens,
+        accumulator,
+        platforms: coinGeckoPlatforms,
+        headers: coinGeckoHeaders,
+        previousMarketCache,
+      })
+    : { marketCache: previousMarketCache, skipped: true };
+  const marketCache = supplyRefresh.marketCache;
+  if (supplyRefresh.skipped) {
+    const restored = restorePreviousSupplies(tokens, previousDocument.tokens);
+    console.warn(
+      `Restored ${restored} supplies from the previous generated list`,
+    );
+  }
 
   const cloudflareAccountId = process.env.CLOUDFLARE_ACCOUNT_ID;
   const cloudflareApiToken = process.env.CLOUDFLARE_API_TOKEN;

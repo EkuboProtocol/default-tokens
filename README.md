@@ -113,6 +113,15 @@ Configure these repository secrets:
   `x-cg-pro-api-key` request header. It is used for token lists, exact contract
   mapping, and batched market-supply enrichment.
 
+  A CoinGecko `429` that survives every retry does not fail the run. The
+  updater skips the phase that was rate limited — the Pro token lists, the
+  supply refresh, or both — and folds the previous `tokens.json` back in, so a
+  quota problem degrades the list to the last known good CoinGecko data instead
+  of deleting the ~24 chains CoinGecko is the only source for. Every other
+  failure, including a `5xx`, still fails the run. A skipped run logs
+  `CoinGecko is rate limited (429): SKIPPING …`; that line means the published
+  list is stale, so check the key's plan and quota when it appears.
+
 Configure these repository variables:
 
 - `CLOUDFLARE_IMAGES_DELIVERY_HASH`: the account delivery hash used in

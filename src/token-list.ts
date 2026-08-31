@@ -302,3 +302,83 @@ export function assertHostedLogos(
     }
   }
 }
+
+export type BackfillStats = {
+  tokensRestored: number;
+  suppliesRestored: number;
+};
+
+// Keep the supply fields a live source cannot supply. Mutating in place is
+// safe: the accumulator owns these rows and nothing else holds a reference.
+function restoreSupplies(current: Token, previous: Token): boolean {
+  let restored = false;
+  if (current.total_supply == null && previous.total_supply != null) {
+    current.total_supply = previous.total_supply;
+    restored = true;
+  }
+  if (
+    current.circulating_supply == null &&
+    previous.circulating_supply != null
+  ) {
+    current.circulating_supply = previous.circulating_supply;
+    restored = true;
+  }
+  return restored;
+}
+
+// Fold the previous generated list back in when a source was skipped, so a
+// degraded run publishes the last known good rows rather than deleting them.
+// `TokenAccumulator.add` is first-wins, so calling this after every source has
+// run leaves fresher rows untouched and only fills the gaps.
+export function backfillPreviousTokens(
+  accumulator: TokenAccumulator,
+  previousTokens: Token[],
+  sourceName: string,
+  sourceUrl: string,
+): BackfillStats {
+  const stats: BackfillStats = { tokensRestored: 0, suppliesRestored: 0 };
+
+  for (const previous of previousTokens) {
+    const address = normalizeTokenAddress(
+      previous.token_address,
+      previous.chain_id,
+    );
+    if (!address) continue;
+
+    const existing = accumulator.tokens.get(tokenKey(previous.chain_id, address));
+    if (!existing) {
+      if (accumulator.add(previous, sourceName, sourceUrl)) {
+        stats.tokensRestored++;
+      }
+      continue;
+    }
+    if (restoreSupplies(existing, previous)) stats.suppliesRestored++;
+  }
+
+  return stats;
+}
+
+// Fill only the supplies, for a run where every token was collected live but
+// the CoinGecko supply refresh was skipped.
+export function restorePreviousSupplies(
+  tokens: Token[],
+  previousTokens: Token[],
+): number {
+  const previousByKey = new Map<string, Token>();
+  for (const previous of previousTokens) {
+    const address = normalizeTokenAddress(
+      previous.token_address,
+      previous.chain_id,
+    );
+    if (address) previousByKey.set(tokenKey(previous.chain_id, address), previous);
+  }
+
+  let restored = 0;
+  for (const token of tokens) {
+    const previous = previousByKey.get(
+      tokenKey(token.chain_id, token.token_address),
+    );
+    if (previous && restoreSupplies(token, previous)) restored++;
+  }
+  return restored;
+}
