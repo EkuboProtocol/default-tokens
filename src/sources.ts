@@ -70,10 +70,6 @@ export const REMOTE_TOKEN_LISTS: TokenSource[] = [
     url: "https://tokenlist.tempo.xyz/list/4217",
   },
   {
-    name: "Tempo Testnet Token List",
-    url: "https://tokenlist.tempo.xyz/list/42431",
-  },
-  {
     name: "MegaETH Token List",
     url: "https://raw.githubusercontent.com/megaeth-labs/mega-tokenlist/refs/heads/main/megaeth.tokenlist.json",
     visibilityPriority: 1,
@@ -144,8 +140,8 @@ export const WALLET_DEFAULT_NETWORK_CHAIN_IDS = [
 // profile and pinned here so a remote list cannot relabel a native asset —
 // putting ETH on Berachain, say — without failing validation.
 //
-// Tempo (4217, 42431) is deliberately absent. It has no native currency; gas
-// there is paid in stablecoins, so nothing belongs at address zero.
+// Tempo (4217) is deliberately absent. It has no native currency; gas there is
+// paid in stablecoins, so nothing belongs at address zero.
 export const NATIVE_CURRENCIES: NativeCurrency[] = [
   { chainId: "1", name: "Ether", symbol: "ETH", decimals: 18 },
   { chainId: "10", name: "Ether", symbol: "ETH", decimals: 18 },
@@ -171,15 +167,11 @@ export const NATIVE_CURRENCIES: NativeCurrency[] = [
   { chainId: "42161", name: "Ether", symbol: "ETH", decimals: 18 },
   { chainId: "42220", name: "Celo", symbol: "CELO", decimals: 18 },
   { chainId: "43114", name: "Avalanche", symbol: "AVAX", decimals: 18 },
-  { chainId: "46630", name: "Ether", symbol: "ETH", decimals: 18 },
   { chainId: "57073", name: "Ether", symbol: "ETH", decimals: 18 },
   { chainId: "59144", name: "Ether", symbol: "ETH", decimals: 18 },
   { chainId: "80094", name: "Berachain", symbol: "BERA", decimals: 18 },
   { chainId: "81457", name: "Ether", symbol: "ETH", decimals: 18 },
-  { chainId: "84532", name: "Ether", symbol: "ETH", decimals: 18 },
-  { chainId: "421614", name: "Ether", symbol: "ETH", decimals: 18 },
   { chainId: "7777777", name: "Ether", symbol: "ETH", decimals: 18 },
-  { chainId: "11155111", name: "Ether", symbol: "ETH", decimals: 18 },
   { chainId: "1313161554", name: "Ether", symbol: "ETH", decimals: 18 },
 ];
 
@@ -222,11 +214,5 @@ export const STARKNET_BRIDGE_TOKEN_LISTS = [
     url: "https://raw.githubusercontent.com/starknet-io/starknet-addresses/refs/heads/master/bridged_tokens/mainnet.json",
     l1ChainId: 1n,
     l2ChainId: 0x534e5f4d41494en,
-  },
-  {
-    name: "Starknet Sepolia bridged tokens",
-    url: "https://raw.githubusercontent.com/starknet-io/starknet-addresses/refs/heads/master/bridged_tokens/sepolia.json",
-    l1ChainId: 11155111n,
-    l2ChainId: 0x534e5f4d41494fn,
   },
 ] as const;

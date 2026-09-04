@@ -11,10 +11,7 @@ const EVM_NATIVE_TOKEN_ALIASES = new Set([
   0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeen,
   0x455448n,
 ]);
-const STARKNET_CHAIN_IDS = new Set([
-  0x534e5f4d41494en,
-  0x534e5f4d41494fn,
-]);
+const STARKNET_CHAIN_IDS = new Set([0x534e5f4d41494en]);
 
 export function parseInteger(value: string, label: string): bigint {
   try {
