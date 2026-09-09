@@ -37,6 +37,13 @@ source names a different asset at address zero — ETH on Berachain, say. Tempo
 is deliberately absent: it has no native currency, and gas there is paid in
 stablecoins.
 
+This list is mainnets only. Ekubo removed testnet support across the interface,
+the indexer and the quoter service, so a testnet row here would describe a chain
+nothing in the stack can serve. `NATIVE_CURRENCIES` therefore carries no testnet,
+and `validateNativeCurrencies` makes that binding in both directions for
+`curated-tokens.json`: a curated row at address zero on a chain the list does not
+name fails, and so does a named chain with no curated row.
+
 Generation uses first-source-wins precedence:
 
 1. Ekubo's curated tokens.

@@ -1342,26 +1342,6 @@
       "sort_order": 1
     },
     {
-      "chain_id": "421614",
-      "token_address": "0x0000000000000000000000000000000000000000",
-      "token_name": "Ether",
-      "token_symbol": "ETH",
-      "token_decimals": 18,
-      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/e07829b7-0382-4e03-7ecd-a478c5aa9f00/logo",
-      "visibility_priority": 3,
-      "sort_order": 3
-    },
-    {
-      "chain_id": "421614",
-      "token_address": "0x75faf114eafb1bdbe2f0316df893fd58ce46aa4d",
-      "token_name": "USDC",
-      "token_symbol": "USDC",
-      "token_decimals": 6,
-      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/e5aaa970-a998-47e8-bd43-4a3b56b87200/logo",
-      "visibility_priority": 3,
-      "sort_order": 6
-    },
-    {
       "chain_id": "8453",
       "token_address": "0x0000000000000000000000000000000000000000",
       "token_name": "Ether",
@@ -1480,86 +1460,6 @@
       "logo_url": "https://assets.coingecko.com/coins/images/12645/thumb/AAVE.png?1601374110",
       "visibility_priority": 1,
       "sort_order": 0
-    },
-    {
-      "chain_id": "84532",
-      "token_address": "0x0000000000000000000000000000000000000000",
-      "token_name": "Ether",
-      "token_symbol": "ETH",
-      "token_decimals": 18,
-      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/e07829b7-0382-4e03-7ecd-a478c5aa9f00/logo",
-      "visibility_priority": 3,
-      "sort_order": 3
-    },
-    {
-      "chain_id": "84532",
-      "token_address": "0x036cbd53842c5426634e7929541ec2318f3dcf7e",
-      "token_name": "USDC",
-      "token_symbol": "USDC",
-      "token_decimals": 6,
-      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/e5aaa970-a998-47e8-bd43-4a3b56b87200/logo",
-      "visibility_priority": 3,
-      "sort_order": 6
-    },
-    {
-      "chain_id": "11155111",
-      "token_address": "0x0000000000000000000000000000000000000000",
-      "token_name": "Ether",
-      "token_symbol": "ETH",
-      "token_decimals": 18,
-      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/e07829b7-0382-4e03-7ecd-a478c5aa9f00/logo",
-      "visibility_priority": 3,
-      "sort_order": 2
-    },
-    {
-      "chain_id": "11155111",
-      "token_address": "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238",
-      "token_name": "USDC",
-      "token_symbol": "USDC",
-      "token_decimals": 6,
-      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/e5aaa970-a998-47e8-bd43-4a3b56b87200/logo",
-      "visibility_priority": 3,
-      "sort_order": 5
-    },
-    {
-      "chain_id": "11155111",
-      "token_address": "0x08210F9170F89Ab7658F0B5E3fF39b0E03C594D4",
-      "token_name": "EURC",
-      "token_symbol": "EURC",
-      "token_decimals": 6,
-      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/5e771c51-ac56-4fd4-5216-f2d118d78000/logo",
-      "visibility_priority": 1,
-      "sort_order": 4
-    },
-    {
-      "chain_id": "11155111",
-      "token_address": "0xaA8E23Fb1079EA71e0a56F48a2aA51851D8433D0",
-      "token_name": "USDT",
-      "token_symbol": "USDT",
-      "token_decimals": 6,
-      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/c8a721d1-07c3-46e4-ab4e-523977c30b00/logo",
-      "visibility_priority": 3,
-      "sort_order": 4
-    },
-    {
-      "chain_id": "11155111",
-      "token_address": "0x618C25b11a5e9B5Ad60B04bb64FcBdfBad7621d1",
-      "token_name": "Ekubo Protocol",
-      "token_symbol": "EKUBO",
-      "token_decimals": 18,
-      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/634d9c36-2f0b-4781-93e6-72d701b5af00/logo",
-      "visibility_priority": 3,
-      "sort_order": 2
-    },
-    {
-      "chain_id": "11155111",
-      "token_address": "0xCa14007Eff0dB1f8135f4C25B34De49AB0d42766",
-      "token_name": "Starknet Token",
-      "token_symbol": "STRK",
-      "token_decimals": 18,
-      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/1b126320-367c-48ed-cf5a-ba7580e49600/logo",
-      "visibility_priority": 1,
-      "sort_order": 2
     },
     {
       "chain_id": "0x534e5f4d41494e",
@@ -2662,136 +2562,6 @@
       "sort_order": 1
     },
     {
-      "chain_id": "0x534e5f4d41494f",
-      "token_address": "0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7",
-      "token_name": "Ether",
-      "token_symbol": "ETH",
-      "token_decimals": 18,
-      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/e07829b7-0382-4e03-7ecd-a478c5aa9f00/logo",
-      "visibility_priority": 3,
-      "sort_order": 2
-    },
-    {
-      "chain_id": "0x534e5f4d41494f",
-      "token_address": "0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d",
-      "token_name": "Starknet Token",
-      "token_symbol": "STRK",
-      "token_decimals": 18,
-      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/1b126320-367c-48ed-cf5a-ba7580e49600/logo",
-      "visibility_priority": 3,
-      "sort_order": 1
-    },
-    {
-      "chain_id": "0x534e5f4d41494f",
-      "token_address": "0x01fad7c03b2ea7fbef306764e20977f8d4eae6191b3a54e4514cc5fc9d19e569",
-      "token_name": "Ekubo Protocol",
-      "token_symbol": "EKUBO",
-      "token_decimals": 18,
-      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/634d9c36-2f0b-4781-93e6-72d701b5af00/logo",
-      "visibility_priority": 3,
-      "sort_order": 2
-    },
-    {
-      "chain_id": "0x534e5f4d41494f",
-      "token_address": "0x07ab0b8855a61f480b4423c46c32fa7c553f0aac3531bbddaa282d86244f7a23",
-      "token_name": "Fake USD Coin",
-      "token_symbol": "fUSDC",
-      "token_decimals": 6,
-      "logo_url": null,
-      "visibility_priority": 1,
-      "sort_order": 3
-    },
-    {
-      "chain_id": "0x534e5f4d41494f",
-      "token_address": "0x053b40a647cedfca6ca84f542a0fe36736031905a9639a7f19a3c1e66bfd5080",
-      "token_name": "USD Coin",
-      "token_symbol": "USDC",
-      "token_decimals": 6,
-      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/e5aaa970-a998-47e8-bd43-4a3b56b87200/logo",
-      "visibility_priority": 3,
-      "sort_order": 4
-    },
-    {
-      "chain_id": "0x534e5f4d41494f",
-      "token_address": "0x06f2a0dfeff180133de890ad69c6ba294574c5f34a67890fd22464f348c4d03c",
-      "token_name": "DAI Stablecoin (Fake)",
-      "token_symbol": "DAI",
-      "token_decimals": 18,
-      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/919e761b-56f7-4f53-32aa-5e066f7f6200/logo",
-      "visibility_priority": 1,
-      "sort_order": 2
-    },
-    {
-      "chain_id": "0x534e5f4d41494f",
-      "token_address": "0x020d208b9e57a7f92bfa9f61135446e0961afc340378be97dbd317453c0950ae",
-      "token_name": "Wrapped Bitcoin (Fake)",
-      "token_symbol": "WBTC",
-      "token_decimals": 8,
-      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/7dcb2db2-a7a7-44af-660b-8262e057a100/logo",
-      "visibility_priority": 1,
-      "sort_order": 1
-    },
-    {
-      "chain_id": "0x534e5f4d41494f",
-      "token_address": "0x4d204547803c53c80c3ce46d5f6542166d7d947c3fdd185ed8fb3cdfb4ad3f",
-      "token_name": "AXE",
-      "token_symbol": "AXE",
-      "token_decimals": 18,
-      "logo_url": null,
-      "visibility_priority": 1,
-      "sort_order": 1
-    },
-    {
-      "chain_id": "0x534e5f4d41494f",
-      "token_address": "0x2ebbfafc2e40f66fc4e729a21270c36d7277dbeba5e5dda61884a998ecdadc8",
-      "token_name": "MINERAL",
-      "token_symbol": "MINERAL",
-      "token_decimals": 18,
-      "logo_url": null,
-      "visibility_priority": 1,
-      "sort_order": 1
-    },
-    {
-      "chain_id": "0x534e5f4d41494f",
-      "token_address": "0x703911a6196ef674fc635de02763dcd4ccc16d7cf736f68a9483cc44eccaa94",
-      "token_name": "wstETH OpenMint (OLD)",
-      "token_symbol": "wstETH-OLD",
-      "token_decimals": 18,
-      "logo_url": null,
-      "visibility_priority": 1,
-      "sort_order": 1
-    },
-    {
-      "chain_id": "0x534e5f4d41494f",
-      "token_address": "0x02BB2FB3837DcD4229404B422908da95109D94191c4b075b2D0F192f1a18f2AC",
-      "token_name": "Wrapped liquid staked Ether 2.0",
-      "token_symbol": "wstETH",
-      "token_decimals": 18,
-      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/dbbcbdea-1a92-437d-3701-4a5ee129d000/logo",
-      "visibility_priority": 1,
-      "sort_order": 1
-    },
-    {
-      "chain_id": "0x534e5f4d41494f",
-      "token_address": "0xabbd6f1e590eb83addd87ba5ac27960d859b1f17d11a3c1cd6a0006704b141",
-      "token_name": "Wrapped Bitcoin (Vesu)",
-      "token_symbol": "WBTCv",
-      "token_decimals": 8,
-      "logo_url": null,
-      "visibility_priority": 1,
-      "sort_order": 0
-    },
-    {
-      "chain_id": "0x534e5f4d41494f",
-      "token_address": "0x715649d4c493ca350743e43915b88d2e6838b1c78ddc23d6d9385446b9d6844",
-      "token_name": "USDC (Vesu)",
-      "token_symbol": "USDCv",
-      "token_decimals": 6,
-      "logo_url": null,
-      "visibility_priority": 1,
-      "sort_order": 4
-    },
-    {
       "chain_id": "4663",
       "token_address": "0x570C5aa79c798E7A418412cC8399ae5bcCe570C5",
       "token_name": "Ekubo Stock Liquidity Token",
@@ -2800,86 +2570,6 @@
       "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/b97605f2-90af-4df8-7f1c-7b3afae43c00/logo",
       "visibility_priority": 3,
       "sort_order": 1
-    },
-    {
-      "chain_id": "46630",
-      "token_address": "0x570C5aa79c798E7A418412cC8399ae5bcCe570C5",
-      "token_name": "Ekubo Stock Liquidity Token",
-      "token_symbol": "STONX",
-      "token_decimals": 18,
-      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/b97605f2-90af-4df8-7f1c-7b3afae43c00/logo",
-      "visibility_priority": 3,
-      "sort_order": 1
-    },
-    {
-      "chain_id": "46630",
-      "token_address": "0xC9f9c86933092BbbfFF3CCb4b105A4A94bf3Bd4E",
-      "token_name": "Tesla",
-      "token_symbol": "TSLA",
-      "token_decimals": 18,
-      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/202cafbe-883a-498c-92ec-ed64ff8ff300/logo",
-      "visibility_priority": 1,
-      "sort_order": 0
-    },
-    {
-      "chain_id": "46630",
-      "token_address": "0x5884aD2f920c162CFBbACc88C9C51AA75eC09E02",
-      "token_name": "Amazon",
-      "token_symbol": "AMZN",
-      "token_decimals": 18,
-      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/e58b1572-9fd6-48b2-8206-fa5a6c256300/logo",
-      "visibility_priority": 1,
-      "sort_order": 0
-    },
-    {
-      "chain_id": "46630",
-      "token_address": "0x1FBE1a0e43594b3455993B5dE5Fd0A7A266298d0",
-      "token_name": "Palantir",
-      "token_symbol": "PLTR",
-      "token_decimals": 18,
-      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/a3f86605-363e-4d52-a590-b3b770e20500/logo",
-      "visibility_priority": 1,
-      "sort_order": 0
-    },
-    {
-      "chain_id": "46630",
-      "token_address": "0x3b8262A63d25f0477c4DDE23F83cfe22Cb768C93",
-      "token_name": "Netflix",
-      "token_symbol": "NFLX",
-      "token_decimals": 18,
-      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/8e9da546-1be3-4b2c-f120-49335c1fc100/logo",
-      "visibility_priority": 1,
-      "sort_order": 0
-    },
-    {
-      "chain_id": "46630",
-      "token_address": "0x71178BAc73cBeb415514eB542a8995b82669778d",
-      "token_name": "AMD",
-      "token_symbol": "AMD",
-      "token_decimals": 18,
-      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/63376ae9-f61a-4bbd-ef67-dbc1ac7ac700/logo",
-      "visibility_priority": 1,
-      "sort_order": 0
-    },
-    {
-      "chain_id": "46630",
-      "token_address": "0x0000000000000000000000000000000000000000",
-      "token_name": "Ether",
-      "token_symbol": "ETH",
-      "token_decimals": 18,
-      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/e07829b7-0382-4e03-7ecd-a478c5aa9f00/logo",
-      "visibility_priority": 3,
-      "sort_order": 3
-    },
-    {
-      "chain_id": "46630",
-      "token_address": "0x9367e29667db75Cb91788330a8509b3B4ac66c8f",
-      "token_name": "Global Dollar",
-      "token_symbol": "USDG",
-      "token_decimals": 6,
-      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/75338949-7643-40d7-03f0-da22f439e400/logo",
-      "visibility_priority": 3,
-      "sort_order": 4
     },
     {
       "chain_id": "0x534e5f4d41494e",
@@ -3170,6 +2860,166 @@
       "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/e07829b7-0382-4e03-7ecd-a478c5aa9f00/logo",
       "visibility_priority": 3,
       "sort_order": 3
+    },
+    {
+      "chain_id": "10",
+      "token_address": "0x94b008aA00579c1307B0EF2c499aD98a8ce58e58",
+      "token_name": "Tether USD",
+      "token_symbol": "USDT",
+      "token_decimals": 6,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/ad9e2c01cd61092912ad487d3960ed9118df34a15a48e5710164c289bc8b1753/logo",
+      "visibility_priority": 3,
+      "sort_order": 5
+    },
+    {
+      "chain_id": "10",
+      "token_address": "0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85",
+      "token_name": "USDC",
+      "token_symbol": "USDC",
+      "token_decimals": 6,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/2d1be2b37ce560105925aec1341c18fbc0c8c9a4d09202d6f92f10774bfd45d4/logo",
+      "visibility_priority": 3,
+      "sort_order": 6
+    },
+    {
+      "chain_id": "56",
+      "token_address": "0x55d398326f99059fF775485246999027B3197955",
+      "token_name": "Tether USD",
+      "token_symbol": "USDT",
+      "token_decimals": 18,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/ad9e2c01cd61092912ad487d3960ed9118df34a15a48e5710164c289bc8b1753/logo",
+      "visibility_priority": 3,
+      "sort_order": 5
+    },
+    {
+      "chain_id": "56",
+      "token_address": "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d",
+      "token_name": "USD Coin",
+      "token_symbol": "USDC",
+      "token_decimals": 18,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/0922a472d9ad44c04c64b28d9106a38d3e8737297f2604bb302318ea93d81a68/logo",
+      "visibility_priority": 3,
+      "sort_order": 6
+    },
+    {
+      "chain_id": "100",
+      "token_address": "0x2a22f9c3b484c3629090feed35f17ff8f88f76f0",
+      "token_name": "Bridged USDC (Gnosis)",
+      "token_symbol": "USDC.e",
+      "token_decimals": 6,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/d35096ee8317d6ad03dcbd752d8274234a0482251832f7d0102bad100ca99560/logo",
+      "visibility_priority": 3,
+      "sort_order": 6
+    },
+    {
+      "chain_id": "130",
+      "token_address": "0x9151434b16b9763660705744891fA906F660EcC5",
+      "token_name": "USDT0",
+      "token_symbol": "USDT0",
+      "token_decimals": 6,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/655c3ce704d5e0a60d0d637c4b0adb563b211a8ae962f1e699c6885af81b5eea/logo",
+      "visibility_priority": 3,
+      "sort_order": 5
+    },
+    {
+      "chain_id": "130",
+      "token_address": "0x078D782b760474a361dDA0AF3839290b0EF57AD6",
+      "token_name": "USDC",
+      "token_symbol": "USDC",
+      "token_decimals": 6,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/0922a472d9ad44c04c64b28d9106a38d3e8737297f2604bb302318ea93d81a68/logo",
+      "visibility_priority": 3,
+      "sort_order": 6
+    },
+    {
+      "chain_id": "137",
+      "token_address": "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
+      "token_name": "USDT0",
+      "token_symbol": "USDT0",
+      "token_decimals": 6,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/ad9e2c01cd61092912ad487d3960ed9118df34a15a48e5710164c289bc8b1753/logo",
+      "visibility_priority": 3,
+      "sort_order": 5
+    },
+    {
+      "chain_id": "137",
+      "token_address": "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359",
+      "token_name": "USDC",
+      "token_symbol": "USDC",
+      "token_decimals": 6,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/0922a472d9ad44c04c64b28d9106a38d3e8737297f2604bb302318ea93d81a68/logo",
+      "visibility_priority": 3,
+      "sort_order": 6
+    },
+    {
+      "chain_id": "143",
+      "token_address": "0xe7cd86e13AC4309349F30B3435a9d337750fC82D",
+      "token_name": "USDT0",
+      "token_symbol": "USDT0",
+      "token_decimals": 6,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/ad9e2c01cd61092912ad487d3960ed9118df34a15a48e5710164c289bc8b1753/logo",
+      "visibility_priority": 3,
+      "sort_order": 5
+    },
+    {
+      "chain_id": "143",
+      "token_address": "0x754704Bc059F8C67012fEd69BC8A327a5aafb603",
+      "token_name": "USDC",
+      "token_symbol": "USDC",
+      "token_decimals": 6,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/0922a472d9ad44c04c64b28d9106a38d3e8737297f2604bb302318ea93d81a68/logo",
+      "visibility_priority": 3,
+      "sort_order": 6
+    },
+    {
+      "chain_id": "480",
+      "token_address": "0x2cfc85d8e48f8eab294be644d9e25c3030863003",
+      "token_name": "Worldcoin",
+      "token_symbol": "WLD",
+      "token_decimals": 18,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/ca8e6fba3b118930956337e0a5d09f4ca81c71d8fdadad950917a4d9e0319531/logo",
+      "visibility_priority": 3,
+      "sort_order": 1
+    },
+    {
+      "chain_id": "480",
+      "token_address": "0x79A02482A880bCE3F13e09Da970dC34db4CD24d1",
+      "token_name": "USDC",
+      "token_symbol": "USDC",
+      "token_decimals": 6,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/45d63d3154d09a373f95cd100110f495a445ade03dac53990993404946ac2425/logo",
+      "visibility_priority": 3,
+      "sort_order": 6
+    },
+    {
+      "chain_id": "4326",
+      "token_address": "0xB8CE59FC3717ada4C02eaDF9682A9e934F625ebb",
+      "token_name": "USDT0",
+      "token_symbol": "USDT0",
+      "token_decimals": 6,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/d83c197124afec5b2c26561cf2e74d8103aec4dede574430243fb3b5428b748a/logo",
+      "visibility_priority": 3,
+      "sort_order": 6
+    },
+    {
+      "chain_id": "57073",
+      "token_address": "0x0200c29006150606b650577bbe7b6248f58470c1",
+      "token_name": "USDT0",
+      "token_symbol": "USDT0",
+      "token_decimals": 6,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/9e8590e2994fbe46e3b437ce15e1589ffdee2011ae96cdc79ab451ee7e3bdbff/logo",
+      "visibility_priority": 3,
+      "sort_order": 5
+    },
+    {
+      "chain_id": "57073",
+      "token_address": "0x2d270e6886d130d724215a266106e6832161eaed",
+      "token_name": "USDC",
+      "token_symbol": "USDC",
+      "token_decimals": 6,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/2ec9cc74be1729ff917f88a96b37d997ffdc641020aa4a5d10d9b2faff584dfb/logo",
+      "visibility_priority": 3,
+      "sort_order": 6
     }
   ],
   "bridge_relationships": []
