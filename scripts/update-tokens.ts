@@ -52,6 +52,7 @@ import {
 } from "../src/token-list";
 import type {
   BridgeRelationship,
+  CoinGeckoTokenSource,
   StandardTokenList,
   Token,
   TokenListDocument,
@@ -145,9 +146,20 @@ async function fetchCoinGeckoMarkets(
   return markets;
 }
 
-// CoinGecko is the only source whose quota can go away underneath a scheduled
-// run, and losing it must not fail the run or delete the rows it contributed:
-// the phase is skipped and the previous generated list is folded back in.
+// A remote list that cannot be downloaded must not fail the run or delete the
+// rows it contributed: the source is skipped and the previous generated list
+// is folded back in (see the backfill in main). Generation starts from the
+// curated inputs each time, so without the backfill a skipped source's tokens
+// would vanish from the published list.
+function warnSourceSkipped(sourceName: string, error: unknown): void {
+  console.warn(
+    `Skipping ${sourceName}: ${error instanceof Error ? error.message : String(error)}. ` +
+      `This run publishes the previous run's rows for that source, so it is degraded, not current.`,
+  );
+}
+
+// A CoinGecko quota problem degrades the list to the last known good CoinGecko
+// data instead of deleting the ~24 chains CoinGecko is the only source for.
 function warnCoinGeckoSkipped(phase: string, error: unknown): void {
   console.warn(
     `CoinGecko is rate limited (429): SKIPPING ${phase}. This run publishes the previous run's CoinGecko data, so it is degraded, not current — check the COINGECKO_API_KEY plan and quota.`,
@@ -155,11 +167,33 @@ function warnCoinGeckoSkipped(phase: string, error: unknown): void {
   console.warn(error instanceof Error ? error.message : String(error));
 }
 
+async function addCoinGeckoChainList(
+  accumulator: TokenAccumulator,
+  relationships: Map<string, BridgeRelationship>,
+  source: CoinGeckoTokenSource,
+  headers: HeadersInit,
+): Promise<void> {
+  const list = await fetchJson<StandardTokenList>(source.name, source.url, {
+    headers,
+  });
+  validateCoinGeckoTokenList(list, source);
+  const added = addStandardTokenList(
+    accumulator,
+    relationships,
+    source,
+    list,
+  );
+  console.log(`Added ${added} tokens from ${source.name}`);
+}
+
 async function addCoinGeckoProTokenLists(
   accumulator: TokenAccumulator,
   relationships: Map<string, BridgeRelationship>,
   headers: HeadersInit,
-): Promise<CoinGeckoAssetPlatform[] | null> {
+): Promise<{
+  platforms: CoinGeckoAssetPlatform[] | null;
+  skippedSources: string[];
+}> {
   try {
     const platforms = await fetchJson<CoinGeckoAssetPlatform[]>(
       "CoinGecko Pro asset platforms",
@@ -168,24 +202,28 @@ async function addCoinGeckoProTokenLists(
     );
     validateCoinGeckoAssetPlatforms(platforms, COINGECKO_PRO_TOKEN_LISTS);
 
+    const skippedSources: string[] = [];
     for (const source of COINGECKO_PRO_TOKEN_LISTS) {
-      const list = await fetchJson<StandardTokenList>(source.name, source.url, {
-        headers,
-      });
-      validateCoinGeckoTokenList(list, source);
-      const added = addStandardTokenList(
-        accumulator,
-        relationships,
-        source,
-        list,
-      );
-      console.log(`Added ${added} tokens from ${source.name}`);
+      try {
+        await addCoinGeckoChainList(
+          accumulator,
+          relationships,
+          source,
+          headers,
+        );
+      } catch (error) {
+        skippedSources.push(source.name);
+        warnSourceSkipped(source.name, error);
+      }
     }
-    return platforms;
+    return { platforms, skippedSources };
   } catch (error) {
-    if (!isRateLimited(error)) throw error;
+    if (!isRateLimited(error)) {
+      warnSourceSkipped("the CoinGecko Pro token lists", error);
+      return { platforms: null, skippedSources: [] };
+    }
     warnCoinGeckoSkipped("the CoinGecko Pro token lists", error);
-    return null;
+    return { platforms: null, skippedSources: [] };
   }
 }
 
@@ -355,6 +393,152 @@ function addStandardTokenList(
   return added;
 }
 
+async function addRemoteTokenLists(
+  accumulator: TokenAccumulator,
+  relationships: Map<string, BridgeRelationship>,
+): Promise<string[]> {
+  const skippedSources: string[] = [];
+  for (const source of REMOTE_TOKEN_LISTS) {
+    try {
+      const list = await fetchJson<StandardTokenList>(
+        source.name,
+        source.url,
+      );
+      const added = addStandardTokenList(
+        accumulator,
+        relationships,
+        source,
+        list,
+      );
+      console.log(`Added ${added} tokens from ${source.name}`);
+    } catch (error) {
+      skippedSources.push(source.name);
+      warnSourceSkipped(source.name, error);
+    }
+  }
+  return skippedSources;
+}
+
+function isValidAvnuToken(token: AvnuToken): boolean {
+  return (
+    Boolean(token.name) &&
+    Boolean(token.symbol) &&
+    typeof token.decimals === "number" &&
+    addressRegex.test(token.address)
+  );
+}
+
+async function addAvnuSource(
+  accumulator: TokenAccumulator,
+  source: (typeof STARKNET_AVNU_TOKEN_SOURCES)[number],
+  trackedAvnuAddresses: Set<string>,
+): Promise<number> {
+  const response = await fetchJson<AvnuTokenResponse>(
+    source.name,
+    source.url,
+  );
+  if (!Array.isArray(response.content)) {
+    throw new Error(`${source.name} did not return a token page`);
+  }
+
+  let added = 0;
+  for (const token of response.content) {
+    if (!isValidAvnuToken(token)) {
+      continue;
+    }
+    const addressKey = token.address.toLowerCase();
+    if (source.skipIfTracked && trackedAvnuAddresses.has(addressKey)) continue;
+    trackedAvnuAddresses.add(addressKey);
+
+    added += Number(
+      accumulator.add(
+        {
+          chain_id: STARKNET_MAINNET_CHAIN_ID.toString(),
+          token_address: token.address,
+          token_name: token.name,
+          token_symbol: token.symbol,
+          token_decimals: token.decimals,
+          logo_url: token.logoUri ?? null,
+          visibility_priority: source.visibilityPriority,
+          sort_order: 0,
+        },
+        source.name,
+        source.url,
+        token.extensions?.coingeckoId,
+      ),
+    );
+  }
+  return added;
+}
+
+async function addAvnuTokens(
+  accumulator: TokenAccumulator,
+): Promise<string[]> {
+  const skippedSources: string[] = [];
+  const trackedAvnuAddresses = new Set<string>();
+  for (const source of STARKNET_AVNU_TOKEN_SOURCES) {
+    try {
+      const added = await addAvnuSource(
+        accumulator,
+        source,
+        trackedAvnuAddresses,
+      );
+      console.log(`Added ${added} tokens from ${source.name}`);
+    } catch (error) {
+      skippedSources.push(source.name);
+      warnSourceSkipped(source.name, error);
+    }
+  }
+  return skippedSources;
+}
+
+async function addStarknetBridgeRelationships(
+  relationships: Map<string, BridgeRelationship>,
+): Promise<string[]> {
+  const skippedSources: string[] = [];
+  for (const source of STARKNET_BRIDGE_TOKEN_LISTS) {
+    try {
+      const bridgeTokens = await fetchJson<StarknetBridgeToken[]>(
+        source.name,
+        source.url,
+      );
+      if (!Array.isArray(bridgeTokens)) {
+        throw new Error(`${source.name} did not return an array`);
+      }
+
+      for (const token of bridgeTokens) {
+        if (!token.l1_token_address || !token.l2_token_address) continue;
+        addRelationship(
+          relationships,
+          {
+            source_chain_id: source.l1ChainId.toString(),
+            source_token_address: token.l1_token_address,
+            source_bridge_address: token.l1_bridge_address ?? null,
+            dest_chain_id: source.l2ChainId.toString(),
+            dest_token_address: token.l2_token_address,
+          },
+          true,
+        );
+        addRelationship(
+          relationships,
+          {
+            source_chain_id: source.l2ChainId.toString(),
+            source_token_address: token.l2_token_address,
+            source_bridge_address: token.l2_bridge_address ?? null,
+            dest_chain_id: source.l1ChainId.toString(),
+            dest_token_address: token.l1_token_address,
+          },
+          true,
+        );
+      }
+    } catch (error) {
+      skippedSources.push(source.name);
+      warnSourceSkipped(source.name, error);
+    }
+  }
+  return skippedSources;
+}
+
 async function addRegisteredTokens(
   accumulator: TokenAccumulator,
 ): Promise<void> {
@@ -445,16 +629,10 @@ async function main(): Promise<void> {
 
   if (!withoutRegistrations) await addRegisteredTokens(accumulator);
 
-  for (const source of REMOTE_TOKEN_LISTS) {
-    const list = await fetchJson<StandardTokenList>(source.name, source.url);
-    const added = addStandardTokenList(
-      accumulator,
-      relationships,
-      source,
-      list,
-    );
-    console.log(`Added ${added} tokens from ${source.name}`);
-  }
+  const skippedSources = await addRemoteTokenLists(
+    accumulator,
+    relationships,
+  );
 
   const coinGeckoApiKey = process.env.COINGECKO_API_KEY?.trim();
   if (!coinGeckoApiKey) {
@@ -465,92 +643,27 @@ async function main(): Promise<void> {
   const coinGeckoHeaders = {
     "x-cg-pro-api-key": coinGeckoApiKey,
   };
-  const coinGeckoPlatforms = await addCoinGeckoProTokenLists(
-    accumulator,
-    relationships,
-    coinGeckoHeaders,
-  );
-
-  const trackedAvnuAddresses = new Set<string>();
-  for (const source of STARKNET_AVNU_TOKEN_SOURCES) {
-    const response = await fetchJson<AvnuTokenResponse>(source.name, source.url);
-    if (!Array.isArray(response.content)) {
-      throw new Error(`${source.name} did not return a token page`);
-    }
-
-    let added = 0;
-    for (const token of response.content) {
-      if (
-        !token.name ||
-        !token.symbol ||
-        typeof token.decimals !== "number" ||
-        !addressRegex.test(token.address)
-      ) {
-        continue;
-      }
-      const addressKey = token.address.toLowerCase();
-      if (source.skipIfTracked && trackedAvnuAddresses.has(addressKey)) continue;
-      trackedAvnuAddresses.add(addressKey);
-
-      added += Number(
-        accumulator.add(
-          {
-            chain_id: STARKNET_MAINNET_CHAIN_ID.toString(),
-            token_address: token.address,
-            token_name: token.name,
-            token_symbol: token.symbol,
-            token_decimals: token.decimals,
-            logo_url: token.logoUri ?? null,
-            visibility_priority: source.visibilityPriority,
-            sort_order: 0,
-          },
-          source.name,
-          source.url,
-          token.extensions?.coingeckoId,
-        ),
-      );
-    }
-    console.log(`Added ${added} tokens from ${source.name}`);
-  }
-
-  for (const source of STARKNET_BRIDGE_TOKEN_LISTS) {
-    const bridgeTokens = await fetchJson<StarknetBridgeToken[]>(
-      source.name,
-      source.url,
+  const { platforms: coinGeckoPlatforms, skippedSources: skippedCoinGecko } =
+    await addCoinGeckoProTokenLists(
+      accumulator,
+      relationships,
+      coinGeckoHeaders,
     );
-    if (!Array.isArray(bridgeTokens)) {
-      throw new Error(`${source.name} did not return an array`);
-    }
+  skippedSources.push(...skippedCoinGecko);
 
-    for (const token of bridgeTokens) {
-      if (!token.l1_token_address || !token.l2_token_address) continue;
-      addRelationship(
-        relationships,
-        {
-          source_chain_id: source.l1ChainId.toString(),
-          source_token_address: token.l1_token_address,
-          source_bridge_address: token.l1_bridge_address ?? null,
-          dest_chain_id: source.l2ChainId.toString(),
-          dest_token_address: token.l2_token_address,
-        },
-        true,
-      );
-      addRelationship(
-        relationships,
-        {
-          source_chain_id: source.l2ChainId.toString(),
-          source_token_address: token.l2_token_address,
-          source_bridge_address: token.l2_bridge_address ?? null,
-          dest_chain_id: source.l1ChainId.toString(),
-          dest_token_address: token.l1_token_address,
-        },
-        true,
-      );
-    }
-  }
+  skippedSources.push(...(await addAvnuTokens(accumulator)));
+
+  skippedSources.push(
+    ...(await addStarknetBridgeRelationships(relationships)),
+  );
   console.log(`Discovered ${relationships.size} bridge relationships`);
 
-  if (!coinGeckoPlatforms) {
+  if (!coinGeckoPlatforms || skippedSources.length > 0) {
+    if (skippedSources.length > 0) {
+      console.warn(
+        `Skipped ${skippedSources.length} token source(s): ${skippedSources.join(", ")}.`,
+      );
+    }
     const backfill = backfillPreviousTokens(
       accumulator,
       previousDocument.tokens,
