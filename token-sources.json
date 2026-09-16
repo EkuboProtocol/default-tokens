@@ -37555,7 +37555,7 @@
   },
   {
     "chain_id": "1",
-    "token_address": "0x0994bd54cde8f83eab517d833a581b4be5b6f919",
+    "token_address": "0xc6d3856d9e49b3e54c28179fbf758bb299f1ed51",
     "source_name": "CoinGecko All Token List",
     "source_url": "https://tokens.coingecko.com/uniswap/all.json"
   },
@@ -62826,6 +62826,192 @@
     "source_url": "https://raw.githubusercontent.com/compound-finance/token-list/master/compound.tokenlist.json"
   },
   {
+    "chain_id": "4217",
+    "token_address": "0x20c0000000000000000000000000000000000000",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c0000000000000000000001621e21f71cf12fb",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c0000000000000000000003554d28269e0f3c2",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c0000000000000000000000520792dcccccccc",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c0000000000000000000008ee4fcff88888888",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c0000000000000000000005c0bac7cef389a11",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c0000000000000000000007f7ba549dd0251b9",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c000000000000000000000aeed2ec36a54d0e5",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c0000000000000000000009a4a4b17e0dc6651",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c000000000000000000000383a23bacb546ab9",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c000000000000000000000ab02d39df30bd17e",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c000000000000000000000048c8f36df1c9a4a",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c0000000000000000000002f52d5cc21a3207b",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c000000000000000000000bd95bfb69fbe6ce3",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c000000000000000000000ae247a1130450f09",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c0000000000000000000008191667423f70e67",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c0000000000000000000003158081efd85bfc2",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c000000000000000000000111111111e910f0f",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c0000000000000000000006fd9a167923ba194",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c00000000000000000000042109aef2f8b28e1",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c000000000000000000000f047dd7018e50367",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c0000000000000000000000a6da882d075a4c3",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c0000000000000000000006d194f9810e6f886",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c0000000000000000000002e2829d90e7da7fa",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c000000000000000000000d65b4808c85dbb81",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c00000000000000000000030fdd4a919e93fcf",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c00000000000000000000058d0b8b2cfdb358c",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c000000000000000000000d479b9f6ec0ceff9",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c000000000000000000000f37de3740adec032",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c000000000000000000000baac91f6ca72f768",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
+    "chain_id": "4217",
+    "token_address": "0x20c0000000000000000000003337951a5a9d94b2",
+    "source_name": "Tempo Mainnet Token List",
+    "source_url": "https://tokenlist.tempo.xyz/list/4217"
+  },
+  {
     "chain_id": "4326",
     "token_address": "0xB0F70C0bD6FD87dbEb7C10dC692a2a6106817072",
     "source_name": "MegaETH Token List",
@@ -63661,193 +63847,13 @@
   },
   {
     "chain_id": "1",
+    "token_address": "0x0994bd54cde8f83eab517d833a581b4be5b6f919",
+    "source_name": "Previous generated token list",
+    "source_url": "tokens.json"
+  },
+  {
+    "chain_id": "1",
     "token_address": "0xfd2cf2202f049064865dc32c6cf81eeb34074b39",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c0000000000000000000000000000000000000",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c0000000000000000000001621e21f71cf12fb",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c0000000000000000000003554d28269e0f3c2",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c0000000000000000000000520792dcccccccc",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c0000000000000000000008ee4fcff88888888",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c0000000000000000000005c0bac7cef389a11",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c0000000000000000000007f7ba549dd0251b9",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c000000000000000000000aeed2ec36a54d0e5",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c0000000000000000000009a4a4b17e0dc6651",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c000000000000000000000383a23bacb546ab9",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c000000000000000000000ab02d39df30bd17e",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c000000000000000000000048c8f36df1c9a4a",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c0000000000000000000002f52d5cc21a3207b",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c000000000000000000000bd95bfb69fbe6ce3",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c000000000000000000000ae247a1130450f09",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c0000000000000000000008191667423f70e67",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c0000000000000000000003158081efd85bfc2",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c000000000000000000000111111111e910f0f",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c0000000000000000000006fd9a167923ba194",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c00000000000000000000042109aef2f8b28e1",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c000000000000000000000f047dd7018e50367",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c0000000000000000000000a6da882d075a4c3",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c0000000000000000000006d194f9810e6f886",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c0000000000000000000002e2829d90e7da7fa",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c000000000000000000000d65b4808c85dbb81",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c00000000000000000000030fdd4a919e93fcf",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c00000000000000000000058d0b8b2cfdb358c",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c000000000000000000000d479b9f6ec0ceff9",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c000000000000000000000f37de3740adec032",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c000000000000000000000baac91f6ca72f768",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "4217",
-    "token_address": "0x20c0000000000000000000003337951a5a9d94b2",
     "source_name": "Previous generated token list",
     "source_url": "tokens.json"
   },
