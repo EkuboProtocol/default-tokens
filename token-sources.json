@@ -12073,6 +12073,12 @@
   },
   {
     "chain_id": "1",
+    "token_address": "0x73E0C0d45E048D25Fc26Fa3159b0aA04BfA4Db98",
+    "source_name": "Uniswap Default Token List",
+    "source_url": "https://ipfs.io/ipns/tokens.uniswap.org"
+  },
+  {
+    "chain_id": "1",
     "token_address": "0x85Eee30c52B0b379b046Fb0F85F4f3Dc3009aFEC",
     "source_name": "Uniswap Default Token List",
     "source_url": "https://ipfs.io/ipns/tokens.uniswap.org"
@@ -13526,6 +13532,12 @@
   {
     "chain_id": "10",
     "token_address": "0x589d35656641d6aB57A545F08cf473eCD9B6D5F7",
+    "source_name": "Uniswap Default Token List",
+    "source_url": "https://ipfs.io/ipns/tokens.uniswap.org"
+  },
+  {
+    "chain_id": "10",
+    "token_address": "0x73E0C0d45E048D25Fc26Fa3159b0aA04BfA4Db98",
     "source_name": "Uniswap Default Token List",
     "source_url": "https://ipfs.io/ipns/tokens.uniswap.org"
   },
@@ -15187,6 +15199,12 @@
   },
   {
     "chain_id": "130",
+    "token_address": "0x73E0C0d45E048D25Fc26Fa3159b0aA04BfA4Db98",
+    "source_name": "Uniswap Default Token List",
+    "source_url": "https://ipfs.io/ipns/tokens.uniswap.org"
+  },
+  {
+    "chain_id": "130",
     "token_address": "0x05DBd720fc26F732c8d42Ea89BD7F442EA6AFE80",
     "source_name": "Uniswap Default Token List",
     "source_url": "https://ipfs.io/ipns/tokens.uniswap.org"
@@ -16514,18 +16532,6 @@
   {
     "chain_id": "1868",
     "token_address": "0xbA9986D2381edf1DA03B0B9c1f8b00dc4AacC369",
-    "source_name": "Uniswap Default Token List",
-    "source_url": "https://ipfs.io/ipns/tokens.uniswap.org"
-  },
-  {
-    "chain_id": "1868",
-    "token_address": "0x3A337a6adA9d885b6Ad95ec48F9b75f197b5AE35",
-    "source_name": "Uniswap Default Token List",
-    "source_url": "https://ipfs.io/ipns/tokens.uniswap.org"
-  },
-  {
-    "chain_id": "1868",
-    "token_address": "0x4200000000000000000000000000000000000006",
     "source_name": "Uniswap Default Token List",
     "source_url": "https://ipfs.io/ipns/tokens.uniswap.org"
   },
@@ -19310,6 +19316,54 @@
   {
     "chain_id": "43114",
     "token_address": "0x596fA47043f99A4e0F122243B841E55375cdE0d2",
+    "source_name": "Uniswap Default Token List",
+    "source_url": "https://ipfs.io/ipns/tokens.uniswap.org"
+  },
+  {
+    "chain_id": "57073",
+    "token_address": "0x73E0C0d45E048D25Fc26Fa3159b0aA04BfA4Db98",
+    "source_name": "Uniswap Default Token List",
+    "source_url": "https://ipfs.io/ipns/tokens.uniswap.org"
+  },
+  {
+    "chain_id": "57073",
+    "token_address": "0xAd09Cd20e513E4d8cB78036F77Ab9AfdE8555929",
+    "source_name": "Uniswap Default Token List",
+    "source_url": "https://ipfs.io/ipns/tokens.uniswap.org"
+  },
+  {
+    "chain_id": "57073",
+    "token_address": "0x71052BAe71C25C78E37fD12E5ff1101A71d9018F",
+    "source_name": "Uniswap Default Token List",
+    "source_url": "https://ipfs.io/ipns/tokens.uniswap.org"
+  },
+  {
+    "chain_id": "57073",
+    "token_address": "0x142cdc44890978B506e745bB3Bd11607B7f7faEf",
+    "source_name": "Uniswap Default Token List",
+    "source_url": "https://ipfs.io/ipns/tokens.uniswap.org"
+  },
+  {
+    "chain_id": "57073",
+    "token_address": "0xF1815bd50389c46847f0Bda824eC8da914045D14",
+    "source_name": "Uniswap Default Token List",
+    "source_url": "https://ipfs.io/ipns/tokens.uniswap.org"
+  },
+  {
+    "chain_id": "57073",
+    "token_address": "0xe343167631d89B6Ffc58B88d6b7fB0228795491D",
+    "source_name": "Uniswap Default Token List",
+    "source_url": "https://ipfs.io/ipns/tokens.uniswap.org"
+  },
+  {
+    "chain_id": "57073",
+    "token_address": "0x4200000000000000000000000000000000000006",
+    "source_name": "Uniswap Default Token List",
+    "source_url": "https://ipfs.io/ipns/tokens.uniswap.org"
+  },
+  {
+    "chain_id": "57073",
+    "token_address": "0xF50258D3c1dd88946C567920B986A12e65b50dAc",
     "source_name": "Uniswap Default Token List",
     "source_url": "https://ipfs.io/ipns/tokens.uniswap.org"
   },
@@ -32119,18 +32173,6 @@
   },
   {
     "chain_id": "1",
-    "token_address": "0x73e0c0d45e048d25fc26fa3159b0aa04bfa4db98",
-    "source_name": "1inch Token List",
-    "source_url": "https://tokens.1inch.eth.link"
-  },
-  {
-    "chain_id": "10",
-    "token_address": "0x73e0c0d45e048d25fc26fa3159b0aa04bfa4db98",
-    "source_name": "1inch Token List",
-    "source_url": "https://tokens.1inch.eth.link"
-  },
-  {
-    "chain_id": "1",
     "token_address": "0xbb22d59b73d7a6f3a8a83a214becc67eb3b511fe",
     "source_name": "1inch Token List",
     "source_url": "https://tokens.1inch.eth.link"
@@ -39589,12 +39631,6 @@
   },
   {
     "chain_id": "1",
-    "token_address": "0xa6422e3e219ee6d4c1b18895275fe43556fd50ed",
-    "source_name": "CoinGecko All Token List",
-    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
-  },
-  {
-    "chain_id": "1",
     "token_address": "0x7137e8a3b069c3f787c4ffbb901b91e4ba47d082",
     "source_name": "CoinGecko All Token List",
     "source_url": "https://tokens.coingecko.com/uniswap/all.json"
@@ -42523,6 +42559,12 @@
   },
   {
     "chain_id": "1",
+    "token_address": "0x126f5ece91d971f8ad62fa4fc1054456b8bd1111",
+    "source_name": "CoinGecko All Token List",
+    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
+  },
+  {
+    "chain_id": "1",
     "token_address": "0x9fdbde76236998dc2836fe67a9954ede456a1d63",
     "source_name": "CoinGecko All Token List",
     "source_url": "https://tokens.coingecko.com/uniswap/all.json"
@@ -44420,6 +44462,12 @@
   {
     "chain_id": "1",
     "token_address": "0xe2fc85bfb48c4cf147921fbe110cf92ef9f26f94",
+    "source_name": "CoinGecko All Token List",
+    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x2f8bae126b8d416c009b82ccd60e4f9cabbd7702",
     "source_name": "CoinGecko All Token List",
     "source_url": "https://tokens.coingecko.com/uniswap/all.json"
   },
@@ -53095,12 +53143,6 @@
   },
   {
     "chain_id": "1",
-    "token_address": "0x0a26c80be4e060e688d7c23addb92cbb5d2c9eca",
-    "source_name": "CoinGecko All Token List",
-    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
-  },
-  {
-    "chain_id": "1",
     "token_address": "0x1b19c19393e2d034d8ff31ff34c81252fcbbee92",
     "source_name": "CoinGecko All Token List",
     "source_url": "https://tokens.coingecko.com/uniswap/all.json"
@@ -54877,6 +54919,12 @@
   },
   {
     "chain_id": "1",
+    "token_address": "0x0a26c80be4e060e688d7c23addb92cbb5d2c9eca",
+    "source_name": "CoinGecko All Token List",
+    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
+  },
+  {
+    "chain_id": "1",
     "token_address": "0x5dd1a7a369e8273371d2dbf9d83356057088082c",
     "source_name": "CoinGecko All Token List",
     "source_url": "https://tokens.coingecko.com/uniswap/all.json"
@@ -55003,12 +55051,6 @@
   },
   {
     "chain_id": "1",
-    "token_address": "0x84eaac1b2dc3f84d92ff84c3ec205b1fa74671fc",
-    "source_name": "CoinGecko All Token List",
-    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
-  },
-  {
-    "chain_id": "1",
     "token_address": "0xd3ddb098a529a14d920203ed5015482c9226f9b9",
     "source_name": "CoinGecko All Token List",
     "source_url": "https://tokens.coingecko.com/uniswap/all.json"
@@ -55040,6 +55082,18 @@
   {
     "chain_id": "1",
     "token_address": "0xfed863b6a995be69c2bbc5089bcda5414793ce24",
+    "source_name": "CoinGecko All Token List",
+    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x84eaac1b2dc3f84d92ff84c3ec205b1fa74671fc",
+    "source_name": "CoinGecko All Token List",
+    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0xa98b4a70e17e55045cde4972b95bc2e8cec22a0f",
     "source_name": "CoinGecko All Token List",
     "source_url": "https://tokens.coingecko.com/uniswap/all.json"
   },
@@ -62299,6 +62353,12 @@
   },
   {
     "chain_id": "1",
+    "token_address": "0x61a10e8556bed032ea176330e7f17d6a12a10000",
+    "source_name": "CoinGecko All Token List",
+    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
+  },
+  {
+    "chain_id": "1",
     "token_address": "0x7D2D3688Df45Ce7C552E19c27e007673da9204B8",
     "source_name": "Aave Token List",
     "source_url": "https://tokenlist.aave.eth.link"
@@ -63862,6 +63922,24 @@
     "token_address": "0xe33356072418951fdf3312e3e2eef99abf6d7e12df6ff956082d3e178dde2a",
     "source_name": "AVNU verified Starknet tokens",
     "source_url": "https://starknet.api.avnu.fi/v1/starknet/tokens?page=0&size=200&tag=Verified"
+  },
+  {
+    "chain_id": "1868",
+    "token_address": "0x3A337a6adA9d885b6Ad95ec48F9b75f197b5AE35",
+    "source_name": "Previous generated token list",
+    "source_url": "tokens.json"
+  },
+  {
+    "chain_id": "1868",
+    "token_address": "0x4200000000000000000000000000000000000006",
+    "source_name": "Previous generated token list",
+    "source_url": "tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0xa6422e3e219ee6d4c1b18895275fe43556fd50ed",
+    "source_name": "Previous generated token list",
+    "source_url": "tokens.json"
   },
   {
     "chain_id": "1",
@@ -92876,12 +92954,6 @@
   {
     "chain_id": "130",
     "token_address": "0x1217bfe6c773eec6cc4a38b5dc45b92292b6e189",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "130",
-    "token_address": "0x73e0c0d45e048d25fc26fa3159b0aa04bfa4db98",
     "source_name": "Previous generated token list",
     "source_url": "tokens.json"
   },
@@ -137125,12 +137197,6 @@
   },
   {
     "chain_id": "57073",
-    "token_address": "0x4200000000000000000000000000000000000006",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "57073",
     "token_address": "0x53eb0098d09b8d1008f382bbd2a5d4f649111710",
     "source_name": "Previous generated token list",
     "source_url": "tokens.json"
@@ -137144,12 +137210,6 @@
   {
     "chain_id": "57073",
     "token_address": "0x32bcb803f696c99eb263d60a05cafd8689026575",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "57073",
-    "token_address": "0xad09cd20e513e4d8cb78036f77ab9afde8555929",
     "source_name": "Previous generated token list",
     "source_url": "tokens.json"
   },
@@ -137197,12 +137257,6 @@
   },
   {
     "chain_id": "57073",
-    "token_address": "0x142cdc44890978b506e745bb3bd11607b7f7faef",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "57073",
     "token_address": "0xefd30445a4ec1f4b3e0a6f4d9bdbd215f805047f",
     "source_name": "Previous generated token list",
     "source_url": "tokens.json"
@@ -137245,25 +137299,7 @@
   },
   {
     "chain_id": "57073",
-    "token_address": "0xf50258d3c1dd88946c567920b986a12e65b50dac",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "57073",
-    "token_address": "0xe343167631d89b6ffc58b88d6b7fb0228795491d",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "57073",
     "token_address": "0x17906b1cd88aa8efaefc5e82891b52a22219bd45",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "57073",
-    "token_address": "0x73e0c0d45e048d25fc26fa3159b0aa04bfa4db98",
     "source_name": "Previous generated token list",
     "source_url": "tokens.json"
   },
@@ -137282,18 +137318,6 @@
   {
     "chain_id": "57073",
     "token_address": "0xa3d68b74bf0528fdd07263c60d6488749044914b",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "57073",
-    "token_address": "0xf1815bd50389c46847f0bda824ec8da914045d14",
-    "source_name": "Previous generated token list",
-    "source_url": "tokens.json"
-  },
-  {
-    "chain_id": "57073",
-    "token_address": "0x71052bae71c25c78e37fd12e5ff1101a71d9018f",
     "source_name": "Previous generated token list",
     "source_url": "tokens.json"
   },
