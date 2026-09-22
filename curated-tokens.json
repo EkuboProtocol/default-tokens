@@ -3030,6 +3030,16 @@
       "logo_url": "https://assets.coingecko.com/coins/images/71121/large/lighter.png?1765888098",
       "visibility_priority": 1,
       "sort_order": 0
+    },
+    {
+      "chain_id": "0x534e5f4d41494e",
+      "token_address": "0x03663d816450FA6d639D9d3e0b72187007d733266D70fC507a20671C32A7bfd1",
+      "token_name": "Launchy",
+      "token_symbol": "LAUNCHY",
+      "token_decimals": 18,
+      "logo_url": "https://raw.githubusercontent.com/EkuboProtocol/default-tokens/main/assets/launchy.svg",
+      "visibility_priority": 1,
+      "sort_order": 0
     }
   ],
   "bridge_relationships": []
