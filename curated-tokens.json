@@ -3020,6 +3020,16 @@
       "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/2ec9cc74be1729ff917f88a96b37d997ffdc641020aa4a5d10d9b2faff584dfb/logo",
       "visibility_priority": 3,
       "sort_order": 6
+    },
+    {
+      "chain_id": "0x534e5f4d41494e",
+      "token_address": "0x06557d79fc6cdce28c1eba2b1024cb854394a36e44ef4c43a8522c71b321a80e",
+      "token_name": "Lighter",
+      "token_symbol": "LIT",
+      "token_decimals": 18,
+      "logo_url": "https://assets.coingecko.com/coins/images/71121/large/lighter.png?1765888098",
+      "visibility_priority": 1,
+      "sort_order": 0
     }
   ],
   "bridge_relationships": []
