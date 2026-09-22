@@ -1,7 +1,6 @@
 import { expect, test } from "bun:test";
 import {
   CloudflareImages,
-  FatalCloudflareImagesError,
   createCloudflareImages,
   hostTokenLogos,
 } from "./cloudflare-images";
@@ -513,32 +512,52 @@ test("retains a previous hosted logo when a source temporarily removes it", asyn
   expect((current as Token).logo_url).toBe(hosted);
 });
 
-test("does not turn an exhausted Cloudflare outage into missing logos", async () => {
-  const images = new CloudflareImages({
-    accountId: "account",
-    apiToken: "token",
-    deliveryHash: "delivery",
-    variant: "logo",
-    requestIntervalMs: 0,
-    maxRetries: 0,
-    fetch: (async (input) => {
-      const url = String(input);
-      if (url.startsWith("https://imagedelivery.net/")) {
-        return new Response(null, { status: 404 });
-      }
-      return cloudflareResponse(
-        { success: false, errors: [{ code: 971, message: "throttle" }] },
-        429,
-      );
-    }) as typeof fetch,
-  });
+test("retains the previous logo through an exhausted Cloudflare outage", async () => {
+  const hosted =
+    "https://imagedelivery.net/delivery/token-logos/existing/logo";
+  const makeImages = () =>
+    new CloudflareImages({
+      accountId: "account",
+      apiToken: "token",
+      deliveryHash: "delivery",
+      variant: "logo",
+      requestIntervalMs: 0,
+      maxRetries: 0,
+      sleep: async () => {},
+      fetch: (async (input) => {
+        const url = String(input);
+        if (url.startsWith("https://imagedelivery.net/")) {
+          return new Response(null, { status: 404 });
+        }
+        return cloudflareResponse(
+          { success: false, errors: [{ code: 971, message: "throttle" }] },
+          429,
+        );
+      }) as typeof fetch,
+    });
 
-  expect(
-    images.host("https://example.com/token.png"),
-  ).rejects.toBeInstanceOf(FatalCloudflareImagesError);
+  const current = token("0x1", "https://example.com/token.png");
+  await hostTokenLogos({
+    tokens: [current],
+    previousTokens: [token("0x1", hosted)],
+    imageSourceCache: {},
+    cloudflare: makeImages(),
+  });
+  expect(current.logo_url).toBe(hosted);
+
+  const fresh = token("0x2", "https://example.com/token.png");
+  await hostTokenLogos({
+    tokens: [fresh],
+    previousTokens: [],
+    imageSourceCache: {},
+    cloudflare: makeImages(),
+  });
+  expect(fresh.logo_url).toBeNull();
 });
 
-test("treats a malformed exhausted rate-limit response as fatal", async () => {
+test("retains the previous logo on a malformed exhausted rate-limit response", async () => {
+  const hosted =
+    "https://imagedelivery.net/delivery/token-logos/existing/logo";
   const images = new CloudflareImages({
     accountId: "account",
     apiToken: "token",
@@ -546,6 +565,7 @@ test("treats a malformed exhausted rate-limit response as fatal", async () => {
     variant: "logo",
     requestIntervalMs: 0,
     maxRetries: 0,
+    sleep: async () => {},
     fetch: (async (input) => {
       const url = String(input);
       if (url.startsWith("https://imagedelivery.net/")) {
@@ -555,12 +575,19 @@ test("treats a malformed exhausted rate-limit response as fatal", async () => {
     }) as typeof fetch,
   });
 
-  expect(
-    images.host("https://example.com/token.png"),
-  ).rejects.toBeInstanceOf(FatalCloudflareImagesError);
+  const current = token("0x1", "https://example.com/token.png");
+  await hostTokenLogos({
+    tokens: [current],
+    previousTokens: [token("0x1", hosted)],
+    imageSourceCache: {},
+    cloudflare: images,
+  });
+  expect(current.logo_url).toBe(hosted);
 });
 
-test("does not turn an exhausted Cloudflare network outage into missing logos", async () => {
+test("retains the previous logo through a Cloudflare network outage", async () => {
+  const hosted =
+    "https://imagedelivery.net/delivery/token-logos/existing/logo";
   const images = new CloudflareImages({
     accountId: "account",
     apiToken: "token",
@@ -568,6 +595,7 @@ test("does not turn an exhausted Cloudflare network outage into missing logos", 
     variant: "logo",
     requestIntervalMs: 0,
     maxRetries: 0,
+    sleep: async () => {},
     fetch: (async (input) => {
       const url = String(input);
       if (url.startsWith("https://imagedelivery.net/")) {
@@ -577,7 +605,61 @@ test("does not turn an exhausted Cloudflare network outage into missing logos", 
     }) as typeof fetch,
   });
 
-  expect(
-    images.host("https://example.com/token.png"),
-  ).rejects.toBeInstanceOf(FatalCloudflareImagesError);
+  const current = token("0x1", "https://example.com/token.png");
+  await hostTokenLogos({
+    tokens: [current],
+    previousTokens: [token("0x1", hosted)],
+    imageSourceCache: {},
+    cloudflare: images,
+  });
+  expect(current.logo_url).toBe(hosted);
+});
+
+test("retains the previous logo when the origin gateway answers 429", async () => {
+  const sourceUrl = "ipfs://QmRetiredGatewayCid/logo.png";
+  const hosted =
+    "https://imagedelivery.net/delivery/token-logos/existing/logo";
+  const images = new CloudflareImages({
+    accountId: "account",
+    apiToken: "token",
+    deliveryHash: "delivery",
+    variant: "logo",
+    requestIntervalMs: 0,
+    maxRetries: 0,
+    sleep: async () => {},
+    fetch: (async (input) => {
+      const url = String(input);
+      if (url.startsWith("https://imagedelivery.net/")) {
+        return new Response(null, { status: 404 });
+      }
+      if (url.startsWith("https://ipfs.io/")) {
+        return new Response(
+          "This IPFS gateway is switching to a service worker gateway only.",
+          { status: 429 },
+        );
+      }
+      return cloudflareResponse(
+        {
+          success: false,
+          errors: [
+            {
+              code: 5454,
+              message:
+                "Error during the fetch, code: 429, message: This IPFS gateway is switching to a service worker gateway only.",
+            },
+          ],
+        },
+        429,
+      );
+    }) as typeof fetch,
+  });
+
+  const current = token("0x1", sourceUrl);
+  await hostTokenLogos({
+    tokens: [current],
+    previousTokens: [token("0x1", hosted)],
+    imageSourceCache: {},
+    cloudflare: images,
+  });
+  expect(current.logo_url).toBe(hosted);
 });

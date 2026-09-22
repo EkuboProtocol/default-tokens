@@ -50,8 +50,6 @@ class CloudflareApiError extends Error {
   }
 }
 
-export class FatalCloudflareImagesError extends Error {}
-
 function responseError(response: CloudflareEnvelope<unknown>): string {
   const message =
     response.errors
@@ -292,10 +290,16 @@ export class CloudflareImages {
             ...init.headers,
             Authorization: `Bearer ${this.config.apiToken}`,
           },
+          // A stalled upload must time out rather than hold the whole
+          // list update hostage; exhaustion is handled gracefully above.
+          signal: AbortSignal.timeout(30_000),
         });
       } catch (error) {
         if (attempt >= this.config.maxRetries) {
-          throw new FatalCloudflareImagesError(
+          // A dead upload endpoint must not abort the whole list update:
+          // the caller retains the previous hosted logo or omits the new
+          // one instead (see hostOne).
+          throw new Error(
             `Cloudflare Images request failed after ${attempt + 1} attempts: ${errorMessage(error)}`,
             { cause: error },
           );
@@ -337,9 +341,13 @@ export class CloudflareImages {
       const response = await this.config.fetch(this.deliveryUrl(imageId), {
         method: "HEAD",
         cache: "no-store",
+        signal: AbortSignal.timeout(30_000),
       });
       return response.ok;
     } catch {
+      // A stalled or failed existence check must not block the list
+      // update: fall through and attempt the upload, whose own failure
+      // is handled gracefully by the caller.
       return false;
     }
   }
@@ -379,16 +387,12 @@ export class CloudflareImages {
     if (await this.deliveryExists(imageId)) return { id: imageId };
 
     const message = `Cloudflare image upload failed (${response.status}): ${responseError(body)}`;
-    const error = new CloudflareApiError(response.status, body, message);
-    if (
-      response.status === 429 ||
-      response.status >= 500 ||
-      ((response.status === 401 || response.status === 403) &&
-        !isOriginFetchFailure(error))
-    ) {
-      throw new FatalCloudflareImagesError(message, { cause: error });
-    }
-    throw error;
+    // Logo hosting is best-effort: every failure surfaces as a plain
+    // CloudflareApiError so the caller can retain the previous hosted logo
+    // or omit the new one. Nothing here is fatal to the list update, not
+    // even account-level 429/5xx — a Cloudflare outage must degrade logos,
+    // never block new token registrations from publishing.
+    throw new CloudflareApiError(response.status, body, message);
   }
 
   private async downloadSourceImage(sourceUrl: string): Promise<File> {
@@ -462,7 +466,6 @@ export class CloudflareImages {
       });
     } catch (error) {
       if (
-        error instanceof FatalCloudflareImagesError ||
         !(error instanceof CloudflareApiError) ||
         !isOriginFetchFailure(error)
       ) {
@@ -557,7 +560,8 @@ export async function hostTokenLogos({
         stats.resolved++;
         return;
       } catch (error) {
-        if (error instanceof FatalCloudflareImagesError) throw error;
+        // Every logo failure is non-fatal: keep the previous hosted logo
+        // below, or omit the new one when there is nothing to keep.
         lastError = error;
       }
     }

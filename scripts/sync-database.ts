@@ -49,7 +49,7 @@ async function syncTokens(
         token_name = EXCLUDED.token_name,
         token_symbol = EXCLUDED.token_symbol,
         token_decimals = EXCLUDED.token_decimals,
-        logo_url = EXCLUDED.logo_url,
+        logo_url = COALESCE(EXCLUDED.logo_url, erc20_tokens.logo_url),
         visibility_priority = EXCLUDED.visibility_priority,
         sort_order = EXCLUDED.sort_order,
         total_supply = EXCLUDED.total_supply,
@@ -57,7 +57,7 @@ async function syncTokens(
       WHERE erc20_tokens.token_name IS DISTINCT FROM EXCLUDED.token_name
          OR erc20_tokens.token_symbol IS DISTINCT FROM EXCLUDED.token_symbol
          OR erc20_tokens.token_decimals IS DISTINCT FROM EXCLUDED.token_decimals
-         OR erc20_tokens.logo_url IS DISTINCT FROM EXCLUDED.logo_url
+         OR erc20_tokens.logo_url IS DISTINCT FROM COALESCE(EXCLUDED.logo_url, erc20_tokens.logo_url)
          OR erc20_tokens.visibility_priority IS DISTINCT FROM EXCLUDED.visibility_priority
          OR erc20_tokens.sort_order IS DISTINCT FROM EXCLUDED.sort_order
          OR erc20_tokens.total_supply IS DISTINCT FROM EXCLUDED.total_supply
