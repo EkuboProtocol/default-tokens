@@ -1,4 +1,6 @@
 import { createHash } from "node:crypto";
+import { MAX_RETRY_DELAY_MS } from "./fetch-json";
+import { IPFS_GATEWAY_BASE_URL } from "./sources";
 import type { Token } from "./types";
 import { tokenKey } from "./token-list";
 
@@ -127,7 +129,7 @@ function fetchableSourceUrl(sourceUrl: string): string {
       .slice(sourceUrl.indexOf("://") + 3)
       .replace(/^ipfs\//i, "");
     if (!ipfsPath) throw new Error(`Invalid IPFS image URL: ${sourceUrl}`);
-    return `https://ipfs.io/ipfs/${ipfsPath}`;
+    return `${IPFS_GATEWAY_BASE_URL}/ipfs/${ipfsPath}`;
   }
 
   const parsed = new URL(sourceUrl);
@@ -192,6 +194,15 @@ export async function createCloudflareImages(
     const delay = response
       ? retryAfterMilliseconds(response, attempt)
       : Math.min(30_000, 1_000 * 2 ** attempt);
+    if (delay > MAX_RETRY_DELAY_MS) {
+      // No batch token is worth a long wait: fall back to the standard API
+      // below instead of stalling the run.
+      console.warn(
+        `Could not obtain a Cloudflare Images batch token; asked to wait ${Math.ceil(delay / 1_000)}s, ` +
+          `exceeding the ${MAX_RETRY_DELAY_MS / 1_000}s limit — using the standard API: ${failure}`,
+      );
+      break;
+    }
     console.warn(
       `Could not obtain a Cloudflare Images batch token; retrying in ${Math.ceil(delay / 1_000)}s: ${failure}`,
     );
@@ -322,6 +333,15 @@ export class CloudflareImages {
         attempt,
         this.config.now(),
       );
+      if (delay > MAX_RETRY_DELAY_MS) {
+        // A logo is never worth a long wait: give up on this image and let
+        // the caller retain the previous hosted logo or omit the new one.
+        console.warn(
+          `Cloudflare Images returned ${response.status}; asked to wait ${Math.ceil(delay / 1_000)}s, ` +
+            `exceeding the ${MAX_RETRY_DELAY_MS / 1_000}s limit — failing this logo instead of waiting`,
+        );
+        return { response, body };
+      }
       if (response.status === 429) {
         this.apiBlockedUntil = Math.max(
           this.apiBlockedUntil,

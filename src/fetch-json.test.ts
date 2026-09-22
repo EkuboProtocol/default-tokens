@@ -62,6 +62,55 @@ test("does not retry a permanent source response", async () => {
   expect(requests).toBe(1);
 });
 
+test("fails instead of honoring a Retry-After over 10 seconds", async () => {
+  let requests = 0;
+  const sleeps: number[] = [];
+  await expect(
+    fetchJson("test list", "https://example.com/list.json", {
+      sleep: async (milliseconds) => {
+        sleeps.push(milliseconds);
+      },
+      fetch: (async (_input) => {
+        requests++;
+        return new Response(null, {
+          status: 429,
+          headers: { "retry-after": "900" },
+        });
+      }) as typeof fetch,
+    }),
+  ).rejects.toThrow("429");
+  expect(requests).toBe(1);
+  expect(sleeps).toEqual([]);
+});
+
+test("still honors a Retry-After of exactly 10 seconds", async () => {
+  let requests = 0;
+  const sleeps: number[] = [];
+  const result = await fetchJson<{ tokens: unknown[] }>(
+    "test list",
+    "https://example.com/list.json",
+    {
+      sleep: async (milliseconds) => {
+        sleeps.push(milliseconds);
+      },
+      fetch: (async (_input) => {
+        requests++;
+        if (requests === 1) {
+          return new Response(null, {
+            status: 429,
+            headers: { "retry-after": "10" },
+          });
+        }
+        return Response.json({ tokens: [] });
+      }) as typeof fetch,
+    },
+  );
+
+  expect(result).toEqual({ tokens: [] });
+  expect(requests).toBe(2);
+  expect(sleeps).toEqual([10_000]);
+});
+
 test("sends custom authentication headers without dropping the user agent", async () => {
   let requestHeaders: Headers | undefined;
   await fetchJson("test list", "https://example.com/list.json", {

@@ -249,7 +249,7 @@ test("resolves IPFS sources through an HTTP gateway", async () => {
 
   await images.host(sourceUrl);
   expect(observed.uploadedUrl).toBe(
-    "https://ipfs.io/ipfs/QmMixedCaseCid/logo.png",
+    "https://gateway.pinata.cloud/ipfs/QmMixedCaseCid/logo.png",
   );
 });
 
@@ -291,6 +291,46 @@ test("honors Retry-After and retries a rate-limited upload", async () => {
   await images.host("https://example.com/token.png");
   expect(uploads).toBe(2);
   expect(sleeps).toContain(1_000);
+});
+
+test("fails a logo fast instead of honoring a long Retry-After", async () => {
+  const hosted =
+    "https://imagedelivery.net/delivery/token-logos/existing/logo";
+  const sleeps: number[] = [];
+  let uploads = 0;
+  const images = new CloudflareImages({
+    accountId: "account",
+    apiToken: "token",
+    deliveryHash: "delivery",
+    variant: "logo",
+    requestIntervalMs: 0,
+    sleep: async (milliseconds) => {
+      sleeps.push(milliseconds);
+    },
+    fetch: (async (input) => {
+      const url = String(input);
+      if (url.startsWith("https://imagedelivery.net/")) {
+        return new Response(null, { status: 404 });
+      }
+      uploads++;
+      return cloudflareResponse(
+        { success: false, errors: [{ code: 971, message: "throttle" }] },
+        429,
+        { "retry-after": "60" },
+      );
+    }) as typeof fetch,
+  });
+
+  const current = token("0x1", "https://example.com/token.png");
+  await hostTokenLogos({
+    tokens: [current],
+    previousTokens: [token("0x1", hosted)],
+    imageSourceCache: {},
+    cloudflare: images,
+  });
+  expect(current.logo_url).toBe(hosted);
+  expect(uploads).toBe(1);
+  expect(sleeps.every((delay) => delay <= 10_000)).toBe(true);
 });
 
 test("retries a transient Cloudflare API network failure", async () => {
@@ -632,11 +672,8 @@ test("retains the previous logo when the origin gateway answers 429", async () =
       if (url.startsWith("https://imagedelivery.net/")) {
         return new Response(null, { status: 404 });
       }
-      if (url.startsWith("https://ipfs.io/")) {
-        return new Response(
-          "This IPFS gateway is switching to a service worker gateway only.",
-          { status: 429 },
-        );
+      if (url.startsWith("https://gateway.pinata.cloud/")) {
+        return new Response("gateway rate limited", { status: 429 });
       }
       return cloudflareResponse(
         {

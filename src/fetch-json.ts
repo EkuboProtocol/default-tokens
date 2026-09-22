@@ -11,9 +11,11 @@ export class FetchJsonError extends Error {
   }
 }
 
-// A source is rate limited when it answered 429 and kept answering it through
-// every retry. Any other failure — a 500, a timeout, unparseable JSON — is not
-// a quota problem and must not be mistaken for one.
+// A source is rate limited when it answers 429. Small backoffs are retried;
+// a backoff over MAX_RETRY_DELAY_MS fails fast instead of stalling the run
+// (either way the caller sees status 429). Any other failure — a 500, a
+// timeout, unparseable JSON — is not a quota problem and must not be mistaken
+// for one.
 export function isRateLimited(error: unknown): boolean {
   return error instanceof FetchJsonError && error.status === 429;
 }
@@ -25,6 +27,12 @@ type FetchJsonConfig = {
   maxRetries?: number;
   timeoutMs?: number;
 };
+
+// Upper bound on any single backoff sleep. A source asking us to wait longer
+// (ipfs.io currently answers 429 with `retry-after: 900`) is treated as a
+// failure instead: callers degrade to the previous list rather than stall a
+// daily run for three quarters of an hour.
+export const MAX_RETRY_DELAY_MS = 10_000;
 
 function errorMessage(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
@@ -103,6 +111,13 @@ export async function fetchJson<T>(
 
     if (attempt >= maxRetries) throw failure;
     const delay = retryDelay(response, attempt);
+    if (delay > MAX_RETRY_DELAY_MS) {
+      console.warn(
+        `${failure.message}; server asked to wait ${Math.ceil(delay / 1_000)}s, ` +
+          `exceeding the ${MAX_RETRY_DELAY_MS / 1_000}s limit — failing instead of waiting`,
+      );
+      throw failure;
+    }
     console.warn(
       `${failure.message}; retrying in ${Math.ceil(delay / 1_000)}s`,
     );

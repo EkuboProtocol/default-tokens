@@ -10,6 +10,11 @@ export const COINGECKO_PRO_API_BASE_URL =
 
 export const STARKNET_MAINNET_CHAIN_ID = 0x534e5f4d41494en;
 
+// Public IPFS gateway used to resolve `ipfs://` logo sources. ipfs.io is
+// retired (it answers 429 with a sunset notice), so this must stay a gateway
+// that serves raw content over plain HTTPS.
+export const IPFS_GATEWAY_BASE_URL = "https://gateway.pinata.cloud";
+
 function coinGeckoTokenSource(
   assetPlatformId: string,
   expectedChainId: number,
@@ -44,7 +49,7 @@ export const PREVIOUS_OUTPUT_SOURCE = {
 export const REMOTE_TOKEN_LISTS: TokenSource[] = [
   {
     name: "Uniswap Default Token List",
-    url: "https://ipfs.io/ipns/tokens.uniswap.org",
+    url: "https://tokens.uniswap.org",
     visibilityPriority: 1,
   },
   {
