@@ -1818,6 +1818,12 @@
     "source_url": "curated-tokens.json"
   },
   {
+    "chain_id": "0x534e5f4d41494e",
+    "token_address": "0x03663d816450FA6d639D9d3e0b72187007d733266D70fC507a20671C32A7bfd1",
+    "source_name": "Ekubo curated tokens",
+    "source_url": "curated-tokens.json"
+  },
+  {
     "chain_id": "23448594291968334",
     "token_address": "0x4ee423b1f89f1ac011d6f2f05c1eb35d61594b801122771cce7747718aa416f",
     "source_name": "Ekubo onchain token registrations",
@@ -9686,12 +9692,6 @@
   {
     "chain_id": "23448594291968334",
     "token_address": "0xb8133da3b259604bce782b727b55b43d8addc51d03982d69927a98257a7c4a",
-    "source_name": "Ekubo onchain token registrations",
-    "source_url": "latest_token_registrations_view"
-  },
-  {
-    "chain_id": "23448594291968334",
-    "token_address": "0x3663d816450fa6d639d9d3e0b72187007d733266d70fc507a20671c32a7bfd1",
     "source_name": "Ekubo onchain token registrations",
     "source_url": "latest_token_registrations_view"
   },
