@@ -9817,6 +9817,18 @@
   },
   {
     "chain_id": "23448594291968334",
+    "token_address": "0x679d6420387c41dc1a04bd0850da326939a131c41d2785809cca0615e6a2e30",
+    "source_name": "Ekubo onchain token registrations",
+    "source_url": "latest_token_registrations_view"
+  },
+  {
+    "chain_id": "23448594291968334",
+    "token_address": "0x73e978f0efba18fc6305d0b883781e24466dc6d642830c7043e12a4a2ee8148",
+    "source_name": "Ekubo onchain token registrations",
+    "source_url": "latest_token_registrations_view"
+  },
+  {
+    "chain_id": "23448594291968334",
     "token_address": "0x7c9b770d826dd31ac16ef6e2eea2e7e5b1c3a7fc7b744a4f46343da8959c77b",
     "source_name": "Ekubo onchain token registrations",
     "source_url": "latest_token_registrations_view"
@@ -35545,6 +35557,18 @@
   },
   {
     "chain_id": "1",
+    "token_address": "0xbbe6aab0ed76e90aea0d1cd978ec231c8adcdf8b",
+    "source_name": "CoinGecko All Token List",
+    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x0000006238e3c7797ae71827da303560bae1b125",
+    "source_name": "CoinGecko All Token List",
+    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
+  },
+  {
+    "chain_id": "1",
     "token_address": "0x9b3a8159e119eb09822115ae08ee1526849e1116",
     "source_name": "CoinGecko All Token List",
     "source_url": "https://tokens.coingecko.com/uniswap/all.json"
@@ -41335,12 +41359,6 @@
   },
   {
     "chain_id": "1",
-    "token_address": "0x54d2252757e1672eead234d27b1270728ff90581",
-    "source_name": "CoinGecko All Token List",
-    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
-  },
-  {
-    "chain_id": "1",
     "token_address": "0xc76d53f988820fe70e01eccb0248b312c2f1c7ca",
     "source_name": "CoinGecko All Token List",
     "source_url": "https://tokens.coingecko.com/uniswap/all.json"
@@ -41912,12 +41930,6 @@
   {
     "chain_id": "1",
     "token_address": "0x961dd84059505d59f82ce4fb87d3c09bec65301d",
-    "source_name": "CoinGecko All Token List",
-    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
-  },
-  {
-    "chain_id": "1",
-    "token_address": "0x16f93ebc5320c89efc8701577efe49d14a276a06",
     "source_name": "CoinGecko All Token List",
     "source_url": "https://tokens.coingecko.com/uniswap/all.json"
   },
@@ -45332,12 +45344,6 @@
   {
     "chain_id": "1",
     "token_address": "0x164f12c8d7d16b905cc4f11e819a9fc5b183ef71",
-    "source_name": "CoinGecko All Token List",
-    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
-  },
-  {
-    "chain_id": "1",
-    "token_address": "0xdbb5cf12408a3ac17d668037ce289f9ea75439d7",
     "source_name": "CoinGecko All Token List",
     "source_url": "https://tokens.coingecko.com/uniswap/all.json"
   },
@@ -54073,12 +54079,6 @@
   },
   {
     "chain_id": "1",
-    "token_address": "0x6f222e04f6c53cc688ffb0abe7206aac66a8ff98",
-    "source_name": "CoinGecko All Token List",
-    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
-  },
-  {
-    "chain_id": "1",
     "token_address": "0x7c95e7ad2b349dc2f82d0f1117a44b561fa2699a",
     "source_name": "CoinGecko All Token List",
     "source_url": "https://tokens.coingecko.com/uniswap/all.json"
@@ -54230,12 +54230,6 @@
   {
     "chain_id": "1",
     "token_address": "0x759f8b83db57033aed95545694f6ada480b6e987",
-    "source_name": "CoinGecko All Token List",
-    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
-  },
-  {
-    "chain_id": "1",
-    "token_address": "0xbbe6aab0ed76e90aea0d1cd978ec231c8adcdf8b",
     "source_name": "CoinGecko All Token List",
     "source_url": "https://tokens.coingecko.com/uniswap/all.json"
   },
@@ -55135,12 +55129,6 @@
   },
   {
     "chain_id": "1",
-    "token_address": "0x2196b84eace74867b73fb003aff93c11fce1d47a",
-    "source_name": "CoinGecko All Token List",
-    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
-  },
-  {
-    "chain_id": "1",
     "token_address": "0x814a870726edb7dfc4798300ae1ce3e5da0ac467",
     "source_name": "CoinGecko All Token List",
     "source_url": "https://tokens.coingecko.com/uniswap/all.json"
@@ -55507,12 +55495,6 @@
   },
   {
     "chain_id": "1",
-    "token_address": "0xad093c62a57b5e5023e1d0bbeddc7e4cf563703d",
-    "source_name": "CoinGecko All Token List",
-    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
-  },
-  {
-    "chain_id": "1",
     "token_address": "0x80122c6a83c8202ea365233363d3f4837d13e888",
     "source_name": "CoinGecko All Token List",
     "source_url": "https://tokens.coingecko.com/uniswap/all.json"
@@ -55531,7 +55513,25 @@
   },
   {
     "chain_id": "1",
+    "token_address": "0xad093c62a57b5e5023e1d0bbeddc7e4cf563703d",
+    "source_name": "CoinGecko All Token List",
+    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
+  },
+  {
+    "chain_id": "1",
     "token_address": "0xb2617246d0c6c0087f18703d576831899ca94f01",
+    "source_name": "CoinGecko All Token List",
+    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x2196b84eace74867b73fb003aff93c11fce1d47a",
+    "source_name": "CoinGecko All Token List",
+    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x16f93ebc5320c89efc8701577efe49d14a276a06",
     "source_name": "CoinGecko All Token List",
     "source_url": "https://tokens.coingecko.com/uniswap/all.json"
   },
@@ -55543,7 +55543,25 @@
   },
   {
     "chain_id": "1",
+    "token_address": "0x6f222e04f6c53cc688ffb0abe7206aac66a8ff98",
+    "source_name": "CoinGecko All Token List",
+    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
+  },
+  {
+    "chain_id": "1",
     "token_address": "0xd2ba23de8a19316a638dc1e7a9adda1d74233368",
+    "source_name": "CoinGecko All Token List",
+    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x7e13b43065380acdec1c2d138c579cbbbafa0731",
+    "source_name": "CoinGecko All Token List",
+    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0x54d2252757e1672eead234d27b1270728ff90581",
     "source_name": "CoinGecko All Token List",
     "source_url": "https://tokens.coingecko.com/uniswap/all.json"
   },
@@ -57524,12 +57542,6 @@
   {
     "chain_id": "1",
     "token_address": "0xa10bf0aba0c7953f279c4cb8192d3b5de5ea56e8",
-    "source_name": "CoinGecko All Token List",
-    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
-  },
-  {
-    "chain_id": "1",
-    "token_address": "0xf97e2a78f1f3d1fd438ff7cc3bb7de01e5945b83",
     "source_name": "CoinGecko All Token List",
     "source_url": "https://tokens.coingecko.com/uniswap/all.json"
   },
@@ -65074,6 +65086,18 @@
     "token_address": "0xe33356072418951fdf3312e3e2eef99abf6d7e12df6ff956082d3e178dde2a",
     "source_name": "AVNU verified Starknet tokens",
     "source_url": "https://starknet.api.avnu.fi/v1/starknet/tokens?page=0&size=200&tag=Verified"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0xdbb5cf12408a3ac17d668037ce289f9ea75439d7",
+    "source_name": "Previous generated token list",
+    "source_url": "tokens.json"
+  },
+  {
+    "chain_id": "1",
+    "token_address": "0xf97e2a78f1f3d1fd438ff7cc3bb7de01e5945b83",
+    "source_name": "Previous generated token list",
+    "source_url": "tokens.json"
   },
   {
     "chain_id": "8453",
