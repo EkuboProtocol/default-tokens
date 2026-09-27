@@ -9841,6 +9841,24 @@
   },
   {
     "chain_id": "23448594291968334",
+    "token_address": "0x3c32bbf752c76410d5c2e71fe97ed4061e7d83e22b986880c6d1de234bedab9",
+    "source_name": "Ekubo onchain token registrations",
+    "source_url": "latest_token_registrations_view"
+  },
+  {
+    "chain_id": "23448594291968334",
+    "token_address": "0x3bf649c559e57059db93a8f280a123e78212b676e46334e69ec8ccae05a8b42",
+    "source_name": "Ekubo onchain token registrations",
+    "source_url": "latest_token_registrations_view"
+  },
+  {
+    "chain_id": "23448594291968334",
+    "token_address": "0x26c5994c2462770bbf940552c5824fb0e0920e2a8a5ce1180042da1b3e489db",
+    "source_name": "Ekubo onchain token registrations",
+    "source_url": "latest_token_registrations_view"
+  },
+  {
+    "chain_id": "23448594291968334",
     "token_address": "0x7c9b770d826dd31ac16ef6e2eea2e7e5b1c3a7fc7b744a4f46343da8959c77b",
     "source_name": "Ekubo onchain token registrations",
     "source_url": "latest_token_registrations_view"
@@ -65065,49 +65083,49 @@
   },
   {
     "chain_id": "23448594291968334",
+    "token_address": "0xe33356072418951fdf3312e3e2eef99abf6d7e12df6ff956082d3e178dde2a",
+    "source_name": "AVNU verified Starknet tokens",
+    "source_url": "https://starknet.api.avnu.fi/v1/starknet/tokens?page=0&size=200&tag=Verified"
+  },
+  {
+    "chain_id": "23448594291968334",
     "token_address": "0x2f5eb9a4f77b6c7c83488418e77329d31eb43219745959948a0fce9580905d9",
-    "source_name": "AVNU Starknet tokens",
-    "source_url": "https://starknet.api.avnu.fi/v1/starknet/tokens?page=0&size=200&tag=AVNU"
+    "source_name": "AVNU verified Starknet tokens",
+    "source_url": "https://starknet.api.avnu.fi/v1/starknet/tokens?page=0&size=200&tag=Verified"
   },
   {
     "chain_id": "23448594291968334",
     "token_address": "0x3070d5cbd310edc0b2cfe8b11d132e67718b16c7fbfd536ee74ec54a4307ba2",
-    "source_name": "AVNU Starknet tokens",
-    "source_url": "https://starknet.api.avnu.fi/v1/starknet/tokens?page=0&size=200&tag=AVNU"
+    "source_name": "AVNU verified Starknet tokens",
+    "source_url": "https://starknet.api.avnu.fi/v1/starknet/tokens?page=0&size=200&tag=Verified"
   },
   {
     "chain_id": "23448594291968334",
     "token_address": "0x6e0e0117b742747452601f9f14576eb9d71b326379a1794bb51d9adbce3dbd3",
-    "source_name": "AVNU Starknet tokens",
-    "source_url": "https://starknet.api.avnu.fi/v1/starknet/tokens?page=0&size=200&tag=AVNU"
+    "source_name": "AVNU verified Starknet tokens",
+    "source_url": "https://starknet.api.avnu.fi/v1/starknet/tokens?page=0&size=200&tag=Verified"
   },
   {
     "chain_id": "23448594291968334",
     "token_address": "0x3a292bd498266ac4b05d93cc2df5cd7883c0684faabff182ab568d566a3c151",
-    "source_name": "AVNU Starknet tokens",
-    "source_url": "https://starknet.api.avnu.fi/v1/starknet/tokens?page=0&size=200&tag=AVNU"
+    "source_name": "AVNU verified Starknet tokens",
+    "source_url": "https://starknet.api.avnu.fi/v1/starknet/tokens?page=0&size=200&tag=Verified"
   },
   {
     "chain_id": "23448594291968334",
     "token_address": "0x1e77aec81ef65db5fb788a5a04fd9d23f6f4c860eb2fb0e99ace5c45b021071",
-    "source_name": "AVNU Starknet tokens",
-    "source_url": "https://starknet.api.avnu.fi/v1/starknet/tokens?page=0&size=200&tag=AVNU"
+    "source_name": "AVNU verified Starknet tokens",
+    "source_url": "https://starknet.api.avnu.fi/v1/starknet/tokens?page=0&size=200&tag=Verified"
   },
   {
     "chain_id": "23448594291968334",
     "token_address": "0x7380caa64fdf27501afad0bd93c89d1e83a081a553af89bbeffb28dae8d8916",
-    "source_name": "AVNU Starknet tokens",
-    "source_url": "https://starknet.api.avnu.fi/v1/starknet/tokens?page=0&size=200&tag=AVNU"
+    "source_name": "AVNU verified Starknet tokens",
+    "source_url": "https://starknet.api.avnu.fi/v1/starknet/tokens?page=0&size=200&tag=Verified"
   },
   {
     "chain_id": "23448594291968334",
     "token_address": "0x2119755fad7cbf637d80cae5d3e8e12487befe6653ddd04432a73f6f569f46b",
-    "source_name": "AVNU Starknet tokens",
-    "source_url": "https://starknet.api.avnu.fi/v1/starknet/tokens?page=0&size=200&tag=AVNU"
-  },
-  {
-    "chain_id": "23448594291968334",
-    "token_address": "0xe33356072418951fdf3312e3e2eef99abf6d7e12df6ff956082d3e178dde2a",
     "source_name": "AVNU verified Starknet tokens",
     "source_url": "https://starknet.api.avnu.fi/v1/starknet/tokens?page=0&size=200&tag=Verified"
   },
