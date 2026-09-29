@@ -10459,6 +10459,12 @@
   },
   {
     "chain_id": "23448594291968334",
+    "token_address": "0x30f001f8a60bee02a07eb9e7cae768b62f5c2177ab69658a831931196abdee1",
+    "source_name": "Ekubo onchain token registrations",
+    "source_url": "latest_token_registrations_view"
+  },
+  {
+    "chain_id": "23448594291968334",
     "token_address": "0x7c9b770d826dd31ac16ef6e2eea2e7e5b1c3a7fc7b744a4f46343da8959c77b",
     "source_name": "Ekubo onchain token registrations",
     "source_url": "latest_token_registrations_view"
