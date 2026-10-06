@@ -1,0 +1,22 @@
+name: Jurisdiction policy registry check
+
+# Fails when the Robinhood Stock Token issuer registry lists a chain-4663 asset
+# that jurisdiction-policy/ekubo-token-jurisdictions-v2.json does not classify.
+# Consumers already hold such an asset as unclassified; this check is what tells
+# us to classify it (EKU-853).
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - run: bun ci
+      - run: bun run jurisdiction-policy --check

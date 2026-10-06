@@ -92,6 +92,34 @@ invalid, ambiguous, or unavailable value remains `null`. Consumers compute FDV
 and market cap as `usd_price * raw_supply / 10 ^ token_decimals` and should
 preserve the distinction between unknown and zero.
 
+## Token jurisdiction policy
+
+`jurisdiction-policy/ekubo-token-jurisdictions-v2.json` is the token
+jurisdiction policy decided on EKU-853 (CLO, 2026-10-06). The country lists are
+a minimum product-policy floor, not a legal determination. The MCP server
+(`src/jurisdiction-policy.json`) and the interface
+(`src/util/common/jurisdictionPolicy.json`) vendor it byte-for-byte, and all
+three repositories pin its SHA-256 in a test.
+
+On Robinhood Chain (4663) every address falls into one of three groups:
+
+- `rhj_stock_token`: Robinhood Assets (Jersey) Stock Tokens, restricted for
+  buying and selling alike in AE, BY, CA, CH, CU, GB, IR, KP, MM, RU, SD, SG,
+  SS, SY, UA, US and VE, and when the country is unknown.
+- `non_class`: ETH, WETH, USDG and STONX, verified not to be Stock Tokens.
+  Adding an address here needs on-chain verification and CTO sign-off.
+- anything else is `unknown`, and consumers hold it in every country.
+
+Every entry carries `provenance` (`source`, `ref`, `observed_at`). Regenerate
+with `bun run jurisdiction-policy --observed-at <ISO-8601> --issuer
+<rhj-assets.json> --curated curated-tokens.json --curated-commit <sha>`. Class
+membership only grows and keeps each entry's first observation; removing an
+address needs a CLO reclassification, not a list edit. `bun run validate` fails when
+`curated-tokens.json` has a chain-4663 row in neither group, and the daily
+`Jurisdiction policy registry check` workflow fails when the issuer registry
+(`https://api.robinhood.com/rhj/assets`) lists an address the policy does not
+classify.
+
 ## Automation
 
 `Update authoritative token list` runs daily, on a push to `main` that changes

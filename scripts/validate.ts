@@ -1,5 +1,10 @@
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
+import {
+  JURISDICTION_POLICY_PATH,
+  assertClassified,
+  type JurisdictionPolicy,
+} from "../src/jurisdiction-policy";
 import { validateTokenListSchema } from "../src/schema";
 import { NATIVE_CURRENCIES } from "../src/sources";
 import {
@@ -20,10 +25,11 @@ async function readJson<T>(path: string): Promise<T> {
   return JSON.parse(await readFile(resolve(root, path), "utf8")) as T;
 }
 
-const [curated, tokenList, provenance] = await Promise.all([
+const [curated, tokenList, provenance, jurisdictionPolicy] = await Promise.all([
   readJson<TokenListDocument>("curated-tokens.json"),
   readJson<TokenListDocument>("tokens.json"),
   readJson<TokenProvenance[]>("token-sources.json"),
+  readJson<JurisdictionPolicy>(JURISDICTION_POLICY_PATH),
 ]);
 
 validateTokenListSchema(curated, "curated-tokens.json");
@@ -37,6 +43,7 @@ validateNativeCurrencies(
   "curated",
   "curated-tokens.json",
 );
+assertClassified(curated.tokens, jurisdictionPolicy, "curated-tokens.json");
 validateTokenList(tokens);
 validateBridgeRelationships(relationships);
 validateNativeCurrencies(
