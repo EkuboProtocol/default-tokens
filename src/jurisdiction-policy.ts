@@ -4,8 +4,8 @@
 // scripts/jurisdiction-policy.ts and vendored byte-for-byte into
 // ekubo-mcp-server (src/jurisdiction-policy.json) and the interface
 // (src/util/common/jurisdictionPolicy.json). On chain 4663 every address is
-// either a Robinhood Assets (Jersey) Stock Token, verified outside that class,
-// or unclassified, and consumers hold unclassified assets. The country lists
+// a Robinhood Assets (Jersey) Stock Token (`rhj_stock_token`), verified not to
+// be one (`non_class`), or `unknown`, and consumers hold unknown assets. The country lists
 // are a minimum product-policy floor, not a legal determination.
 import { tokenKey } from "./token-list";
 import type { Token } from "./types";
@@ -15,9 +15,16 @@ export const JURISDICTION_POLICY_PATH =
 export const JURISDICTION_POLICY_VERSION = "ekubo-token-jurisdictions-v2";
 export const CLASSIFIED_CHAIN_ID = "4663";
 
+export interface Provenance {
+  source: string;
+  ref: string;
+  observed_at: string;
+}
+
 export interface PolicyEntry {
   address: string;
   symbol: string;
+  provenance: Provenance[];
 }
 
 export interface JurisdictionPolicy {
@@ -25,8 +32,8 @@ export interface JurisdictionPolicy {
   chains: Record<
     string,
     {
-      unclassified: "hold";
-      outside_class: PolicyEntry[];
+      unknown: "hold";
+      non_class: PolicyEntry[];
       rhj_stock_token: PolicyEntry[];
     }
   >;
@@ -36,7 +43,7 @@ export function classifiedKeys(policy: JurisdictionPolicy): Set<string> {
   const chain = policy.chains[CLASSIFIED_CHAIN_ID];
   if (!chain) throw new Error(`Policy has no chain ${CLASSIFIED_CHAIN_ID}`);
   return new Set(
-    [...chain.rhj_stock_token, ...chain.outside_class].map((entry) =>
+    [...chain.rhj_stock_token, ...chain.non_class].map((entry) =>
       tokenKey(CLASSIFIED_CHAIN_ID, entry.address),
     ),
   );

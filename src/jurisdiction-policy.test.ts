@@ -12,7 +12,7 @@ import type { Token, TokenListDocument } from "./types";
 
 // Pinned in ekubo-mcp-server and the interface too; change all three together.
 const POLICY_SHA256 =
-  "0712ad8b08b487646cb1b574cfa7e2e927596fe2c8d2bec915107934988c8af1";
+  "2897e242c7030f9d0c5b99a548bb62bfefc91f4b665785814bbeca8a41eb776a";
 
 const root = resolve(import.meta.dir, "..");
 const policyBytes = readFileSync(resolve(root, JURISDICTION_POLICY_PATH));
@@ -42,16 +42,28 @@ describe("jurisdiction policy v2", () => {
     expect(policy.policy_version).toBe("ekubo-token-jurisdictions-v2");
   });
 
-  test("class has 200 addresses and the four outside-class tokens", () => {
+  test("class has 200 addresses and the four non_class tokens", () => {
     const chain = policy.chains["4663"]!;
-    expect(chain.unclassified).toBe("hold");
+    expect(chain.unknown).toBe("hold");
     expect(chain.rhj_stock_token).toHaveLength(200);
-    expect(chain.outside_class.map((entry) => entry.symbol).sort()).toEqual([
+    expect(chain.non_class.map((entry) => entry.symbol).sort()).toEqual([
       "ETH",
       "STONX",
       "USDG",
       "WETH",
     ]);
+  });
+
+  test("every entry carries provenance", () => {
+    const chain = policy.chains["4663"]!;
+    for (const entry of [...chain.rhj_stock_token, ...chain.non_class]) {
+      expect(entry.provenance.length).toBeGreaterThan(0);
+      for (const provenance of entry.provenance) {
+        expect(provenance.source).not.toBe("");
+        expect(provenance.ref).not.toBe("");
+        expect(provenance.observed_at).toMatch(/^2026-/);
+      }
+    }
   });
 
   test("every curated chain-4663 row is classified", () => {
