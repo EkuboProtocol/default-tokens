@@ -59,10 +59,12 @@ instead of overwriting it:
    Ethereum token claimed by two listed tokens on one chain is left out as
    ambiguous. The daily build reads this snapshot without an RPC endpoint;
    `bun run read-bridges` refreshes it.
-6. The `bridgeInfo` extension of the Uniswap default list (`unknown`, because
+6. The USDT0 Network deployments API for USDT0 and XAUT0, LayerZero OFTs
+   backed by USDT and XAUT locked on Ethereum (`interoperability`).
+7. The `bridgeInfo` extension of the Uniswap default list (`unknown`, because
    Uniswap links the asset people mean on each chain whether it is an issuer
    deployment, a bridge copy, a custodial peg, or an OFT).
-7. The Monad list's `crossChainAddresses`, labelled by the protocol it names
+8. The Monad list's `crossChainAddresses`, labelled by the protocol it names
    (`interoperability`, else `unknown`).
 
 A shared symbol, name, or CoinGecko ID never creates a link. A link is kept

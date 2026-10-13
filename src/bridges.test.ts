@@ -10,6 +10,7 @@ import {
   restorePreviousLinks,
   superchainLinks,
   tokenKeysOf,
+  usdt0Links,
   type ProvenancedLink,
 } from "./bridges";
 import { validateTokenListSchema } from "./schema";
@@ -315,6 +316,64 @@ test("bridge reads link both ways and map the native ether placeholder", () => {
       "0x0",
       "canonical_bridge",
       "Polygon PoS bridge",
+    ],
+  ]);
+});
+
+test("USDT0 deployments link the locked Ethereum token as interoperability", () => {
+  const links = usdt0Links(
+    {
+      usdt0: {
+        native: [
+          {
+            chainId: 1,
+            contracts: [{ name: "OFT Adapter", address: "0x6C96" }],
+          },
+          {
+            chainId: 57073,
+            contracts: [
+              {
+                name: "Token",
+                address: "0x0200C29006150606B650577BBE7B6248F58470c1",
+              },
+              {
+                name: "OFT",
+                address: "0x1cB6De532588fCA4a21B7209DE7C456AF8434A65",
+              },
+            ],
+          },
+          { chainId: null, contracts: [{ name: "Token", address: "0x25fa" }] },
+        ],
+      },
+      xaut0: { native: [{ chainId: 1, contracts: [] }] },
+    },
+    source,
+  );
+  expect(
+    links.map((link) => [
+      link.source_chain_id,
+      link.source_token_address,
+      link.dest_chain_id,
+      link.dest_token_address,
+      link.relationship,
+      link.bridge_name,
+    ]),
+  ).toEqual([
+    [
+      "1",
+      "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "57073",
+      "0x0200C29006150606B650577BBE7B6248F58470c1",
+      "interoperability",
+      "USDT0 (LayerZero OFT)",
+    ],
+    [
+      "57073",
+      "0x0200C29006150606B650577BBE7B6248F58470c1",
+      "1",
+      "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "interoperability",
+      "USDT0 (LayerZero OFT)",
     ],
   ]);
 });

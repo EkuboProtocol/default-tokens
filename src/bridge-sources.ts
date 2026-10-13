@@ -16,6 +16,8 @@ import {
   superchainLinks,
   type ProvenancedLink,
   type StarknetBridgeToken,
+  usdt0Links,
+  type Usdt0Deployments,
 } from "./bridges";
 import { fetchJson } from "./fetch-json";
 import {
@@ -25,6 +27,7 @@ import {
   CURATED_SOURCE,
   STARKNET_BRIDGE_TOKEN_LISTS,
   SUPERCHAIN_TOKEN_LIST,
+  USDT0_DEPLOYMENTS_SOURCE,
 } from "./sources";
 import type {
   BridgeRelationship,
@@ -103,6 +106,17 @@ function loaders(): Loader[] {
         }
         return bridgeReadLinks(snapshot.links, BRIDGE_READS_SOURCE);
       },
+    },
+    {
+      name: USDT0_DEPLOYMENTS_SOURCE.name,
+      load: async () =>
+        usdt0Links(
+          await fetchJson<Usdt0Deployments>(
+            USDT0_DEPLOYMENTS_SOURCE.name,
+            USDT0_DEPLOYMENTS_SOURCE.url,
+          ),
+          USDT0_DEPLOYMENTS_SOURCE,
+        ),
     },
   ];
 }

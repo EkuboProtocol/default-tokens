@@ -4,6 +4,7 @@ import {
   ETHEREUM_WETH,
   NATIVE_ETH_BRIDGE_SOURCE_NAME,
   SUPERCHAIN_TOKEN_LIST,
+  USDT0_ETHEREUM_SOURCE_TOKENS,
 } from "./sources";
 import {
   bridgeRelationshipKey,
@@ -374,17 +375,13 @@ export function parseCircleRegistry(markdown: string): Map<string, string> {
   return deployments;
 }
 
-// The issuer's own deployments are the same asset on every pair of chains.
-export function issuerLinks(
+// Links between every pair of chains in `deployments`.
+function pairwiseLinks(
   deployments: Map<string, string>,
   source: LinkSource,
-  issuer: string,
+  label: BridgeLinkLabel,
 ): ProvenancedLink[] {
   const links: ProvenancedLink[] = [];
-  const label: BridgeLinkLabel = {
-    relationship: "native_issuer",
-    bridgeName: issuer,
-  };
   for (const [sourceChainId, sourceAddress] of deployments) {
     for (const [destinationChainId, destinationAddress] of deployments) {
       if (sourceChainId === destinationChainId) continue;
@@ -399,6 +396,74 @@ export function issuerLinks(
     }
   }
   return links;
+}
+
+// The issuer's own deployments are the same asset on every pair of chains.
+export function issuerLinks(
+  deployments: Map<string, string>,
+  source: LinkSource,
+  issuer: string,
+): ProvenancedLink[] {
+  return pairwiseLinks(deployments, source, {
+    relationship: "native_issuer",
+    bridgeName: issuer,
+  });
+}
+
+// The USDT0 Network deployments API: per product, the chains each OFT is
+// deployed on. Ethereum holds the locked source token rather than a "Token".
+export type Usdt0Deployments = Record<
+  string,
+  {
+    native?: {
+      chainId?: number | null;
+      contracts?: { name?: string; address?: string }[];
+    }[];
+  }
+>;
+
+type Usdt0Chain = NonNullable<Usdt0Deployments[string]["native"]>[number];
+
+function usdt0Deployments(
+  chains: Usdt0Chain[],
+  ethereumToken: string,
+): Map<string, string> {
+  const deployments = new Map<string, string>();
+  for (const chain of chains) {
+    if (typeof chain.chainId !== "number") continue;
+    const address =
+      chain.chainId === 1
+        ? ethereumToken
+        : chain.contracts?.find((contract) => contract.name === "Token")
+            ?.address;
+    if (address && ADDRESS_REGEX.test(address)) {
+      deployments.set(String(chain.chainId), address);
+    }
+  }
+  return deployments;
+}
+
+// Every USDT0 Network token is a LayerZero OFT backed by a source token locked
+// on Ethereum, so its deployments are interoperability versions of that token.
+export function usdt0Links(
+  api: Usdt0Deployments,
+  source: LinkSource,
+): ProvenancedLink[] {
+  return Object.entries(USDT0_ETHEREUM_SOURCE_TOKENS).flatMap(
+    ([product, ethereumToken]) => {
+      const deployments = usdt0Deployments(
+        api[product]?.native ?? [],
+        ethereumToken,
+      );
+      if (!deployments.has("1")) {
+        throw new Error(`USDT0 deployments list no Ethereum ${product}`);
+      }
+      return pairwiseLinks(deployments, source, {
+        relationship: "interoperability",
+        bridgeName: `${product.toUpperCase()} (LayerZero OFT)`,
+      });
+    },
+  );
 }
 
 export function nativeEthLinks(): ProvenancedLink[] {

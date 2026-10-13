@@ -406,3 +406,16 @@ export const BRIDGE_READS_SOURCE = {
   name: "Ekubo bridge contract reads",
   url: "https://github.com/EkuboProtocol/default-tokens/blob/main/bridge-reads.json",
 } as const;
+
+export const USDT0_DEPLOYMENTS_SOURCE = {
+  name: "USDT0 Network deployments",
+  url: "https://docs.usdt0.to/api/deployments",
+} as const;
+
+// The Ethereum token each USDT0 Network OFT adapter locks, from
+// https://docs.usdt0.to/technical-documentation/developer. Products without
+// an entry here are not linked.
+export const USDT0_ETHEREUM_SOURCE_TOKENS: Record<string, string> = {
+  usdt0: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+  xaut0: "0x68749665FF8D2d112Fa859AA293F07A622782F38",
+};
