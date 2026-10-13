@@ -80,8 +80,12 @@ deployment, such as USDC.e beside USDC, is expected and not reported).
 `bun run update-bridges` regenerates only the links in `tokens.json` from these
 sources, without database, CoinGecko, or Cloudflare credentials.
 
-The sync upserts links and never deletes them, so a link dropped from
-`tokens.json` stays in the database until it is removed there.
+`tokens.json` is the only source of links in the database. The sync upserts
+every link and then deletes database links whose source token and destination
+chain are no longer in `tokens.json`, printing each deleted row so it can be
+restored. If that would delete more than 20 percent of the existing links, or
+the list has no links at all, it deletes nothing, still applies the upserts,
+and fails so the workflow reports it.
 
 Token address zero is a chain's native currency, the asset its gas is paid in.
 `normalizeTokenAddress` folds `0x0`, `0xEeee…eEEeE`, and `0x455448` into that
@@ -189,7 +193,8 @@ document can be committed.
 after a human push that changes the list, after a successful update workflow,
 every 30 minutes as a reconciliation guard, and through `workflow_dispatch`.
 The sync validates and then upserts both collections from `tokens.json` in one
-transaction.
+transaction, in which it also removes links no longer in the list. Token rows
+are never deleted.
 The `workflow_run` trigger is intentional: pushes made with GitHub's automation
 token do not trigger a second ordinary push workflow.
 

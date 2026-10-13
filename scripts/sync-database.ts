@@ -68,12 +68,18 @@ async function syncTokens(
   return count;
 }
 
-async function syncBridgeRelationships(
-  sql: TransactionSql,
+export type BridgeRelationshipRow = {
+  source_chain_id: string;
+  source_token_address: string;
+  source_bridge_address: string | null;
+  dest_chain_id: string;
+  dest_token_address: string;
+};
+
+export function databaseBridgeRows(
   relationships: BridgeRelationship[],
-): Promise<number> {
-  if (relationships.length === 0) return 0;
-  const rows = relationships.map((relationship) => ({
+): BridgeRelationshipRow[] {
+  return relationships.map((relationship) => ({
     source_chain_id: parseInteger(
       relationship.source_chain_id,
       "source chain ID",
@@ -98,7 +104,39 @@ async function syncBridgeRelationships(
       "destination token address",
     ).toString(),
   }));
-  let count = 0;
+}
+
+// The reviewed list is the only writer of bridge links, so rows it no longer
+// contains are stale. A sudden large removal more likely means a broken build
+// than a real change, so it is refused: upserts still commit, nothing is
+// deleted, and the sync exits with an error.
+export const MAX_PRUNE_FRACTION = 0.2;
+
+export function assertPruneWithinLimit(
+  existingRows: number,
+  staleRows: number,
+  reviewedRows: number,
+): void {
+  if (staleRows === 0) return;
+  if (reviewedRows === 0) {
+    throw new Error(
+      `Refusing to delete ${staleRows} bridge relationships: the reviewed list has none`,
+    );
+  }
+  if (staleRows > existingRows * MAX_PRUNE_FRACTION) {
+    throw new Error(
+      `Refusing to delete ${staleRows} of ${existingRows} bridge relationships ` +
+        `(limit ${MAX_PRUNE_FRACTION * 100}% per sync)`,
+    );
+  }
+}
+
+async function syncBridgeRelationships(
+  sql: TransactionSql,
+  relationships: BridgeRelationship[],
+): Promise<{ upserted: number; deleted: number; refusal?: string }> {
+  const rows = databaseBridgeRows(relationships);
+  let upserted = 0;
   for (let offset = 0; offset < rows.length; offset += 1_000) {
     const batch = rows.slice(offset, offset + 1_000);
     const result = await sql`
@@ -112,9 +150,53 @@ async function syncBridgeRelationships(
          OR erc20_tokens_bridge_relationships.source_bridge_address
               IS DISTINCT FROM EXCLUDED.source_bridge_address
     `;
-    count += result.count;
+    upserted += result.count;
   }
-  return count;
+
+  const reviewed = sql`
+    SELECT *
+    FROM unnest(
+      ${rows.map((row) => row.source_chain_id)}::int8[],
+      ${rows.map((row) => row.source_token_address)}::numeric[],
+      ${rows.map((row) => row.dest_chain_id)}::int8[]
+    ) AS reviewed(source_chain_id, source_token_address, dest_chain_id)
+  `;
+  const stale = sql`
+    NOT EXISTS (
+      SELECT 1 FROM (${reviewed}) AS reviewed
+      WHERE reviewed.source_chain_id = br.source_chain_id
+        AND reviewed.source_token_address = br.source_token_address
+        AND reviewed.dest_chain_id = br.dest_chain_id
+    )
+  `;
+  const [counts] = await sql<{ existing: number; stale: number }[]>`
+    SELECT
+      COUNT(*)::int AS existing,
+      (COUNT(*) FILTER (WHERE ${stale}))::int AS stale
+    FROM erc20_tokens_bridge_relationships br
+  `;
+  try {
+    assertPruneWithinLimit(counts!.existing, counts!.stale, rows.length);
+  } catch (error) {
+    return { upserted, deleted: 0, refusal: (error as Error).message };
+  }
+  if (counts!.stale === 0) return { upserted, deleted: 0 };
+
+  const deleted = await sql<BridgeRelationshipRow[]>`
+    DELETE FROM erc20_tokens_bridge_relationships br
+    WHERE ${stale}
+    RETURNING
+      source_chain_id::text,
+      source_token_address::text,
+      source_bridge_address::text,
+      dest_chain_id::text,
+      dest_token_address::text
+  `;
+  // Printed in full so a removal can be restored by re-inserting these rows.
+  for (const row of deleted) {
+    console.log(`Deleted stale bridge relationship ${JSON.stringify(row)}`);
+  }
+  return { upserted, deleted: deleted.length };
 }
 
 async function main(): Promise<void> {
@@ -144,8 +226,13 @@ async function main(): Promise<void> {
       ),
     }));
     console.log(
-      `Synchronized ${result.tokens} token rows and ${result.relationships} bridge-relationship rows`,
+      `Synchronized ${result.tokens} token rows and ${result.relationships.upserted} bridge-relationship rows; ` +
+        `deleted ${result.relationships.deleted} stale bridge-relationship rows`,
     );
+    if (result.relationships.refusal) {
+      console.error(result.relationships.refusal);
+      process.exitCode = 1;
+    }
   } finally {
     await sql.end({ timeout: 5 });
   }
