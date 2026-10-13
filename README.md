@@ -81,9 +81,11 @@ deployment, such as USDC.e beside USDC, is expected and not reported).
 sources, without database, CoinGecko, or Cloudflare credentials.
 
 `tokens.json` is the only source of links in the database. The sync upserts
-every link and then deletes database links whose source token and destination
-chain are no longer in `tokens.json`, printing each deleted row so it can be
-restored. If that would delete more than 20 percent of the existing links, or
+every link and then deletes the links the API serves (those whose source token
+has a token row) whose source token and destination chain are no longer in
+`tokens.json`, printing each deleted row so it can be
+restored. Rows whose source token has no token row are never served and are
+left alone. If that would delete more than 20 percent of the served links, or
 the list has no links at all, it deletes nothing, still applies the upserts,
 and fails so the workflow reports it.
 

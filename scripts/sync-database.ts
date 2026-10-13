@@ -161,8 +161,17 @@ async function syncBridgeRelationships(
       ${rows.map((row) => row.dest_chain_id)}::int8[]
     ) AS reviewed(source_chain_id, source_token_address, dest_chain_id)
   `;
+  // Only links the API serves, those whose source token is a token row, are
+  // pruned. Rows for tokens outside the table are invisible and left alone.
+  const served = sql`
+    EXISTS (
+      SELECT 1 FROM erc20_tokens t
+      WHERE t.chain_id = br.source_chain_id
+        AND t.token_address = br.source_token_address
+    )
+  `;
   const stale = sql`
-    NOT EXISTS (
+    ${served} AND NOT EXISTS (
       SELECT 1 FROM (${reviewed}) AS reviewed
       WHERE reviewed.source_chain_id = br.source_chain_id
         AND reviewed.source_token_address = br.source_token_address
@@ -174,6 +183,7 @@ async function syncBridgeRelationships(
       COUNT(*)::int AS existing,
       (COUNT(*) FILTER (WHERE ${stale}))::int AS stale
     FROM erc20_tokens_bridge_relationships br
+    WHERE ${served}
   `;
   try {
     assertPruneWithinLimit(counts!.existing, counts!.stale, rows.length);
