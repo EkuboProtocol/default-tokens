@@ -1,9 +1,12 @@
 import { expect, test } from "bun:test";
 import {
   assertPruneWithinLimit,
+  assertTokenPruneWithinLimit,
   databaseBridgeRows,
   databaseTokenRows,
   MAX_PRUNE_FRACTION,
+  MAX_TOKEN_PRUNE_FRACTION,
+  TOKEN_PRUNE_CHAIN_ALLOWANCE,
 } from "./sync-database";
 
 test("normalizes both supply fields for database insertion", () => {
@@ -85,4 +88,53 @@ test("allows pruning up to the per-sync limit", () => {
 test("refuses large or list-emptying prunes", () => {
   expect(() => assertPruneWithinLimit(1_000, 201, 799)).toThrow(/limit/);
   expect(() => assertPruneWithinLimit(10, 1, 0)).toThrow(/has none/);
+});
+
+test("allows token pruning within the overall and per-chain limits", () => {
+  expect(() => assertTokenPruneWithinLimit([])).not.toThrow();
+  expect(() =>
+    assertTokenPruneWithinLimit([
+      { chain_id: "1", existing: 6_657, stale: 34 },
+      { chain_id: "81457", existing: 122, stale: 74 },
+    ]),
+  ).not.toThrow();
+  expect(() =>
+    assertTokenPruneWithinLimit([
+      { chain_id: "1", existing: 10_000, stale: 1_000 },
+      { chain_id: "10", existing: 10_000, stale: 0 },
+    ]),
+  ).not.toThrow();
+  expect(() =>
+    assertTokenPruneWithinLimit([
+      {
+        chain_id: "1",
+        existing: 1_000,
+        stale: 1_000 * MAX_TOKEN_PRUNE_FRACTION,
+      },
+    ]),
+  ).not.toThrow();
+});
+
+test("refuses large token prunes overall or on one chain", () => {
+  expect(() =>
+    assertTokenPruneWithinLimit([
+      { chain_id: "1", existing: 1_000, stale: 201 },
+    ]),
+  ).toThrow(/limit 20% per sync/);
+  expect(() =>
+    assertTokenPruneWithinLimit([
+      { chain_id: "1", existing: 1_000, stale: 300 },
+      { chain_id: "10", existing: 10_000, stale: 0 },
+    ]),
+  ).toThrow(/on chain 1/);
+  expect(() =>
+    assertTokenPruneWithinLimit([
+      {
+        chain_id: "10",
+        existing: TOKEN_PRUNE_CHAIN_ALLOWANCE + 1,
+        stale: TOKEN_PRUNE_CHAIN_ALLOWANCE + 1,
+      },
+      { chain_id: "1", existing: 10_000, stale: 0 },
+    ]),
+  ).toThrow(/on chain 10/);
 });

@@ -237,6 +237,139 @@ async function syncBridgeRelationships(
   return { upserted, deleted: deleted.length };
 }
 
+// Token rows are written only by this sync, so a row the reviewed list no
+// longer contains is stale. Only rows the token picker shows by default
+// (visibility priority 0 or higher) on chains the list covers are pruned:
+// hidden rows predate the reviewed list and still name tokens in pool
+// statistics, and a chain missing from the list more likely means a broken
+// build. As with links, a large removal is refused rather than applied. A
+// chain may always lose up to TOKEN_PRUNE_CHAIN_ALLOWANCE rows, so a small
+// chain with a few removals is not held to the fraction.
+export const MAX_TOKEN_PRUNE_FRACTION = 0.2;
+export const TOKEN_PRUNE_CHAIN_ALLOWANCE = 100;
+
+export type ChainTokenPruneCount = {
+  chain_id: string;
+  existing: number;
+  stale: number;
+};
+
+export function assertTokenPruneWithinLimit(
+  counts: ChainTokenPruneCount[],
+): void {
+  const existing = counts.reduce((sum, count) => sum + count.existing, 0);
+  const stale = counts.reduce((sum, count) => sum + count.stale, 0);
+  if (stale > existing * MAX_TOKEN_PRUNE_FRACTION) {
+    throw new Error(
+      `Refusing to delete ${stale} of ${existing} visible token rows ` +
+        `(limit ${MAX_TOKEN_PRUNE_FRACTION * 100}% per sync)`,
+    );
+  }
+  for (const count of counts) {
+    if (
+      count.stale > TOKEN_PRUNE_CHAIN_ALLOWANCE &&
+      count.stale > count.existing * MAX_TOKEN_PRUNE_FRACTION
+    ) {
+      throw new Error(
+        `Refusing to delete ${count.stale} of ${count.existing} visible token rows ` +
+          `on chain ${count.chain_id} (limit ${MAX_TOKEN_PRUNE_FRACTION * 100}% per chain per sync)`,
+      );
+    }
+  }
+}
+
+type TokenKey = { chain_id: string; token_address: string };
+
+async function syncStaleTokens(
+  sql: TransactionSql,
+  tokens: Token[],
+): Promise<{ deleted: number; prices: number; refusal?: string }> {
+  const rows = databaseTokenRows(tokens);
+  await sql`
+    CREATE TEMPORARY TABLE reviewed_tokens (
+      chain_id INT8 NOT NULL,
+      token_address NUMERIC NOT NULL,
+      PRIMARY KEY (chain_id, token_address)
+    ) ON COMMIT DROP
+  `;
+  await sql`
+    INSERT INTO reviewed_tokens (chain_id, token_address)
+    SELECT DISTINCT * FROM unnest(
+      ${rows.map((row) => row.chain_id)}::int8[],
+      ${rows.map((row) => row.token_address)}::numeric[]
+    )
+  `;
+  const inScope = sql`
+    t.visibility_priority >= 0
+    AND t.chain_id IN (SELECT DISTINCT chain_id FROM reviewed_tokens)
+  `;
+  const stale = sql`
+    ${inScope} AND NOT EXISTS (
+      SELECT 1 FROM reviewed_tokens r
+      WHERE r.chain_id = t.chain_id AND r.token_address = t.token_address
+    )
+  `;
+  const counts = await sql<ChainTokenPruneCount[]>`
+    SELECT
+      t.chain_id::text AS chain_id,
+      COUNT(*)::int AS existing,
+      (COUNT(*) FILTER (WHERE ${stale}))::int AS stale
+    FROM erc20_tokens t
+    WHERE ${inScope}
+    GROUP BY t.chain_id
+    ORDER BY t.chain_id
+  `;
+  try {
+    assertTokenPruneWithinLimit(counts);
+  } catch (error) {
+    return { deleted: 0, prices: 0, refusal: (error as Error).message };
+  }
+
+  // Locking the rows first makes a concurrent price write wait for this
+  // transaction instead of adding history the delete would then trip over.
+  const keys = await sql<TokenKey[]>`
+    SELECT t.chain_id::text AS chain_id, t.token_address::text AS token_address
+    FROM erc20_tokens t
+    WHERE ${stale}
+    FOR UPDATE
+  `;
+  if (keys.length === 0) return { deleted: 0, prices: 0 };
+  const staleKeys = sql`
+    SELECT * FROM unnest(
+      ${keys.map((key) => key.chain_id)}::int8[],
+      ${keys.map((key) => key.token_address)}::numeric[]
+    ) AS stale(chain_id, token_address)
+  `;
+  // Price history references the token row. It is meaningless once the token
+  // is gone, and the price worker rebuilds it if the token is listed again.
+  const prices = await sql`
+    DELETE FROM erc20_tokens_usd_prices p
+    USING (${staleKeys}) AS stale
+    WHERE p.chain_id = stale.chain_id AND p.token_address = stale.token_address
+  `;
+  const deleted = await sql<Record<string, unknown>[]>`
+    DELETE FROM erc20_tokens t
+    USING (${staleKeys}) AS stale
+    WHERE t.chain_id = stale.chain_id AND t.token_address = stale.token_address
+    RETURNING
+      t.chain_id::text,
+      t.token_address::text,
+      t.token_symbol,
+      t.token_name,
+      t.token_decimals,
+      t.visibility_priority,
+      t.sort_order,
+      t.logo_url,
+      t.total_supply::text,
+      t.circulating_supply::text
+  `;
+  // Printed in full so a removal can be restored by re-inserting these rows.
+  for (const row of deleted) {
+    console.log(`Deleted stale token ${JSON.stringify(row)}`);
+  }
+  return { deleted: deleted.length, prices: prices.count };
+}
+
 async function main(): Promise<void> {
   const connectionString = process.env.PG_CONNECTION_STRING;
   if (!connectionString) {
@@ -258,17 +391,20 @@ async function main(): Promise<void> {
   try {
     const result = await sql.begin(async (transaction) => ({
       tokens: await syncTokens(transaction, tokens),
-      relationships: await syncBridgeRelationships(
-        transaction,
-        relationships,
-      ),
+      relationships: await syncBridgeRelationships(transaction, relationships),
+      stale: await syncStaleTokens(transaction, tokens),
     }));
     console.log(
       `Synchronized ${result.tokens} token rows and ${result.relationships.upserted} bridge-relationship rows; ` +
-        `deleted ${result.relationships.deleted} stale bridge-relationship rows`,
+        `deleted ${result.relationships.deleted} stale bridge-relationship rows, ` +
+        `${result.stale.deleted} stale token rows and their ${result.stale.prices} price observations`,
     );
-    if (result.relationships.refusal) {
-      console.error(result.relationships.refusal);
+    for (const refusal of [
+      result.relationships.refusal,
+      result.stale.refusal,
+    ]) {
+      if (!refusal) continue;
+      console.error(refusal);
       process.exitCode = 1;
     }
   } finally {
