@@ -65,6 +65,11 @@ test("normalizes bridge relationships to decimal database keys", () => {
       source_bridge_address: null,
       dest_chain_id: "8453",
       dest_token_address: "32",
+      relationship: "native_issuer",
+      bridge_name: null,
+      source_name: null,
+      source_url: null,
+      inferred_reverse: false,
     },
   ]);
 });

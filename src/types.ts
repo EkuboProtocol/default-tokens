@@ -27,7 +27,7 @@ export type BridgeRelationship = {
   source_bridge_address: string | null;
   dest_chain_id: string;
   dest_token_address: string;
-  // Additive metadata. The database sync writes only the five fields above.
+  // Additive metadata, also written to the database by the sync.
   relationship?: BridgeRelationshipKind;
   bridge_name?: string | null;
   source_name?: string;

@@ -27,8 +27,9 @@ lists.
 
 `bridge_relationships` links a token to the same asset on another chain. Each
 link is directed and keyed by its source token and destination chain, so a
-token has at most one counterpart per chain. The database sync writes the five
-original fields; the rest are additive metadata in `tokens.json`:
+token has at most one counterpart per chain. The database sync writes all of
+these fields; the five original ones are what the API's `bridgeInfos` was built
+on, and the rest are additive metadata:
 
 | Field | Meaning |
 | --- | --- |
@@ -264,6 +265,10 @@ The indexer migration that adds `erc20_tokens.circulating_supply` must be
 applied before this repository's database sync is deployed. The sync writes
 both supply columns and deliberately fails instead of silently dropping the new
 field when the target schema is stale.
+
+Likewise, indexer migration `00136_erc20_bridge_link_provenance`, which adds the
+link metadata columns to `erc20_tokens_bridge_relationships`, must be applied
+before the sync that writes them is deployed.
 
 ## Local development
 
