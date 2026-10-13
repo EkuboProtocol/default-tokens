@@ -196,8 +196,18 @@ document can be committed.
 after a human push that changes the list, after a successful update workflow,
 every 30 minutes as a reconciliation guard, and through `workflow_dispatch`.
 The sync validates and then upserts both collections from `tokens.json` in one
-transaction, in which it also removes links no longer in the list. Token rows
-are never deleted.
+transaction, in which it also removes links and token rows no longer in the list.
+
+Token rows are pruned only where the token picker shows them by default
+(visibility priority 0 or higher) and only on chains the list covers. Hidden
+rows (priority below 0) predate the reviewed list and still name tokens in pool
+statistics, so they are left alone, as are rows on chains absent from the list.
+Each deleted row is printed in full so it can be restored, and its price
+history is deleted with it because that history references the row; the price
+worker rebuilds prices if the token is listed again. If a sync would delete
+more than 20 percent of the visible rows in scope, or more than 20 percent and
+more than 100 rows on any one chain, it deletes no token rows, still applies
+the upserts, and fails so the workflow reports it.
 The `workflow_run` trigger is intentional: pushes made with GitHub's automation
 token do not trigger a second ordinary push workflow.
 
