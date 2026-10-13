@@ -74,6 +74,11 @@ export type BridgeRelationshipRow = {
   source_bridge_address: string | null;
   dest_chain_id: string;
   dest_token_address: string;
+  relationship: string | null;
+  bridge_name: string | null;
+  source_name: string | null;
+  source_url: string | null;
+  inferred_reverse: boolean;
 };
 
 export function databaseBridgeRows(
@@ -103,6 +108,11 @@ export function databaseBridgeRows(
       relationship.dest_token_address,
       "destination token address",
     ).toString(),
+    relationship: relationship.relationship ?? null,
+    bridge_name: relationship.bridge_name ?? null,
+    source_name: relationship.source_name ?? null,
+    source_url: relationship.source_url ?? null,
+    inferred_reverse: relationship.inferred_reverse ?? false,
   }));
 }
 
@@ -144,11 +154,29 @@ async function syncBridgeRelationships(
       ON CONFLICT (source_chain_id, source_token_address, dest_chain_id)
       DO UPDATE SET
         dest_token_address = EXCLUDED.dest_token_address,
-        source_bridge_address = EXCLUDED.source_bridge_address
-      WHERE erc20_tokens_bridge_relationships.dest_token_address
-              IS DISTINCT FROM EXCLUDED.dest_token_address
-         OR erc20_tokens_bridge_relationships.source_bridge_address
-              IS DISTINCT FROM EXCLUDED.source_bridge_address
+        source_bridge_address = EXCLUDED.source_bridge_address,
+        relationship = EXCLUDED.relationship,
+        bridge_name = EXCLUDED.bridge_name,
+        source_name = EXCLUDED.source_name,
+        source_url = EXCLUDED.source_url,
+        inferred_reverse = EXCLUDED.inferred_reverse
+      WHERE (
+        erc20_tokens_bridge_relationships.dest_token_address,
+        erc20_tokens_bridge_relationships.source_bridge_address,
+        erc20_tokens_bridge_relationships.relationship,
+        erc20_tokens_bridge_relationships.bridge_name,
+        erc20_tokens_bridge_relationships.source_name,
+        erc20_tokens_bridge_relationships.source_url,
+        erc20_tokens_bridge_relationships.inferred_reverse
+      ) IS DISTINCT FROM (
+        EXCLUDED.dest_token_address,
+        EXCLUDED.source_bridge_address,
+        EXCLUDED.relationship,
+        EXCLUDED.bridge_name,
+        EXCLUDED.source_name,
+        EXCLUDED.source_url,
+        EXCLUDED.inferred_reverse
+      )
     `;
     upserted += result.count;
   }
