@@ -36,6 +36,8 @@ export type TokenSource = {
   name: string;
   url: string;
   visibilityPriority?: number;
+  // Per-chain overrides of `visibilityPriority`, keyed by decimal chain ID.
+  visibilityPriorityByChainId?: Readonly<Record<string, number>>;
 };
 
 export type CoinGeckoTokenSource = TokenSource & {
