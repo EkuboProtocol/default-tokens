@@ -24,6 +24,11 @@ import {
   type CoinGeckoCoin,
   type CoinGeckoMarket,
 } from "../src/coingecko-supply";
+import {
+  buildBridgeRelationships,
+  collectBridgeSourceLinks,
+} from "../src/bridge-sources";
+import { linksFromTokenList, type ProvenancedLink } from "../src/bridges";
 import { fetchJson, isRateLimited } from "../src/fetch-json";
 import {
   COINGECKO_PRO_API_BASE_URL,
@@ -35,7 +40,6 @@ import {
   REMOTE_TOKEN_LISTS,
   sourceVisibilityPriority,
   STARKNET_AVNU_TOKEN_SOURCES,
-  STARKNET_BRIDGE_TOKEN_LISTS,
   STARKNET_MAINNET_CHAIN_ID,
   TOKEN_REGISTRY_SOURCE,
 } from "../src/sources";
@@ -44,15 +48,13 @@ import {
   TokenAccumulator,
   assertHostedLogos,
   backfillPreviousTokens,
-  bridgeRelationshipKey,
   restorePreviousSupplies,
-  normalizeTokenAddress,
   validateBridgeRelationships,
+  validateGeneratedBridgeRelationships,
   validateNativeCurrencies,
   validateTokenList,
 } from "../src/token-list";
 import type {
-  BridgeRelationship,
   CoinGeckoTokenSource,
   StandardTokenList,
   Token,
@@ -79,13 +81,6 @@ type AvnuToken = {
 
 type AvnuTokenResponse = {
   content?: AvnuToken[];
-};
-
-type StarknetBridgeToken = {
-  l1_token_address?: string;
-  l1_bridge_address?: string | null;
-  l2_bridge_address?: string | null;
-  l2_token_address?: string;
 };
 
 async function readJson<T>(path: string, fallback?: T): Promise<T> {
@@ -170,7 +165,7 @@ function warnCoinGeckoSkipped(phase: string, error: unknown): void {
 
 async function addCoinGeckoChainList(
   accumulator: TokenAccumulator,
-  relationships: Map<string, BridgeRelationship>,
+  listLinks: ProvenancedLink[],
   source: CoinGeckoTokenSource,
   headers: HeadersInit,
 ): Promise<void> {
@@ -178,18 +173,13 @@ async function addCoinGeckoChainList(
     headers,
   });
   validateCoinGeckoTokenList(list, source);
-  const added = addStandardTokenList(
-    accumulator,
-    relationships,
-    source,
-    list,
-  );
+  const added = addStandardTokenList(accumulator, listLinks, source, list);
   console.log(`Added ${added} tokens from ${source.name}`);
 }
 
 async function addCoinGeckoProTokenLists(
   accumulator: TokenAccumulator,
-  relationships: Map<string, BridgeRelationship>,
+  listLinks: ProvenancedLink[],
   headers: HeadersInit,
 ): Promise<{
   platforms: CoinGeckoAssetPlatform[] | null;
@@ -206,12 +196,7 @@ async function addCoinGeckoProTokenLists(
     const skippedSources: string[] = [];
     for (const source of COINGECKO_PRO_TOKEN_LISTS) {
       try {
-        await addCoinGeckoChainList(
-          accumulator,
-          relationships,
-          source,
-          headers,
-        );
+        await addCoinGeckoChainList(accumulator, listLinks, source, headers);
       } catch (error) {
         skippedSources.push(source.name);
         warnSourceSkipped(source.name, error);
@@ -301,38 +286,9 @@ async function refreshCoinGeckoSupplies(options: {
   }
 }
 
-function addRelationship(
-  relationships: Map<string, BridgeRelationship>,
-  relationship: BridgeRelationship,
-  replace = false,
-): void {
-  const normalizedSourceAddress = normalizeTokenAddress(
-    relationship.source_token_address,
-    relationship.source_chain_id,
-  );
-  const normalizedDestinationAddress = normalizeTokenAddress(
-    relationship.dest_token_address,
-    relationship.dest_chain_id,
-  );
-  if (!normalizedSourceAddress || !normalizedDestinationAddress) return;
-
-  const normalized = {
-    ...relationship,
-    source_token_address: normalizedSourceAddress,
-    dest_token_address: normalizedDestinationAddress,
-    source_bridge_address:
-      relationship.source_bridge_address &&
-      addressRegex.test(relationship.source_bridge_address)
-        ? relationship.source_bridge_address
-        : null,
-  };
-  const key = bridgeRelationshipKey(normalized);
-  if (replace || !relationships.has(key)) relationships.set(key, normalized);
-}
-
 function addStandardTokenList(
   accumulator: TokenAccumulator,
-  relationships: Map<string, BridgeRelationship>,
+  listLinks: ProvenancedLink[],
   source: TokenSource,
   list: StandardTokenList,
 ): number {
@@ -369,37 +325,15 @@ function addStandardTokenList(
         error,
       );
     }
-
-    const sourceAddress = normalizeTokenAddress(
-      token.address,
-      String(token.chainId),
-    );
-    if (!sourceAddress) continue;
-
-    for (const [destinationChainId, info] of Object.entries(
-      token.extensions?.bridgeInfo ?? {},
-    )) {
-      if (!info?.tokenAddress) continue;
-      addRelationship(
-        relationships,
-        {
-          source_chain_id: String(token.chainId),
-          source_token_address: sourceAddress,
-          source_bridge_address: info.originBridgeAddress ?? null,
-          dest_chain_id: destinationChainId,
-          dest_token_address: info.tokenAddress,
-        },
-        true,
-      );
-    }
   }
+  listLinks.push(...linksFromTokenList(list, source));
 
   return added;
 }
 
 async function addRemoteTokenLists(
   accumulator: TokenAccumulator,
-  relationships: Map<string, BridgeRelationship>,
+  listLinks: ProvenancedLink[],
 ): Promise<string[]> {
   const skippedSources: string[] = [];
   for (const source of REMOTE_TOKEN_LISTS) {
@@ -410,7 +344,7 @@ async function addRemoteTokenLists(
       );
       const added = addStandardTokenList(
         accumulator,
-        relationships,
+        listLinks,
         source,
         list,
       );
@@ -488,53 +422,6 @@ async function addAvnuTokens(
         trackedAvnuAddresses,
       );
       console.log(`Added ${added} tokens from ${source.name}`);
-    } catch (error) {
-      skippedSources.push(source.name);
-      warnSourceSkipped(source.name, error);
-    }
-  }
-  return skippedSources;
-}
-
-async function addStarknetBridgeRelationships(
-  relationships: Map<string, BridgeRelationship>,
-): Promise<string[]> {
-  const skippedSources: string[] = [];
-  for (const source of STARKNET_BRIDGE_TOKEN_LISTS) {
-    try {
-      const bridgeTokens = await fetchJson<StarknetBridgeToken[]>(
-        source.name,
-        source.url,
-      );
-      if (!Array.isArray(bridgeTokens)) {
-        throw new Error(`${source.name} did not return an array`);
-      }
-
-      for (const token of bridgeTokens) {
-        if (!token.l1_token_address || !token.l2_token_address) continue;
-        addRelationship(
-          relationships,
-          {
-            source_chain_id: source.l1ChainId.toString(),
-            source_token_address: token.l1_token_address,
-            source_bridge_address: token.l1_bridge_address ?? null,
-            dest_chain_id: source.l2ChainId.toString(),
-            dest_token_address: token.l2_token_address,
-          },
-          true,
-        );
-        addRelationship(
-          relationships,
-          {
-            source_chain_id: source.l2ChainId.toString(),
-            source_token_address: token.l2_token_address,
-            source_bridge_address: token.l2_bridge_address ?? null,
-            dest_chain_id: source.l1ChainId.toString(),
-            dest_token_address: token.l1_token_address,
-          },
-          true,
-        );
-      }
     } catch (error) {
       skippedSources.push(source.name);
       warnSourceSkipped(source.name, error);
@@ -621,22 +508,16 @@ async function main(): Promise<void> {
   );
 
   const accumulator = new TokenAccumulator();
-  const relationships = new Map<string, BridgeRelationship>();
+  const listLinks: ProvenancedLink[] = [];
 
   for (const token of curatedDocument.tokens) {
     accumulator.add(token, CURATED_SOURCE.name, CURATED_SOURCE.url);
-  }
-  for (const relationship of curatedDocument.bridge_relationships) {
-    addRelationship(relationships, relationship);
   }
   console.log(`Loaded ${accumulator.tokens.size} curated tokens`);
 
   if (!withoutRegistrations) await addRegisteredTokens(accumulator);
 
-  const skippedSources = await addRemoteTokenLists(
-    accumulator,
-    relationships,
-  );
+  const skippedSources = await addRemoteTokenLists(accumulator, listLinks);
 
   const coinGeckoApiKey = process.env.COINGECKO_API_KEY?.trim();
   if (!coinGeckoApiKey) {
@@ -648,19 +529,12 @@ async function main(): Promise<void> {
     "x-cg-pro-api-key": coinGeckoApiKey,
   };
   const { platforms: coinGeckoPlatforms, skippedSources: skippedCoinGecko } =
-    await addCoinGeckoProTokenLists(
-      accumulator,
-      relationships,
-      coinGeckoHeaders,
-    );
+    await addCoinGeckoProTokenLists(accumulator, listLinks, coinGeckoHeaders);
   skippedSources.push(...skippedCoinGecko);
 
   skippedSources.push(...(await addAvnuTokens(accumulator)));
 
-  skippedSources.push(
-    ...(await addStarknetBridgeRelationships(relationships)),
-  );
-  console.log(`Discovered ${relationships.size} bridge relationships`);
+  const bridgeSources = await collectBridgeSourceLinks();
 
   if (!coinGeckoPlatforms || skippedSources.length > 0) {
     if (skippedSources.length > 0) {
@@ -728,7 +602,14 @@ async function main(): Promise<void> {
   }
 
   const provenance = [...accumulator.provenance.values()];
-  const bridgeRelationships = [...relationships.values()];
+  const bridgeRelationships = buildBridgeRelationships({
+    tokens,
+    curated: curatedDocument.bridge_relationships,
+    batches: bridgeSources.batches,
+    listLinks,
+    previous: previousDocument.bridge_relationships,
+    skippedSources: [...skippedSources, ...bridgeSources.skippedSources],
+  });
   const cache = await hostTokenLogos({
     tokens,
     previousTokens: previousDocument.tokens,
@@ -745,6 +626,7 @@ async function main(): Promise<void> {
 
   validateTokenList(tokens);
   validateBridgeRelationships(bridgeRelationships);
+  validateGeneratedBridgeRelationships(bridgeRelationships, tokens);
   validateNativeCurrencies(
     tokens,
     NATIVE_CURRENCIES,

@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/EkuboProtocol/default-tokens/main/token-list.schema.json",
   "title": "Ekubo authoritative token list",
-  "description": "Token metadata and directed cross-chain bridge relationships synchronized into the Ekubo database.",
+  "description": "Token metadata and directed cross-chain bridge relationships synchronized into the Ekubo database. Bridge relationship fields after dest_token_address are additive provenance that the database sync does not write.",
   "type": "object",
   "additionalProperties": false,
   "required": ["$schema", "tokens", "bridge_relationships"],
@@ -129,6 +129,34 @@
         },
         "dest_token_address": {
           "$ref": "#/$defs/address"
+        },
+        "relationship": {
+          "description": "canonical_bridge: minted by the destination chain's official bridge; native_issuer: the issuer's own deployment on both chains; interoperability: a version linked by an interoperability protocol such as LayerZero OFT or Wormhole NTT; unknown: the source does not say.",
+          "enum": [
+            "canonical_bridge",
+            "native_issuer",
+            "interoperability",
+            "unknown"
+          ]
+        },
+        "bridge_name": {
+          "description": "The bridge, issuer, or protocol behind the link, when known.",
+          "type": ["string", "null"],
+          "minLength": 1
+        },
+        "source_name": {
+          "description": "The source that claimed this link.",
+          "type": "string",
+          "minLength": 1
+        },
+        "source_url": {
+          "description": "Where that source was read.",
+          "type": "string",
+          "minLength": 1
+        },
+        "inferred_reverse": {
+          "description": "True when the source stated only the opposite direction and this link mirrors it.",
+          "type": "boolean"
         }
       }
     }

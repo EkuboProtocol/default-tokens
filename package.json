@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "update-tokens": "bun scripts/update-tokens.ts",
+    "update-bridges": "bun scripts/update-bridges.ts",
     "sync-database": "bun scripts/sync-database.ts",
     "validate": "bun scripts/validate.ts",
     "jurisdiction-policy": "bun scripts/jurisdiction-policy.ts",

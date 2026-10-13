@@ -23,9 +23,53 @@ lists.
   below.
 - `src/sources.ts` is the reviewable catalog of every remote token source.
 
-Bridge relationships are directed. `source_bridge_address` identifies the
-escrow or bridge contract on the source chain; `null` means the asset is minted
-natively on both chains.
+## Cross-chain links
+
+`bridge_relationships` links a token to the same asset on another chain. Each
+link is directed and keyed by its source token and destination chain, so a
+token has at most one counterpart per chain. The database sync writes the five
+original fields; the rest are additive metadata in `tokens.json`:
+
+| Field | Meaning |
+| --- | --- |
+| `source_chain_id`, `source_token_address` | The token the link starts from. |
+| `dest_chain_id`, `dest_token_address` | Its counterpart. Both tokens are always rows in the generated list. |
+| `source_bridge_address` | The bridge or escrow on the source chain when the source names one, else `null`. It is informational; `relationship` says what the link is. |
+| `relationship` | `canonical_bridge`: minted by the destination chain's official bridge (OP Stack standard bridge, Arbitrum gateway, StarkGate). `native_issuer`: the issuer's own deployment on both chains (Circle's USDC). `interoperability`: a version linked by an interoperability protocol such as LayerZero OFT, Wormhole NTT, or Chainlink CCIP, which is not a canonical bridge copy. `unknown`: the source links the two but does not say how. |
+| `bridge_name` | The bridge, issuer, or protocol, when known. |
+| `source_name`, `source_url` | The source that claimed the link and where it was read. |
+| `inferred_reverse` | `true` when the source stated only the opposite direction and the link mirrors it. |
+
+Links come from these sources. The first source to claim a key wins, and a
+later source that names a different counterpart is logged as a conflict
+instead of overwriting it:
+
+1. Curated links in `curated-tokens.json`.
+2. Circle's published USDC and EURC contract tables (`native_issuer`).
+3. Native ether on rollups that bridge it from Ethereum, and the OP Stack
+   WETH predeploy that wraps it (`canonical_bridge`), from
+   `CANONICAL_ETH_ROLLUPS` in `src/sources.ts`.
+4. StarkGate's bridged-token list, the Superchain token list, and Offchain
+   Labs' Arbitrum gateway lists (`canonical_bridge`).
+5. The `bridgeInfo` extension of the Uniswap default list (`unknown`, because
+   Uniswap links the asset people mean on each chain whether it is an issuer
+   deployment, a bridge copy, a custodial peg, or an OFT).
+6. The Monad list's `crossChainAddresses`, labelled by the protocol it names
+   (`interoperability`, else `unknown`).
+
+A shared symbol, name, or CoinGecko ID never creates a link. A link is kept
+only when both tokens are in the list, never links a chain to itself, and is
+mirrored when the reverse key is free. A source that cannot be read keeps its
+previous links. Each run logs what it dropped, the conflicts, the links still
+without a reciprocal, and any chain where two tokens claim the same canonical
+or issuer relationship to one counterpart (a canonical copy beside an issuer
+deployment, such as USDC.e beside USDC, is expected and not reported).
+
+`bun run update-bridges` regenerates only the links in `tokens.json` from these
+sources, without database, CoinGecko, or Cloudflare credentials.
+
+The sync upserts links and never deletes them, so a link dropped from
+`tokens.json` stays in the database until it is removed there.
 
 Token address zero is a chain's native currency, the asset its gas is paid in.
 `normalizeTokenAddress` folds `0x0`, `0xEeee…eEEeE`, and `0x455448` into that

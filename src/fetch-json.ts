@@ -26,6 +26,8 @@ type FetchJsonConfig = {
   sleep?: (milliseconds: number) => Promise<void>;
   maxRetries?: number;
   timeoutMs?: number;
+  // Reads a successful response body; defaults to JSON.
+  parse?: (response: Response) => Promise<unknown>;
 };
 
 // Upper bound on any single backoff sleep. A source asking us to wait longer
@@ -67,6 +69,7 @@ export async function fetchJson<T>(
       new Promise<void>((resolve) => setTimeout(resolve, milliseconds)));
   const maxRetries = config.maxRetries ?? 3;
   const timeoutMs = config.timeoutMs ?? 60_000;
+  const parse = config.parse ?? ((response: Response) => response.json());
   const headers = new Headers(config.headers);
   if (!headers.has("User-Agent")) {
     headers.set("User-Agent", "EkuboProtocol/default-tokens");
@@ -88,7 +91,7 @@ export async function fetchJson<T>(
         if (!isRetryableStatus(response.status)) throw failure;
       } else {
         try {
-          return (await response.json()) as T;
+          return (await parse(response)) as T;
         } catch (error) {
           failure = new FetchJsonError(
             `Failed to parse ${name} from ${url}: ${errorMessage(error)}`,
