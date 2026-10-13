@@ -350,3 +350,59 @@ export const ARBITRUM_BRIDGE_TOKEN_LISTS: TokenSource[] = [
 
 export const NATIVE_ETH_BRIDGE_SOURCE_NAME =
   "Ekubo rollup native ether registry";
+
+// Chains whose bridge mappings `scripts/read-bridges.ts` reads on-chain into
+// bridge-reads.json. `l1Contract` is the Ethereum contract that holds the
+// mapping, when the read needs one.
+export type BridgeReadChain = {
+  chainId: string;
+  kind: "arbitrum_gateway" | "polygon_pos" | "op_standard_bridge";
+  bridgeName: string;
+  rpc: string;
+  l1Contract?: string;
+};
+
+export const BRIDGE_READ_CHAINS: BridgeReadChain[] = [
+  {
+    chainId: "42161",
+    kind: "arbitrum_gateway",
+    bridgeName: "Arbitrum One canonical bridge",
+    rpc: "https://arbitrum-one-rpc.publicnode.com",
+    l1Contract: "0x72Ce9c846789fdB6fC1f34aC4AD25Dd9ef7031ef",
+  },
+  {
+    // Gateway router from https://docs.robinhood.com/chain/protocol-contracts
+    chainId: "4663",
+    kind: "arbitrum_gateway",
+    bridgeName: "Robinhood Chain canonical bridge (Arbitrum Orbit)",
+    rpc: "https://rpc.mainnet.chain.robinhood.com",
+    l1Contract: "0x6a2E3a1e16FC29f27Ce61429746D558d656975bB",
+  },
+  {
+    chainId: "137",
+    kind: "polygon_pos",
+    bridgeName: "Polygon PoS bridge",
+    rpc: "https://polygon-bor-rpc.publicnode.com",
+    l1Contract: "0xA0c68C638235ee32657e8f720a23ceC1bFc77C77",
+  },
+  ...(
+    [
+      ["10", "OP Mainnet", "https://optimism-rpc.publicnode.com"],
+      ["8453", "Base", "https://mainnet.base.org"],
+      ["130", "Unichain", "https://unichain-rpc.publicnode.com"],
+      ["57073", "Ink", "https://rpc-gel.inkonchain.com"],
+      ["480", "World Chain", "https://worldchain-mainnet.g.alchemy.com/public"],
+      ["1868", "Soneium", "https://rpc.soneium.org"],
+    ] as const
+  ).map(([chainId, name, rpc]) => ({
+    chainId,
+    kind: "op_standard_bridge" as const,
+    bridgeName: `${name} standard bridge`,
+    rpc,
+  })),
+];
+
+export const BRIDGE_READS_SOURCE = {
+  name: "Ekubo bridge contract reads",
+  url: "https://github.com/EkuboProtocol/default-tokens/blob/main/bridge-reads.json",
+} as const;

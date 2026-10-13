@@ -51,10 +51,18 @@ instead of overwriting it:
    `CANONICAL_ETH_ROLLUPS` in `src/sources.ts`.
 4. StarkGate's bridged-token list, the Superchain token list, and Offchain
    Labs' Arbitrum gateway lists (`canonical_bridge`).
-5. The `bridgeInfo` extension of the Uniswap default list (`unknown`, because
+5. Mappings read from the bridge contracts into `bridge-reads.json`
+   (`canonical_bridge`): the Arbitrum One and Robinhood Chain gateways (the
+   token's `l1Address()`, confirmed by the Ethereum gateway router), the
+   Polygon PoS `RootChainManager`, and the OP Stack standard bridge (the
+   token's `remoteToken()` with the bridge predeploy as its `bridge()`). An
+   Ethereum token claimed by two listed tokens on one chain is left out as
+   ambiguous. The daily build reads this snapshot without an RPC endpoint;
+   `bun run read-bridges` refreshes it.
+6. The `bridgeInfo` extension of the Uniswap default list (`unknown`, because
    Uniswap links the asset people mean on each chain whether it is an issuer
    deployment, a bridge copy, a custodial peg, or an OFT).
-6. The Monad list's `crossChainAddresses`, labelled by the protocol it names
+7. The Monad list's `crossChainAddresses`, labelled by the protocol it names
    (`interoperability`, else `unknown`).
 
 A shared symbol, name, or CoinGecko ID never creates a link. A link is kept

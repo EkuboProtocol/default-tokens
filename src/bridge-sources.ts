@@ -1,4 +1,8 @@
+import { readFile } from "node:fs/promises";
+import { resolve } from "node:path";
 import {
+  bridgeReadLinks,
+  type BridgeRead,
   BridgeCollector,
   finalizeBridgeLinks,
   issuerLinks,
@@ -16,6 +20,7 @@ import {
 import { fetchJson } from "./fetch-json";
 import {
   ARBITRUM_BRIDGE_TOKEN_LISTS,
+  BRIDGE_READS_SOURCE,
   CIRCLE_ISSUER_REGISTRIES,
   CURATED_SOURCE,
   STARKNET_BRIDGE_TOKEN_LISTS,
@@ -32,6 +37,8 @@ export type CollectedLinks = {
   batches: ProvenancedLink[][];
   skippedSources: string[];
 };
+
+const BRIDGE_READS_PATH = resolve(import.meta.dir, "..", "bridge-reads.json");
 
 type Loader = { name: string; load: () => Promise<ProvenancedLink[]> };
 
@@ -85,6 +92,18 @@ function loaders(): Loader[] {
           source,
         ),
     })),
+    {
+      name: BRIDGE_READS_SOURCE.name,
+      load: async () => {
+        const snapshot = JSON.parse(
+          await readFile(BRIDGE_READS_PATH, "utf8"),
+        ) as { links?: BridgeRead[] };
+        if (!Array.isArray(snapshot.links)) {
+          throw new Error(`${BRIDGE_READS_SOURCE.url} has no links array`);
+        }
+        return bridgeReadLinks(snapshot.links, BRIDGE_READS_SOURCE);
+      },
+    },
   ];
 }
 

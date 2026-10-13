@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import {
   BridgeCollector,
+  bridgeReadLinks,
   crossChainAddressLinks,
   finalizeBridgeLinks,
   issuerLinks,
@@ -273,5 +274,47 @@ test("native ether links run both ways through each rollup's bridge", () => {
     "0x0",
     "0x4200000000000000000000000000000000000006",
     "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+  ]);
+});
+
+test("bridge reads link both ways and map the native ether placeholder", () => {
+  const links = bridgeReadLinks(
+    [
+      {
+        chain_id: "137",
+        token_address: "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
+        l1_token_address: "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        bridge_name: "Polygon PoS bridge",
+        method: "childToRootToken",
+      },
+    ],
+    source,
+  );
+  expect(
+    links.map((link) => [
+      link.source_chain_id,
+      link.source_token_address,
+      link.dest_chain_id,
+      link.dest_token_address,
+      link.relationship,
+      link.bridge_name,
+    ]),
+  ).toEqual([
+    [
+      "1",
+      "0x0",
+      "137",
+      "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
+      "canonical_bridge",
+      "Polygon PoS bridge",
+    ],
+    [
+      "137",
+      "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
+      "1",
+      "0x0",
+      "canonical_bridge",
+      "Polygon PoS bridge",
+    ],
   ]);
 });

@@ -428,6 +428,40 @@ export function nativeEthLinks(): ProvenancedLink[] {
   return links;
 }
 
+export type BridgeRead = {
+  chain_id: string;
+  token_address: string;
+  l1_token_address: string;
+  bridge_name: string;
+  method: string;
+};
+
+// Bridges such as Polygon PoS name Ethereum's native ether with this
+// placeholder; the list names it 0x0.
+const NATIVE_ETH_PLACEHOLDER = 0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeen;
+
+// Mappings read from the bridge contracts by `scripts/read-bridges.ts`. Each
+// read is an Ethereum token and the token the bridge mints for it.
+export function bridgeReadLinks(
+  reads: BridgeRead[],
+  source: LinkSource,
+): ProvenancedLink[] {
+  return reads.flatMap((read) => {
+    const l1 = read.l1_token_address;
+    const forward = link(
+      source,
+      { relationship: "canonical_bridge", bridgeName: read.bridge_name },
+      {
+        source_chain_id: "1",
+        source_token_address: BigInt(l1) === NATIVE_ETH_PLACEHOLDER ? "0x0" : l1,
+        dest_chain_id: read.chain_id,
+        dest_token_address: read.token_address,
+      },
+    );
+    return bothDirections(forward, null);
+  });
+}
+
 export function linksFromTokenList(
   list: StandardTokenList,
   source: TokenSource,
