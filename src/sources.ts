@@ -5,6 +5,17 @@ import type {
   TokenSource,
 } from "./types";
 
+export function sourceVisibilityPriority(
+  source: TokenSource,
+  chainId: string,
+): number {
+  return (
+    source.visibilityPriorityByChainId?.[chainId] ??
+    source.visibilityPriority ??
+    -1
+  );
+}
+
 export const COINGECKO_PRO_API_BASE_URL =
   "https://pro-api.coingecko.com/api/v3";
 
@@ -51,6 +62,14 @@ export const REMOTE_TOKEN_LISTS: TokenSource[] = [
     name: "Uniswap Default Token List",
     url: "https://tokens.uniswap.org",
     visibilityPriority: 1,
+    visibilityPriorityByChainId: {
+      // Uniswap's Unichain entries are generated mirrors of its Ethereum list:
+      // about 300 canonical-bridge addresses, nearly all with little or no
+      // supply on Unichain. At priority 1 they filled the interface's default
+      // Unichain token picker with tokens nobody can trade there. Keep them
+      // searchable instead; curated Unichain tokens stay prominent.
+      "130": 0,
+    },
   },
   {
     name: "1inch Token List",
