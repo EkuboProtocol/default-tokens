@@ -70,6 +70,12 @@ export const REMOTE_TOKEN_LISTS: TokenSource[] = [
       // searchable instead; curated Unichain tokens stay prominent.
       "130": 0,
     },
+    // Uniswap links the asset people mean on each chain, which can be the
+    // issuer's native deployment (USDC), a canonical bridge copy (DAI on
+    // Base), a custodial peg (BSC), or an OFT (USDT0 on Monad). It does not
+    // say which, so its links are `unknown` unless an earlier source labels
+    // the same link.
+    bridgeInfo: { relationship: "unknown", bridgeName: null },
   },
   {
     name: "1inch Token List",
@@ -102,6 +108,7 @@ export const REMOTE_TOKEN_LISTS: TokenSource[] = [
     name: "Monad Token List",
     url: "https://raw.githubusercontent.com/monad-crypto/token-list/refs/heads/main/tokenlist-mainnet.json",
     visibilityPriority: 1,
+    crossChainAddresses: true,
   },
 ];
 
@@ -240,3 +247,199 @@ export const STARKNET_BRIDGE_TOKEN_LISTS = [
     l2ChainId: 0x534e5f4d41494en,
   },
 ] as const;
+
+// Sources read only for cross-chain links, in the order they are trusted. A
+// link is keyed by its source token and destination chain; the first source to
+// claim a key wins, and a later source naming a different counterpart for it is
+// reported as a conflict. Issuer registries come first because the issuer is
+// the authority on its own deployments; they never compete with a canonical
+// bridge copy for the same key unless the two disagree, which is reported.
+// Links from the token lists in `REMOTE_TOKEN_LISTS` are added after all of
+// these.
+
+export const CIRCLE_ISSUER_REGISTRIES = [
+  {
+    name: "Circle USDC contract addresses",
+    url: "https://developers.circle.com/stablecoins/usdc-contract-addresses.md",
+    issuer: "Circle (USDC)",
+  },
+  {
+    name: "Circle EURC contract addresses",
+    url: "https://developers.circle.com/stablecoins/eurc-contract-addresses.md",
+    issuer: "Circle (EURC)",
+  },
+] as const;
+
+// Circle's blockchain names for the chains this list carries. Rows naming any
+// other blockchain are ignored.
+export const CIRCLE_BLOCKCHAIN_CHAIN_IDS: Record<string, string> = {
+  Arbitrum: "42161",
+  "Avalanche C-Chain": "43114",
+  Base: "8453",
+  Celo: "42220",
+  Ethereum: "1",
+  Ink: "57073",
+  Linea: "59144",
+  Monad: "143",
+  "OP Mainnet": "10",
+  "Polygon PoS": "137",
+  Starknet: STARKNET_MAINNET_CHAIN_ID.toString(),
+  Unichain: "130",
+  "World Chain": "480",
+  "X Layer": "196",
+  "ZKsync Era": "324",
+};
+
+// Rollups whose gas asset is ether deposited through the chain's own bridge.
+// Each links the chain's native ETH (address zero) to ether on Ethereum.
+// `wrappedEth` is the chain's WETH predeploy, which wraps that same bridged
+// ether, when there is one at a fixed address.
+export const CANONICAL_ETH_ROLLUPS = [
+  { chainId: "10", bridge: "OP Mainnet standard bridge", evidence: "https://l2beat.com/scaling/projects/op-mainnet", wrappedEth: "0x4200000000000000000000000000000000000006" },
+  { chainId: "130", bridge: "Unichain standard bridge", evidence: "https://l2beat.com/scaling/projects/unichain", wrappedEth: "0x4200000000000000000000000000000000000006" },
+  { chainId: "8453", bridge: "Base standard bridge", evidence: "https://l2beat.com/scaling/projects/base", wrappedEth: "0x4200000000000000000000000000000000000006" },
+  { chainId: "57073", bridge: "Ink standard bridge", evidence: "https://l2beat.com/scaling/projects/ink", wrappedEth: "0x4200000000000000000000000000000000000006" },
+  { chainId: "480", bridge: "World Chain standard bridge", evidence: "https://l2beat.com/scaling/projects/world", wrappedEth: "0x4200000000000000000000000000000000000006" },
+  { chainId: "1868", bridge: "Soneium standard bridge", evidence: "https://l2beat.com/scaling/projects/soneium", wrappedEth: "0x4200000000000000000000000000000000000006" },
+  { chainId: "7777777", bridge: "Zora standard bridge", evidence: "https://l2beat.com/scaling/projects/zora", wrappedEth: "0x4200000000000000000000000000000000000006" },
+  { chainId: "42161", bridge: "Arbitrum One canonical bridge", evidence: "https://l2beat.com/scaling/projects/arbitrum", wrappedEth: null },
+  { chainId: "4663", bridge: "Robinhood Chain canonical bridge (Arbitrum Orbit)", evidence: "https://docs.robinhood.com/chain/bridging/", wrappedEth: null },
+  { chainId: "324", bridge: "ZKsync Era canonical bridge", evidence: "https://l2beat.com/scaling/projects/zksync2", wrappedEth: null },
+  { chainId: "59144", bridge: "Linea canonical bridge", evidence: "https://l2beat.com/scaling/projects/linea", wrappedEth: null },
+  { chainId: "81457", bridge: "Blast canonical bridge", evidence: "https://l2beat.com/scaling/projects/blast", wrappedEth: null },
+  { chainId: "4326", bridge: "MegaETH canonical bridge", evidence: "https://l2beat.com/scaling/projects/megaeth", wrappedEth: null },
+] as const;
+
+export const ETHEREUM_WETH = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2";
+
+// The Superchain token list groups each asset under one `opTokenId` and
+// records, per chain, the bridge in `<prefix>BridgeAddress`. An L2 entry with
+// that extension was minted by that chain's bridge from the Ethereum entry.
+export const SUPERCHAIN_TOKEN_LIST = {
+  name: "Superchain Token List",
+  url: "https://static.optimism.io/optimism.tokenlist.json",
+  chainIdsByPrefix: {
+    optimism: "10",
+    base: "8453",
+    unichain: "130",
+    ink: "57073",
+    soneium: "1868",
+    worldchain: "480",
+    celo: "42220",
+    lisk: "1135",
+    mode: "34443",
+    metall2: "1750",
+    redstone: "690",
+  } as Record<string, string>,
+} as const;
+
+// Offchain Labs' lists of tokens routed through the Arbitrum One gateway
+// router, each carrying the standard `bridgeInfo` extension.
+export const ARBITRUM_BRIDGE_TOKEN_LISTS: TokenSource[] = [
+  "arbed_arb_whitelist_era",
+  "arbed_uniswap_labs",
+  "arbed_coingecko",
+].map((list) => ({
+  name: `Arbitrum ${list} token list`,
+  url: `https://tokenlist.arbitrum.io/ArbTokenLists/${list}.json`,
+  bridgeInfo: {
+    relationship: "canonical_bridge",
+    bridgeName: "Arbitrum One canonical bridge",
+  },
+}));
+
+export const NATIVE_ETH_BRIDGE_SOURCE_NAME =
+  "Ekubo rollup native ether registry";
+
+// Chains whose bridge mappings `scripts/read-bridges.ts` reads on-chain into
+// bridge-reads.json. `l1Contract` is the Ethereum contract that holds the
+// mapping, when the read needs one.
+export type BridgeReadChain = {
+  chainId: string;
+  kind: "arbitrum_gateway" | "polygon_pos" | "op_standard_bridge";
+  bridgeName: string;
+  rpc: string;
+  l1Contract?: string;
+};
+
+export const BRIDGE_READ_CHAINS: BridgeReadChain[] = [
+  {
+    chainId: "42161",
+    kind: "arbitrum_gateway",
+    bridgeName: "Arbitrum One canonical bridge",
+    rpc: "https://arbitrum-one-rpc.publicnode.com",
+    l1Contract: "0x72Ce9c846789fdB6fC1f34aC4AD25Dd9ef7031ef",
+  },
+  {
+    // Gateway router from https://docs.robinhood.com/chain/protocol-contracts
+    chainId: "4663",
+    kind: "arbitrum_gateway",
+    bridgeName: "Robinhood Chain canonical bridge (Arbitrum Orbit)",
+    rpc: "https://rpc.mainnet.chain.robinhood.com",
+    l1Contract: "0x6a2E3a1e16FC29f27Ce61429746D558d656975bB",
+  },
+  {
+    chainId: "137",
+    kind: "polygon_pos",
+    bridgeName: "Polygon PoS bridge",
+    rpc: "https://polygon-bor-rpc.publicnode.com",
+    l1Contract: "0xA0c68C638235ee32657e8f720a23ceC1bFc77C77",
+  },
+  ...(
+    [
+      ["10", "OP Mainnet", "https://optimism-rpc.publicnode.com"],
+      ["8453", "Base", "https://mainnet.base.org"],
+      ["130", "Unichain", "https://unichain-rpc.publicnode.com"],
+      ["57073", "Ink", "https://rpc-gel.inkonchain.com"],
+      ["480", "World Chain", "https://worldchain-mainnet.g.alchemy.com/public"],
+      ["1868", "Soneium", "https://rpc.soneium.org"],
+    ] as const
+  ).map(([chainId, name, rpc]) => ({
+    chainId,
+    kind: "op_standard_bridge" as const,
+    bridgeName: `${name} standard bridge`,
+    rpc,
+  })),
+];
+
+export const BRIDGE_READS_SOURCE = {
+  name: "Ekubo bridge contract reads",
+  url: "https://github.com/EkuboProtocol/default-tokens/blob/main/bridge-reads.json",
+} as const;
+
+export const USDT0_DEPLOYMENTS_SOURCE = {
+  name: "USDT0 Network deployments",
+  url: "https://docs.usdt0.to/api/deployments",
+} as const;
+
+// The Ethereum token each USDT0 Network OFT adapter locks, from
+// https://docs.usdt0.to/technical-documentation/developer. Products without
+// an entry here are not linked.
+export const USDT0_ETHEREUM_SOURCE_TOKENS: Record<string, string> = {
+  usdt0: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+  xaut0: "0x68749665FF8D2d112Fa859AA293F07A622782F38",
+};
+
+export const TETHER_ISSUER_REGISTRY = {
+  name: "Tether supported protocols",
+  url: "https://tether.to/en/supported-protocols/",
+} as const;
+
+// Block explorer hosts on Tether's page, for the chains this list carries.
+export const TETHER_EXPLORER_CHAIN_IDS: Record<string, string> = {
+  "etherscan.io": "1",
+  "snowtrace.io": "43114",
+  "bscscan.com": "56",
+  "celoscan.io": "42220",
+  "www.kaiascan.io": "8217",
+  "kaiascan.io": "8217",
+};
+
+// Ava Labs' Avalanche Bridge resources: Ethereum tokens by symbol, and the
+// Avalanche C-Chain token the bridge mints for each as `<symbol>.e`.
+export const AVALANCHE_BRIDGE_SOURCE = {
+  name: "Avalanche Bridge token list",
+  url: "https://raw.githubusercontent.com/ava-labs/avalanche-bridge-resources/main/token_list.json",
+  avalancheUrl:
+    "https://raw.githubusercontent.com/ava-labs/avalanche-bridge-resources/main/avalanche_contract_address.json",
+} as const;

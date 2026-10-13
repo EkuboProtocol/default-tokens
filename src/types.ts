@@ -11,12 +11,34 @@ export type Token = {
   sort_order: number;
 };
 
+// What a link between two tokens on different chains means. See the README.
+export const BRIDGE_RELATIONSHIP_KINDS = [
+  "canonical_bridge",
+  "native_issuer",
+  "interoperability",
+  "unknown",
+] as const;
+
+export type BridgeRelationshipKind = (typeof BRIDGE_RELATIONSHIP_KINDS)[number];
+
 export type BridgeRelationship = {
   source_chain_id: string;
   source_token_address: string;
   source_bridge_address: string | null;
   dest_chain_id: string;
   dest_token_address: string;
+  // Additive metadata. The database sync writes only the five fields above.
+  relationship?: BridgeRelationshipKind;
+  bridge_name?: string | null;
+  source_name?: string;
+  source_url?: string;
+  inferred_reverse?: boolean;
+};
+
+// How links read from a token list's extensions are labelled.
+export type BridgeLinkLabel = {
+  relationship: BridgeRelationshipKind;
+  bridgeName: string | null;
 };
 
 export type TokenProvenance = {
@@ -38,6 +60,10 @@ export type TokenSource = {
   visibilityPriority?: number;
   // Per-chain overrides of `visibilityPriority`, keyed by decimal chain ID.
   visibilityPriorityByChainId?: Readonly<Record<string, number>>;
+  // Read standard `extensions.bridgeInfo` entries, labelled this way.
+  bridgeInfo?: BridgeLinkLabel;
+  // Read `extensions.crossChainAddresses`, labelled by `bridgeInfo.protocol`.
+  crossChainAddresses?: boolean;
 };
 
 export type CoinGeckoTokenSource = TokenSource & {
@@ -72,9 +98,15 @@ export type StandardTokenListToken = {
   decimals: number;
   logoURI?: string;
   extensions?: {
-    bridgeInfo?: Record<string, TokenListBridgeInfo>;
+    // The standard shape maps a chain ID to a counterpart. The Monad list
+    // instead uses `{ protocol, bridgeAddress }` and names counterparts in
+    // `crossChainAddresses`.
+    bridgeInfo?: Record<string, TokenListBridgeInfo | string | undefined>;
+    crossChainAddresses?: Record<string, { address?: string } | undefined>;
     coinGeckoId?: string;
     coingeckoId?: string;
+    opTokenId?: string;
+    [bridgeAddressKey: string]: unknown;
   };
 };
 

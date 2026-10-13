@@ -272,9 +272,68 @@ export function validateBridgeRelationships(
       );
     }
 
+    if (
+      parseInteger(relationship.source_chain_id, "source chain ID") ===
+      parseInteger(relationship.dest_chain_id, "destination chain ID")
+    ) {
+      throw new Error(
+        `Bridge relationship links chain ${relationship.source_chain_id} to itself`,
+      );
+    }
+
     const key = bridgeRelationshipKey(relationship);
     if (seen.has(key)) throw new Error(`Duplicate bridge relationship: ${key}`);
     seen.add(key);
+  }
+}
+
+function assertListed(
+  keys: Set<string>,
+  chainId: string,
+  address: string,
+  role: string,
+): void {
+  if (!keys.has(tokenKey(chainId, address))) {
+    throw new Error(
+      `Bridge relationship ${role} token ${chainId}:${address} is not in the token list`,
+    );
+  }
+}
+
+/**
+ * The generated list holds every link to the standard consumers rely on:
+ * both tokens are rows in the list, and the link says what it is and where
+ * it came from.
+ */
+export function validateGeneratedBridgeRelationships(
+  relationships: BridgeRelationship[],
+  tokens: Token[],
+): void {
+  const keys = new Set(
+    tokens.map((token) => tokenKey(token.chain_id, token.token_address)),
+  );
+  for (const relationship of relationships) {
+    assertListed(
+      keys,
+      relationship.source_chain_id,
+      relationship.source_token_address,
+      "source",
+    );
+    assertListed(
+      keys,
+      relationship.dest_chain_id,
+      relationship.dest_token_address,
+      "destination",
+    );
+    if (
+      !relationship.relationship ||
+      !relationship.source_name ||
+      !relationship.source_url
+    ) {
+      throw new Error(
+        `Bridge relationship ${bridgeRelationshipKey(relationship)} has no provenance`,
+      );
+    }
   }
 }
 

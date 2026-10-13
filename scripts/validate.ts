@@ -11,6 +11,7 @@ import {
   assertHostedLogos,
   tokenKey,
   validateBridgeRelationships,
+  validateGeneratedBridgeRelationships,
   validateNativeCurrencies,
   validateTokenList,
 } from "../src/token-list";
@@ -46,6 +47,7 @@ validateNativeCurrencies(
 assertClassified(curated.tokens, jurisdictionPolicy, "curated-tokens.json");
 validateTokenList(tokens);
 validateBridgeRelationships(relationships);
+validateGeneratedBridgeRelationships(relationships, tokens);
 validateNativeCurrencies(
   tokens,
   NATIVE_CURRENCIES,
