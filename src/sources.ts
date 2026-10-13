@@ -419,3 +419,27 @@ export const USDT0_ETHEREUM_SOURCE_TOKENS: Record<string, string> = {
   usdt0: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
   xaut0: "0x68749665FF8D2d112Fa859AA293F07A622782F38",
 };
+
+export const TETHER_ISSUER_REGISTRY = {
+  name: "Tether supported protocols",
+  url: "https://tether.to/en/supported-protocols/",
+} as const;
+
+// Block explorer hosts on Tether's page, for the chains this list carries.
+export const TETHER_EXPLORER_CHAIN_IDS: Record<string, string> = {
+  "etherscan.io": "1",
+  "snowtrace.io": "43114",
+  "bscscan.com": "56",
+  "celoscan.io": "42220",
+  "www.kaiascan.io": "8217",
+  "kaiascan.io": "8217",
+};
+
+// Ava Labs' Avalanche Bridge resources: Ethereum tokens by symbol, and the
+// Avalanche C-Chain token the bridge mints for each as `<symbol>.e`.
+export const AVALANCHE_BRIDGE_SOURCE = {
+  name: "Avalanche Bridge token list",
+  url: "https://raw.githubusercontent.com/ava-labs/avalanche-bridge-resources/main/token_list.json",
+  avalancheUrl:
+    "https://raw.githubusercontent.com/ava-labs/avalanche-bridge-resources/main/avalanche_contract_address.json",
+} as const;

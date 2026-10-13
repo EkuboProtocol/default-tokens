@@ -9,6 +9,9 @@ import {
   parseCircleRegistry,
   restorePreviousLinks,
   superchainLinks,
+  avalancheBridgeLinks,
+  parseTetherRegistry,
+  tetherLinks,
   tokenKeysOf,
   usdt0Links,
   type ProvenancedLink,
@@ -374,6 +377,66 @@ test("USDT0 deployments link the locked Ethereum token as interoperability", () 
       "0xdAC17F958D2ee523a2206206994597C13D831ec7",
       "interoperability",
       "USDT0 (LayerZero OFT)",
+    ],
+  ]);
+});
+
+test("Tether's page becomes issuer links per product", () => {
+  const page = `<h3>Ethereum</h3><p>USD₮ contract address: <a href="#">https://etherscan.io/token/0xdac17f958d2ee523a2206206994597c13d831ec7</a></p>
+<h3>Avalanche</h3><p>USD₮ contract address: https://snowtrace.io/token/0x9702230a8ea53601f5cd2dc00fdbc13d4df4a8c7</p>
+<p>USD₮ contract address: https://unknown.example/token/0x1111111111111111111111111111111111111111</p>`;
+  const links = tetherLinks(parseTetherRegistry(page), source);
+  expect(
+    links.map((link) => [
+      link.source_chain_id,
+      link.dest_chain_id,
+      link.relationship,
+      link.bridge_name,
+    ]),
+  ).toEqual([
+    ["1", "43114", "native_issuer", "Tether (USD₮)"],
+    ["43114", "1", "native_issuer", "Tether (USD₮)"],
+  ]);
+  expect(() => parseTetherRegistry("<p>nothing</p>")).toThrow();
+});
+
+test("Avalanche Bridge links each Ethereum token to its .e token", () => {
+  const links = avalancheBridgeLinks(
+    {
+      LINK: {
+        nativeNetwork: "ethereum",
+        nativeContractAddress: "0x514910771AF9Ca656af840dff83E8264EcF986CA",
+      },
+      BTC: { nativeNetwork: "bitcoin" },
+    },
+    {
+      "LINK.e": "0x5947BB275c521040051D82396192181b413227A3",
+      "BTC.b": "0x152b9d0FdC40C096757F570A51E494bd4b943E50",
+    },
+    source,
+  );
+  expect(
+    links.map((link) => [
+      link.source_chain_id,
+      link.source_token_address,
+      link.dest_chain_id,
+      link.dest_token_address,
+      link.bridge_name,
+    ]),
+  ).toEqual([
+    [
+      "1",
+      "0x514910771AF9Ca656af840dff83E8264EcF986CA",
+      "43114",
+      "0x5947BB275c521040051D82396192181b413227A3",
+      "Avalanche Bridge",
+    ],
+    [
+      "43114",
+      "0x5947BB275c521040051D82396192181b413227A3",
+      "1",
+      "0x514910771AF9Ca656af840dff83E8264EcF986CA",
+      "Avalanche Bridge",
     ],
   ]);
 });

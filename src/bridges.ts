@@ -4,6 +4,7 @@ import {
   ETHEREUM_WETH,
   NATIVE_ETH_BRIDGE_SOURCE_NAME,
   SUPERCHAIN_TOKEN_LIST,
+  TETHER_EXPLORER_CHAIN_IDS,
   USDT0_ETHEREUM_SOURCE_TOKENS,
 } from "./sources";
 import {
@@ -407,6 +408,75 @@ export function issuerLinks(
   return pairwiseLinks(deployments, source, {
     relationship: "native_issuer",
     bridgeName: issuer,
+  });
+}
+
+const TETHER_ROW =
+  /(USD₮|XAU₮) contract address: https?:\/\/([a-z0-9.-]+)\/(?:token|address)\/(0x[0-9a-fA-F]{40})\b/g;
+
+// Tether's supported-protocols page names, per chain, the explorer page of
+// each token it issues there. Returns deployments by product.
+export function parseTetherRegistry(
+  page: string,
+): Map<string, Map<string, string>> {
+  const text = page
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;|&#160;/g, " ")
+    .replace(/\s+/g, " ");
+  const products = new Map<string, Map<string, string>>();
+  for (const match of text.matchAll(TETHER_ROW)) {
+    const chainId = TETHER_EXPLORER_CHAIN_IDS[match[2]!];
+    if (!chainId) continue;
+    const deployments = products.get(match[1]!) ?? new Map<string, string>();
+    if (!deployments.has(chainId)) deployments.set(chainId, match[3]!);
+    products.set(match[1]!, deployments);
+  }
+  if (!products.get("USD₮")?.has("1")) {
+    throw new Error("Tether registry has no Ethereum USD₮ row");
+  }
+  return products;
+}
+
+export function tetherLinks(
+  products: Map<string, Map<string, string>>,
+  source: LinkSource,
+): ProvenancedLink[] {
+  return [...products].flatMap(([product, deployments]) =>
+    issuerLinks(deployments, source, `Tether (${product})`),
+  );
+}
+
+export type AvalancheBridgeTokens = Record<
+  string,
+  { nativeNetwork?: string; nativeContractAddress?: string }
+>;
+
+// Each Ethereum token the Avalanche Bridge carries, linked to the `.e` token
+// it mints on Avalanche C-Chain.
+export function avalancheBridgeLinks(
+  tokens: AvalancheBridgeTokens,
+  avalancheAddresses: Record<string, string>,
+  source: LinkSource,
+): ProvenancedLink[] {
+  return Object.entries(tokens).flatMap(([symbol, token]) => {
+    const avalanche = avalancheAddresses[`${symbol}.e`];
+    const ethereum = token.nativeContractAddress;
+    if (token.nativeNetwork !== "ethereum" || !avalanche || !ethereum) {
+      return [];
+    }
+    return bothDirections(
+      link(
+        source,
+        { relationship: "canonical_bridge", bridgeName: "Avalanche Bridge" },
+        {
+          source_chain_id: "1",
+          source_token_address: ethereum,
+          dest_chain_id: "43114",
+          dest_token_address: avalanche,
+        },
+      ),
+      null,
+    );
   });
 }
 

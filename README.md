@@ -45,12 +45,14 @@ later source that names a different counterpart is logged as a conflict
 instead of overwriting it:
 
 1. Curated links in `curated-tokens.json`.
-2. Circle's published USDC and EURC contract tables (`native_issuer`).
+2. Circle's published USDC and EURC contract tables and Tether's supported
+   protocols page (`native_issuer`).
 3. Native ether on rollups that bridge it from Ethereum, and the OP Stack
    WETH predeploy that wraps it (`canonical_bridge`), from
    `CANONICAL_ETH_ROLLUPS` in `src/sources.ts`.
-4. StarkGate's bridged-token list, the Superchain token list, and Offchain
-   Labs' Arbitrum gateway lists (`canonical_bridge`).
+4. StarkGate's bridged-token list, the Superchain token list, Offchain Labs'
+   Arbitrum gateway lists, and Ava Labs' Avalanche Bridge resources
+   (`canonical_bridge`).
 5. Mappings read from the bridge contracts into `bridge-reads.json`
    (`canonical_bridge`): the Arbitrum One and Robinhood Chain gateways (the
    token's `l1Address()`, confirmed by the Ethereum gateway router), the

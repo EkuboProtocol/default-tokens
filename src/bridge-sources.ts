@@ -18,15 +18,21 @@ import {
   type StarknetBridgeToken,
   usdt0Links,
   type Usdt0Deployments,
+  avalancheBridgeLinks,
+  type AvalancheBridgeTokens,
+  parseTetherRegistry,
+  tetherLinks,
 } from "./bridges";
 import { fetchJson } from "./fetch-json";
 import {
   ARBITRUM_BRIDGE_TOKEN_LISTS,
+  AVALANCHE_BRIDGE_SOURCE,
   BRIDGE_READS_SOURCE,
   CIRCLE_ISSUER_REGISTRIES,
   CURATED_SOURCE,
   STARKNET_BRIDGE_TOKEN_LISTS,
   SUPERCHAIN_TOKEN_LIST,
+  TETHER_ISSUER_REGISTRY,
   USDT0_DEPLOYMENTS_SOURCE,
 } from "./sources";
 import type {
@@ -60,6 +66,20 @@ function loaders(): Loader[] {
           registry.issuer,
         ),
     })),
+    {
+      name: TETHER_ISSUER_REGISTRY.name,
+      load: async () =>
+        tetherLinks(
+          parseTetherRegistry(
+            await fetchJson<string>(
+              TETHER_ISSUER_REGISTRY.name,
+              TETHER_ISSUER_REGISTRY.url,
+              { parse: (response) => response.text() },
+            ),
+          ),
+          TETHER_ISSUER_REGISTRY,
+        ),
+    },
     {
       name: "Ekubo rollup native ether registry",
       load: async () => nativeEthLinks(),
@@ -95,6 +115,21 @@ function loaders(): Loader[] {
           source,
         ),
     })),
+    {
+      name: AVALANCHE_BRIDGE_SOURCE.name,
+      load: async () =>
+        avalancheBridgeLinks(
+          await fetchJson<AvalancheBridgeTokens>(
+            AVALANCHE_BRIDGE_SOURCE.name,
+            AVALANCHE_BRIDGE_SOURCE.url,
+          ),
+          await fetchJson<Record<string, string>>(
+            AVALANCHE_BRIDGE_SOURCE.name,
+            AVALANCHE_BRIDGE_SOURCE.avalancheUrl,
+          ),
+          AVALANCHE_BRIDGE_SOURCE,
+        ),
+    },
     {
       name: BRIDGE_READS_SOURCE.name,
       load: async () => {
