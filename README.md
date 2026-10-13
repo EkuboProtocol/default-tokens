@@ -266,7 +266,7 @@ applied before this repository's database sync is deployed. The sync writes
 both supply columns and deliberately fails instead of silently dropping the new
 field when the target schema is stale.
 
-Likewise, indexer migration `00135_erc20_bridge_link_provenance`, which adds the
+Likewise, indexer migration `00136_erc20_bridge_link_provenance`, which adds the
 link metadata columns to `erc20_tokens_bridge_relationships`, must be applied
 before the sync that writes them is deployed.
 
