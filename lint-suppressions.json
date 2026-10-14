@@ -1,0 +1,83 @@
+{
+  "scripts/jurisdiction-policy.ts": {
+    "typescript(no-unnecessary-type-assertion)": {
+      "count": 2
+    }
+  },
+  "scripts/read-bridges.ts": {
+    "typescript(no-unnecessary-type-assertion)": {
+      "count": 1
+    }
+  },
+  "scripts/sync-database.ts": {
+    "typescript(no-unnecessary-type-assertion)": {
+      "count": 3
+    }
+  },
+  "scripts/update-tokens.ts": {
+    "eslint(complexity)": {
+      "count": 1
+    }
+  },
+  "src/bridges.test.ts": {
+    "typescript(no-unnecessary-type-assertion)": {
+      "count": 2
+    }
+  },
+  "src/bridges.ts": {
+    "typescript(no-unnecessary-type-assertion)": {
+      "count": 11
+    }
+  },
+  "src/cloudflare-images.test.ts": {
+    "typescript(no-base-to-string)": {
+      "count": 16
+    },
+    "typescript(no-unnecessary-type-assertion)": {
+      "count": 1
+    }
+  },
+  "src/cloudflare-images.ts": {
+    "eslint(complexity)": {
+      "count": 3
+    },
+    "typescript(no-unnecessary-type-assertion)": {
+      "count": 3
+    }
+  },
+  "src/coingecko-supply.test.ts": {
+    "typescript(no-unnecessary-type-assertion)": {
+      "count": 1
+    }
+  },
+  "src/coingecko-supply.ts": {
+    "eslint(complexity)": {
+      "count": 3
+    }
+  },
+  "src/fetch-json.test.ts": {
+    "typescript(await-thenable)": {
+      "count": 1
+    }
+  },
+  "src/fetch-json.ts": {
+    "eslint(complexity)": {
+      "count": 1
+    }
+  },
+  "src/jurisdiction-policy.test.ts": {
+    "typescript(no-unnecessary-type-assertion)": {
+      "count": 3
+    }
+  },
+  "src/schema.test.ts": {
+    "typescript(no-unnecessary-type-assertion)": {
+      "count": 2
+    }
+  },
+  "src/token-list.ts": {
+    "eslint(complexity)": {
+      "count": 1
+    }
+  }
+}

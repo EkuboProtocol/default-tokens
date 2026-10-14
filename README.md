@@ -286,8 +286,10 @@ Install and validate:
 
 ```sh
 bun install
-bun test
+bun run format:check
+bun run lint
 bun run typecheck
+bun test
 bun run validate
 ```
 

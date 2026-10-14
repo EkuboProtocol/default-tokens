@@ -1,0 +1,16 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "trailingComma": "all",
+  "printWidth": 80,
+  "sortPackageJson": false,
+  "ignorePatterns": [
+    "assets/**",
+    "jurisdiction-policy/**",
+    "tokens.json",
+    "coingecko-markets.json",
+    "curated-tokens.json",
+    "image-sources.json",
+    "token-sources.json",
+    "token-list.schema.json"
+  ]
+}
