@@ -35,11 +35,7 @@ import {
   TETHER_ISSUER_REGISTRY,
   USDT0_DEPLOYMENTS_SOURCE,
 } from "./sources";
-import type {
-  BridgeRelationship,
-  StandardTokenList,
-  Token,
-} from "./types";
+import type { BridgeRelationship, StandardTokenList, Token } from "./types";
 
 export type CollectedLinks = {
   // In precedence order: earlier batches win a contested key.

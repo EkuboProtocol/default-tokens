@@ -39,7 +39,17 @@ const ISSUER_CONTRACTS_PAGE = "https://docs.robinhood.com/chain/contracts";
 // EKU-853 (CLO, 2026-10-06). Both sides; no disposal exemption.
 const OFFERING_EXCLUSIONS = ["AE", "CA", "CH", "GB", "SG", "US"];
 const ISSUER_PROHIBITED_INVESTOR = [
-  "BY", "CU", "IR", "KP", "MM", "RU", "SD", "SS", "SY", "UA", "VE",
+  "BY",
+  "CU",
+  "IR",
+  "KP",
+  "MM",
+  "RU",
+  "SD",
+  "SS",
+  "SY",
+  "UA",
+  "VE",
 ];
 
 // Exact addresses verified as not RHJ products (contract §2.2). Adding one
@@ -49,14 +59,22 @@ const NON_CLASS: PolicyEntry[] = [
     address: "0x0000000000000000000000000000000000000000",
     symbol: "ETH",
     provenance: [
-      { source: "native", ref: "chain 4663 native currency", observed_at: "2026-10-06" },
+      {
+        source: "native",
+        ref: "chain 4663 native currency",
+        observed_at: "2026-10-06",
+      },
     ],
   },
   {
     address: "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
     symbol: "WETH",
     provenance: [
-      { source: "issuer-token-contracts-page", ref: ISSUER_CONTRACTS_PAGE, observed_at: "2026-10-06" },
+      {
+        source: "issuer-token-contracts-page",
+        ref: ISSUER_CONTRACTS_PAGE,
+        observed_at: "2026-10-06",
+      },
       {
         source: "onchain-verification",
         ref: "rpc.mainnet.chain.robinhood.com block 81631410; artifacts/eku-856/weth-verification.txt",
@@ -68,14 +86,22 @@ const NON_CLASS: PolicyEntry[] = [
     address: "0x570c5aa79c798e7a418412cc8399ae5bcce570c5",
     symbol: "STONX",
     provenance: [
-      { source: "ekubo-issued", ref: "EKU-853 CLO decision 4f77cad3", observed_at: "2026-10-06" },
+      {
+        source: "ekubo-issued",
+        ref: "EKU-853 CLO decision 4f77cad3",
+        observed_at: "2026-10-06",
+      },
     ],
   },
   {
     address: "0x5fc5360d0400a0fd4f2af552add042d716f1d168",
     symbol: "USDG",
     provenance: [
-      { source: "issuer-token-contracts-page", ref: ISSUER_CONTRACTS_PAGE, observed_at: "2026-10-06" },
+      {
+        source: "issuer-token-contracts-page",
+        ref: ISSUER_CONTRACTS_PAGE,
+        observed_at: "2026-10-06",
+      },
     ],
   },
 ];
@@ -88,7 +114,10 @@ interface IssuerRegistry {
 }
 
 interface PolicyFile {
-  chains: Record<string, { non_class: PolicyEntry[]; rhj_stock_token: PolicyEntry[] }>;
+  chains: Record<
+    string,
+    { non_class: PolicyEntry[]; rhj_stock_token: PolicyEntry[] }
+  >;
 }
 
 function args(): Options {
@@ -105,7 +134,8 @@ function args(): Options {
 }
 
 const lower = (address: string): string => {
-  if (!/^0x[0-9a-fA-F]{40}$/.test(address)) throw new Error(`bad address ${address}`);
+  if (!/^0x[0-9a-fA-F]{40}$/.test(address))
+    throw new Error(`bad address ${address}`);
   return address.toLowerCase();
 };
 
@@ -119,7 +149,8 @@ function parseIssuer(bytes: Buffer): IssuerRegistry {
       deployments?: { chainId: string | number; contractAddress: string }[];
     }[];
   };
-  if (!Array.isArray(parsed.assets)) throw new Error("issuer registry: no assets array");
+  if (!Array.isArray(parsed.assets))
+    throw new Error("issuer registry: no assets array");
   const deployments = parsed.assets.flatMap((asset) =>
     (asset.deployments ?? []).map((deployment) => ({
       chainId: String(deployment.chainId),
@@ -135,7 +166,10 @@ function parseIssuer(bytes: Buffer): IssuerRegistry {
     ),
     otherChains: deployments
       .filter((deployment) => deployment.chainId !== CHAIN_ID)
-      .map((deployment) => `${deployment.symbol} ${deployment.chainId}:${deployment.address}`),
+      .map(
+        (deployment) =>
+          `${deployment.symbol} ${deployment.chainId}:${deployment.address}`,
+      ),
   };
 }
 
@@ -156,17 +190,27 @@ function existingPolicy(): PolicyFile | undefined {
 async function check(options: Options): Promise<void> {
   const chain = existingPolicy()?.chains[CHAIN_ID];
   if (!chain) throw new Error(`${POLICY_PATH} has no chain ${CHAIN_ID}`);
-  const classified = new Set(chain.rhj_stock_token.map((entry) => entry.address));
+  const classified = new Set(
+    chain.rhj_stock_token.map((entry) => entry.address),
+  );
   const nonClass = new Set(chain.non_class.map((entry) => entry.address));
   const issuer = parseIssuer(await readIssuer(options.issuer));
   const problems = [
     ...[...issuer.assets]
       .filter(([address]) => !classified.has(address) && !nonClass.has(address))
-      .map(([address, symbol]) => `unclassified issuer listing: ${symbol} ${address}`),
+      .map(
+        ([address, symbol]) =>
+          `unclassified issuer listing: ${symbol} ${address}`,
+      ),
     ...[...issuer.assets.keys()]
       .filter((address) => nonClass.has(address))
-      .map((address) => `issuer lists an address the policy places in non_class: ${address}`),
-    ...issuer.otherChains.map((entry) => `issuer deployment outside chain ${CHAIN_ID}: ${entry}`),
+      .map(
+        (address) =>
+          `issuer lists an address the policy places in non_class: ${address}`,
+      ),
+    ...issuer.otherChains.map(
+      (entry) => `issuer deployment outside chain ${CHAIN_ID}: ${entry}`,
+    ),
   ];
   for (const problem of problems) console.log(problem);
   console.log(
@@ -184,7 +228,9 @@ function requireString(options: Options, name: string): string {
 // Lines are "<address> [symbol]"; the symbol is used only when no other source
 // names the asset. The v1 list is a one-time seed: once it is in the policy
 // file, the monotone carry-over keeps it.
-function readLegacy(path: string | true | undefined): [string, string | undefined][] {
+function readLegacy(
+  path: string | true | undefined,
+): [string, string | undefined][] {
   if (typeof path !== "string") return [];
   return readFileSync(path, "utf8")
     .split("\n")
@@ -214,10 +260,13 @@ class ClassBuilder {
   }
 
   observe({ provenance, entries }: Observation): void {
-    for (const [address, symbol] of entries) this.add(address, symbol, provenance);
+    for (const [address, symbol] of entries)
+      this.add(address, symbol, provenance);
   }
 
-  build(preferredSymbol: (address: string) => string | undefined): PolicyEntry[] {
+  build(
+    preferredSymbol: (address: string) => string | undefined,
+  ): PolicyEntry[] {
     return [...this.members]
       .sort(([a], [b]) => (a < b ? -1 : 1))
       .map(([address, entry]) => {
@@ -235,14 +284,23 @@ class ClassBuilder {
 
   // The first observation of a source is kept, so regenerating with newer
   // inputs does not rewrite when an address entered the class.
-  private add(address: string, symbol: string | undefined, provenance: Provenance): void {
+  private add(
+    address: string,
+    symbol: string | undefined,
+    provenance: Provenance,
+  ): void {
     if (this.nonClass.has(address)) {
       if (provenance.source === "issuer-registry") {
-        throw new Error(`issuer registry lists ${address}, which is configured as non_class`);
+        throw new Error(
+          `issuer registry lists ${address}, which is configured as non_class`,
+        );
       }
       return;
     }
-    const entry = this.members.get(address) ?? { symbol, provenance: new Map() };
+    const entry = this.members.get(address) ?? {
+      symbol,
+      provenance: new Map(),
+    };
     entry.symbol ??= symbol;
     if (!entry.provenance.has(provenance.source)) {
       entry.provenance.set(provenance.source, provenance);
@@ -251,7 +309,10 @@ class ClassBuilder {
   }
 }
 
-function readCurated(path: string): { bytes: Buffer; tokens: Map<string, string> } {
+function readCurated(path: string): {
+  bytes: Buffer;
+  tokens: Map<string, string>;
+} {
   const bytes = readFileSync(path);
   const document = JSON.parse(bytes.toString("utf8")) as {
     tokens: { chain_id: string; token_address: string; token_symbol: string }[];
@@ -259,7 +320,9 @@ function readCurated(path: string): { bytes: Buffer; tokens: Map<string, string>
   const tokens = new Map(
     document.tokens
       .filter((token) => String(token.chain_id) === CHAIN_ID)
-      .map((token) => [lower(token.token_address), token.token_symbol] as const),
+      .map(
+        (token) => [lower(token.token_address), token.token_symbol] as const,
+      ),
   );
   return { bytes, tokens };
 }
@@ -277,7 +340,10 @@ async function generate(options: Options): Promise<void> {
   builder.observe({
     provenance: {
       source: "v1-list",
-      ref: typeof options["legacy-ref"] === "string" ? options["legacy-ref"] : "ekubo-token-jurisdictions-v1",
+      ref:
+        typeof options["legacy-ref"] === "string"
+          ? options["legacy-ref"]
+          : "ekubo-token-jurisdictions-v1",
       observed_at: observedAt,
     },
     entries: readLegacy(options.legacy),
@@ -325,7 +391,9 @@ async function generate(options: Options): Promise<void> {
   };
   const text = `${JSON.stringify(policy, null, 2)}\n`;
   writeFileSync(POLICY_PATH, text);
-  console.log(`wrote ${POLICY_PATH}: ${members.length} class members, sha256 ${sha256(text)}`);
+  console.log(
+    `wrote ${POLICY_PATH}: ${members.length} class members, sha256 ${sha256(text)}`,
+  );
 }
 
 const options = args();

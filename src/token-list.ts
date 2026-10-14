@@ -401,7 +401,9 @@ export function backfillPreviousTokens(
     );
     if (!address) continue;
 
-    const existing = accumulator.tokens.get(tokenKey(previous.chain_id, address));
+    const existing = accumulator.tokens.get(
+      tokenKey(previous.chain_id, address),
+    );
     if (!existing) {
       if (accumulator.add(previous, sourceName, sourceUrl)) {
         stats.tokensRestored++;
@@ -426,7 +428,8 @@ export function restorePreviousSupplies(
       previous.token_address,
       previous.chain_id,
     );
-    if (address) previousByKey.set(tokenKey(previous.chain_id, address), previous);
+    if (address)
+      previousByKey.set(tokenKey(previous.chain_id, address), previous);
   }
 
   let restored = 0;

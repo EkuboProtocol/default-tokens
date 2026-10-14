@@ -35,7 +35,9 @@ export type BridgeConflict = {
 
 // A link that has every provenance field set.
 export type ProvenancedLink = BridgeRelationship &
-  Required<Pick<BridgeRelationship, "relationship" | "source_name" | "source_url">>;
+  Required<
+    Pick<BridgeRelationship, "relationship" | "source_name" | "source_url">
+  >;
 
 function link(
   source: LinkSource,
@@ -58,11 +60,7 @@ function link(
   };
 }
 
-function sameToken(
-  chainId: string,
-  left: string,
-  right: string,
-): boolean {
+function sameToken(chainId: string, left: string, right: string): boolean {
   return tokenKey(chainId, left) === tokenKey(chainId, right);
 }
 
@@ -119,7 +117,10 @@ export class BridgeCollector {
     if (!this.tokenKeys) return true;
     return (
       this.tokenKeys.has(
-        tokenKey(relationship.source_chain_id, relationship.source_token_address),
+        tokenKey(
+          relationship.source_chain_id,
+          relationship.source_token_address,
+        ),
       ) &&
       this.tokenKeys.has(
         tokenKey(relationship.dest_chain_id, relationship.dest_token_address),
@@ -200,7 +201,9 @@ const INTEROPERABILITY_PROTOCOLS = [
 // The Monad list names the protocol a token moves over in
 // `bridgeInfo.protocol`. Every protocol it uses is an interoperability
 // protocol; a token without one gives no hint, so its links are `unknown`.
-export function crossChainLabel(token: StandardTokenListToken): BridgeLinkLabel {
+export function crossChainLabel(
+  token: StandardTokenListToken,
+): BridgeLinkLabel {
   const protocol = token.extensions?.bridgeInfo?.protocol;
   if (typeof protocol !== "string" || !protocol.trim()) {
     return { relationship: "unknown", bridgeName: null };
@@ -262,7 +265,9 @@ function superchainBridgeFor(
   for (const prefix of Object.keys(SUPERCHAIN_TOKEN_LIST.chainIdsByPrefix)) {
     const address = token.extensions?.[`${prefix}BridgeAddress`];
     if (typeof address === "string" && ADDRESS_REGEX.test(address)) {
-      if (SUPERCHAIN_TOKEN_LIST.chainIdsByPrefix[prefix] === String(token.chainId)) {
+      if (
+        SUPERCHAIN_TOKEN_LIST.chainIdsByPrefix[prefix] === String(token.chainId)
+      ) {
         return { prefix, address };
       }
     }
@@ -539,7 +544,10 @@ export function usdt0Links(
 export function nativeEthLinks(): ProvenancedLink[] {
   const links: ProvenancedLink[] = [];
   for (const rollup of CANONICAL_ETH_ROLLUPS) {
-    const source = { name: NATIVE_ETH_BRIDGE_SOURCE_NAME, url: rollup.evidence };
+    const source = {
+      name: NATIVE_ETH_BRIDGE_SOURCE_NAME,
+      url: rollup.evidence,
+    };
     const label: BridgeLinkLabel = {
       relationship: "canonical_bridge",
       bridgeName: rollup.bridge,
@@ -588,7 +596,8 @@ export function bridgeReadLinks(
       { relationship: "canonical_bridge", bridgeName: read.bridge_name },
       {
         source_chain_id: "1",
-        source_token_address: BigInt(l1) === NATIVE_ETH_PLACEHOLDER ? "0x0" : l1,
+        source_token_address:
+          BigInt(l1) === NATIVE_ETH_PLACEHOLDER ? "0x0" : l1,
         dest_chain_id: read.chain_id,
         dest_token_address: read.token_address,
       },
@@ -774,7 +783,10 @@ export function finalizeBridgeLinks(collector: BridgeCollector): {
   };
 }
 
-function compareLinks(left: BridgeRelationship, right: BridgeRelationship): number {
+function compareLinks(
+  left: BridgeRelationship,
+  right: BridgeRelationship,
+): number {
   const leftKey = bridgeRelationshipKey(left).split(":").map(BigInt);
   const rightKey = bridgeRelationshipKey(right).split(":").map(BigInt);
   for (let index = 0; index < leftKey.length; index += 1) {

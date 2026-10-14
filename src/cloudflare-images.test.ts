@@ -111,9 +111,7 @@ test("uses the deterministic delivery URL without uploading an existing image", 
   });
 
   const hosted = await images.host("https://example.com/token.png");
-  expect(hosted).toStartWith(
-    "https://imagedelivery.net/delivery/token-logos/",
-  );
+  expect(hosted).toStartWith("https://imagedelivery.net/delivery/token-logos/");
   expect(hosted).toEndWith("/logo");
   expect(apiRequests).toBe(0);
 });
@@ -159,9 +157,7 @@ test("downloads and uploads image bytes when Cloudflare cannot fetch the source"
         success: true,
         result: {
           id: "token-logos/id",
-          variants: [
-            "https://imagedelivery.net/delivery/token-logos/id/logo",
-          ],
+          variants: ["https://imagedelivery.net/delivery/token-logos/id/logo"],
         },
       });
     }) as typeof fetch,
@@ -294,8 +290,7 @@ test("honors Retry-After and retries a rate-limited upload", async () => {
 });
 
 test("fails a logo fast instead of honoring a long Retry-After", async () => {
-  const hosted =
-    "https://imagedelivery.net/delivery/token-logos/existing/logo";
+  const hosted = "https://imagedelivery.net/delivery/token-logos/existing/logo";
   const sleeps: number[] = [];
   let uploads = 0;
   const images = new CloudflareImages({
@@ -465,9 +460,7 @@ test("uses an alternate token-list logo when the curated source is blocked", asy
     tokens,
     previousTokens: [],
     imageSourceCache: {},
-    logoCandidates: new Map([
-      ["1:1", [primaryUrl, fallbackUrl]],
-    ]),
+    logoCandidates: new Map([["1:1", [primaryUrl, fallbackUrl]]]),
     cloudflare: images,
   });
 
@@ -510,18 +503,13 @@ test("reconciles a shared failed source after another token finds a fallback", a
       });
     }) as typeof fetch,
   });
-  const tokens = [
-    token("0x1", primaryUrl),
-    token("0x2", primaryUrl),
-  ];
+  const tokens = [token("0x1", primaryUrl), token("0x2", primaryUrl)];
 
   await hostTokenLogos({
     tokens,
     previousTokens: [],
     imageSourceCache: {},
-    logoCandidates: new Map([
-      ["1:2", [primaryUrl, fallbackUrl]],
-    ]),
+    logoCandidates: new Map([["1:2", [primaryUrl, fallbackUrl]]]),
     cloudflare: images,
   });
 
@@ -532,8 +520,7 @@ test("reconciles a shared failed source after another token finds a fallback", a
 });
 
 test("retains a previous hosted logo when a source temporarily removes it", async () => {
-  const hosted =
-    "https://imagedelivery.net/delivery/token-logos/existing/logo";
+  const hosted = "https://imagedelivery.net/delivery/token-logos/existing/logo";
   const current = token("0x1", hosted);
   current.logo_url = null;
 
@@ -553,8 +540,7 @@ test("retains a previous hosted logo when a source temporarily removes it", asyn
 });
 
 test("retains the previous logo through an exhausted Cloudflare outage", async () => {
-  const hosted =
-    "https://imagedelivery.net/delivery/token-logos/existing/logo";
+  const hosted = "https://imagedelivery.net/delivery/token-logos/existing/logo";
   const makeImages = () =>
     new CloudflareImages({
       accountId: "account",
@@ -596,8 +582,7 @@ test("retains the previous logo through an exhausted Cloudflare outage", async (
 });
 
 test("retains the previous logo on a malformed exhausted rate-limit response", async () => {
-  const hosted =
-    "https://imagedelivery.net/delivery/token-logos/existing/logo";
+  const hosted = "https://imagedelivery.net/delivery/token-logos/existing/logo";
   const images = new CloudflareImages({
     accountId: "account",
     apiToken: "token",
@@ -626,8 +611,7 @@ test("retains the previous logo on a malformed exhausted rate-limit response", a
 });
 
 test("retains the previous logo through a Cloudflare network outage", async () => {
-  const hosted =
-    "https://imagedelivery.net/delivery/token-logos/existing/logo";
+  const hosted = "https://imagedelivery.net/delivery/token-logos/existing/logo";
   const images = new CloudflareImages({
     accountId: "account",
     apiToken: "token",
@@ -657,8 +641,7 @@ test("retains the previous logo through a Cloudflare network outage", async () =
 
 test("retains the previous logo when the origin gateway answers 429", async () => {
   const sourceUrl = "ipfs://QmRetiredGatewayCid/logo.png";
-  const hosted =
-    "https://imagedelivery.net/delivery/token-logos/existing/logo";
+  const hosted = "https://imagedelivery.net/delivery/token-logos/existing/logo";
   const images = new CloudflareImages({
     accountId: "account",
     apiToken: "token",

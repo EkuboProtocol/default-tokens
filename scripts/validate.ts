@@ -15,10 +15,7 @@ import {
   validateNativeCurrencies,
   validateTokenList,
 } from "../src/token-list";
-import type {
-  TokenListDocument,
-  TokenProvenance,
-} from "../src/types";
+import type { TokenListDocument, TokenProvenance } from "../src/types";
 
 const root = resolve(import.meta.dir, "..");
 
@@ -48,12 +45,7 @@ assertClassified(curated.tokens, jurisdictionPolicy, "curated-tokens.json");
 validateTokenList(tokens);
 validateBridgeRelationships(relationships);
 validateGeneratedBridgeRelationships(relationships, tokens);
-validateNativeCurrencies(
-  tokens,
-  NATIVE_CURRENCIES,
-  "generated",
-  "tokens.json",
-);
+validateNativeCurrencies(tokens, NATIVE_CURRENCIES, "generated", "tokens.json");
 assertHostedLogos(
   tokens,
   process.env.CLOUDFLARE_IMAGES_DELIVERY_HASH,

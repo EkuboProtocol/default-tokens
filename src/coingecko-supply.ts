@@ -38,9 +38,7 @@ function resolveSupplyPlatforms(
   const assetPlatformsById = new Map(
     assetPlatforms
       .filter(
-        (
-          platform,
-        ): platform is CoinGeckoAssetPlatform & { id: string } =>
+        (platform): platform is CoinGeckoAssetPlatform & { id: string } =>
           typeof platform.id === "string",
       )
       .map((platform) => [platform.id, platform]),
@@ -76,8 +74,7 @@ function resolveSupplyPlatforms(
 
     resolved.set(source.assetPlatformId, {
       ...source,
-      ...(typeof platform.native_coin_id === "string" &&
-      platform.native_coin_id
+      ...(typeof platform.native_coin_id === "string" && platform.native_coin_id
         ? { nativeCoinId: platform.native_coin_id }
         : {}),
     });

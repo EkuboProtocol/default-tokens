@@ -50,9 +50,7 @@ test("lists one reviewed native currency per chain", () => {
 });
 
 test("names the native currency of every chain a list is fetched for", () => {
-  const listed = new Set(
-    NATIVE_CURRENCIES.map((currency) => currency.chainId),
-  );
+  const listed = new Set(NATIVE_CURRENCIES.map((currency) => currency.chainId));
   for (const chainId of WALLET_DEFAULT_NETWORK_CHAIN_IDS) {
     expect(listed.has(chainId)).toBe(true);
   }

@@ -1,6 +1,7 @@
 # AGENTS.md
 
 ## Checks
+
 - Run `bun run format:check` (`bun run format` fixes it), `bun run lint`,
   `bun run typecheck` and `bun test` before considering a change done. CI runs
   them, and `bun run validate`, on every push and pull request.
@@ -13,6 +14,7 @@
   formatted.
 
 ## Complexity and lint policy
+
 - Lint is oxlint (`.oxlintrc.json`), run through `scripts/lint.ts`. It enforces
   `complexity`, capped at 10 per function, and the type-aware rules from
   typescript-eslint's recommended-type-checked set, which oxlint runs through
@@ -20,7 +22,7 @@
 - Nine functions are over the complexity limit today, and some files have
   violations of the type-aware rules. They are recorded in
   `lint-suppressions.json`. That file is a ratchet, not an amnesty: it stores a
-  per-file, per-rule count, so a *new* violation fails the build even in a file
+  per-file, per-rule count, so a _new_ violation fails the build even in a file
   that already has entries. Do not raise a count to make the build pass; split
   the function or fix the code.
 - If you fix a recorded violation, the lint run will say the suppression is
