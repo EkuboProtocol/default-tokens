@@ -57013,12 +57013,6 @@
   },
   {
     "chain_id": "1",
-    "token_address": "0x2d8b65306a6c23da6342cb94d4251fb4302a624f",
-    "source_name": "CoinGecko All Token List",
-    "source_url": "https://tokens.coingecko.com/uniswap/all.json"
-  },
-  {
-    "chain_id": "1",
     "token_address": "0xf197ffc28c23e0309b5559e7a166f2c6164c80aa",
     "source_name": "CoinGecko All Token List",
     "source_url": "https://tokens.coingecko.com/uniswap/all.json"
