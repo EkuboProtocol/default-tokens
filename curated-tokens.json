@@ -392,6 +392,46 @@
       "sort_order": 4
     },
     {
+      "chain_id": "1",
+      "token_address": "0xe343167631d89B6Ffc58B88d6b7fB0228795491D",
+      "token_name": "Global Dollar",
+      "token_symbol": "USDG",
+      "token_decimals": 6,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/c5870aadf90d614c75754ec1377798fe5dc11caf98e35023eecdada5177a882c/logo",
+      "visibility_priority": 1,
+      "sort_order": 4
+    },
+    {
+      "chain_id": "130",
+      "token_address": "0x2A22868610610199D43fE93A16661473A9f86f1E",
+      "token_name": "Global Dollar",
+      "token_symbol": "USDG",
+      "token_decimals": 6,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/c5870aadf90d614c75754ec1377798fe5dc11caf98e35023eecdada5177a882c/logo",
+      "visibility_priority": 0,
+      "sort_order": 4
+    },
+    {
+      "chain_id": "196",
+      "token_address": "0x4ae46a509F6b1D9056937BA4500cb143933D2dc8",
+      "token_name": "Global Dollar",
+      "token_symbol": "USDG",
+      "token_decimals": 6,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/628653f20f9ad657fe86318ef1113936575fbb3397b7040aa183aae739b68dd9/logo",
+      "visibility_priority": 1,
+      "sort_order": 4
+    },
+    {
+      "chain_id": "57073",
+      "token_address": "0xe343167631d89B6Ffc58B88d6b7fB0228795491D",
+      "token_name": "Global Dollar",
+      "token_symbol": "USDG",
+      "token_decimals": 6,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/628653f20f9ad657fe86318ef1113936575fbb3397b7040aa183aae739b68dd9/logo",
+      "visibility_priority": 1,
+      "sort_order": 4
+    },
+    {
       "chain_id": "4663",
       "token_address": "0xd0601CE157Db5bdC3162BbaC2a2C8aF5320D9EEC",
       "token_name": "NVIDIA",
