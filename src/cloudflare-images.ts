@@ -162,9 +162,8 @@ export async function createCloudflareImages(
         },
         signal: AbortSignal.timeout(30_000),
       });
-      const body = await parseCloudflareResponse<CloudflareBatchToken>(
-        response,
-      );
+      const body =
+        await parseCloudflareResponse<CloudflareBatchToken>(response);
       if (
         response.ok &&
         body.success &&
@@ -180,10 +179,7 @@ export async function createCloudflareImages(
       }
 
       failure = `${response.status}: ${responseError(body)}`;
-      if (
-        response.status !== 429 &&
-        response.status < 500
-      ) {
+      if (response.status !== 429 && response.status < 500) {
         break;
       }
     } catch (error) {
@@ -275,14 +271,10 @@ export class CloudflareImages {
 
     await previous;
     try {
-      const waitUntil = Math.max(
-        this.nextApiRequestAt,
-        this.apiBlockedUntil,
-      );
+      const waitUntil = Math.max(this.nextApiRequestAt, this.apiBlockedUntil);
       const delay = waitUntil - this.config.now();
       if (delay > 0) await this.config.sleep(delay);
-      this.nextApiRequestAt =
-        this.config.now() + this.config.requestIntervalMs;
+      this.nextApiRequestAt = this.config.now() + this.config.requestIntervalMs;
     } finally {
       release();
     }
@@ -454,7 +446,9 @@ export class CloudflareImages {
 
     const declaredLength = Number(response.headers.get("content-length"));
     if (Number.isFinite(declaredLength) && declaredLength > 10_000_000) {
-      throw new Error(`Source image exceeds the 10 MB upload limit: ${sourceUrl}`);
+      throw new Error(
+        `Source image exceeds the 10 MB upload limit: ${sourceUrl}`,
+      );
     }
     const contentType =
       response.headers.get("content-type")?.split(";")[0]?.trim() ||
@@ -465,7 +459,9 @@ export class CloudflareImages {
 
     const bytes = await response.arrayBuffer();
     if (bytes.byteLength > 10_000_000) {
-      throw new Error(`Source image exceeds the 10 MB upload limit: ${sourceUrl}`);
+      throw new Error(
+        `Source image exceeds the 10 MB upload limit: ${sourceUrl}`,
+      );
     }
     return new File([bytes], sourceFilename(sourceUrl), { type: contentType });
   }

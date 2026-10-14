@@ -6,11 +6,7 @@ import {
 } from "./coingecko-supply";
 import type { Token } from "./types";
 
-function token(
-  chainId: string,
-  address: string,
-  decimals = 6,
-): Token {
+function token(chainId: string, address: string, decimals = 6): Token {
   return {
     chain_id: chainId,
     token_address: address,

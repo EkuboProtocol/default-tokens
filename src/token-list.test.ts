@@ -11,10 +11,7 @@ import {
 describe("token normalization", () => {
   test("normalizes EVM native-token aliases", () => {
     expect(
-      normalizeTokenAddress(
-        "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
-        "1",
-      ),
+      normalizeTokenAddress("0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE", "1"),
     ).toBe("0x0");
     expect(normalizeTokenAddress("0x455448", "8453")).toBe("0x0");
   });
@@ -95,12 +92,7 @@ test("retains CoinGecko IDs from lower-precedence duplicate sources", () => {
   };
 
   accumulator.add(token, "curated", "curated-tokens.json");
-  accumulator.add(
-    token,
-    "remote",
-    "https://example.com/list.json",
-    "token-id",
-  );
+  accumulator.add(token, "remote", "https://example.com/list.json", "token-id");
 
   expect([...accumulator.coinGeckoIds.get("1:1")!]).toEqual(["token-id"]);
 });
@@ -152,7 +144,7 @@ test("accepts raw supplies and rejects negative circulating supply", () => {
     sort_order: 0,
   };
   expect(() => validateToken(token)).not.toThrow();
-  expect(() =>
-    validateToken({ ...token, circulating_supply: "-1" }),
-  ).toThrow("Circulating supply cannot be negative");
+  expect(() => validateToken({ ...token, circulating_supply: "-1" })).toThrow(
+    "Circulating supply cannot be negative",
+  );
 });

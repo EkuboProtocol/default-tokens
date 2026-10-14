@@ -93,10 +93,7 @@ async function readJson<T>(path: string, fallback?: T): Promise<T> {
 }
 
 async function writeJson(path: string, value: unknown): Promise<void> {
-  await writeFile(
-    resolve(root, path),
-    `${JSON.stringify(value, null, 2)}\n`,
-  );
+  await writeFile(resolve(root, path), `${JSON.stringify(value, null, 2)}\n`);
 }
 
 async function fetchCoinGeckoMarkets(
@@ -129,8 +126,7 @@ async function fetchCoinGeckoMarkets(
     }
     const requestedIds = new Set(batch);
     const unexpectedMarket = response.find(
-      (market) =>
-        typeof market.id === "string" && !requestedIds.has(market.id),
+      (market) => typeof market.id === "string" && !requestedIds.has(market.id),
     );
     if (unexpectedMarket?.id) {
       throw new Error(
@@ -275,7 +271,11 @@ async function refreshCoinGeckoSupplies(options: {
     );
     logSupplyStats(
       tokens,
-      enrichCoinGeckoSupplies(tokens, idsByToken, marketsFromCache(marketCache)),
+      enrichCoinGeckoSupplies(
+        tokens,
+        idsByToken,
+        marketsFromCache(marketCache),
+      ),
       ambiguousTokenKeys.length,
     );
     return { marketCache, skipped: false };
@@ -338,16 +338,8 @@ async function addRemoteTokenLists(
   const skippedSources: string[] = [];
   for (const source of REMOTE_TOKEN_LISTS) {
     try {
-      const list = await fetchJson<StandardTokenList>(
-        source.name,
-        source.url,
-      );
-      const added = addStandardTokenList(
-        accumulator,
-        listLinks,
-        source,
-        list,
-      );
+      const list = await fetchJson<StandardTokenList>(source.name, source.url);
+      const added = addStandardTokenList(accumulator, listLinks, source, list);
       console.log(`Added ${added} tokens from ${source.name}`);
     } catch (error) {
       skippedSources.push(source.name);
@@ -371,10 +363,7 @@ async function addAvnuSource(
   source: (typeof STARKNET_AVNU_TOKEN_SOURCES)[number],
   trackedAvnuAddresses: Set<string>,
 ): Promise<number> {
-  const response = await fetchJson<AvnuTokenResponse>(
-    source.name,
-    source.url,
-  );
+  const response = await fetchJson<AvnuTokenResponse>(source.name, source.url);
   if (!Array.isArray(response.content)) {
     throw new Error(`${source.name} did not return a token page`);
   }
@@ -409,9 +398,7 @@ async function addAvnuSource(
   return added;
 }
 
-async function addAvnuTokens(
-  accumulator: TokenAccumulator,
-): Promise<string[]> {
+async function addAvnuTokens(accumulator: TokenAccumulator): Promise<string[]> {
   const skippedSources: string[] = [];
   const trackedAvnuAddresses = new Set<string>();
   for (const source of STARKNET_AVNU_TOKEN_SOURCES) {
@@ -488,8 +475,9 @@ async function addRegisteredTokens(
 }
 
 async function main(): Promise<void> {
-  const curatedDocument =
-    await readJson<TokenListDocument>("curated-tokens.json");
+  const curatedDocument = await readJson<TokenListDocument>(
+    "curated-tokens.json",
+  );
   validateTokenListSchema(curatedDocument, "curated-tokens.json");
   validateNativeCurrencies(
     curatedDocument.tokens,
@@ -577,17 +565,12 @@ async function main(): Promise<void> {
 
   const cloudflareAccountId = process.env.CLOUDFLARE_ACCOUNT_ID;
   const cloudflareApiToken = process.env.CLOUDFLARE_API_TOKEN;
-  const cloudflareDeliveryHash =
-    process.env.CLOUDFLARE_IMAGES_DELIVERY_HASH;
+  const cloudflareDeliveryHash = process.env.CLOUDFLARE_IMAGES_DELIVERY_HASH;
   const cloudflareVariant = process.env.CLOUDFLARE_IMAGES_VARIANT ?? "logo";
   const cloudflareRequestIntervalMs = Number(
     process.env.CLOUDFLARE_IMAGES_REQUEST_INTERVAL_MS ?? "300",
   );
-  if (
-    !cloudflareAccountId ||
-    !cloudflareApiToken ||
-    !cloudflareDeliveryHash
-  ) {
+  if (!cloudflareAccountId || !cloudflareApiToken || !cloudflareDeliveryHash) {
     throw new Error(
       "CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_API_TOKEN, and CLOUDFLARE_IMAGES_DELIVERY_HASH are required",
     );

@@ -1,7 +1,4 @@
-import type {
-  CoinGeckoTokenSource,
-  StandardTokenList,
-} from "./types";
+import type { CoinGeckoTokenSource, StandardTokenList } from "./types";
 
 export type CoinGeckoAssetPlatform = {
   id?: string;

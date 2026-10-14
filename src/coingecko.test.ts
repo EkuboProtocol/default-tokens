@@ -28,15 +28,11 @@ describe("CoinGecko Pro source configuration", () => {
     ).toBe(COINGECKO_PRO_TOKEN_LISTS.length);
     expect(
       new Set(
-        COINGECKO_PRO_TOKEN_LISTS.map(
-          (candidate) => candidate.expectedChainId,
-        ),
+        COINGECKO_PRO_TOKEN_LISTS.map((candidate) => candidate.expectedChainId),
       ).size,
     ).toBe(COINGECKO_PRO_TOKEN_LISTS.length);
     expect(
-      new Set(
-        COINGECKO_PRO_TOKEN_LISTS.map((candidate) => candidate.url),
-      ).size,
+      new Set(COINGECKO_PRO_TOKEN_LISTS.map((candidate) => candidate.url)).size,
     ).toBe(COINGECKO_PRO_TOKEN_LISTS.length);
   });
 
@@ -57,9 +53,8 @@ describe("CoinGecko Pro source configuration", () => {
       ).size,
     ).toBe(COINGECKO_SUPPLY_PLATFORMS.length);
     expect(
-      new Set(
-        COINGECKO_SUPPLY_PLATFORMS.map((candidate) => candidate.chainId),
-      ).size,
+      new Set(COINGECKO_SUPPLY_PLATFORMS.map((candidate) => candidate.chainId))
+        .size,
     ).toBe(COINGECKO_SUPPLY_PLATFORMS.length);
     for (const source of COINGECKO_PRO_TOKEN_LISTS) {
       expect(
@@ -102,10 +97,7 @@ describe("CoinGecko Pro source configuration", () => {
       candidate.name.startsWith("CoinGecko"),
     );
     expect(publicSources.length).toBeGreaterThan(0);
-    for (const candidate of [
-      ...publicSources,
-      ...COINGECKO_PRO_TOKEN_LISTS,
-    ]) {
+    for (const candidate of [...publicSources, ...COINGECKO_PRO_TOKEN_LISTS]) {
       expect(candidate.visibilityPriority).toBe(0);
     }
   });

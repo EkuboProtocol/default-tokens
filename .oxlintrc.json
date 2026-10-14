@@ -11,9 +11,7 @@
     ".astro/**",
     "generated/**"
   ],
-  "plugins": [
-    "typescript"
-  ],
+  "plugins": ["typescript"],
   "categories": {
     "correctness": "off"
   },
@@ -38,26 +36,15 @@
   },
   "overrides": [
     {
-      "files": [
-        "**/*.{ts,tsx,mts,cts}"
-      ],
+      "files": ["**/*.{ts,tsx,mts,cts}"],
       "rules": {
-        "complexity": [
-          "error",
-          10
-        ]
+        "complexity": ["error", 10]
       }
     },
     {
-      "files": [
-        "**/*.{js,jsx,mjs}",
-        "**/*.cjs"
-      ],
+      "files": ["**/*.{js,jsx,mjs}", "**/*.cjs"],
       "rules": {
-        "complexity": [
-          "error",
-          10
-        ]
+        "complexity": ["error", 10]
       }
     }
   ]

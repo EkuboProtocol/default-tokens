@@ -45,7 +45,9 @@ type RpcResponse = {
 };
 
 function rateLimited(answers: RpcResponse[]): boolean {
-  return answers.some((answer) => /rate limit/i.test(answer.error?.message ?? ""));
+  return answers.some((answer) =>
+    /rate limit/i.test(answer.error?.message ?? ""),
+  );
 }
 
 const sleep = (milliseconds: number) =>
@@ -74,7 +76,10 @@ async function postWithRetry(
   }
 }
 
-async function rpcBatch(url: string, calls: Call[]): Promise<(string | null)[]> {
+async function rpcBatch(
+  url: string,
+  calls: Call[],
+): Promise<(string | null)[]> {
   const results: (string | null)[] = [];
   for (let offset = 0; offset < calls.length; offset += BATCH_SIZE) {
     const chunk = calls.slice(offset, offset + BATCH_SIZE);
@@ -284,9 +289,11 @@ for (const chain of BRIDGE_READ_CHAINS) {
   reads.push(...found);
 }
 const { links, ambiguous } = splitAmbiguous(reads);
-const listed = links.filter((entry) =>
-  ethereumTokens.has(tokenKey("1", entry.l1_token_address)) ||
-  BigInt(entry.l1_token_address) === 0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeen,
+const listed = links.filter(
+  (entry) =>
+    ethereumTokens.has(tokenKey("1", entry.l1_token_address)) ||
+    BigInt(entry.l1_token_address) ===
+      0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeen,
 );
 await writeFile(
   resolve(root, "bridge-reads.json"),

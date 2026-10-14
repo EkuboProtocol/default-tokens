@@ -26,8 +26,7 @@ async function failWith(status: number): Promise<unknown> {
     await fetchJson("test list", "https://example.com/list.json", {
       maxRetries: 1,
       sleep: async () => {},
-      fetch: (async (_input) =>
-        new Response(null, { status })) as typeof fetch,
+      fetch: (async (_input) => new Response(null, { status })) as typeof fetch,
     });
   } catch (error) {
     return error;

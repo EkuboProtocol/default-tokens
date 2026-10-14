@@ -295,19 +295,84 @@ export const CIRCLE_BLOCKCHAIN_CHAIN_IDS: Record<string, string> = {
 // `wrappedEth` is the chain's WETH predeploy, which wraps that same bridged
 // ether, when there is one at a fixed address.
 export const CANONICAL_ETH_ROLLUPS = [
-  { chainId: "10", bridge: "OP Mainnet standard bridge", evidence: "https://l2beat.com/scaling/projects/op-mainnet", wrappedEth: "0x4200000000000000000000000000000000000006" },
-  { chainId: "130", bridge: "Unichain standard bridge", evidence: "https://l2beat.com/scaling/projects/unichain", wrappedEth: "0x4200000000000000000000000000000000000006" },
-  { chainId: "8453", bridge: "Base standard bridge", evidence: "https://l2beat.com/scaling/projects/base", wrappedEth: "0x4200000000000000000000000000000000000006" },
-  { chainId: "57073", bridge: "Ink standard bridge", evidence: "https://l2beat.com/scaling/projects/ink", wrappedEth: "0x4200000000000000000000000000000000000006" },
-  { chainId: "480", bridge: "World Chain standard bridge", evidence: "https://l2beat.com/scaling/projects/world", wrappedEth: "0x4200000000000000000000000000000000000006" },
-  { chainId: "1868", bridge: "Soneium standard bridge", evidence: "https://l2beat.com/scaling/projects/soneium", wrappedEth: "0x4200000000000000000000000000000000000006" },
-  { chainId: "7777777", bridge: "Zora standard bridge", evidence: "https://l2beat.com/scaling/projects/zora", wrappedEth: "0x4200000000000000000000000000000000000006" },
-  { chainId: "42161", bridge: "Arbitrum One canonical bridge", evidence: "https://l2beat.com/scaling/projects/arbitrum", wrappedEth: null },
-  { chainId: "4663", bridge: "Robinhood Chain canonical bridge (Arbitrum Orbit)", evidence: "https://docs.robinhood.com/chain/bridging/", wrappedEth: null },
-  { chainId: "324", bridge: "ZKsync Era canonical bridge", evidence: "https://l2beat.com/scaling/projects/zksync2", wrappedEth: null },
-  { chainId: "59144", bridge: "Linea canonical bridge", evidence: "https://l2beat.com/scaling/projects/linea", wrappedEth: null },
-  { chainId: "81457", bridge: "Blast canonical bridge", evidence: "https://l2beat.com/scaling/projects/blast", wrappedEth: null },
-  { chainId: "4326", bridge: "MegaETH canonical bridge", evidence: "https://l2beat.com/scaling/projects/megaeth", wrappedEth: null },
+  {
+    chainId: "10",
+    bridge: "OP Mainnet standard bridge",
+    evidence: "https://l2beat.com/scaling/projects/op-mainnet",
+    wrappedEth: "0x4200000000000000000000000000000000000006",
+  },
+  {
+    chainId: "130",
+    bridge: "Unichain standard bridge",
+    evidence: "https://l2beat.com/scaling/projects/unichain",
+    wrappedEth: "0x4200000000000000000000000000000000000006",
+  },
+  {
+    chainId: "8453",
+    bridge: "Base standard bridge",
+    evidence: "https://l2beat.com/scaling/projects/base",
+    wrappedEth: "0x4200000000000000000000000000000000000006",
+  },
+  {
+    chainId: "57073",
+    bridge: "Ink standard bridge",
+    evidence: "https://l2beat.com/scaling/projects/ink",
+    wrappedEth: "0x4200000000000000000000000000000000000006",
+  },
+  {
+    chainId: "480",
+    bridge: "World Chain standard bridge",
+    evidence: "https://l2beat.com/scaling/projects/world",
+    wrappedEth: "0x4200000000000000000000000000000000000006",
+  },
+  {
+    chainId: "1868",
+    bridge: "Soneium standard bridge",
+    evidence: "https://l2beat.com/scaling/projects/soneium",
+    wrappedEth: "0x4200000000000000000000000000000000000006",
+  },
+  {
+    chainId: "7777777",
+    bridge: "Zora standard bridge",
+    evidence: "https://l2beat.com/scaling/projects/zora",
+    wrappedEth: "0x4200000000000000000000000000000000000006",
+  },
+  {
+    chainId: "42161",
+    bridge: "Arbitrum One canonical bridge",
+    evidence: "https://l2beat.com/scaling/projects/arbitrum",
+    wrappedEth: null,
+  },
+  {
+    chainId: "4663",
+    bridge: "Robinhood Chain canonical bridge (Arbitrum Orbit)",
+    evidence: "https://docs.robinhood.com/chain/bridging/",
+    wrappedEth: null,
+  },
+  {
+    chainId: "324",
+    bridge: "ZKsync Era canonical bridge",
+    evidence: "https://l2beat.com/scaling/projects/zksync2",
+    wrappedEth: null,
+  },
+  {
+    chainId: "59144",
+    bridge: "Linea canonical bridge",
+    evidence: "https://l2beat.com/scaling/projects/linea",
+    wrappedEth: null,
+  },
+  {
+    chainId: "81457",
+    bridge: "Blast canonical bridge",
+    evidence: "https://l2beat.com/scaling/projects/blast",
+    wrappedEth: null,
+  },
+  {
+    chainId: "4326",
+    bridge: "MegaETH canonical bridge",
+    evidence: "https://l2beat.com/scaling/projects/megaeth",
+    wrappedEth: null,
+  },
 ] as const;
 
 export const ETHEREUM_WETH = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2";

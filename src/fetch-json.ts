@@ -104,10 +104,7 @@ export async function fetchJson<T>(
         error instanceof Error
           ? error
           : new Error(`Failed to download ${name}: ${String(error)}`);
-      if (
-        response !== undefined &&
-        !isRetryableStatus(response.status)
-      ) {
+      if (response !== undefined && !isRetryableStatus(response.status)) {
         throw failure;
       }
     }

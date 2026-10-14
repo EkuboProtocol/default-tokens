@@ -80,7 +80,11 @@ describe("jurisdiction policy v2", () => {
       "AMC",
     );
     expect(() =>
-      assertClassified([...curated.tokens, spoof], policy, "curated-tokens.json"),
+      assertClassified(
+        [...curated.tokens, spoof],
+        policy,
+        "curated-tokens.json",
+      ),
     ).toThrow(
       "curated-tokens.json: unclassified chain-4663 token; classify under EKU-853 policy before listing: AMC 0x1111111111111111111111111111111111111111",
     );
@@ -91,14 +95,26 @@ describe("jurisdiction policy v2", () => {
       (entry) => entry.symbol === "AMC",
     )!;
     expect(
-      unclassifiedTokens([token("0x1237", amc.address.toUpperCase().replace("0X", "0x"))], policy),
+      unclassifiedTokens(
+        [token("0x1237", amc.address.toUpperCase().replace("0X", "0x"))],
+        policy,
+      ),
     ).toEqual([]);
-    expect(unclassifiedTokens([token("1", "0x1111111111111111111111111111111111111111")], policy)).toEqual([]);
+    expect(
+      unclassifiedTokens(
+        [token("1", "0x1111111111111111111111111111111111111111")],
+        policy,
+      ),
+    ).toEqual([]);
   });
 
   test("rejects a policy with the wrong version", () => {
     expect(() =>
-      assertClassified([], { ...policy, policy_version: "ekubo-token-jurisdictions-v1" }, "x"),
+      assertClassified(
+        [],
+        { ...policy, policy_version: "ekubo-token-jurisdictions-v1" },
+        "x",
+      ),
     ).toThrow("expected ekubo-token-jurisdictions-v2");
   });
 });
