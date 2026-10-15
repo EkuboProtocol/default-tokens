@@ -22,23 +22,21 @@ jobs:
       - uses: oven-sh/setup-bun@v2
       - run: bun ci
 
-      # Every step runs even when an earlier one fails, so one push reports
-      # every kind of problem at once.
-      - name: Format
-        run: bun run format:check
+      # These checks only read the source tree, so they run at the same time.
+      # Each one runs to completion even when another fails, so one push
+      # reports every kind of problem at once.
+      - parallel:
+          - name: Format
+            run: bun run format:check
 
-      - name: Lint
-        if: ${{ !cancelled() }}
-        run: bun run lint
+          - name: Lint
+            run: bun run lint
 
-      - name: Type check
-        if: ${{ !cancelled() }}
-        run: bun run typecheck
+          - name: Type check
+            run: bun run typecheck
 
-      - name: Unit tests
-        if: ${{ !cancelled() }}
-        run: bun test
+          - name: Unit tests
+            run: bun test
 
-      - name: Validate token list
-        if: ${{ !cancelled() }}
-        run: bun run validate
+          - name: Validate token list
+            run: bun run validate
