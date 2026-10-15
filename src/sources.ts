@@ -50,8 +50,6 @@ export const TOKEN_REGISTRY_SOURCE = {
   url: "latest_token_registrations_view",
 } as const;
 
-// Where a token row comes from when a rate-limited source is skipped and the
-// previous generated list is folded back in. See `backfillPreviousTokens`.
 export const PREVIOUS_OUTPUT_SOURCE = {
   name: "Previous generated token list",
   url: "tokens.json",
@@ -70,11 +68,6 @@ export const REMOTE_TOKEN_LISTS: TokenSource[] = [
       // searchable instead; curated Unichain tokens stay prominent.
       "130": 0,
     },
-    // Uniswap links the asset people mean on each chain, which can be the
-    // issuer's native deployment (USDC), a canonical bridge copy (DAI on
-    // Base), a custodial peg (BSC), or an OFT (USDT0 on Monad). It does not
-    // say which, so its links are `unknown` unless an earlier source labels
-    // the same link.
     bridgeInfo: { relationship: "unknown", bridgeName: null },
   },
   {
@@ -270,8 +263,6 @@ export const CIRCLE_ISSUER_REGISTRIES = [
   },
 ] as const;
 
-// Circle's blockchain names for the chains this list carries. Rows naming any
-// other blockchain are ignored.
 export const CIRCLE_BLOCKCHAIN_CHAIN_IDS: Record<string, string> = {
   Arbitrum: "42161",
   "Avalanche C-Chain": "43114",
@@ -290,10 +281,6 @@ export const CIRCLE_BLOCKCHAIN_CHAIN_IDS: Record<string, string> = {
   "ZKsync Era": "324",
 };
 
-// Rollups whose gas asset is ether deposited through the chain's own bridge.
-// Each links the chain's native ETH (address zero) to ether on Ethereum.
-// `wrappedEth` is the chain's WETH predeploy, which wraps that same bridged
-// ether, when there is one at a fixed address.
 export const CANONICAL_ETH_ROLLUPS = [
   {
     chainId: "10",
@@ -377,9 +364,6 @@ export const CANONICAL_ETH_ROLLUPS = [
 
 export const ETHEREUM_WETH = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2";
 
-// The Superchain token list groups each asset under one `opTokenId` and
-// records, per chain, the bridge in `<prefix>BridgeAddress`. An L2 entry with
-// that extension was minted by that chain's bridge from the Ethereum entry.
 export const SUPERCHAIN_TOKEN_LIST = {
   name: "Superchain Token List",
   url: "https://static.optimism.io/optimism.tokenlist.json",
@@ -398,8 +382,6 @@ export const SUPERCHAIN_TOKEN_LIST = {
   } as Record<string, string>,
 } as const;
 
-// Offchain Labs' lists of tokens routed through the Arbitrum One gateway
-// router, each carrying the standard `bridgeInfo` extension.
 export const ARBITRUM_BRIDGE_TOKEN_LISTS: TokenSource[] = [
   "arbed_arb_whitelist_era",
   "arbed_uniswap_labs",
@@ -416,9 +398,6 @@ export const ARBITRUM_BRIDGE_TOKEN_LISTS: TokenSource[] = [
 export const NATIVE_ETH_BRIDGE_SOURCE_NAME =
   "Ekubo rollup native ether registry";
 
-// Chains whose bridge mappings `scripts/read-bridges.ts` reads on-chain into
-// bridge-reads.json. `l1Contract` is the Ethereum contract that holds the
-// mapping, when the read needs one.
 export type BridgeReadChain = {
   chainId: string;
   kind: "arbitrum_gateway" | "polygon_pos" | "op_standard_bridge";
@@ -490,7 +469,6 @@ export const TETHER_ISSUER_REGISTRY = {
   url: "https://tether.to/en/supported-protocols/",
 } as const;
 
-// Block explorer hosts on Tether's page, for the chains this list carries.
 export const TETHER_EXPLORER_CHAIN_IDS: Record<string, string> = {
   "etherscan.io": "1",
   "snowtrace.io": "43114",
@@ -500,8 +478,6 @@ export const TETHER_EXPLORER_CHAIN_IDS: Record<string, string> = {
   "kaiascan.io": "8217",
 };
 
-// Ava Labs' Avalanche Bridge resources: Ethereum tokens by symbol, and the
-// Avalanche C-Chain token the bridge mints for each as `<symbol>.e`.
 export const AVALANCHE_BRIDGE_SOURCE = {
   name: "Avalanche Bridge token list",
   url: "https://raw.githubusercontent.com/ava-labs/avalanche-bridge-resources/main/token_list.json",

@@ -11,7 +11,6 @@ export type Token = {
   sort_order: number;
 };
 
-// What a link between two tokens on different chains means. See the README.
 export const BRIDGE_RELATIONSHIP_KINDS = [
   "canonical_bridge",
   "native_issuer",
@@ -27,7 +26,6 @@ export type BridgeRelationship = {
   source_bridge_address: string | null;
   dest_chain_id: string;
   dest_token_address: string;
-  // Additive metadata, also written to the database by the sync.
   relationship?: BridgeRelationshipKind;
   bridge_name?: string | null;
   source_name?: string;
@@ -35,7 +33,6 @@ export type BridgeRelationship = {
   inferred_reverse?: boolean;
 };
 
-// How links read from a token list's extensions are labelled.
 export type BridgeLinkLabel = {
   relationship: BridgeRelationshipKind;
   bridgeName: string | null;
@@ -58,11 +55,8 @@ export type TokenSource = {
   name: string;
   url: string;
   visibilityPriority?: number;
-  // Per-chain overrides of `visibilityPriority`, keyed by decimal chain ID.
   visibilityPriorityByChainId?: Readonly<Record<string, number>>;
-  // Read standard `extensions.bridgeInfo` entries, labelled this way.
   bridgeInfo?: BridgeLinkLabel;
-  // Read `extensions.crossChainAddresses`, labelled by `bridgeInfo.protocol`.
   crossChainAddresses?: boolean;
 };
 
@@ -98,9 +92,6 @@ export type StandardTokenListToken = {
   decimals: number;
   logoURI?: string;
   extensions?: {
-    // The standard shape maps a chain ID to a counterpart. The Monad list
-    // instead uses `{ protocol, bridgeAddress }` and names counterparts in
-    // `crossChainAddresses`.
     bridgeInfo?: Record<string, TokenListBridgeInfo | string | undefined>;
     crossChainAddresses?: Record<string, { address?: string } | undefined>;
     coinGeckoId?: string;

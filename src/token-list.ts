@@ -107,8 +107,6 @@ export class TokenAccumulator {
   }
 }
 
-// Who the token is: the chain and address that identify it, and the name and
-// symbol that render it.
 function validateTokenIdentity(token: Token): void {
   parseInteger(token.chain_id, "chain ID");
   if (!normalizeTokenAddress(token.token_address, token.chain_id)) {
@@ -121,8 +119,6 @@ function validateTokenIdentity(token: Token): void {
   }
 }
 
-// The integer columns. `token_decimals` is bounded by the smallint the database
-// stores it in, not by anything about tokens.
 function validateTokenIntegers(token: Token): void {
   if (
     !Number.isInteger(token.token_decimals) ||
@@ -141,7 +137,6 @@ function validateTokenIntegers(token: Token): void {
   }
 }
 
-// Both supplies are optional, and both are big enough to need bigint parsing.
 function validateTokenSupplies(token: Token): void {
   if (token.total_supply != null) {
     const totalSupply = parseInteger(token.total_supply, "total supply");
@@ -201,8 +196,6 @@ export function validateNativeCurrencies(
   const seen = new Set<bigint>();
 
   for (const token of tokens) {
-    // Every spelling of a native asset, not just the all-zero one: a list is
-    // free to write `0xEeee…eEEeE`, and it means the same row.
     if (normalizeTokenAddress(token.token_address, token.chain_id) !== "0x0") {
       continue;
     }
@@ -300,11 +293,6 @@ function assertListed(
   }
 }
 
-/**
- * The generated list holds every link to the standard consumers rely on:
- * both tokens are rows in the list, and the link says what it is and where
- * it came from.
- */
 export function validateGeneratedBridgeRelationships(
   relationships: BridgeRelationship[],
   tokens: Token[],
@@ -364,8 +352,6 @@ export type BackfillStats = {
   suppliesRestored: number;
 };
 
-// Keep the supply fields a live source cannot supply. Mutating in place is
-// safe: the accumulator owns these rows and nothing else holds a reference.
 function restoreSupplies(current: Token, previous: Token): boolean {
   let restored = false;
   if (current.total_supply == null && previous.total_supply != null) {
@@ -382,10 +368,6 @@ function restoreSupplies(current: Token, previous: Token): boolean {
   return restored;
 }
 
-// Fold the previous generated list back in when a source was skipped, so a
-// degraded run publishes the last known good rows rather than deleting them.
-// `TokenAccumulator.add` is first-wins, so calling this after every source has
-// run leaves fresher rows untouched and only fills the gaps.
 export function backfillPreviousTokens(
   accumulator: TokenAccumulator,
   previousTokens: Token[],
@@ -416,8 +398,6 @@ export function backfillPreviousTokens(
   return stats;
 }
 
-// Fill only the supplies, for a run where every token was collected live but
-// the CoinGecko supply refresh was skipped.
 export function restorePreviousSupplies(
   tokens: Token[],
   previousTokens: Token[],

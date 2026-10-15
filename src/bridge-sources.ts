@@ -38,7 +38,6 @@ import {
 import type { BridgeRelationship, StandardTokenList, Token } from "./types";
 
 export type CollectedLinks = {
-  // In precedence order: earlier batches win a contested key.
   batches: ProvenancedLink[][];
   skippedSources: string[];
 };
@@ -152,11 +151,6 @@ function loaders(): Loader[] {
   ];
 }
 
-/**
- * Fetch every source that is read only for cross-chain links. A source that
- * cannot be read is skipped and reported, like a skipped token source; the
- * caller restores that source's links from the previous output.
- */
 export async function collectBridgeSourceLinks(): Promise<CollectedLinks> {
   const batches: ProvenancedLink[][] = [];
   const skippedSources: string[] = [];
@@ -186,12 +180,6 @@ function curatedLink(relationship: BridgeRelationship): ProvenancedLink {
   };
 }
 
-/**
- * Build the published links: curated links first, then the bridge-only
- * sources in trust order, then links read from the token lists, then the
- * previous run's links for any source skipped this run. Only links between
- * two tokens in `tokens` are kept.
- */
 export function buildBridgeRelationships(options: {
   tokens: Token[];
   curated: BridgeRelationship[];

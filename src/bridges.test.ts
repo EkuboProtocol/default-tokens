@@ -89,7 +89,6 @@ describe("finalizeBridgeLinks", () => {
     const collector = new BridgeCollector();
     collector.add(link("1", "0xa", "10", "0xb"));
     collector.add(link("10", "0xb", "1", "0xa"));
-    // Two Optimism tokens both claim to be the canonical copy of 0xa.
     collector.add(link("10", "0xc", "1", "0xa"));
     collector.add(link("1", "0xd", "10", "0xe"));
     const { relationships, report } = finalizeBridgeLinks(collector);
@@ -189,7 +188,6 @@ test("Superchain links follow the bridge extension, not the shared id", () => {
           baseBridgeAddress: "0x4200000000000000000000000000000000000010",
         },
       },
-      // Same id, no bridge extension: a native deployment, not linked.
       {
         chainId: 10,
         address: "0x3",

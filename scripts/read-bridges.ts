@@ -1,19 +1,3 @@
-// Read canonical bridge mappings from the bridges themselves and write them
-// to bridge-reads.json, which the token-list build reads as a link source.
-//
-// The daily build runs without an RPC endpoint, so these reads are a reviewed
-// snapshot: rerun this script to refresh it. Every listed, selectable token on
-// a supported chain is asked which Ethereum token it was minted from:
-//
-// - Arbitrum One and Robinhood Chain (Arbitrum gateway): the L2 token's
-//   `l1Address()`, accepted only when the Ethereum gateway router's
-//   `calculateL2TokenAddress` maps that token back to it.
-// - Polygon PoS: the Ethereum RootChainManager's `childToRootToken`.
-// - OP Stack chains: the token's `remoteToken()` and `bridge()` (or the legacy
-//   `l1Token()` and `l2Bridge()`), accepted only when the bridge is the
-//   standard bridge predeploy. Anyone can deploy a token that the standard
-//   bridge accepts, so an Ethereum token claimed by two listed tokens on one
-//   chain is recorded as ambiguous instead of linked.
 import { readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import type { BridgeRead } from "../src/bridges";
@@ -53,7 +37,6 @@ function rateLimited(answers: RpcResponse[]): boolean {
 const sleep = (milliseconds: number) =>
   new Promise((done) => setTimeout(done, milliseconds));
 
-// Public endpoints rate limit bursts; pace every request and back off on 429.
 async function postWithRetry(
   url: string,
   body: unknown,
@@ -220,7 +203,6 @@ const READERS = {
   op_standard_bridge: readOpStack,
 };
 
-// An Ethereum token claimed by more than one listed token on a chain.
 function splitAmbiguous(reads: BridgeRead[]): {
   links: BridgeRead[];
   ambiguous: BridgeRead[];
@@ -256,8 +238,6 @@ const ethereumTokens = new Set(
     .filter((token) => token.chain_id === "1")
     .map((token) => tokenKey("1", token.token_address)),
 );
-// `--chains 57073,480` rereads only those chains and keeps the rest of the
-// existing snapshot.
 const onlyChains = process.argv.includes("--chains")
   ? new Set(process.argv[process.argv.indexOf("--chains") + 1]!.split(","))
   : null;
@@ -279,7 +259,6 @@ for (const chain of BRIDGE_READ_CHAINS) {
   try {
     found = await READERS[chain.kind](chain, tokens);
   } catch (error) {
-    // A chain that cannot be read is left out of this snapshot; say so.
     console.warn(`Skipping ${chain.bridgeName}: ${String(error)}`);
     continue;
   }
