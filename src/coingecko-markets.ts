@@ -1,19 +1,6 @@
 import type { CoinGeckoMarket } from "./coingecko-supply";
 
-/**
- * Circulating and total supply move slowly, but re-reading them for every coin
- * on every run was the single largest source of CoinGecko requests in this
- * repository: ~11,600 coin IDs paged 250 at a time, on every run, forever.
- *
- * The values are cached in a generated artifact instead. Each run refreshes the
- * coins it has never seen plus one rotation slice of the rest, so every coin is
- * re-read within `rotation_slots` runs and each run pays a small fixed cost. The
- * rotation cursor lives in the artifact so the schedule survives across runs and
- * stays auditable in review.
- */
 export type CoinGeckoMarketCacheEntry = {
-  // Null when CoinGecko has no supply for the coin; the entry still records
-  // that we asked, so we do not ask again until its slot comes round.
   total_supply: number | string | null;
   circulating_supply: number | string | null;
   refreshed_at: string;
@@ -51,11 +38,6 @@ function normalizeCache(cache: CoinGeckoMarketCache): CoinGeckoMarketCache {
   };
 }
 
-/**
- * The coin IDs to request this run: everything not yet cached, plus the slice of
- * the cached coins whose turn it is. `coinIds` must be sorted so a coin keeps
- * the same slot from run to run.
- */
 export function selectMarketIdsToRefresh(
   coinIds: readonly string[],
   cache: CoinGeckoMarketCache,
@@ -68,12 +50,6 @@ export function selectMarketIdsToRefresh(
   );
 }
 
-/**
- * Folds a refresh back into the cache: refreshed coins take their new values,
- * refreshed coins CoinGecko returned nothing for are recorded as empty so they
- * are not retried until their next slot, coins that were not refreshed keep what
- * they had, and coins no longer referenced by any token are dropped.
- */
 export function mergeMarketRefresh({
   cache,
   coinIds,
@@ -121,11 +97,6 @@ export function mergeMarketRefresh({
   };
 }
 
-/**
- * The cached supplies as a market list for `enrichCoinGeckoSupplies`. Entries
- * recorded as empty are omitted so supply statistics keep counting only the
- * coins CoinGecko actually reports a supply for.
- */
 export function marketsFromCache(
   cache: CoinGeckoMarketCache,
 ): CoinGeckoMarket[] {

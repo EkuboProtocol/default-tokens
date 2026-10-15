@@ -76,7 +76,6 @@ describe("CoinGecko Pro source configuration", () => {
         ),
       ).toBe(true);
       if (chainId === ethereumChainId) {
-        // Ethereum has no Pro source; the public CoinGecko list covers it.
         expect(
           REMOTE_TOKEN_LISTS.some(
             (candidate) => candidate.name === "CoinGecko All Token List",

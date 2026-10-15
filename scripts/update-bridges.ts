@@ -1,9 +1,3 @@
-// Regenerate only `bridge_relationships` in tokens.json, keeping its tokens.
-//
-// The daily update rebuilds links as part of the full run. This reads the
-// same link sources without the database, CoinGecko, or Cloudflare
-// credentials, so a change to the link sources can be reviewed with its
-// effect on the published list.
 import { readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import {

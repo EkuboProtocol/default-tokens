@@ -191,8 +191,6 @@ export async function createCloudflareImages(
       ? retryAfterMilliseconds(response, attempt)
       : Math.min(30_000, 1_000 * 2 ** attempt);
     if (delay > MAX_RETRY_DELAY_MS) {
-      // No batch token is worth a long wait: fall back to the standard API
-      // below instead of stalling the run.
       console.warn(
         `Could not obtain a Cloudflare Images batch token; asked to wait ${Math.ceil(delay / 1_000)}s, ` +
           `exceeding the ${MAX_RETRY_DELAY_MS / 1_000}s limit — using the standard API: ${failure}`,
@@ -293,15 +291,10 @@ export class CloudflareImages {
             ...init.headers,
             Authorization: `Bearer ${this.config.apiToken}`,
           },
-          // A stalled upload must time out rather than hold the whole
-          // list update hostage; exhaustion is handled gracefully above.
           signal: AbortSignal.timeout(30_000),
         });
       } catch (error) {
         if (attempt >= this.config.maxRetries) {
-          // A dead upload endpoint must not abort the whole list update:
-          // the caller retains the previous hosted logo or omits the new
-          // one instead (see hostOne).
           throw new Error(
             `Cloudflare Images request failed after ${attempt + 1} attempts: ${errorMessage(error)}`,
             { cause: error },
@@ -326,8 +319,6 @@ export class CloudflareImages {
         this.config.now(),
       );
       if (delay > MAX_RETRY_DELAY_MS) {
-        // A logo is never worth a long wait: give up on this image and let
-        // the caller retain the previous hosted logo or omit the new one.
         console.warn(
           `Cloudflare Images returned ${response.status}; asked to wait ${Math.ceil(delay / 1_000)}s, ` +
             `exceeding the ${MAX_RETRY_DELAY_MS / 1_000}s limit — failing this logo instead of waiting`,
@@ -357,9 +348,6 @@ export class CloudflareImages {
       });
       return response.ok;
     } catch {
-      // A stalled or failed existence check must not block the list
-      // update: fall through and attempt the upload, whose own failure
-      // is handled gracefully by the caller.
       return false;
     }
   }
@@ -395,7 +383,6 @@ export class CloudflareImages {
     });
     if (response.ok && body.success && body.result) return body.result;
 
-    // A previous or concurrent run may already have created this custom ID.
     if (await this.deliveryExists(imageId)) return { id: imageId };
 
     const message = `Cloudflare image upload failed (${response.status}): ${responseError(body)}`;
@@ -576,8 +563,6 @@ export async function hostTokenLogos({
         stats.resolved++;
         return;
       } catch (error) {
-        // Every logo failure is non-fatal: keep the previous hosted logo
-        // below, or omit the new one when there is nothing to keep.
         lastError = error;
       }
     }
@@ -608,8 +593,6 @@ export async function hostTokenLogos({
     }),
   );
 
-  // A later token may have associated a failed primary source with a
-  // successful fallback. Reconcile those aliases before recording omissions.
   for (const { token, candidates, lastError } of unresolved) {
     const hosted = candidates
       .map((candidate) => imageSourceCache[candidate])

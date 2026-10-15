@@ -65,7 +65,6 @@ import type {
 const root = resolve(import.meta.dir, "..");
 const withoutRegistrations = process.argv.includes("--without-registrations");
 const addressRegex = /^0x[a-fA-F0-9]+$/;
-// 250 is the per_page ceiling the markets endpoint accepts.
 const coinGeckoMarketBatchSize = 250;
 
 type AvnuToken = {
@@ -254,9 +253,6 @@ async function refreshCoinGeckoSupplies(options: {
       COINGECKO_SUPPLY_PLATFORMS,
       accumulator.coinGeckoIds,
     );
-    // Supplies are cached across runs and refreshed on a rotation, so a run
-    // costs a slice of the coin list rather than all of it. See
-    // src/coingecko-markets.ts.
     const coinIds = [...new Set(idsByToken.values())].sort();
     const refreshedIds = selectMarketIdsToRefresh(coinIds, previousMarketCache);
     const marketCache = mergeMarketRefresh({

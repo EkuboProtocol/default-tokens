@@ -133,7 +133,6 @@ describe("mergeMarketRefresh", () => {
       refreshedAt: REFRESHED_AT,
     });
 
-    // Recorded rather than dropped, so it is not retried on every later run.
     expect(result.markets.a).toEqual({
       total_supply: null,
       circulating_supply: null,

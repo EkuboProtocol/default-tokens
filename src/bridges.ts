@@ -33,7 +33,6 @@ export type BridgeConflict = {
   rejected: BridgeRelationship;
 };
 
-// A link that has every provenance field set.
 export type ProvenancedLink = BridgeRelationship &
   Required<
     Pick<BridgeRelationship, "relationship" | "source_name" | "source_url">
@@ -64,20 +63,12 @@ function sameToken(chainId: string, left: string, right: string): boolean {
   return tokenKey(chainId, left) === tokenKey(chainId, right);
 }
 
-/**
- * Collects directed links. One link per source token and destination chain;
- * the first source to claim that key wins, and a later claim naming a
- * different counterpart is recorded as a conflict instead of overwriting it.
- */
 export class BridgeCollector {
   readonly links = new Map<string, ProvenancedLink>();
   readonly conflicts: BridgeConflict[] = [];
   readonly droppedMissingEndpoint: Record<string, number> = {};
   selfLinks = 0;
 
-  // With `tokenKeys`, a link is accepted only when both of its tokens are in
-  // the list, so a link to an unlisted token cannot win a key over a later,
-  // usable claim.
   constructor(private readonly tokenKeys?: Set<string>) {}
 
   add(candidate: ProvenancedLink): boolean {
@@ -164,7 +155,6 @@ function listTokens(list: StandardTokenList): StandardTokenListToken[] {
   return Array.isArray(list?.tokens) ? list.tokens : [];
 }
 
-// Standard `extensions.bridgeInfo`: destination chain ID -> { tokenAddress }.
 export function standardBridgeInfoLinks(
   list: StandardTokenList,
   source: TokenSource & { bridgeInfo: BridgeLinkLabel },
@@ -198,9 +188,6 @@ const INTEROPERABILITY_PROTOCOLS = [
   "m0 portal",
 ];
 
-// The Monad list names the protocol a token moves over in
-// `bridgeInfo.protocol`. Every protocol it uses is an interoperability
-// protocol; a token without one gives no hint, so its links are `unknown`.
 export function crossChainLabel(
   token: StandardTokenListToken,
 ): BridgeLinkLabel {
@@ -217,7 +204,6 @@ export function crossChainLabel(
   return { relationship, bridgeName: protocol.trim() };
 }
 
-// `extensions.crossChainAddresses`: chain ID -> { address }.
 export function crossChainAddressLinks(
   list: StandardTokenList,
   source: LinkSource,
@@ -298,9 +284,6 @@ function superchainBridgeName(prefix: string, l2Bridge: string): string {
     : `${chain} custom bridge`;
 }
 
-// Link the Ethereum entry of each Superchain asset to every L2 entry that
-// records the bridge it was minted by. L2 entries without a bridge extension
-// (USDC, WETH) are native deployments the list does not describe as bridged.
 export function superchainLinks(
   list: StandardTokenList,
   source: LinkSource = SUPERCHAIN_TOKEN_LIST,
@@ -363,7 +346,6 @@ export function starkgateLinks(
   return links;
 }
 
-// Rows of Circle's mainnet table: | Blockchain | [`0x…`](explorer) |
 const CIRCLE_ROW = /^\|\s*([^|]+?)\s*\|\s*\[?`(0x[0-9a-fA-F]+)`/;
 
 export function parseCircleRegistry(markdown: string): Map<string, string> {
@@ -381,7 +363,6 @@ export function parseCircleRegistry(markdown: string): Map<string, string> {
   return deployments;
 }
 
-// Links between every pair of chains in `deployments`.
 function pairwiseLinks(
   deployments: Map<string, string>,
   source: LinkSource,
@@ -404,7 +385,6 @@ function pairwiseLinks(
   return links;
 }
 
-// The issuer's own deployments are the same asset on every pair of chains.
 export function issuerLinks(
   deployments: Map<string, string>,
   source: LinkSource,
@@ -419,8 +399,6 @@ export function issuerLinks(
 const TETHER_ROW =
   /(USD₮|XAU₮) contract address: https?:\/\/([a-z0-9.-]+)\/(?:token|address)\/(0x[0-9a-fA-F]{40})\b/g;
 
-// Tether's supported-protocols page names, per chain, the explorer page of
-// each token it issues there. Returns deployments by product.
 export function parseTetherRegistry(
   page: string,
 ): Map<string, Map<string, string>> {
@@ -456,8 +434,6 @@ export type AvalancheBridgeTokens = Record<
   { nativeNetwork?: string; nativeContractAddress?: string }
 >;
 
-// Each Ethereum token the Avalanche Bridge carries, linked to the `.e` token
-// it mints on Avalanche C-Chain.
 export function avalancheBridgeLinks(
   tokens: AvalancheBridgeTokens,
   avalancheAddresses: Record<string, string>,
@@ -485,8 +461,6 @@ export function avalancheBridgeLinks(
   });
 }
 
-// The USDT0 Network deployments API: per product, the chains each OFT is
-// deployed on. Ethereum holds the locked source token rather than a "Token".
 export type Usdt0Deployments = Record<
   string,
   {
@@ -518,8 +492,6 @@ function usdt0Deployments(
   return deployments;
 }
 
-// Every USDT0 Network token is a LayerZero OFT backed by a source token locked
-// on Ethereum, so its deployments are interoperability versions of that token.
 export function usdt0Links(
   api: Usdt0Deployments,
   source: LinkSource,
@@ -579,12 +551,8 @@ export type BridgeRead = {
   method: string;
 };
 
-// Bridges such as Polygon PoS name Ethereum's native ether with this
-// placeholder; the list names it 0x0.
 const NATIVE_ETH_PLACEHOLDER = 0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeen;
 
-// Mappings read from the bridge contracts by `scripts/read-bridges.ts`. Each
-// read is an Ethereum token and the token the bridge mints for it.
 export function bridgeReadLinks(
   reads: BridgeRead[],
   source: LinkSource,
@@ -625,8 +593,6 @@ export function linksFromTokenList(
   return links;
 }
 
-// Links whose source was skipped this run come back from the previous output
-// so an outage does not delete them, as with skipped token sources.
 export function restorePreviousLinks(
   collector: BridgeCollector,
   previous: BridgeRelationship[],
@@ -686,8 +652,6 @@ function isReciprocated(
   );
 }
 
-// Every kind of link describes the same asset in both directions, so a link
-// whose reverse key is free gets the mirrored link, marked as inferred.
 function addInferredReverses(links: Map<string, ProvenancedLink>): number {
   let added = 0;
   for (const relationship of [...links.values()]) {
@@ -707,10 +671,6 @@ function addInferredReverses(links: Map<string, ProvenancedLink>): number {
   return added;
 }
 
-// Two different tokens on one chain that both claim, with the same
-// canonical or issuer relationship, to be the counterpart of one token on
-// another chain. A canonical copy beside an issuer deployment (USDC.e beside
-// USDC) is expected and not reported.
 export function findCompetingCounterparts(
   links: Iterable<ProvenancedLink>,
 ): CompetingCounterparts[] {
@@ -754,11 +714,6 @@ function countBy(
   return counts;
 }
 
-/**
- * Turn collected links into the published list: mirror one-directional
- * links, and report what was dropped and what remains unreciprocated or
- * contested.
- */
 export function finalizeBridgeLinks(collector: BridgeCollector): {
   relationships: ProvenancedLink[];
   report: BridgeQualityReport;

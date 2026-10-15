@@ -189,8 +189,6 @@ async function syncBridgeRelationships(
       ${rows.map((row) => row.dest_chain_id)}::int8[]
     ) AS reviewed(source_chain_id, source_token_address, dest_chain_id)
   `;
-  // Only links the API serves, those whose source token is a token row, are
-  // pruned. Rows for tokens outside the table are invisible and left alone.
   const served = sql`
     EXISTS (
       SELECT 1 FROM erc20_tokens t
@@ -237,14 +235,6 @@ async function syncBridgeRelationships(
   return { upserted, deleted: deleted.length };
 }
 
-// Token rows are written only by this sync, so a row the reviewed list no
-// longer contains is stale. Only rows the token picker shows by default
-// (visibility priority 0 or higher) on chains the list covers are pruned:
-// hidden rows predate the reviewed list and still name tokens in pool
-// statistics, and a chain missing from the list more likely means a broken
-// build. As with links, a large removal is refused rather than applied. A
-// chain may always lose up to TOKEN_PRUNE_CHAIN_ALLOWANCE rows, so a small
-// chain with a few removals is not held to the fraction.
 export const MAX_TOKEN_PRUNE_FRACTION = 0.2;
 export const TOKEN_PRUNE_CHAIN_ALLOWANCE = 100;
 
@@ -340,8 +330,6 @@ async function syncStaleTokens(
       ${keys.map((key) => key.token_address)}::numeric[]
     ) AS stale(chain_id, token_address)
   `;
-  // Price history references the token row. It is meaningless once the token
-  // is gone, and the price worker rebuilds it if the token is listed again.
   const prices = await sql`
     DELETE FROM erc20_tokens_usd_prices p
     USING (${staleKeys}) AS stale

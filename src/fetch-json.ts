@@ -26,14 +26,9 @@ type FetchJsonConfig = {
   sleep?: (milliseconds: number) => Promise<void>;
   maxRetries?: number;
   timeoutMs?: number;
-  // Reads a successful response body; defaults to JSON.
   parse?: (response: Response) => Promise<unknown>;
 };
 
-// Upper bound on any single backoff sleep. A source asking us to wait longer
-// (ipfs.io currently answers 429 with `retry-after: 900`) is treated as a
-// failure instead: callers degrade to the previous list rather than stall a
-// daily run for three quarters of an hour.
 export const MAX_RETRY_DELAY_MS = 10_000;
 
 function errorMessage(error: unknown): string {

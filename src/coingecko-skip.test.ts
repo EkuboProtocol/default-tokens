@@ -72,8 +72,6 @@ test("backfill restores skipped tokens without displacing live rows", () => {
 
   const tokens = [...accumulator.tokens.values()];
   expect(tokens).toHaveLength(2);
-  // The live row keeps its own name and symbol, and inherits only the supply
-  // the skipped source would have provided.
   const live = tokens.find((entry) => entry.token_symbol === "LIVE");
   expect(live?.total_supply).toBe("5");
   expect(tokens.find((entry) => entry.token_symbol === "GONE")).toBeDefined();
