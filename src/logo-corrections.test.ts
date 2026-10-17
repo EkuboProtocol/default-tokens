@@ -71,6 +71,39 @@ test("curates Velodrome's own logo for VELO on Optimism", () => {
   expect(bnbVelo?.logo_url ?? null).not.toBe(velodrome?.logo_url);
 });
 
+// Tokens whose upstream logo shows a different asset, found by comparing the
+// whole list with CoinGecko's own image for each exact chain and address. Each
+// is curated with the image CoinGecko assigns to that address.
+const COINGECKO_LOGO_CORRECTIONS = [
+  {
+    // The 1inch list serves Darwinia's RING (Ethereum) image for OneRing.
+    chainId: "250",
+    address: "0x582423c10c9e83387a96d00a69ba3d11ee47b7b5",
+    coinGeckoImageId: "23273",
+  },
+  {
+    // Stader's liquid-staking BNBx, shown with the plain BNB logo upstream.
+    chainId: "56",
+    address: "0x1bdd3cf7f79cfb8edbb955f20ad99211551ba275",
+    coinGeckoImageId: "26842",
+  },
+  {
+    // Binance's staked ETH, shown with the plain ETH logo upstream.
+    chainId: "56",
+    address: "0x250632378E573c6Be1AC2f97Fcdf00515d0Aa91B",
+    coinGeckoImageId: "13804",
+  },
+];
+
+test.each(COINGECKO_LOGO_CORRECTIONS)(
+  "curates CoinGecko's own logo for $chainId:$address",
+  ({ chainId, address, coinGeckoImageId }) => {
+    expect(curatedToken(chainId, address)?.logo_url).toStartWith(
+      `https://coin-images.coingecko.com/coins/images/${coinGeckoImageId}/`,
+    );
+  },
+);
+
 test("keeps the two VELO tokens separate with different logos through hosting", async () => {
   const velodrome = curatedToken(OPTIMISM_VELO.chainId, OPTIMISM_VELO.address);
   if (!velodrome) throw new Error("Velodrome VELO is not curated");

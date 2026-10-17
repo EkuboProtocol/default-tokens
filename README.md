@@ -122,7 +122,11 @@ for example, gives Velodrome Finance's VELO on Optimism
 (`0x9560e827aF36c94D2Ac33a39bCE1Fe78631088Db`) the CoinGecko image of the
 unrelated Velo token on BNB Smart Chain, although CoinGecko itself maps that
 address to Velodrome. The curated row points at Velodrome's own logo, committed
-under `assets/`, and a test pins the two tokens to different logos.
+under `assets/`, and a test pins the two tokens to different logos. A comparison
+of every generated logo with CoinGecko's image for the same chain and address
+found three more such tokens from the 1inch list (OneRing on Fantom, and BNBx
+and Binance Beacon ETH on BNB Smart Chain); they are curated with CoinGecko's
+image.
 
 The explicit CoinGecko Pro mappings cover every chain the Ekubo wallet MCP
 server configures on first run, because that wallet vendors `tokens.json` as
