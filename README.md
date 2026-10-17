@@ -115,6 +115,15 @@ Generation uses first-source-wins precedence:
 4. CoinGecko Pro token lists for explicitly mapped production chains.
 5. AVNU's Starknet lists.
 
+Because the first source wins, a wrong field in an upstream list is corrected
+with a curated row rather than by reordering sources. Upstream lists do
+sometimes attach another project's logo to a token. The Uniswap default list,
+for example, gives Velodrome Finance's VELO on Optimism
+(`0x9560e827aF36c94D2Ac33a39bCE1Fe78631088Db`) the CoinGecko image of the
+unrelated Velo token on BNB Smart Chain, although CoinGecko itself maps that
+address to Velodrome. The curated row points at Velodrome's own logo, committed
+under `assets/`, and a test pins the two tokens to different logos.
+
 The explicit CoinGecko Pro mappings cover every chain the Ekubo wallet MCP
 server configures on first run, because that wallet vendors `tokens.json` as
 its compiled-in default token list and a missing chain leaves it showing bare
