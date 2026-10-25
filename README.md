@@ -22,6 +22,10 @@ lists.
   reports for every referenced coin, alongside the rotation cursor described
   below.
 - `src/sources.ts` is the reviewable catalog of every remote token source.
+- `launch-tokens.json` records zero-seed launch tokens. It is written only by
+  `bun run launch-tokens --write` (see
+  [Zero-seed launch tokens](#zero-seed-launch-tokens)) and is empty until
+  launches are enabled.
 
 ## Cross-chain links
 
@@ -114,6 +118,9 @@ Generation uses first-source-wins precedence:
 3. The standard token lists in their declared order in `src/sources.ts`.
 4. CoinGecko Pro token lists for explicitly mapped production chains.
 5. AVNU's Starknet lists.
+6. Zero-seed launch tokens recorded in `launch-tokens.json`. They come last,
+   and a chain and address any earlier source lists is left to that source
+   entirely, logo included.
 
 Because the first source wins, a wrong field in an upstream list is corrected
 with a curated row rather than by reordering sources. Upstream lists do
@@ -167,6 +174,69 @@ chains, and circulating supply can change between updates. A missing,
 invalid, ambiguous, or unavailable value remains `null`. Consumers compute FDV
 and market cap as `usd_price * raw_supply / 10 ^ token_decimals` and should
 preserve the distinction between unknown and zero.
+
+## Zero-seed launch tokens
+
+`bun run launch-tokens` reads the Ekubo API's launch list and records each
+listable launch token in `launch-tokens.json`, which the updater reads as its
+lowest-precedence source. The job only ever adds rows; it never edits
+`tokens.json`, and the token-list update hosts the logo exactly as it does for
+every other source.
+
+The launch-list shape lives in `src/launch-api.ts` alone. It requests
+`GET {EKUBO_LAUNCH_API_URL}/launches?chainId=<id>&limit=200`, follows
+`before_event_id=<next_cursor>` until `next_cursor` is null, and reads these
+fields of each `data[]` item: `chain_id`, `pool_id`, `token.address`,
+`token.name`, `token.symbol`, `token.decimals`, `logo_url` and `status`.
+
+All of them are untrusted. A launch is listed only when:
+
+- `chain_id` is an enabled chain (see below) and `pool_id` is 32 bytes of hex;
+- `token.address` is a nonzero 20-byte address, uniform case or a valid EIP-55
+  checksum, and is written checksummed;
+- `token.decimals` is the number 18;
+- `token.name` and `token.symbol` are 1 to 31 bytes of UTF-8 (the contract's
+  `packOne` bound) with no control, invisible-format, bidirectional-override,
+  private-use or replacement characters and no surrounding whitespace;
+- `status` is one of `LAUNCH_LISTABLE_STATUSES` (`final`).
+
+Anything else rejects the launch. Its report entry carries only the pool ID and
+a reason code, never the rejected text. `logo_url` is optional: null, missing
+or `""` lists the token with a null logo, like a token-list entry without
+`logoURI`. A logo that is not a plain `https` URL of at most 2,048 characters
+on a public DNS name (no credentials, port, IP literal, `localhost`, or
+single-label or `.local`/`.internal`/`.arpa` host) is dropped and the token is
+listed without it. An accepted URL is only ever an image source for the
+existing Cloudflare Images step, with its size and HTML checks; an image that
+cannot be hosted leaves the logo null.
+
+Precedence: a launch whose chain and address `curated-tokens.json` lists, or
+`token-sources.json` attributes to any source but this one, is skipped. A row
+already in `launch-tokens.json` is never rewritten; if the API later reports
+different metadata for it, the run reports `conflicts_with_recorded` and keeps
+the recorded row. Two different records for one token in a single read list
+neither. Replays are reported as `duplicate_record`. Rows are sorted by chain
+and address, so rerunning over the same launches leaves the file
+byte-identical.
+
+The job is a dry run unless given `--write`. It prints a JSON report (`added`,
+`unchanged`, `skipped`, `rejected`, `logo_rejected`) to stdout or `--report
+<file>`, and `--candidate <file>` writes the would-be `launch-tokens.json`.
+`--fixture <file>` reads a saved launch-list page instead of the API, and
+`src/fixtures/launch-tokens/` holds a page with its expected dry-run output.
+
+```sh
+EKUBO_LAUNCH_CHAIN_IDS=1 bun run launch-tokens \
+  --fixture src/fixtures/launch-tokens/api-response.json
+```
+
+Launches are off. `LAUNCH_CHAIN_IDS` in `src/sources.ts` is empty, so with
+`EKUBO_LAUNCH_CHAIN_IDS` unset the job does nothing, and no workflow runs it.
+Turning it on takes, in order: the final launch contracts deployed and indexed;
+the API serving the fields above (adjust `src/launch-api.ts` if their names
+differ); a reviewed dry run against `EKUBO_LAUNCH_API_URL`; then either
+committing a `--write` run by hand or adding a workflow that runs it, and
+adding the deployed chains to `LAUNCH_CHAIN_IDS`.
 
 ## Token jurisdiction policy
 

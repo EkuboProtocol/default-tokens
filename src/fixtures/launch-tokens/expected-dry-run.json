@@ -1,0 +1,168 @@
+{
+  "report": {
+    "added": [
+      {
+        "chain_id": "1",
+        "token_address": "0x511F7C085D56548314E03d24Aa0D4CCeE4A5C10a",
+        "pool_id": "0x8cf955e489f14b4a7485a77ae92a098c40600d98597857a78f2c78fb88ab2ced",
+        "token_name": "Null Logo",
+        "token_symbol": "NULL",
+        "logo_url": null
+      },
+      {
+        "chain_id": "1",
+        "token_address": "0x838047Be0779C59E69610451cCf3Fd71F5fB4A53",
+        "pool_id": "0xfb5475aaf870f1b1fe76ffcb64a34cd6b1c41d22f723a49abf6bab09e5760c91",
+        "token_name": "Zero Seed",
+        "token_symbol": "ZERO",
+        "logo_url": null
+      },
+      {
+        "chain_id": "1",
+        "token_address": "0x87ecD021F115B0ebd046Ec4e192B0b86225E9060",
+        "pool_id": "0xbb1eac9e1f34ad75e78e7f2be96ccbe17987317bc7cbbcf50b20faa44ec7de23",
+        "token_name": "Script Logo",
+        "token_symbol": "JS",
+        "logo_url": null
+      },
+      {
+        "chain_id": "1",
+        "token_address": "0x8abbacf4410D679Ee75DcDbE6a8548250CB83D70",
+        "pool_id": "0x8216f46886e73b8ee53d6b28cdb692f24b7eb5c8f9a3e3ccf8693ac02a4455bc",
+        "token_name": "Logo Launch",
+        "token_symbol": "LOGO",
+        "logo_url": "https://example.invalid/logo.svg"
+      },
+      {
+        "chain_id": "1",
+        "token_address": "0xA658A1D48aF4938FFe1574CB13e1ec9fc278Ec91",
+        "pool_id": "0xbd8c3d21f1a9c5c9c9585b52e325169aa01dd6833b4a8d43fedbb6d36db1ad97",
+        "token_name": "Loopback Logo",
+        "token_symbol": "LOOP",
+        "logo_url": null
+      }
+    ],
+    "unchanged": [],
+    "skipped": [
+      {
+        "chain_id": "1",
+        "token_address": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+        "pool_id": "0x1a600c77f12a9dbedb03cfa98673e3d99c83f61490b691149b6c177b08766d6a",
+        "reason": "curated"
+      },
+      {
+        "chain_id": "1",
+        "token_address": "0x838047Be0779C59E69610451cCf3Fd71F5fB4A53",
+        "pool_id": "0xfb5475aaf870f1b1fe76ffcb64a34cd6b1c41d22f723a49abf6bab09e5760c91",
+        "reason": "duplicate_record"
+      },
+      {
+        "chain_id": "1",
+        "token_address": "0xBD3792Ef09481df2A95Be42B69C5409ee890Bf9E",
+        "pool_id": "0x2aa781330c854ce890af149e98ea6797183f491ff1227e211777bbe7909681ea",
+        "reason": "existing_entry",
+        "source": "Uniswap Default Token List"
+      }
+    ],
+    "rejected": [
+      {
+        "pool_id": "0x308ea31275d8f07ae5e9fa9c6d28ca977ddbdd3e998adc5aed236aeb751cde00",
+        "reason": "invalid_symbol"
+      },
+      {
+        "pool_id": "0x312fc1952ac0b59b5846b540c2f5912b93644fb38a33d2b0163505453bb6d651",
+        "reason": "invalid_name"
+      },
+      {
+        "pool_id": "0x40af4fe720ce060d9752f24761f32e09b2332c73a7e9821f899e1f62b461d380",
+        "reason": "invalid_decimals"
+      },
+      {
+        "pool_id": "0x7f0369e462f6c2bd6ecfb81161779aba5499bd0af327ebd59a489ce1a5c2acf4",
+        "reason": "status_not_listable"
+      },
+      {
+        "pool_id": "0xaa78fa03ddee1a891732cb98b043b7bd68cfe0ea0a13909ef987a2af5064465a",
+        "reason": "invalid_name"
+      },
+      {
+        "pool_id": "0xd853a1b30e8cc6b8b4fd84d5c6cd659bca5c6628141b98e58378bc8c6974b56e",
+        "reason": "invalid_address_checksum"
+      },
+      {
+        "pool_id": "0xf63c2ee8f15bf5d6675e8e18500bdfce2e66ac7accd94859b2b88d417c740be8",
+        "reason": "chain_not_enabled"
+      }
+    ],
+    "logo_rejected": [
+      {
+        "chain_id": "1",
+        "token_address": "0x87ecD021F115B0ebd046Ec4e192B0b86225E9060",
+        "pool_id": "0xbb1eac9e1f34ad75e78e7f2be96ccbe17987317bc7cbbcf50b20faa44ec7de23",
+        "reason": "logo_not_https"
+      },
+      {
+        "chain_id": "1",
+        "token_address": "0xA658A1D48aF4938FFe1574CB13e1ec9fc278Ec91",
+        "pool_id": "0xbd8c3d21f1a9c5c9c9585b52e325169aa01dd6833b4a8d43fedbb6d36db1ad97",
+        "reason": "logo_private_host"
+      }
+    ]
+  },
+  "launch_tokens": {
+    "$schema": "./token-list.schema.json",
+    "tokens": [
+      {
+        "chain_id": "1",
+        "token_address": "0x511F7C085D56548314E03d24Aa0D4CCeE4A5C10a",
+        "token_name": "Null Logo",
+        "token_symbol": "NULL",
+        "token_decimals": 18,
+        "logo_url": null,
+        "visibility_priority": -1,
+        "sort_order": -1
+      },
+      {
+        "chain_id": "1",
+        "token_address": "0x838047Be0779C59E69610451cCf3Fd71F5fB4A53",
+        "token_name": "Zero Seed",
+        "token_symbol": "ZERO",
+        "token_decimals": 18,
+        "logo_url": null,
+        "visibility_priority": -1,
+        "sort_order": -1
+      },
+      {
+        "chain_id": "1",
+        "token_address": "0x87ecD021F115B0ebd046Ec4e192B0b86225E9060",
+        "token_name": "Script Logo",
+        "token_symbol": "JS",
+        "token_decimals": 18,
+        "logo_url": null,
+        "visibility_priority": -1,
+        "sort_order": -1
+      },
+      {
+        "chain_id": "1",
+        "token_address": "0x8abbacf4410D679Ee75DcDbE6a8548250CB83D70",
+        "token_name": "Logo Launch",
+        "token_symbol": "LOGO",
+        "token_decimals": 18,
+        "logo_url": "https://example.invalid/logo.svg",
+        "visibility_priority": -1,
+        "sort_order": -1
+      },
+      {
+        "chain_id": "1",
+        "token_address": "0xA658A1D48aF4938FFe1574CB13e1ec9fc278Ec91",
+        "token_name": "Loopback Logo",
+        "token_symbol": "LOOP",
+        "token_decimals": 18,
+        "logo_url": null,
+        "visibility_priority": -1,
+        "sort_order": -1
+      }
+    ],
+    "bridge_relationships": []
+  }
+}

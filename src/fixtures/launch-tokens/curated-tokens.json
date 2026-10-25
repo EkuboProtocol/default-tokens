@@ -1,0 +1,16 @@
+{
+  "$schema": "./token-list.schema.json",
+  "tokens": [
+    {
+      "chain_id": "1",
+      "token_address": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+      "token_name": "Wrapped BTC",
+      "token_symbol": "WBTC",
+      "token_decimals": 8,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/7dcb2db2-a7a7-44af-660b-8262e057a100/logo",
+      "visibility_priority": 1,
+      "sort_order": 0
+    }
+  ],
+  "bridge_relationships": []
+}

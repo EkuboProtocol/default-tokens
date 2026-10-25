@@ -1,0 +1,185 @@
+{
+  "data": [
+    {
+      "chain_id": "1",
+      "pool_id": "0xfb5475aaf870f1b1fe76ffcb64a34cd6b1c41d22f723a49abf6bab09e5760c91",
+      "token": {
+        "address": "0x838047Be0779C59E69610451cCf3Fd71F5fB4A53",
+        "name": "Zero Seed",
+        "symbol": "ZERO",
+        "decimals": 18
+      },
+      "logo_url": "",
+      "status": "final"
+    },
+    {
+      "chain_id": "1",
+      "pool_id": "0x8216f46886e73b8ee53d6b28cdb692f24b7eb5c8f9a3e3ccf8693ac02a4455bc",
+      "token": {
+        "address": "0x8abbacf4410D679Ee75DcDbE6a8548250CB83D70",
+        "name": "Logo Launch",
+        "symbol": "LOGO",
+        "decimals": 18
+      },
+      "logo_url": "https://example.invalid/logo.svg",
+      "status": "final"
+    },
+    {
+      "chain_id": "1",
+      "pool_id": "0x8cf955e489f14b4a7485a77ae92a098c40600d98597857a78f2c78fb88ab2ced",
+      "token": {
+        "address": "0x511f7c085d56548314e03d24aa0d4ccee4a5c10a",
+        "name": "Null Logo",
+        "symbol": "NULL",
+        "decimals": 18
+      },
+      "logo_url": null,
+      "status": "final"
+    },
+    {
+      "chain_id": "1",
+      "pool_id": "0xfb5475aaf870f1b1fe76ffcb64a34cd6b1c41d22f723a49abf6bab09e5760c91",
+      "token": {
+        "address": "0x838047Be0779C59E69610451cCf3Fd71F5fB4A53",
+        "name": "Zero Seed",
+        "symbol": "ZERO",
+        "decimals": 18
+      },
+      "logo_url": "",
+      "status": "final"
+    },
+    {
+      "chain_id": "1",
+      "pool_id": "0x1a600c77f12a9dbedb03cfa98673e3d99c83f61490b691149b6c177b08766d6a",
+      "token": {
+        "address": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+        "name": "Fake Wrapped BTC",
+        "symbol": "WBTC",
+        "decimals": 18
+      },
+      "logo_url": "https://example.com/fake-wbtc.png",
+      "status": "final"
+    },
+    {
+      "chain_id": "1",
+      "pool_id": "0x2aa781330c854ce890af149e98ea6797183f491ff1227e211777bbe7909681ea",
+      "token": {
+        "address": "0xBD3792Ef09481df2A95Be42B69C5409ee890Bf9E",
+        "name": "Already Listed",
+        "symbol": "LISTED",
+        "decimals": 18
+      },
+      "logo_url": null,
+      "status": "final"
+    },
+    {
+      "chain_id": "1",
+      "pool_id": "0x40af4fe720ce060d9752f24761f32e09b2332c73a7e9821f899e1f62b461d380",
+      "token": {
+        "address": "0x7C0139aCc28021Ee2b34535368a48539546E91D0",
+        "name": "Launch decimals",
+        "symbol": "DECIMA",
+        "decimals": 6
+      },
+      "logo_url": null,
+      "status": "final"
+    },
+    {
+      "chain_id": "1",
+      "pool_id": "0x308ea31275d8f07ae5e9fa9c6d28ca977ddbdd3e998adc5aed236aeb751cde00",
+      "token": {
+        "address": "0xA3F90dfb3B623F77b13a61026De576e303722921",
+        "name": "Launch bidi",
+        "symbol": "EVIL‮",
+        "decimals": 18
+      },
+      "logo_url": null,
+      "status": "final"
+    },
+    {
+      "chain_id": "1",
+      "pool_id": "0xaa78fa03ddee1a891732cb98b043b7bd68cfe0ea0a13909ef987a2af5064465a",
+      "token": {
+        "address": "0x21154743aEbfB8D01DC12de1c4A3f10E3473FE1E",
+        "name": "Bad\u0007Bell",
+        "symbol": "BELL",
+        "decimals": 18
+      },
+      "logo_url": null,
+      "status": "final"
+    },
+    {
+      "chain_id": "1",
+      "pool_id": "0x312fc1952ac0b59b5846b540c2f5912b93644fb38a33d2b0163505453bb6d651",
+      "token": {
+        "address": "0xfe34Db7D580ce47f95C7eEED360046F9d0AfBa96",
+        "name": "€€€€€€€€€€€",
+        "symbol": "LONG",
+        "decimals": 18
+      },
+      "logo_url": null,
+      "status": "final"
+    },
+    {
+      "chain_id": "1",
+      "pool_id": "0xbb1eac9e1f34ad75e78e7f2be96ccbe17987317bc7cbbcf50b20faa44ec7de23",
+      "token": {
+        "address": "0x87ecD021F115B0ebd046Ec4e192B0b86225E9060",
+        "name": "Script Logo",
+        "symbol": "JS",
+        "decimals": 18
+      },
+      "logo_url": "javascript:alert(1)",
+      "status": "final"
+    },
+    {
+      "chain_id": "1",
+      "pool_id": "0xbd8c3d21f1a9c5c9c9585b52e325169aa01dd6833b4a8d43fedbb6d36db1ad97",
+      "token": {
+        "address": "0xA658A1D48aF4938FFe1574CB13e1ec9fc278Ec91",
+        "name": "Loopback Logo",
+        "symbol": "LOOP",
+        "decimals": 18
+      },
+      "logo_url": "https://127.0.0.1/logo.png",
+      "status": "final"
+    },
+    {
+      "chain_id": "10",
+      "pool_id": "0xf63c2ee8f15bf5d6675e8e18500bdfce2e66ac7accd94859b2b88d417c740be8",
+      "token": {
+        "address": "0xA4FF59Bde620a0CB19E95f6C26Ae3c9C9E7701c2",
+        "name": "Launch optimism",
+        "symbol": "OPTIMI",
+        "decimals": 18
+      },
+      "logo_url": null,
+      "status": "final"
+    },
+    {
+      "chain_id": "1",
+      "pool_id": "0x7f0369e462f6c2bd6ecfb81161779aba5499bd0af327ebd59a489ce1a5c2acf4",
+      "token": {
+        "address": "0xD95bD0A770669E09aCaf7b887B2593b7ED5b4540",
+        "name": "Launch pending",
+        "symbol": "PENDIN",
+        "decimals": 18
+      },
+      "logo_url": null,
+      "status": "pending"
+    },
+    {
+      "chain_id": "1",
+      "pool_id": "0xd853a1b30e8cc6b8b4fd84d5c6cd659bca5c6628141b98e58378bc8c6974b56e",
+      "token": {
+        "address": "0x18EBc93015847749015778038b71af89b0adb235",
+        "name": "Launch checksum",
+        "symbol": "CHECKS",
+        "decimals": 18
+      },
+      "logo_url": null,
+      "status": "final"
+    }
+  ],
+  "next_cursor": null
+}

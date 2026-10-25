@@ -45,10 +45,32 @@ export const CURATED_SOURCE = {
   url: "curated-tokens.json",
 } as const;
 
+// Tokens of zero-seed launches, written by `bun run update-launch-tokens
+// --write` from the Ekubo API's launch list. Second in precedence, after the
+// curated tokens and before everything else.
+export const LAUNCH_TOKENS_SOURCE = {
+  name: "Ekubo zero-seed launches",
+  url: "launch-tokens.json",
+} as const;
+
 export const TOKEN_REGISTRY_SOURCE = {
   name: "Ekubo onchain token registrations",
   url: "latest_token_registrations_view",
 } as const;
+
+export const LAUNCH_SOURCE = {
+  name: "Ekubo zero-seed launches",
+  url: "launch-tokens.json",
+} as const;
+
+// Chains whose zero-seed launch deployment the launch-token job reads. Empty
+// until the launch contracts are deployed: with no chain enabled the job
+// fetches nothing. `EKUBO_LAUNCH_CHAIN_IDS` overrides it for a run.
+export const LAUNCH_CHAIN_IDS: readonly string[] = [];
+
+// Launch statuses that may be listed. A launch in any other status, or with
+// no status, is rejected. `EKUBO_LAUNCH_STATUSES` overrides it for a run.
+export const LAUNCH_LISTABLE_STATUSES: readonly string[] = ["final"];
 
 export const PREVIOUS_OUTPUT_SOURCE = {
   name: "Previous generated token list",

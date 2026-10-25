@@ -1,0 +1,5 @@
+{
+  "$schema": "./token-list.schema.json",
+  "tokens": [],
+  "bridge_relationships": []
+}
