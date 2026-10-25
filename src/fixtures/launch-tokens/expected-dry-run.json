@@ -79,7 +79,7 @@
       },
       {
         "pool_id": "0x7f0369e462f6c2bd6ecfb81161779aba5499bd0af327ebd59a489ce1a5c2acf4",
-        "reason": "status_not_listable"
+        "reason": "invalid_status"
       },
       {
         "pool_id": "0xaa78fa03ddee1a891732cb98b043b7bd68cfe0ea0a13909ef987a2af5064465a",

@@ -183,11 +183,15 @@ lowest-precedence source. The job only ever adds rows; it never edits
 `tokens.json`, and the token-list update hosts the logo exactly as it does for
 every other source.
 
-The launch-list shape lives in `src/launch-api.ts` alone. It requests
-`GET {EKUBO_LAUNCH_API_URL}/launches?chainId=<id>&limit=200`, follows
-`before_event_id=<next_cursor>` until `next_cursor` is null, and reads these
-fields of each `data[]` item: `chain_id`, `pool_id`, `token.address`,
-`token.name`, `token.symbol`, `token.decimals`, `logo_url` and `status`.
+The launch-list shape (the API's response contract `zero-seed-launch-api/v6`,
+final launch contract only) lives in `src/launch-api.ts` alone. It requests
+`GET {EKUBO_LAUNCH_API_URL}/launches?chainId=<id>&status=all&order_by=created&offset=<n>&limit=200`
+from offset 0, follows `next_offset` until it is null, refuses any other
+`schema_version`, and reads these fields of each `data[]` item: `chain_id`,
+`pool_id`, `token.address`, `token.name`, `token.symbol`, `token.decimals`,
+`logo_url` and `status`. The list is newest first, so a launch created during
+a read can repeat a row on the next page (reported as `duplicate_record`) but
+never hides one. The API serves lowercase addresses.
 
 All of them are untrusted. A launch is listed only when:
 
@@ -198,12 +202,13 @@ All of them are untrusted. A launch is listed only when:
 - `token.name` and `token.symbol` are 1 to 31 bytes of UTF-8 (the contract's
   `packOne` bound) with no control, invisible-format, bidirectional-override,
   private-use or replacement characters and no surrounding whitespace;
-- `status` is one of `LAUNCH_LISTABLE_STATUSES` (`final`).
+- `status` is `upcoming` or `trading`: the token exists from creation, so both
+  are listed; any other value is a malformed record (`invalid_status`).
 
 Anything else rejects the launch. Its report entry carries only the pool ID and
 a reason code, never the rejected text. `logo_url` is optional: null, missing
 or `""` lists the token with a null logo, like a token-list entry without
-`logoURI`. A logo that is not a plain `https` URL of at most 2,048 characters
+`logoURI` (the API serves an empty `logoUrl` as null). A logo that is not a plain `https` URL of at most 2,048 characters
 on a public DNS name (no credentials, port, IP literal, `localhost`, or
 single-label or `.local`/`.internal`/`.arpa` host) is dropped and the token is
 listed without it. An accepted URL is only ever an image source for the
@@ -233,8 +238,7 @@ EKUBO_LAUNCH_CHAIN_IDS=1 bun run launch-tokens \
 Launches are off. `LAUNCH_CHAIN_IDS` in `src/sources.ts` is empty, so with
 `EKUBO_LAUNCH_CHAIN_IDS` unset the job does nothing, and no workflow runs it.
 Turning it on takes, in order: the final launch contracts deployed and indexed;
-the API serving the fields above (adjust `src/launch-api.ts` if their names
-differ); a reviewed dry run against `EKUBO_LAUNCH_API_URL`; then either
+the API serving its launch routes for those chains; a reviewed dry run against `EKUBO_LAUNCH_API_URL`; then either
 committing a `--write` run by hand or adding a workflow that runs it, and
 adding the deployed chains to `LAUNCH_CHAIN_IDS`.
 

@@ -68,10 +68,6 @@ export const LAUNCH_SOURCE = {
 // fetches nothing. `EKUBO_LAUNCH_CHAIN_IDS` overrides it for a run.
 export const LAUNCH_CHAIN_IDS: readonly string[] = [];
 
-// Launch statuses that may be listed. A launch in any other status, or with
-// no status, is rejected. `EKUBO_LAUNCH_STATUSES` overrides it for a run.
-export const LAUNCH_LISTABLE_STATUSES: readonly string[] = ["final"];
-
 export const PREVIOUS_OUTPUT_SOURCE = {
   name: "Previous generated token list",
   url: "tokens.json",

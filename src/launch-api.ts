@@ -1,7 +1,10 @@
 import { fetchJson } from "./fetch-json";
 
-// The only module that knows the Ekubo API's launch-list shape. Every field
-// the launch-token job reads is mapped here, so a renamed field or cursor is
+// The only module that knows the Ekubo API's launch-list shape, response
+// contract `zero-seed-launch-api/v6`: `GET /launches?chainId=&status=all&
+// order_by=created&offset=&limit=` answers `{ schema_version, data, total,
+// totals, next_offset, evaluated_at, heads }`, newest first, paged by offset.
+// Every field the launch-token job reads is mapped here, so a renamed field is
 // a change to this file alone. Values stay `unknown`: they are untrusted and
 // `src/launch-tokens.ts` validates each one.
 
@@ -18,12 +21,14 @@ export type LaunchRecord = {
 
 export type LaunchPage = {
   launches: LaunchRecord[];
-  nextCursor: string | null;
+  nextOffset: number | null;
 };
 
+export const LAUNCH_API_SCHEMA_VERSION = "zero-seed-launch-api/v6";
 export const LAUNCH_LIST_PATH = "/launches";
 export const LAUNCH_PAGE_LIMIT = 200;
-const MAX_PAGES_PER_CHAIN = 500;
+// The API refuses offsets above 100000.
+export const MAX_LAUNCH_OFFSET = 100_000;
 
 function field(value: unknown, name: string): unknown {
   return value !== null && typeof value === "object"
@@ -46,63 +51,81 @@ export function readLaunchRecord(raw: unknown): LaunchRecord {
 }
 
 export function readLaunchPage(raw: unknown): LaunchPage {
+  const version = field(raw, "schema_version");
+  if (version !== LAUNCH_API_SCHEMA_VERSION) {
+    throw new Error(
+      `Launch list schema_version must be ${LAUNCH_API_SCHEMA_VERSION}, got ${JSON.stringify(version)}`,
+    );
+  }
   const data = field(raw, "data");
   if (!Array.isArray(data)) {
     throw new Error("Launch list response has no data array");
   }
-  const nextCursor = field(raw, "next_cursor") ?? null;
-  if (nextCursor !== null && typeof nextCursor !== "string") {
-    throw new Error("Launch list next_cursor must be a string or null");
+  const nextOffset = field(raw, "next_offset");
+  if (
+    nextOffset !== null &&
+    !(Number.isSafeInteger(nextOffset) && (nextOffset as number) > 0)
+  ) {
+    throw new Error(
+      "Launch list next_offset must be a positive integer or null",
+    );
   }
   return {
     launches: data.map(readLaunchRecord),
-    nextCursor: nextCursor === "" ? null : nextCursor,
+    nextOffset: nextOffset as number | null,
   };
 }
 
 export function launchPageUrl(
   baseUrl: string,
   chainId: string,
-  cursor: string | null,
+  offset: number,
 ): string {
   const url = new URL(`${baseUrl.replace(/\/+$/, "")}${LAUNCH_LIST_PATH}`);
   url.searchParams.set("chainId", chainId);
+  url.searchParams.set("status", "all");
+  url.searchParams.set("order_by", "created");
+  url.searchParams.set("offset", String(offset));
   url.searchParams.set("limit", String(LAUNCH_PAGE_LIMIT));
-  if (cursor !== null) url.searchParams.set("before_event_id", cursor);
   return url.toString();
 }
 
+// Offsets over a newest-first list: a launch created mid-read shifts later
+// rows down, so a row may repeat on the next page (the planner skips repeats
+// as duplicate_record) but none is skipped.
 async function fetchChainLaunches(
   baseUrl: string,
   chainId: string,
   fetch?: typeof globalThis.fetch,
 ): Promise<LaunchRecord[]> {
   const launches: LaunchRecord[] = [];
-  const seenCursors = new Set<string>();
-  let cursor: string | null = null;
-  for (let page = 0; page < MAX_PAGES_PER_CHAIN; page++) {
+  let offset = 0;
+  for (;;) {
     const response = await fetchJson<unknown>(
       `Ekubo launches on chain ${chainId}`,
-      launchPageUrl(baseUrl, chainId, cursor),
+      launchPageUrl(baseUrl, chainId, offset),
       { fetch },
     );
-    const { launches: pageLaunches, nextCursor } = readLaunchPage(response);
+    const { launches: pageLaunches, nextOffset } = readLaunchPage(response);
     launches.push(...pageLaunches);
-    if (nextCursor === null) return launches;
-    if (seenCursors.has(nextCursor)) {
-      throw new Error(`Launch list on chain ${chainId} repeated a cursor`);
+    if (nextOffset === null) return launches;
+    if (nextOffset <= offset) {
+      throw new Error(
+        `Launch list on chain ${chainId} did not advance its offset`,
+      );
     }
-    seenCursors.add(nextCursor);
-    cursor = nextCursor;
+    if (nextOffset > MAX_LAUNCH_OFFSET) {
+      throw new Error(
+        `Launch list on chain ${chainId} has more than ${MAX_LAUNCH_OFFSET} launches`,
+      );
+    }
+    offset = nextOffset;
   }
-  throw new Error(
-    `Launch list on chain ${chainId} has more than ${MAX_PAGES_PER_CHAIN} pages`,
-  );
 }
 
 /**
  * Every launch the API lists on the given chains, following each chain's
- * cursor to the end. Any page failure fails the whole read, so a partial
+ * offset to the end. Any page failure fails the whole read, so a partial
  * list is never mistaken for the complete one.
  */
 export async function fetchLaunches(options: {

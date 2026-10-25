@@ -16,7 +16,6 @@ import { validateTokenListSchema } from "../src/schema";
 import {
   CURATED_SOURCE,
   LAUNCH_CHAIN_IDS,
-  LAUNCH_LISTABLE_STATUSES,
   LAUNCH_SOURCE,
 } from "../src/sources";
 import type { TokenProvenance } from "../src/types";
@@ -104,7 +103,6 @@ async function publish(
 async function main(): Promise<void> {
   const config = launchJobConfig(
     envList("EKUBO_LAUNCH_CHAIN_IDS") ?? LAUNCH_CHAIN_IDS,
-    envList("EKUBO_LAUNCH_STATUSES") ?? LAUNCH_LISTABLE_STATUSES,
   );
   if (config.chainIds.size === 0) {
     console.warn(

@@ -51,7 +51,7 @@ export type LaunchRejection =
   | "invalid_decimals"
   | "invalid_name"
   | "invalid_symbol"
-  | "status_not_listable";
+  | "invalid_status";
 
 export type LogoRejection =
   | "logo_not_string"
@@ -65,8 +65,15 @@ export type LogoRejection =
 
 export type LaunchJobConfig = {
   chainIds: ReadonlySet<string>;
-  listableStatuses: ReadonlySet<string>;
 };
+
+// The API's statuses (zero-seed-launch-api/v6). Both are listable: the token
+// exists from creation, before trading opens. Anything else is a malformed
+// record.
+export const LAUNCH_STATUSES: ReadonlySet<string> = new Set([
+  "upcoming",
+  "trading",
+]);
 
 export type LaunchCandidate = {
   poolId: string;
@@ -108,10 +115,7 @@ export type LaunchPlan = {
   report: LaunchReport;
 };
 
-export function launchJobConfig(
-  chainIds: readonly string[],
-  listableStatuses: readonly string[],
-): LaunchJobConfig {
+export function launchJobConfig(chainIds: readonly string[]): LaunchJobConfig {
   const listed = new Set(NATIVE_CURRENCIES.map((native) => native.chainId));
   for (const chainId of chainIds) {
     if (!CANONICAL_DECIMAL.test(chainId) || !listed.has(chainId)) {
@@ -123,10 +127,7 @@ export function launchJobConfig(
       throw new Error("Zero-seed launches are EVM only");
     }
   }
-  return {
-    chainIds: new Set(chainIds),
-    listableStatuses: new Set(listableStatuses),
-  };
+  return { chainIds: new Set(chainIds) };
 }
 
 export function emptyLaunchTokenDocument(): TokenListDocument {
@@ -224,18 +225,15 @@ function chainRejection(
   return config.chainIds.has(value) ? null : "chain_not_enabled";
 }
 
-function metadataRejection(
-  record: LaunchRecord,
-  config: LaunchJobConfig,
-): LaunchRejection | null {
+function metadataRejection(record: LaunchRecord): LaunchRejection | null {
   if (record.decimals !== LAUNCH_TOKEN_DECIMALS) return "invalid_decimals";
   if (!isLaunchMetadata(record.name)) return "invalid_name";
   if (!isLaunchMetadata(record.symbol)) return "invalid_symbol";
   if (
     typeof record.status !== "string" ||
-    !config.listableStatuses.has(record.status)
+    !LAUNCH_STATUSES.has(record.status)
   ) {
-    return "status_not_listable";
+    return "invalid_status";
   }
   return null;
 }
@@ -253,7 +251,7 @@ export function validateLaunch(
   if (poolId === null) return { poolId, rejection: "invalid_pool_id" };
   const address = readLaunchAddress(record.tokenAddress);
   if ("rejection" in address) return { poolId, ...address };
-  const metadataProblem = metadataRejection(record, config);
+  const metadataProblem = metadataRejection(record);
   if (metadataProblem) return { poolId, rejection: metadataProblem };
 
   const logo = readLaunchLogo(record.logoUrl);

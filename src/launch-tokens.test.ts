@@ -33,7 +33,7 @@ async function fixture<T>(name: string): Promise<T> {
   return JSON.parse(await readFile(join(fixtures, name), "utf8")) as T;
 }
 
-const config = launchJobConfig(["1"], ["final"]);
+const config = launchJobConfig(["1"]);
 const apiResponse = await fixture<unknown>("api-response.json");
 const launches = readLaunchPage(apiResponse).launches;
 const curated = await fixture<TokenListDocument>("curated-tokens.json");
@@ -60,7 +60,7 @@ function record(overrides: Partial<LaunchRecord> = {}): LaunchRecord {
     symbol: "ZERO",
     decimals: 18,
     logoUrl: "",
-    status: "final",
+    status: "trading",
     ...overrides,
   };
 }
@@ -141,10 +141,18 @@ describe("fixture provenance", () => {
     );
     expect(first?.name).toBe(packOne(word(empty.data, 5)));
     expect(first?.symbol).toBe(packOne(word(empty.data, 6)));
-    expect(first?.logoUrl).toBe(logo(empty.data));
+    // The API serves the emitted empty logoUrl as null.
+    expect([logo(empty.data), first?.logoUrl]).toEqual(["", null]);
     expect(logo(empty.data)).toBe(empty.logo);
     expect(logo(withLogo.data)).toBe(withLogo.logo);
     expect(launches[1]?.logoUrl).toBe(withLogo.logo);
+  });
+
+  test("the replay of the first launch keeps an empty-string logo", () => {
+    expect(launches[3]).toEqual({
+      ...launches[0],
+      logoUrl: "",
+    } as LaunchRecord);
   });
 });
 
@@ -201,8 +209,9 @@ describe("launch validation", () => {
     [{ name: "Zero\uFFFD" }, "invalid_name"],
     [{ symbol: "ZE\nRO" }, "invalid_symbol"],
     [{ symbol: "\u202EORZ" }, "invalid_symbol"],
-    [{ status: "pending" }, "status_not_listable"],
-    [{ status: undefined }, "status_not_listable"],
+    [{ status: "final" }, "invalid_status"],
+    [{ status: "pending" }, "invalid_status"],
+    [{ status: undefined }, "invalid_status"],
   ] as [Partial<LaunchRecord>, LaunchRejection][])(
     "rejects %o as %s",
     (overrides, reason) => {
@@ -312,11 +321,9 @@ describe("launch planning", () => {
   });
 
   test("rejects chains outside the list and Starknet", () => {
-    expect(() => launchJobConfig(["999999"], ["final"])).toThrow();
-    expect(() => launchJobConfig(["0x1"], ["final"])).toThrow();
-    expect(() =>
-      launchJobConfig([String(0x534e5f4d41494en)], ["final"]),
-    ).toThrow();
+    expect(() => launchJobConfig(["999999"])).toThrow();
+    expect(() => launchJobConfig(["0x1"])).toThrow();
+    expect(() => launchJobConfig([String(0x534e5f4d41494en)])).toThrow();
   });
 });
 
@@ -389,12 +396,32 @@ async function failure(promise: Promise<unknown>): Promise<string> {
 }
 
 describe("launch API adapter", () => {
-  const page = (data: unknown[], next_cursor: string | null) =>
-    Response.json({ data, next_cursor });
+  const envelope = apiResponse as Record<string, unknown> & { data: unknown[] };
+  const page = (data: unknown[], next_offset: number | null) =>
+    Response.json({ ...envelope, data, next_offset });
 
-  test("follows the cursor to the last page", async () => {
+  test("reads the v6 fields, including both statuses and lowercase addresses", () => {
+    expect(launches[0]).toEqual({
+      chainId: "1",
+      poolId:
+        "0xfb5475aaf870f1b1fe76ffcb64a34cd6b1c41d22f723a49abf6bab09e5760c91",
+      tokenAddress: "0x838047be0779c59e69610451ccf3fd71f5fb4a53",
+      name: "Zero Seed",
+      symbol: "ZERO",
+      decimals: 18,
+      logoUrl: null,
+      status: "trading",
+    });
+    expect(launches.map((launch) => launch.status)).toContain("upcoming");
+    for (const status of ["upcoming", "trading"]) {
+      expect("candidate" in validateLaunch(record({ status }), config)).toBe(
+        true,
+      );
+    }
+  });
+
+  test("follows next_offset to the last page", async () => {
     const urls: string[] = [];
-    const raw = (apiResponse as { data: unknown[] }).data;
     const records = await fetchLaunches({
       baseUrl: "https://api.example.com/",
       chainIds: ["1"],
@@ -402,32 +429,42 @@ describe("launch API adapter", () => {
         urls.push(url);
         return Promise.resolve(
           urls.length === 1
-            ? page(raw.slice(0, 2), "42")
-            : page(raw.slice(2), null),
+            ? page(envelope.data.slice(0, 2), 200)
+            : page(envelope.data.slice(2), null),
         );
       }) as typeof fetch,
     });
     expect(records).toEqual(launches);
     expect(urls).toEqual([
-      launchPageUrl("https://api.example.com", "1", null),
-      launchPageUrl("https://api.example.com", "1", "42"),
+      launchPageUrl("https://api.example.com", "1", 0),
+      launchPageUrl("https://api.example.com", "1", 200),
     ]);
     expect(urls[1]).toBe(
-      "https://api.example.com/launches?chainId=1&limit=200&before_event_id=42",
+      "https://api.example.com/launches?chainId=1&status=all&order_by=created&offset=200&limit=200",
     );
   });
 
-  test("fails on a repeated cursor instead of looping", async () => {
+  test("fails on an offset that does not advance instead of looping", async () => {
     expect(
       await failure(
         fetchLaunches({
           baseUrl: "https://api.example.com",
           chainIds: ["1"],
           fetch: (() =>
-            Promise.resolve(page([], "same"))) as unknown as typeof fetch,
+            Promise.resolve(page([], 200))) as unknown as typeof fetch,
         }),
       ),
-    ).toContain("repeated a cursor");
+    ).toContain("did not advance");
+    expect(
+      await failure(
+        fetchLaunches({
+          baseUrl: "https://api.example.com",
+          chainIds: ["1"],
+          fetch: (() =>
+            Promise.resolve(page([], 100_200))) as unknown as typeof fetch,
+        }),
+      ),
+    ).toContain("more than 100000");
   });
 
   test("fails the whole read when a page fails", async () => {
@@ -451,10 +488,23 @@ describe("launch API adapter", () => {
         fetchLaunches({ baseUrl: "http://api.example.com", chainIds: ["1"] }),
       ),
     ).toContain("https");
-    expect(() => readLaunchPage({ launches: [] })).toThrow("data array");
-    expect(() => readLaunchPage({ data: [], next_cursor: 7 })).toThrow(
-      "next_cursor",
+    expect(() =>
+      readLaunchPage({
+        ...envelope,
+        schema_version: "zero-seed-launch-api/v5",
+      }),
+    ).toThrow("schema_version");
+    expect(() => readLaunchPage({ data: [], next_offset: null })).toThrow(
+      "schema_version",
     );
+    expect(() => readLaunchPage({ ...envelope, data: undefined })).toThrow(
+      "data array",
+    );
+    for (const next_offset of ["200", 0, -1, 1.5, undefined]) {
+      expect(() => readLaunchPage({ ...envelope, next_offset })).toThrow(
+        "next_offset",
+      );
+    }
   });
 });
 

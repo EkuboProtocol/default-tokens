@@ -1,185 +1,1446 @@
 {
+  "schema_version": "zero-seed-launch-api/v6",
   "data": [
     {
+      "schema_version": "zero-seed-launch-api/v6",
       "chain_id": "1",
       "pool_id": "0xfb5475aaf870f1b1fe76ffcb64a34cd6b1c41d22f723a49abf6bab09e5760c91",
+      "pool_key": {
+        "core_address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "token0": "0x0000000000000000000000000000000000000000",
+        "token1": "0x838047be0779c59e69610451ccf3fd71f5fb4a53",
+        "config": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c000000000000000080004646",
+        "fee": "0",
+        "tick_spacing": 17990,
+        "extension": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c"
+      },
       "token": {
-        "address": "0x838047Be0779C59E69610451cCf3Fd71F5fB4A53",
+        "address": "0x838047be0779c59e69610451ccf3fd71f5fb4a53",
         "name": "Zero Seed",
         "symbol": "ZERO",
         "decimals": 18
       },
-      "logo_url": "",
-      "status": "final"
+      "quote_token": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "name": null,
+        "symbol": null,
+        "decimals": 18,
+        "kind": "native"
+      },
+      "launch_token_is_token1": true,
+      "controller": "0x6963de1652c96fb0eaeaf5167de3c89e187284f2",
+      "creator": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "owner": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+      "logo_url": null,
+      "parameters": {
+        "name": "0x095a65726f205365656400000000000000000000000000000000000000000000",
+        "symbol": "0x045a45524f000000000000000000000000000000000000000000000000000000",
+        "supply": "1000000000000000000000000000",
+        "quote_token": "0x0000000000000000000000000000000000000000",
+        "ask_tick": "-13815500",
+        "upper_tick": "-9210300",
+        "trading_start": "1800001000",
+        "decay_rate_x32": "9923486534471",
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "salt": "0x4ef3c22030c48a824508eaa92d5871f0ef42a8a80ef512ae3934836eed27ebaf"
+      },
+      "range": {
+        "tick_spacing": 17990,
+        "aligned_ask_tick": -13798330,
+        "aligned_upper_tick": -9210880,
+        "pool_tick_lower": 9210880,
+        "pool_tick_upper": 13798330
+      },
+      "supply": {
+        "requested": "1000000000000000000000000000",
+        "installed": "999999999999999999999999559",
+        "sink": "441",
+        "sink_holder": "0x0000000000000000000000000000000000000000"
+      },
+      "trading_start": 1800001000,
+      "status": "trading",
+      "fee_schedule": {
+        "trading_start": 1800001000,
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "decay_rate_x32": "9923486534471",
+        "half_life_seconds": "600.000000",
+        "saturation_elapsed_seconds": "38399",
+        "phase": "at_floor",
+        "fee_rate": "55340232221128654",
+        "evaluated_at": 2115361000
+      },
+      "market": {
+        "price_tick": -13769998,
+        "price_x128": "356129566344924627381574169859136",
+        "market_cap": "1046570733498124860716",
+        "market_cap_usd": null,
+        "raised": "16142442253306885264",
+        "sold": "15644177672570445471331431",
+        "sold_share": "0.015644177672570445",
+        "trade_count": 10
+      },
+      "created": {
+        "block_number": "2",
+        "block_hash": "0x570fcc84e9f797809ba3e5f9138a969cbac2cbb913ad2d9a2a4881b6965ae3b9",
+        "block_time": 1800000010,
+        "event_id": "-9223372028264710138",
+        "transaction_index": 2,
+        "event_index": 5,
+        "transaction_hash": "0x9166164828ca58da84d325963c28bd5cf66ddf894017ca90970c4b3efea7215b"
+      },
+      "as_of": {
+        "block_number": "18",
+        "block_hash": "0x41f1936846fcb71cee30f7dd9070915b4fc7dff73f4e94cea11e54c0166606ba",
+        "block_time": 2115361000
+      }
     },
     {
+      "schema_version": "zero-seed-launch-api/v6",
       "chain_id": "1",
       "pool_id": "0x8216f46886e73b8ee53d6b28cdb692f24b7eb5c8f9a3e3ccf8693ac02a4455bc",
+      "pool_key": {
+        "core_address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "token0": "0x0000000000000000000000000000000000000000",
+        "token1": "0x8abbacf4410d679ee75dcdbe6a8548250cb83d70",
+        "config": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c000000000000000080004646",
+        "fee": "0",
+        "tick_spacing": 17990,
+        "extension": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c"
+      },
       "token": {
-        "address": "0x8abbacf4410D679Ee75DcDbE6a8548250CB83D70",
+        "address": "0x8abbacf4410d679ee75dcdbe6a8548250cb83d70",
         "name": "Logo Launch",
         "symbol": "LOGO",
         "decimals": 18
       },
+      "quote_token": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "name": null,
+        "symbol": null,
+        "decimals": 18,
+        "kind": "native"
+      },
+      "launch_token_is_token1": true,
+      "controller": "0x6963de1652c96fb0eaeaf5167de3c89e187284f2",
+      "creator": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "owner": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
       "logo_url": "https://example.invalid/logo.svg",
-      "status": "final"
+      "parameters": {
+        "name": "0x0b4c6f676f204c61756e63680000000000000000000000000000000000000000",
+        "symbol": "0x044c4f474f000000000000000000000000000000000000000000000000000000",
+        "supply": "1000000000000000000000000000",
+        "quote_token": "0x0000000000000000000000000000000000000000",
+        "ask_tick": "-13815500",
+        "upper_tick": "-9210300",
+        "trading_start": "2115361600",
+        "decay_rate_x32": "9923486534471",
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "salt": "0x4ef3c22030c48a824508eaa92d5871f0ef42a8a80ef512ae3934836eed27ebaf"
+      },
+      "range": {
+        "tick_spacing": 17990,
+        "aligned_ask_tick": -13798330,
+        "aligned_upper_tick": -9210880,
+        "pool_tick_lower": 9210880,
+        "pool_tick_upper": 13798330
+      },
+      "supply": {
+        "requested": "1000000000000000000000000000",
+        "installed": "999999999999999999999999559",
+        "sink": "441",
+        "sink_holder": "0x0000000000000000000000000000000000000000"
+      },
+      "trading_start": 2115361600,
+      "status": "upcoming",
+      "fee_schedule": {
+        "trading_start": 2115361600,
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "decay_rate_x32": "9923486534471",
+        "half_life_seconds": "600.000000",
+        "saturation_elapsed_seconds": "38399",
+        "phase": "before_trading_start",
+        "fee_rate": "9223372036854775808",
+        "evaluated_at": 2115361000
+      },
+      "market": {
+        "price_tick": -13769998,
+        "price_x128": "356129566344924627381574169859136",
+        "market_cap": "1046570733498124860716",
+        "market_cap_usd": null,
+        "raised": "16142442253306885264",
+        "sold": "15644177672570445471331431",
+        "sold_share": "0.015644177672570445",
+        "trade_count": 10
+      },
+      "created": {
+        "block_number": "2",
+        "block_hash": "0x570fcc84e9f797809ba3e5f9138a969cbac2cbb913ad2d9a2a4881b6965ae3b9",
+        "block_time": 1800000010,
+        "event_id": "-9223372028264710138",
+        "transaction_index": 2,
+        "event_index": 5,
+        "transaction_hash": "0x9166164828ca58da84d325963c28bd5cf66ddf894017ca90970c4b3efea7215b"
+      },
+      "as_of": {
+        "block_number": "18",
+        "block_hash": "0x41f1936846fcb71cee30f7dd9070915b4fc7dff73f4e94cea11e54c0166606ba",
+        "block_time": 2115361000
+      }
     },
     {
+      "schema_version": "zero-seed-launch-api/v6",
       "chain_id": "1",
       "pool_id": "0x8cf955e489f14b4a7485a77ae92a098c40600d98597857a78f2c78fb88ab2ced",
+      "pool_key": {
+        "core_address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "token0": "0x0000000000000000000000000000000000000000",
+        "token1": "0x511f7c085d56548314e03d24aa0d4ccee4a5c10a",
+        "config": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c000000000000000080004646",
+        "fee": "0",
+        "tick_spacing": 17990,
+        "extension": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c"
+      },
       "token": {
         "address": "0x511f7c085d56548314e03d24aa0d4ccee4a5c10a",
         "name": "Null Logo",
         "symbol": "NULL",
         "decimals": 18
       },
+      "quote_token": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "name": null,
+        "symbol": null,
+        "decimals": 18,
+        "kind": "native"
+      },
+      "launch_token_is_token1": true,
+      "controller": "0x6963de1652c96fb0eaeaf5167de3c89e187284f2",
+      "creator": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "owner": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
       "logo_url": null,
-      "status": "final"
+      "parameters": {
+        "name": "0x094e756c6c204c6f676f00000000000000000000000000000000000000000000",
+        "symbol": "0x044e554c4c000000000000000000000000000000000000000000000000000000",
+        "supply": "1000000000000000000000000000",
+        "quote_token": "0x0000000000000000000000000000000000000000",
+        "ask_tick": "-13815500",
+        "upper_tick": "-9210300",
+        "trading_start": "1800001000",
+        "decay_rate_x32": "9923486534471",
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "salt": "0x4ef3c22030c48a824508eaa92d5871f0ef42a8a80ef512ae3934836eed27ebaf"
+      },
+      "range": {
+        "tick_spacing": 17990,
+        "aligned_ask_tick": -13798330,
+        "aligned_upper_tick": -9210880,
+        "pool_tick_lower": 9210880,
+        "pool_tick_upper": 13798330
+      },
+      "supply": {
+        "requested": "1000000000000000000000000000",
+        "installed": "999999999999999999999999559",
+        "sink": "441",
+        "sink_holder": "0x0000000000000000000000000000000000000000"
+      },
+      "trading_start": 1800001000,
+      "status": "trading",
+      "fee_schedule": {
+        "trading_start": 1800001000,
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "decay_rate_x32": "9923486534471",
+        "half_life_seconds": "600.000000",
+        "saturation_elapsed_seconds": "38399",
+        "phase": "at_floor",
+        "fee_rate": "55340232221128654",
+        "evaluated_at": 2115361000
+      },
+      "market": {
+        "price_tick": -13769998,
+        "price_x128": "356129566344924627381574169859136",
+        "market_cap": "1046570733498124860716",
+        "market_cap_usd": null,
+        "raised": "16142442253306885264",
+        "sold": "15644177672570445471331431",
+        "sold_share": "0.015644177672570445",
+        "trade_count": 10
+      },
+      "created": {
+        "block_number": "2",
+        "block_hash": "0x570fcc84e9f797809ba3e5f9138a969cbac2cbb913ad2d9a2a4881b6965ae3b9",
+        "block_time": 1800000010,
+        "event_id": "-9223372028264710138",
+        "transaction_index": 2,
+        "event_index": 5,
+        "transaction_hash": "0x9166164828ca58da84d325963c28bd5cf66ddf894017ca90970c4b3efea7215b"
+      },
+      "as_of": {
+        "block_number": "18",
+        "block_hash": "0x41f1936846fcb71cee30f7dd9070915b4fc7dff73f4e94cea11e54c0166606ba",
+        "block_time": 2115361000
+      }
     },
     {
+      "schema_version": "zero-seed-launch-api/v6",
       "chain_id": "1",
       "pool_id": "0xfb5475aaf870f1b1fe76ffcb64a34cd6b1c41d22f723a49abf6bab09e5760c91",
+      "pool_key": {
+        "core_address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "token0": "0x0000000000000000000000000000000000000000",
+        "token1": "0x838047be0779c59e69610451ccf3fd71f5fb4a53",
+        "config": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c000000000000000080004646",
+        "fee": "0",
+        "tick_spacing": 17990,
+        "extension": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c"
+      },
       "token": {
-        "address": "0x838047Be0779C59E69610451cCf3Fd71F5fB4A53",
+        "address": "0x838047be0779c59e69610451ccf3fd71f5fb4a53",
         "name": "Zero Seed",
         "symbol": "ZERO",
         "decimals": 18
       },
+      "quote_token": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "name": null,
+        "symbol": null,
+        "decimals": 18,
+        "kind": "native"
+      },
+      "launch_token_is_token1": true,
+      "controller": "0x6963de1652c96fb0eaeaf5167de3c89e187284f2",
+      "creator": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "owner": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
       "logo_url": "",
-      "status": "final"
+      "parameters": {
+        "name": "0x095a65726f205365656400000000000000000000000000000000000000000000",
+        "symbol": "0x045a45524f000000000000000000000000000000000000000000000000000000",
+        "supply": "1000000000000000000000000000",
+        "quote_token": "0x0000000000000000000000000000000000000000",
+        "ask_tick": "-13815500",
+        "upper_tick": "-9210300",
+        "trading_start": "1800001000",
+        "decay_rate_x32": "9923486534471",
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "salt": "0x4ef3c22030c48a824508eaa92d5871f0ef42a8a80ef512ae3934836eed27ebaf"
+      },
+      "range": {
+        "tick_spacing": 17990,
+        "aligned_ask_tick": -13798330,
+        "aligned_upper_tick": -9210880,
+        "pool_tick_lower": 9210880,
+        "pool_tick_upper": 13798330
+      },
+      "supply": {
+        "requested": "1000000000000000000000000000",
+        "installed": "999999999999999999999999559",
+        "sink": "441",
+        "sink_holder": "0x0000000000000000000000000000000000000000"
+      },
+      "trading_start": 1800001000,
+      "status": "trading",
+      "fee_schedule": {
+        "trading_start": 1800001000,
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "decay_rate_x32": "9923486534471",
+        "half_life_seconds": "600.000000",
+        "saturation_elapsed_seconds": "38399",
+        "phase": "at_floor",
+        "fee_rate": "55340232221128654",
+        "evaluated_at": 2115361000
+      },
+      "market": {
+        "price_tick": -13769998,
+        "price_x128": "356129566344924627381574169859136",
+        "market_cap": "1046570733498124860716",
+        "market_cap_usd": null,
+        "raised": "16142442253306885264",
+        "sold": "15644177672570445471331431",
+        "sold_share": "0.015644177672570445",
+        "trade_count": 10
+      },
+      "created": {
+        "block_number": "2",
+        "block_hash": "0x570fcc84e9f797809ba3e5f9138a969cbac2cbb913ad2d9a2a4881b6965ae3b9",
+        "block_time": 1800000010,
+        "event_id": "-9223372028264710138",
+        "transaction_index": 2,
+        "event_index": 5,
+        "transaction_hash": "0x9166164828ca58da84d325963c28bd5cf66ddf894017ca90970c4b3efea7215b"
+      },
+      "as_of": {
+        "block_number": "18",
+        "block_hash": "0x41f1936846fcb71cee30f7dd9070915b4fc7dff73f4e94cea11e54c0166606ba",
+        "block_time": 2115361000
+      }
     },
     {
+      "schema_version": "zero-seed-launch-api/v6",
       "chain_id": "1",
       "pool_id": "0x1a600c77f12a9dbedb03cfa98673e3d99c83f61490b691149b6c177b08766d6a",
+      "pool_key": {
+        "core_address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "token0": "0x0000000000000000000000000000000000000000",
+        "token1": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+        "config": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c000000000000000080004646",
+        "fee": "0",
+        "tick_spacing": 17990,
+        "extension": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c"
+      },
       "token": {
-        "address": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+        "address": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
         "name": "Fake Wrapped BTC",
         "symbol": "WBTC",
         "decimals": 18
       },
+      "quote_token": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "name": null,
+        "symbol": null,
+        "decimals": 18,
+        "kind": "native"
+      },
+      "launch_token_is_token1": true,
+      "controller": "0x6963de1652c96fb0eaeaf5167de3c89e187284f2",
+      "creator": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "owner": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
       "logo_url": "https://example.com/fake-wbtc.png",
-      "status": "final"
+      "parameters": {
+        "name": "0x1046616b65205772617070656420425443000000000000000000000000000000",
+        "symbol": "0x0457425443000000000000000000000000000000000000000000000000000000",
+        "supply": "1000000000000000000000000000",
+        "quote_token": "0x0000000000000000000000000000000000000000",
+        "ask_tick": "-13815500",
+        "upper_tick": "-9210300",
+        "trading_start": "1800001000",
+        "decay_rate_x32": "9923486534471",
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "salt": "0x4ef3c22030c48a824508eaa92d5871f0ef42a8a80ef512ae3934836eed27ebaf"
+      },
+      "range": {
+        "tick_spacing": 17990,
+        "aligned_ask_tick": -13798330,
+        "aligned_upper_tick": -9210880,
+        "pool_tick_lower": 9210880,
+        "pool_tick_upper": 13798330
+      },
+      "supply": {
+        "requested": "1000000000000000000000000000",
+        "installed": "999999999999999999999999559",
+        "sink": "441",
+        "sink_holder": "0x0000000000000000000000000000000000000000"
+      },
+      "trading_start": 1800001000,
+      "status": "trading",
+      "fee_schedule": {
+        "trading_start": 1800001000,
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "decay_rate_x32": "9923486534471",
+        "half_life_seconds": "600.000000",
+        "saturation_elapsed_seconds": "38399",
+        "phase": "at_floor",
+        "fee_rate": "55340232221128654",
+        "evaluated_at": 2115361000
+      },
+      "market": {
+        "price_tick": -13769998,
+        "price_x128": "356129566344924627381574169859136",
+        "market_cap": "1046570733498124860716",
+        "market_cap_usd": null,
+        "raised": "16142442253306885264",
+        "sold": "15644177672570445471331431",
+        "sold_share": "0.015644177672570445",
+        "trade_count": 10
+      },
+      "created": {
+        "block_number": "2",
+        "block_hash": "0x570fcc84e9f797809ba3e5f9138a969cbac2cbb913ad2d9a2a4881b6965ae3b9",
+        "block_time": 1800000010,
+        "event_id": "-9223372028264710138",
+        "transaction_index": 2,
+        "event_index": 5,
+        "transaction_hash": "0x9166164828ca58da84d325963c28bd5cf66ddf894017ca90970c4b3efea7215b"
+      },
+      "as_of": {
+        "block_number": "18",
+        "block_hash": "0x41f1936846fcb71cee30f7dd9070915b4fc7dff73f4e94cea11e54c0166606ba",
+        "block_time": 2115361000
+      }
     },
     {
+      "schema_version": "zero-seed-launch-api/v6",
       "chain_id": "1",
       "pool_id": "0x2aa781330c854ce890af149e98ea6797183f491ff1227e211777bbe7909681ea",
+      "pool_key": {
+        "core_address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "token0": "0x0000000000000000000000000000000000000000",
+        "token1": "0xbd3792ef09481df2a95be42b69c5409ee890bf9e",
+        "config": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c000000000000000080004646",
+        "fee": "0",
+        "tick_spacing": 17990,
+        "extension": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c"
+      },
       "token": {
-        "address": "0xBD3792Ef09481df2A95Be42B69C5409ee890Bf9E",
+        "address": "0xbd3792ef09481df2a95be42b69c5409ee890bf9e",
         "name": "Already Listed",
         "symbol": "LISTED",
         "decimals": 18
       },
+      "quote_token": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "name": null,
+        "symbol": null,
+        "decimals": 18,
+        "kind": "native"
+      },
+      "launch_token_is_token1": true,
+      "controller": "0x6963de1652c96fb0eaeaf5167de3c89e187284f2",
+      "creator": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "owner": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
       "logo_url": null,
-      "status": "final"
+      "parameters": {
+        "name": "0x0e416c7265616479204c69737465640000000000000000000000000000000000",
+        "symbol": "0x064c495354454400000000000000000000000000000000000000000000000000",
+        "supply": "1000000000000000000000000000",
+        "quote_token": "0x0000000000000000000000000000000000000000",
+        "ask_tick": "-13815500",
+        "upper_tick": "-9210300",
+        "trading_start": "1800001000",
+        "decay_rate_x32": "9923486534471",
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "salt": "0x4ef3c22030c48a824508eaa92d5871f0ef42a8a80ef512ae3934836eed27ebaf"
+      },
+      "range": {
+        "tick_spacing": 17990,
+        "aligned_ask_tick": -13798330,
+        "aligned_upper_tick": -9210880,
+        "pool_tick_lower": 9210880,
+        "pool_tick_upper": 13798330
+      },
+      "supply": {
+        "requested": "1000000000000000000000000000",
+        "installed": "999999999999999999999999559",
+        "sink": "441",
+        "sink_holder": "0x0000000000000000000000000000000000000000"
+      },
+      "trading_start": 1800001000,
+      "status": "trading",
+      "fee_schedule": {
+        "trading_start": 1800001000,
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "decay_rate_x32": "9923486534471",
+        "half_life_seconds": "600.000000",
+        "saturation_elapsed_seconds": "38399",
+        "phase": "at_floor",
+        "fee_rate": "55340232221128654",
+        "evaluated_at": 2115361000
+      },
+      "market": {
+        "price_tick": -13769998,
+        "price_x128": "356129566344924627381574169859136",
+        "market_cap": "1046570733498124860716",
+        "market_cap_usd": null,
+        "raised": "16142442253306885264",
+        "sold": "15644177672570445471331431",
+        "sold_share": "0.015644177672570445",
+        "trade_count": 10
+      },
+      "created": {
+        "block_number": "2",
+        "block_hash": "0x570fcc84e9f797809ba3e5f9138a969cbac2cbb913ad2d9a2a4881b6965ae3b9",
+        "block_time": 1800000010,
+        "event_id": "-9223372028264710138",
+        "transaction_index": 2,
+        "event_index": 5,
+        "transaction_hash": "0x9166164828ca58da84d325963c28bd5cf66ddf894017ca90970c4b3efea7215b"
+      },
+      "as_of": {
+        "block_number": "18",
+        "block_hash": "0x41f1936846fcb71cee30f7dd9070915b4fc7dff73f4e94cea11e54c0166606ba",
+        "block_time": 2115361000
+      }
     },
     {
+      "schema_version": "zero-seed-launch-api/v6",
       "chain_id": "1",
       "pool_id": "0x40af4fe720ce060d9752f24761f32e09b2332c73a7e9821f899e1f62b461d380",
+      "pool_key": {
+        "core_address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "token0": "0x0000000000000000000000000000000000000000",
+        "token1": "0x7c0139acc28021ee2b34535368a48539546e91d0",
+        "config": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c000000000000000080004646",
+        "fee": "0",
+        "tick_spacing": 17990,
+        "extension": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c"
+      },
       "token": {
-        "address": "0x7C0139aCc28021Ee2b34535368a48539546E91D0",
+        "address": "0x7c0139acc28021ee2b34535368a48539546e91d0",
         "name": "Launch decimals",
         "symbol": "DECIMA",
         "decimals": 6
       },
+      "quote_token": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "name": null,
+        "symbol": null,
+        "decimals": 18,
+        "kind": "native"
+      },
+      "launch_token_is_token1": true,
+      "controller": "0x6963de1652c96fb0eaeaf5167de3c89e187284f2",
+      "creator": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "owner": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
       "logo_url": null,
-      "status": "final"
+      "parameters": {
+        "name": "0x0f4c61756e636820646563696d616c7300000000000000000000000000000000",
+        "symbol": "0x06444543494d4100000000000000000000000000000000000000000000000000",
+        "supply": "1000000000000000000000000000",
+        "quote_token": "0x0000000000000000000000000000000000000000",
+        "ask_tick": "-13815500",
+        "upper_tick": "-9210300",
+        "trading_start": "1800001000",
+        "decay_rate_x32": "9923486534471",
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "salt": "0x4ef3c22030c48a824508eaa92d5871f0ef42a8a80ef512ae3934836eed27ebaf"
+      },
+      "range": {
+        "tick_spacing": 17990,
+        "aligned_ask_tick": -13798330,
+        "aligned_upper_tick": -9210880,
+        "pool_tick_lower": 9210880,
+        "pool_tick_upper": 13798330
+      },
+      "supply": {
+        "requested": "1000000000000000000000000000",
+        "installed": "999999999999999999999999559",
+        "sink": "441",
+        "sink_holder": "0x0000000000000000000000000000000000000000"
+      },
+      "trading_start": 1800001000,
+      "status": "trading",
+      "fee_schedule": {
+        "trading_start": 1800001000,
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "decay_rate_x32": "9923486534471",
+        "half_life_seconds": "600.000000",
+        "saturation_elapsed_seconds": "38399",
+        "phase": "at_floor",
+        "fee_rate": "55340232221128654",
+        "evaluated_at": 2115361000
+      },
+      "market": {
+        "price_tick": -13769998,
+        "price_x128": "356129566344924627381574169859136",
+        "market_cap": "1046570733498124860716",
+        "market_cap_usd": null,
+        "raised": "16142442253306885264",
+        "sold": "15644177672570445471331431",
+        "sold_share": "0.015644177672570445",
+        "trade_count": 10
+      },
+      "created": {
+        "block_number": "2",
+        "block_hash": "0x570fcc84e9f797809ba3e5f9138a969cbac2cbb913ad2d9a2a4881b6965ae3b9",
+        "block_time": 1800000010,
+        "event_id": "-9223372028264710138",
+        "transaction_index": 2,
+        "event_index": 5,
+        "transaction_hash": "0x9166164828ca58da84d325963c28bd5cf66ddf894017ca90970c4b3efea7215b"
+      },
+      "as_of": {
+        "block_number": "18",
+        "block_hash": "0x41f1936846fcb71cee30f7dd9070915b4fc7dff73f4e94cea11e54c0166606ba",
+        "block_time": 2115361000
+      }
     },
     {
+      "schema_version": "zero-seed-launch-api/v6",
       "chain_id": "1",
       "pool_id": "0x308ea31275d8f07ae5e9fa9c6d28ca977ddbdd3e998adc5aed236aeb751cde00",
+      "pool_key": {
+        "core_address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "token0": "0x0000000000000000000000000000000000000000",
+        "token1": "0xa3f90dfb3b623f77b13a61026de576e303722921",
+        "config": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c000000000000000080004646",
+        "fee": "0",
+        "tick_spacing": 17990,
+        "extension": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c"
+      },
       "token": {
-        "address": "0xA3F90dfb3B623F77b13a61026De576e303722921",
+        "address": "0xa3f90dfb3b623f77b13a61026de576e303722921",
         "name": "Launch bidi",
         "symbol": "EVIL‮",
         "decimals": 18
       },
+      "quote_token": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "name": null,
+        "symbol": null,
+        "decimals": 18,
+        "kind": "native"
+      },
+      "launch_token_is_token1": true,
+      "controller": "0x6963de1652c96fb0eaeaf5167de3c89e187284f2",
+      "creator": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "owner": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
       "logo_url": null,
-      "status": "final"
+      "parameters": {
+        "name": "0x0b4c61756e636820626964690000000000000000000000000000000000000000",
+        "symbol": "0x074556494ce280ae000000000000000000000000000000000000000000000000",
+        "supply": "1000000000000000000000000000",
+        "quote_token": "0x0000000000000000000000000000000000000000",
+        "ask_tick": "-13815500",
+        "upper_tick": "-9210300",
+        "trading_start": "1800001000",
+        "decay_rate_x32": "9923486534471",
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "salt": "0x4ef3c22030c48a824508eaa92d5871f0ef42a8a80ef512ae3934836eed27ebaf"
+      },
+      "range": {
+        "tick_spacing": 17990,
+        "aligned_ask_tick": -13798330,
+        "aligned_upper_tick": -9210880,
+        "pool_tick_lower": 9210880,
+        "pool_tick_upper": 13798330
+      },
+      "supply": {
+        "requested": "1000000000000000000000000000",
+        "installed": "999999999999999999999999559",
+        "sink": "441",
+        "sink_holder": "0x0000000000000000000000000000000000000000"
+      },
+      "trading_start": 1800001000,
+      "status": "trading",
+      "fee_schedule": {
+        "trading_start": 1800001000,
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "decay_rate_x32": "9923486534471",
+        "half_life_seconds": "600.000000",
+        "saturation_elapsed_seconds": "38399",
+        "phase": "at_floor",
+        "fee_rate": "55340232221128654",
+        "evaluated_at": 2115361000
+      },
+      "market": {
+        "price_tick": -13769998,
+        "price_x128": "356129566344924627381574169859136",
+        "market_cap": "1046570733498124860716",
+        "market_cap_usd": null,
+        "raised": "16142442253306885264",
+        "sold": "15644177672570445471331431",
+        "sold_share": "0.015644177672570445",
+        "trade_count": 10
+      },
+      "created": {
+        "block_number": "2",
+        "block_hash": "0x570fcc84e9f797809ba3e5f9138a969cbac2cbb913ad2d9a2a4881b6965ae3b9",
+        "block_time": 1800000010,
+        "event_id": "-9223372028264710138",
+        "transaction_index": 2,
+        "event_index": 5,
+        "transaction_hash": "0x9166164828ca58da84d325963c28bd5cf66ddf894017ca90970c4b3efea7215b"
+      },
+      "as_of": {
+        "block_number": "18",
+        "block_hash": "0x41f1936846fcb71cee30f7dd9070915b4fc7dff73f4e94cea11e54c0166606ba",
+        "block_time": 2115361000
+      }
     },
     {
+      "schema_version": "zero-seed-launch-api/v6",
       "chain_id": "1",
       "pool_id": "0xaa78fa03ddee1a891732cb98b043b7bd68cfe0ea0a13909ef987a2af5064465a",
+      "pool_key": {
+        "core_address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "token0": "0x0000000000000000000000000000000000000000",
+        "token1": "0x21154743aebfb8d01dc12de1c4a3f10e3473fe1e",
+        "config": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c000000000000000080004646",
+        "fee": "0",
+        "tick_spacing": 17990,
+        "extension": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c"
+      },
       "token": {
-        "address": "0x21154743aEbfB8D01DC12de1c4A3f10E3473FE1E",
+        "address": "0x21154743aebfb8d01dc12de1c4a3f10e3473fe1e",
         "name": "Bad\u0007Bell",
         "symbol": "BELL",
         "decimals": 18
       },
+      "quote_token": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "name": null,
+        "symbol": null,
+        "decimals": 18,
+        "kind": "native"
+      },
+      "launch_token_is_token1": true,
+      "controller": "0x6963de1652c96fb0eaeaf5167de3c89e187284f2",
+      "creator": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "owner": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
       "logo_url": null,
-      "status": "final"
+      "parameters": {
+        "name": "0x084261640742656c6c0000000000000000000000000000000000000000000000",
+        "symbol": "0x0442454c4c000000000000000000000000000000000000000000000000000000",
+        "supply": "1000000000000000000000000000",
+        "quote_token": "0x0000000000000000000000000000000000000000",
+        "ask_tick": "-13815500",
+        "upper_tick": "-9210300",
+        "trading_start": "1800001000",
+        "decay_rate_x32": "9923486534471",
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "salt": "0x4ef3c22030c48a824508eaa92d5871f0ef42a8a80ef512ae3934836eed27ebaf"
+      },
+      "range": {
+        "tick_spacing": 17990,
+        "aligned_ask_tick": -13798330,
+        "aligned_upper_tick": -9210880,
+        "pool_tick_lower": 9210880,
+        "pool_tick_upper": 13798330
+      },
+      "supply": {
+        "requested": "1000000000000000000000000000",
+        "installed": "999999999999999999999999559",
+        "sink": "441",
+        "sink_holder": "0x0000000000000000000000000000000000000000"
+      },
+      "trading_start": 1800001000,
+      "status": "trading",
+      "fee_schedule": {
+        "trading_start": 1800001000,
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "decay_rate_x32": "9923486534471",
+        "half_life_seconds": "600.000000",
+        "saturation_elapsed_seconds": "38399",
+        "phase": "at_floor",
+        "fee_rate": "55340232221128654",
+        "evaluated_at": 2115361000
+      },
+      "market": {
+        "price_tick": -13769998,
+        "price_x128": "356129566344924627381574169859136",
+        "market_cap": "1046570733498124860716",
+        "market_cap_usd": null,
+        "raised": "16142442253306885264",
+        "sold": "15644177672570445471331431",
+        "sold_share": "0.015644177672570445",
+        "trade_count": 10
+      },
+      "created": {
+        "block_number": "2",
+        "block_hash": "0x570fcc84e9f797809ba3e5f9138a969cbac2cbb913ad2d9a2a4881b6965ae3b9",
+        "block_time": 1800000010,
+        "event_id": "-9223372028264710138",
+        "transaction_index": 2,
+        "event_index": 5,
+        "transaction_hash": "0x9166164828ca58da84d325963c28bd5cf66ddf894017ca90970c4b3efea7215b"
+      },
+      "as_of": {
+        "block_number": "18",
+        "block_hash": "0x41f1936846fcb71cee30f7dd9070915b4fc7dff73f4e94cea11e54c0166606ba",
+        "block_time": 2115361000
+      }
     },
     {
+      "schema_version": "zero-seed-launch-api/v6",
       "chain_id": "1",
       "pool_id": "0x312fc1952ac0b59b5846b540c2f5912b93644fb38a33d2b0163505453bb6d651",
+      "pool_key": {
+        "core_address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "token0": "0x0000000000000000000000000000000000000000",
+        "token1": "0xfe34db7d580ce47f95c7eeed360046f9d0afba96",
+        "config": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c000000000000000080004646",
+        "fee": "0",
+        "tick_spacing": 17990,
+        "extension": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c"
+      },
       "token": {
-        "address": "0xfe34Db7D580ce47f95C7eEED360046F9d0AfBa96",
+        "address": "0xfe34db7d580ce47f95c7eeed360046f9d0afba96",
         "name": "€€€€€€€€€€€",
         "symbol": "LONG",
         "decimals": 18
       },
+      "quote_token": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "name": null,
+        "symbol": null,
+        "decimals": 18,
+        "kind": "native"
+      },
+      "launch_token_is_token1": true,
+      "controller": "0x6963de1652c96fb0eaeaf5167de3c89e187284f2",
+      "creator": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "owner": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
       "logo_url": null,
-      "status": "final"
+      "parameters": {
+        "name": "0x0c5a65726f2053656564206c3100000000000000000000000000000000000000",
+        "symbol": "0x044c4f4e47000000000000000000000000000000000000000000000000000000",
+        "supply": "1000000000000000000000000000",
+        "quote_token": "0x0000000000000000000000000000000000000000",
+        "ask_tick": "-13815500",
+        "upper_tick": "-9210300",
+        "trading_start": "1800001000",
+        "decay_rate_x32": "9923486534471",
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "salt": "0x4ef3c22030c48a824508eaa92d5871f0ef42a8a80ef512ae3934836eed27ebaf"
+      },
+      "range": {
+        "tick_spacing": 17990,
+        "aligned_ask_tick": -13798330,
+        "aligned_upper_tick": -9210880,
+        "pool_tick_lower": 9210880,
+        "pool_tick_upper": 13798330
+      },
+      "supply": {
+        "requested": "1000000000000000000000000000",
+        "installed": "999999999999999999999999559",
+        "sink": "441",
+        "sink_holder": "0x0000000000000000000000000000000000000000"
+      },
+      "trading_start": 1800001000,
+      "status": "trading",
+      "fee_schedule": {
+        "trading_start": 1800001000,
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "decay_rate_x32": "9923486534471",
+        "half_life_seconds": "600.000000",
+        "saturation_elapsed_seconds": "38399",
+        "phase": "at_floor",
+        "fee_rate": "55340232221128654",
+        "evaluated_at": 2115361000
+      },
+      "market": {
+        "price_tick": -13769998,
+        "price_x128": "356129566344924627381574169859136",
+        "market_cap": "1046570733498124860716",
+        "market_cap_usd": null,
+        "raised": "16142442253306885264",
+        "sold": "15644177672570445471331431",
+        "sold_share": "0.015644177672570445",
+        "trade_count": 10
+      },
+      "created": {
+        "block_number": "2",
+        "block_hash": "0x570fcc84e9f797809ba3e5f9138a969cbac2cbb913ad2d9a2a4881b6965ae3b9",
+        "block_time": 1800000010,
+        "event_id": "-9223372028264710138",
+        "transaction_index": 2,
+        "event_index": 5,
+        "transaction_hash": "0x9166164828ca58da84d325963c28bd5cf66ddf894017ca90970c4b3efea7215b"
+      },
+      "as_of": {
+        "block_number": "18",
+        "block_hash": "0x41f1936846fcb71cee30f7dd9070915b4fc7dff73f4e94cea11e54c0166606ba",
+        "block_time": 2115361000
+      }
     },
     {
+      "schema_version": "zero-seed-launch-api/v6",
       "chain_id": "1",
       "pool_id": "0xbb1eac9e1f34ad75e78e7f2be96ccbe17987317bc7cbbcf50b20faa44ec7de23",
+      "pool_key": {
+        "core_address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "token0": "0x0000000000000000000000000000000000000000",
+        "token1": "0x87ecd021f115b0ebd046ec4e192b0b86225e9060",
+        "config": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c000000000000000080004646",
+        "fee": "0",
+        "tick_spacing": 17990,
+        "extension": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c"
+      },
       "token": {
-        "address": "0x87ecD021F115B0ebd046Ec4e192B0b86225E9060",
+        "address": "0x87ecd021f115b0ebd046ec4e192b0b86225e9060",
         "name": "Script Logo",
         "symbol": "JS",
         "decimals": 18
       },
+      "quote_token": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "name": null,
+        "symbol": null,
+        "decimals": 18,
+        "kind": "native"
+      },
+      "launch_token_is_token1": true,
+      "controller": "0x6963de1652c96fb0eaeaf5167de3c89e187284f2",
+      "creator": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "owner": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
       "logo_url": "javascript:alert(1)",
-      "status": "final"
+      "parameters": {
+        "name": "0x0b536372697074204c6f676f0000000000000000000000000000000000000000",
+        "symbol": "0x024a530000000000000000000000000000000000000000000000000000000000",
+        "supply": "1000000000000000000000000000",
+        "quote_token": "0x0000000000000000000000000000000000000000",
+        "ask_tick": "-13815500",
+        "upper_tick": "-9210300",
+        "trading_start": "1800001000",
+        "decay_rate_x32": "9923486534471",
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "salt": "0x4ef3c22030c48a824508eaa92d5871f0ef42a8a80ef512ae3934836eed27ebaf"
+      },
+      "range": {
+        "tick_spacing": 17990,
+        "aligned_ask_tick": -13798330,
+        "aligned_upper_tick": -9210880,
+        "pool_tick_lower": 9210880,
+        "pool_tick_upper": 13798330
+      },
+      "supply": {
+        "requested": "1000000000000000000000000000",
+        "installed": "999999999999999999999999559",
+        "sink": "441",
+        "sink_holder": "0x0000000000000000000000000000000000000000"
+      },
+      "trading_start": 1800001000,
+      "status": "trading",
+      "fee_schedule": {
+        "trading_start": 1800001000,
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "decay_rate_x32": "9923486534471",
+        "half_life_seconds": "600.000000",
+        "saturation_elapsed_seconds": "38399",
+        "phase": "at_floor",
+        "fee_rate": "55340232221128654",
+        "evaluated_at": 2115361000
+      },
+      "market": {
+        "price_tick": -13769998,
+        "price_x128": "356129566344924627381574169859136",
+        "market_cap": "1046570733498124860716",
+        "market_cap_usd": null,
+        "raised": "16142442253306885264",
+        "sold": "15644177672570445471331431",
+        "sold_share": "0.015644177672570445",
+        "trade_count": 10
+      },
+      "created": {
+        "block_number": "2",
+        "block_hash": "0x570fcc84e9f797809ba3e5f9138a969cbac2cbb913ad2d9a2a4881b6965ae3b9",
+        "block_time": 1800000010,
+        "event_id": "-9223372028264710138",
+        "transaction_index": 2,
+        "event_index": 5,
+        "transaction_hash": "0x9166164828ca58da84d325963c28bd5cf66ddf894017ca90970c4b3efea7215b"
+      },
+      "as_of": {
+        "block_number": "18",
+        "block_hash": "0x41f1936846fcb71cee30f7dd9070915b4fc7dff73f4e94cea11e54c0166606ba",
+        "block_time": 2115361000
+      }
     },
     {
+      "schema_version": "zero-seed-launch-api/v6",
       "chain_id": "1",
       "pool_id": "0xbd8c3d21f1a9c5c9c9585b52e325169aa01dd6833b4a8d43fedbb6d36db1ad97",
+      "pool_key": {
+        "core_address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "token0": "0x0000000000000000000000000000000000000000",
+        "token1": "0xa658a1d48af4938ffe1574cb13e1ec9fc278ec91",
+        "config": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c000000000000000080004646",
+        "fee": "0",
+        "tick_spacing": 17990,
+        "extension": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c"
+      },
       "token": {
-        "address": "0xA658A1D48aF4938FFe1574CB13e1ec9fc278Ec91",
+        "address": "0xa658a1d48af4938ffe1574cb13e1ec9fc278ec91",
         "name": "Loopback Logo",
         "symbol": "LOOP",
         "decimals": 18
       },
+      "quote_token": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "name": null,
+        "symbol": null,
+        "decimals": 18,
+        "kind": "native"
+      },
+      "launch_token_is_token1": true,
+      "controller": "0x6963de1652c96fb0eaeaf5167de3c89e187284f2",
+      "creator": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "owner": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
       "logo_url": "https://127.0.0.1/logo.png",
-      "status": "final"
+      "parameters": {
+        "name": "0x0d4c6f6f706261636b204c6f676f000000000000000000000000000000000000",
+        "symbol": "0x044c4f4f50000000000000000000000000000000000000000000000000000000",
+        "supply": "1000000000000000000000000000",
+        "quote_token": "0x0000000000000000000000000000000000000000",
+        "ask_tick": "-13815500",
+        "upper_tick": "-9210300",
+        "trading_start": "1800001000",
+        "decay_rate_x32": "9923486534471",
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "salt": "0x4ef3c22030c48a824508eaa92d5871f0ef42a8a80ef512ae3934836eed27ebaf"
+      },
+      "range": {
+        "tick_spacing": 17990,
+        "aligned_ask_tick": -13798330,
+        "aligned_upper_tick": -9210880,
+        "pool_tick_lower": 9210880,
+        "pool_tick_upper": 13798330
+      },
+      "supply": {
+        "requested": "1000000000000000000000000000",
+        "installed": "999999999999999999999999559",
+        "sink": "441",
+        "sink_holder": "0x0000000000000000000000000000000000000000"
+      },
+      "trading_start": 1800001000,
+      "status": "trading",
+      "fee_schedule": {
+        "trading_start": 1800001000,
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "decay_rate_x32": "9923486534471",
+        "half_life_seconds": "600.000000",
+        "saturation_elapsed_seconds": "38399",
+        "phase": "at_floor",
+        "fee_rate": "55340232221128654",
+        "evaluated_at": 2115361000
+      },
+      "market": {
+        "price_tick": -13769998,
+        "price_x128": "356129566344924627381574169859136",
+        "market_cap": "1046570733498124860716",
+        "market_cap_usd": null,
+        "raised": "16142442253306885264",
+        "sold": "15644177672570445471331431",
+        "sold_share": "0.015644177672570445",
+        "trade_count": 10
+      },
+      "created": {
+        "block_number": "2",
+        "block_hash": "0x570fcc84e9f797809ba3e5f9138a969cbac2cbb913ad2d9a2a4881b6965ae3b9",
+        "block_time": 1800000010,
+        "event_id": "-9223372028264710138",
+        "transaction_index": 2,
+        "event_index": 5,
+        "transaction_hash": "0x9166164828ca58da84d325963c28bd5cf66ddf894017ca90970c4b3efea7215b"
+      },
+      "as_of": {
+        "block_number": "18",
+        "block_hash": "0x41f1936846fcb71cee30f7dd9070915b4fc7dff73f4e94cea11e54c0166606ba",
+        "block_time": 2115361000
+      }
     },
     {
+      "schema_version": "zero-seed-launch-api/v6",
       "chain_id": "10",
       "pool_id": "0xf63c2ee8f15bf5d6675e8e18500bdfce2e66ac7accd94859b2b88d417c740be8",
+      "pool_key": {
+        "core_address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "token0": "0x0000000000000000000000000000000000000000",
+        "token1": "0xa4ff59bde620a0cb19e95f6c26ae3c9c9e7701c2",
+        "config": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c000000000000000080004646",
+        "fee": "0",
+        "tick_spacing": 17990,
+        "extension": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c"
+      },
       "token": {
-        "address": "0xA4FF59Bde620a0CB19E95f6C26Ae3c9C9E7701c2",
+        "address": "0xa4ff59bde620a0cb19e95f6c26ae3c9c9e7701c2",
         "name": "Launch optimism",
         "symbol": "OPTIMI",
         "decimals": 18
       },
+      "quote_token": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "name": null,
+        "symbol": null,
+        "decimals": 18,
+        "kind": "native"
+      },
+      "launch_token_is_token1": true,
+      "controller": "0x6963de1652c96fb0eaeaf5167de3c89e187284f2",
+      "creator": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "owner": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
       "logo_url": null,
-      "status": "final"
+      "parameters": {
+        "name": "0x0f4c61756e6368206f7074696d69736d00000000000000000000000000000000",
+        "symbol": "0x064f5054494d4900000000000000000000000000000000000000000000000000",
+        "supply": "1000000000000000000000000000",
+        "quote_token": "0x0000000000000000000000000000000000000000",
+        "ask_tick": "-13815500",
+        "upper_tick": "-9210300",
+        "trading_start": "1800001000",
+        "decay_rate_x32": "9923486534471",
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "salt": "0x4ef3c22030c48a824508eaa92d5871f0ef42a8a80ef512ae3934836eed27ebaf"
+      },
+      "range": {
+        "tick_spacing": 17990,
+        "aligned_ask_tick": -13798330,
+        "aligned_upper_tick": -9210880,
+        "pool_tick_lower": 9210880,
+        "pool_tick_upper": 13798330
+      },
+      "supply": {
+        "requested": "1000000000000000000000000000",
+        "installed": "999999999999999999999999559",
+        "sink": "441",
+        "sink_holder": "0x0000000000000000000000000000000000000000"
+      },
+      "trading_start": 1800001000,
+      "status": "trading",
+      "fee_schedule": {
+        "trading_start": 1800001000,
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "decay_rate_x32": "9923486534471",
+        "half_life_seconds": "600.000000",
+        "saturation_elapsed_seconds": "38399",
+        "phase": "at_floor",
+        "fee_rate": "55340232221128654",
+        "evaluated_at": 2115361000
+      },
+      "market": {
+        "price_tick": -13769998,
+        "price_x128": "356129566344924627381574169859136",
+        "market_cap": "1046570733498124860716",
+        "market_cap_usd": null,
+        "raised": "16142442253306885264",
+        "sold": "15644177672570445471331431",
+        "sold_share": "0.015644177672570445",
+        "trade_count": 10
+      },
+      "created": {
+        "block_number": "2",
+        "block_hash": "0x570fcc84e9f797809ba3e5f9138a969cbac2cbb913ad2d9a2a4881b6965ae3b9",
+        "block_time": 1800000010,
+        "event_id": "-9223372028264710138",
+        "transaction_index": 2,
+        "event_index": 5,
+        "transaction_hash": "0x9166164828ca58da84d325963c28bd5cf66ddf894017ca90970c4b3efea7215b"
+      },
+      "as_of": {
+        "block_number": "18",
+        "block_hash": "0x41f1936846fcb71cee30f7dd9070915b4fc7dff73f4e94cea11e54c0166606ba",
+        "block_time": 2115361000
+      }
     },
     {
+      "schema_version": "zero-seed-launch-api/v6",
       "chain_id": "1",
       "pool_id": "0x7f0369e462f6c2bd6ecfb81161779aba5499bd0af327ebd59a489ce1a5c2acf4",
+      "pool_key": {
+        "core_address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "token0": "0x0000000000000000000000000000000000000000",
+        "token1": "0xd95bd0a770669e09acaf7b887b2593b7ed5b4540",
+        "config": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c000000000000000080004646",
+        "fee": "0",
+        "tick_spacing": 17990,
+        "extension": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c"
+      },
       "token": {
-        "address": "0xD95bD0A770669E09aCaf7b887B2593b7ED5b4540",
+        "address": "0xd95bd0a770669e09acaf7b887b2593b7ed5b4540",
         "name": "Launch pending",
         "symbol": "PENDIN",
         "decimals": 18
       },
+      "quote_token": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "name": null,
+        "symbol": null,
+        "decimals": 18,
+        "kind": "native"
+      },
+      "launch_token_is_token1": true,
+      "controller": "0x6963de1652c96fb0eaeaf5167de3c89e187284f2",
+      "creator": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "owner": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
       "logo_url": null,
-      "status": "pending"
+      "parameters": {
+        "name": "0x0e4c61756e63682070656e64696e670000000000000000000000000000000000",
+        "symbol": "0x0650454e44494e00000000000000000000000000000000000000000000000000",
+        "supply": "1000000000000000000000000000",
+        "quote_token": "0x0000000000000000000000000000000000000000",
+        "ask_tick": "-13815500",
+        "upper_tick": "-9210300",
+        "trading_start": "1800001000",
+        "decay_rate_x32": "9923486534471",
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "salt": "0x4ef3c22030c48a824508eaa92d5871f0ef42a8a80ef512ae3934836eed27ebaf"
+      },
+      "range": {
+        "tick_spacing": 17990,
+        "aligned_ask_tick": -13798330,
+        "aligned_upper_tick": -9210880,
+        "pool_tick_lower": 9210880,
+        "pool_tick_upper": 13798330
+      },
+      "supply": {
+        "requested": "1000000000000000000000000000",
+        "installed": "999999999999999999999999559",
+        "sink": "441",
+        "sink_holder": "0x0000000000000000000000000000000000000000"
+      },
+      "trading_start": 1800001000,
+      "status": "final",
+      "fee_schedule": {
+        "trading_start": 1800001000,
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "decay_rate_x32": "9923486534471",
+        "half_life_seconds": "600.000000",
+        "saturation_elapsed_seconds": "38399",
+        "phase": "at_floor",
+        "fee_rate": "55340232221128654",
+        "evaluated_at": 2115361000
+      },
+      "market": {
+        "price_tick": -13769998,
+        "price_x128": "356129566344924627381574169859136",
+        "market_cap": "1046570733498124860716",
+        "market_cap_usd": null,
+        "raised": "16142442253306885264",
+        "sold": "15644177672570445471331431",
+        "sold_share": "0.015644177672570445",
+        "trade_count": 10
+      },
+      "created": {
+        "block_number": "2",
+        "block_hash": "0x570fcc84e9f797809ba3e5f9138a969cbac2cbb913ad2d9a2a4881b6965ae3b9",
+        "block_time": 1800000010,
+        "event_id": "-9223372028264710138",
+        "transaction_index": 2,
+        "event_index": 5,
+        "transaction_hash": "0x9166164828ca58da84d325963c28bd5cf66ddf894017ca90970c4b3efea7215b"
+      },
+      "as_of": {
+        "block_number": "18",
+        "block_hash": "0x41f1936846fcb71cee30f7dd9070915b4fc7dff73f4e94cea11e54c0166606ba",
+        "block_time": 2115361000
+      }
     },
     {
+      "schema_version": "zero-seed-launch-api/v6",
       "chain_id": "1",
       "pool_id": "0xd853a1b30e8cc6b8b4fd84d5c6cd659bca5c6628141b98e58378bc8c6974b56e",
+      "pool_key": {
+        "core_address": "0x00000000000014aa86c5d3c41765bb24e11bd701",
+        "token0": "0x0000000000000000000000000000000000000000",
+        "token1": "0x18ebc93015847749015778038b71af89b0adb235",
+        "config": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c000000000000000080004646",
+        "fee": "0",
+        "tick_spacing": 17990,
+        "extension": "0x51c4ad945fbef67859d92f1690cbf86df12e3b7c"
+      },
       "token": {
         "address": "0x18EBc93015847749015778038b71af89b0adb235",
         "name": "Launch checksum",
         "symbol": "CHECKS",
         "decimals": 18
       },
+      "quote_token": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "name": null,
+        "symbol": null,
+        "decimals": 18,
+        "kind": "native"
+      },
+      "launch_token_is_token1": true,
+      "controller": "0x6963de1652c96fb0eaeaf5167de3c89e187284f2",
+      "creator": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+      "owner": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
       "logo_url": null,
-      "status": "final"
+      "parameters": {
+        "name": "0x0f4c61756e636820636865636b73756d00000000000000000000000000000000",
+        "symbol": "0x06434845434b5300000000000000000000000000000000000000000000000000",
+        "supply": "1000000000000000000000000000",
+        "quote_token": "0x0000000000000000000000000000000000000000",
+        "ask_tick": "-13815500",
+        "upper_tick": "-9210300",
+        "trading_start": "1800001000",
+        "decay_rate_x32": "9923486534471",
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "salt": "0x4ef3c22030c48a824508eaa92d5871f0ef42a8a80ef512ae3934836eed27ebaf"
+      },
+      "range": {
+        "tick_spacing": 17990,
+        "aligned_ask_tick": -13798330,
+        "aligned_upper_tick": -9210880,
+        "pool_tick_lower": 9210880,
+        "pool_tick_upper": 13798330
+      },
+      "supply": {
+        "requested": "1000000000000000000000000000",
+        "installed": "999999999999999999999999559",
+        "sink": "441",
+        "sink_holder": "0x0000000000000000000000000000000000000000"
+      },
+      "trading_start": 1800001000,
+      "status": "trading",
+      "fee_schedule": {
+        "trading_start": 1800001000,
+        "initial_fee": "9223372036854775808",
+        "final_fee": "55340232221128654",
+        "decay_rate_x32": "9923486534471",
+        "half_life_seconds": "600.000000",
+        "saturation_elapsed_seconds": "38399",
+        "phase": "at_floor",
+        "fee_rate": "55340232221128654",
+        "evaluated_at": 2115361000
+      },
+      "market": {
+        "price_tick": -13769998,
+        "price_x128": "356129566344924627381574169859136",
+        "market_cap": "1046570733498124860716",
+        "market_cap_usd": null,
+        "raised": "16142442253306885264",
+        "sold": "15644177672570445471331431",
+        "sold_share": "0.015644177672570445",
+        "trade_count": 10
+      },
+      "created": {
+        "block_number": "2",
+        "block_hash": "0x570fcc84e9f797809ba3e5f9138a969cbac2cbb913ad2d9a2a4881b6965ae3b9",
+        "block_time": 1800000010,
+        "event_id": "-9223372028264710138",
+        "transaction_index": 2,
+        "event_index": 5,
+        "transaction_hash": "0x9166164828ca58da84d325963c28bd5cf66ddf894017ca90970c4b3efea7215b"
+      },
+      "as_of": {
+        "block_number": "18",
+        "block_hash": "0x41f1936846fcb71cee30f7dd9070915b4fc7dff73f4e94cea11e54c0166606ba",
+        "block_time": 2115361000
+      }
     }
   ],
-  "next_cursor": null
+  "total": 15,
+  "totals": {
+    "all": 15,
+    "trading": 13,
+    "upcoming": 1
+  },
+  "next_offset": null,
+  "evaluated_at": 2115361000,
+  "heads": [
+    {
+      "block_number": "18",
+      "block_hash": "0x41f1936846fcb71cee30f7dd9070915b4fc7dff73f4e94cea11e54c0166606ba",
+      "block_time": 2115361000,
+      "chain_id": "1"
+    }
+  ]
 }
