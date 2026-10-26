@@ -400,7 +400,7 @@ describe("launch API adapter", () => {
   const page = (data: unknown[], next_offset: number | null) =>
     Response.json({ ...envelope, data, next_offset });
 
-  test("reads the v6 fields, including both statuses and lowercase addresses", () => {
+  test("reads the v7 fields, including both statuses and lowercase addresses", () => {
     expect(launches[0]).toEqual({
       chainId: "1",
       poolId:
@@ -488,12 +488,13 @@ describe("launch API adapter", () => {
         fetchLaunches({ baseUrl: "http://api.example.com", chainIds: ["1"] }),
       ),
     ).toContain("https");
-    expect(() =>
-      readLaunchPage({
-        ...envelope,
-        schema_version: "zero-seed-launch-api/v5",
-      }),
-    ).toThrow("schema_version");
+    for (const version of [
+      "zero-seed-launch-api/v5",
+      "zero-seed-launch-api/v6",
+    ])
+      expect(() =>
+        readLaunchPage({ ...envelope, schema_version: version }),
+      ).toThrow("schema_version");
     expect(() => readLaunchPage({ data: [], next_offset: null })).toThrow(
       "schema_version",
     );

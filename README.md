@@ -183,7 +183,7 @@ lowest-precedence source. The job only ever adds rows; it never edits
 `tokens.json`, and the token-list update hosts the logo exactly as it does for
 every other source.
 
-The launch-list shape (the API's response contract `zero-seed-launch-api/v6`,
+The launch-list shape (the API's response contract `zero-seed-launch-api/v7`,
 final launch contract only) lives in `src/launch-api.ts` alone. It requests
 `GET {EKUBO_LAUNCH_API_URL}/launches?chainId=<id>&status=all&order_by=created&offset=<n>&limit=200`
 from offset 0, follows `next_offset` until it is null, refuses any other

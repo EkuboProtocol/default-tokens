@@ -1,9 +1,10 @@
 import { fetchJson } from "./fetch-json";
 
 // The only module that knows the Ekubo API's launch-list shape, response
-// contract `zero-seed-launch-api/v6`: `GET /launches?chainId=&status=all&
+// contract `zero-seed-launch-api/v7`: `GET /launches?chainId=&status=all&
 // order_by=created&offset=&limit=` answers `{ schema_version, data, total,
-// totals, next_offset, evaluated_at, heads }`, newest first, paged by offset.
+// totals, aggregates, next_offset, evaluated_at, heads }`, newest first,
+// paged by offset.
 // Every field the launch-token job reads is mapped here, so a renamed field is
 // a change to this file alone. Values stay `unknown`: they are untrusted and
 // `src/launch-tokens.ts` validates each one.
@@ -24,7 +25,7 @@ export type LaunchPage = {
   nextOffset: number | null;
 };
 
-export const LAUNCH_API_SCHEMA_VERSION = "zero-seed-launch-api/v6";
+export const LAUNCH_API_SCHEMA_VERSION = "zero-seed-launch-api/v7";
 export const LAUNCH_LIST_PATH = "/launches";
 export const LAUNCH_PAGE_LIMIT = 200;
 // The API refuses offsets above 100000.

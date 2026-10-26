@@ -8,11 +8,12 @@
   the raw `LaunchCreated` logs of one local launch created with an empty and
   with a nonempty logo URL. It was never deployed.
 - `api-response.json` is one launch-list page in the API's
-  `zero-seed-launch-api/v6` shape. Every record and the envelope start from
+  `zero-seed-launch-api/v7` shape. Every record and the envelope start from
   the `l1` launch and `list` of the API's golden response file
-  (`src/routes/launches/fixtures/zero-seed-launch-api-v6.golden.json` at API
-  commit `c05481aee2d563a72d02a7c9d13d76ec141a91f8`, SHA-256
-  `553dd01d8d4b43b6840c64d8ac6064fdc0623fc068de3542dcd3539475765ba1`), with
+  (`src/routes/launches/fixtures/zero-seed-launch-api-v7.golden.json` at API
+  commit `90d13a6e83de5f0df69539586f243a050e573f32`, SHA-256
+  `8eb9e7537158561d5a937866e5b8af36d28b51030d0aa574deb7adfd1a5b92b1`;
+  `aggregates` is recomputed over these records), with
   `chain_id`, `pool_id`, `token`, `pool_key.token1`, the packed
   `parameters.name`/`symbol` (when 1 to 31 bytes), `logo_url` and `status`
   replaced per case; addresses are lowercase as the API serves them. Its first

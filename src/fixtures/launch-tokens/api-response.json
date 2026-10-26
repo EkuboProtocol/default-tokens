@@ -1,8 +1,8 @@
 {
-  "schema_version": "zero-seed-launch-api/v6",
+  "schema_version": "zero-seed-launch-api/v7",
   "data": [
     {
-      "schema_version": "zero-seed-launch-api/v6",
+      "schema_version": "zero-seed-launch-api/v7",
       "chain_id": "1",
       "pool_id": "0xfb5475aaf870f1b1fe76ffcb64a34cd6b1c41d22f723a49abf6bab09e5760c91",
       "pool_key": {
@@ -79,7 +79,9 @@
         "raised": "16142442253306885264",
         "sold": "15644177672570445471331431",
         "sold_share": "0.015644177672570445",
-        "trade_count": 10
+        "trade_count": 10,
+        "volume": "26941395364369142601",
+        "volume_usd": null
       },
       "created": {
         "block_number": "2",
@@ -97,7 +99,7 @@
       }
     },
     {
-      "schema_version": "zero-seed-launch-api/v6",
+      "schema_version": "zero-seed-launch-api/v7",
       "chain_id": "1",
       "pool_id": "0x8216f46886e73b8ee53d6b28cdb692f24b7eb5c8f9a3e3ccf8693ac02a4455bc",
       "pool_key": {
@@ -174,7 +176,9 @@
         "raised": "16142442253306885264",
         "sold": "15644177672570445471331431",
         "sold_share": "0.015644177672570445",
-        "trade_count": 10
+        "trade_count": 10,
+        "volume": "26941395364369142601",
+        "volume_usd": null
       },
       "created": {
         "block_number": "2",
@@ -192,7 +196,7 @@
       }
     },
     {
-      "schema_version": "zero-seed-launch-api/v6",
+      "schema_version": "zero-seed-launch-api/v7",
       "chain_id": "1",
       "pool_id": "0x8cf955e489f14b4a7485a77ae92a098c40600d98597857a78f2c78fb88ab2ced",
       "pool_key": {
@@ -269,7 +273,9 @@
         "raised": "16142442253306885264",
         "sold": "15644177672570445471331431",
         "sold_share": "0.015644177672570445",
-        "trade_count": 10
+        "trade_count": 10,
+        "volume": "26941395364369142601",
+        "volume_usd": null
       },
       "created": {
         "block_number": "2",
@@ -287,7 +293,7 @@
       }
     },
     {
-      "schema_version": "zero-seed-launch-api/v6",
+      "schema_version": "zero-seed-launch-api/v7",
       "chain_id": "1",
       "pool_id": "0xfb5475aaf870f1b1fe76ffcb64a34cd6b1c41d22f723a49abf6bab09e5760c91",
       "pool_key": {
@@ -364,7 +370,9 @@
         "raised": "16142442253306885264",
         "sold": "15644177672570445471331431",
         "sold_share": "0.015644177672570445",
-        "trade_count": 10
+        "trade_count": 10,
+        "volume": "26941395364369142601",
+        "volume_usd": null
       },
       "created": {
         "block_number": "2",
@@ -382,7 +390,7 @@
       }
     },
     {
-      "schema_version": "zero-seed-launch-api/v6",
+      "schema_version": "zero-seed-launch-api/v7",
       "chain_id": "1",
       "pool_id": "0x1a600c77f12a9dbedb03cfa98673e3d99c83f61490b691149b6c177b08766d6a",
       "pool_key": {
@@ -459,7 +467,9 @@
         "raised": "16142442253306885264",
         "sold": "15644177672570445471331431",
         "sold_share": "0.015644177672570445",
-        "trade_count": 10
+        "trade_count": 10,
+        "volume": "26941395364369142601",
+        "volume_usd": null
       },
       "created": {
         "block_number": "2",
@@ -477,7 +487,7 @@
       }
     },
     {
-      "schema_version": "zero-seed-launch-api/v6",
+      "schema_version": "zero-seed-launch-api/v7",
       "chain_id": "1",
       "pool_id": "0x2aa781330c854ce890af149e98ea6797183f491ff1227e211777bbe7909681ea",
       "pool_key": {
@@ -554,7 +564,9 @@
         "raised": "16142442253306885264",
         "sold": "15644177672570445471331431",
         "sold_share": "0.015644177672570445",
-        "trade_count": 10
+        "trade_count": 10,
+        "volume": "26941395364369142601",
+        "volume_usd": null
       },
       "created": {
         "block_number": "2",
@@ -572,7 +584,7 @@
       }
     },
     {
-      "schema_version": "zero-seed-launch-api/v6",
+      "schema_version": "zero-seed-launch-api/v7",
       "chain_id": "1",
       "pool_id": "0x40af4fe720ce060d9752f24761f32e09b2332c73a7e9821f899e1f62b461d380",
       "pool_key": {
@@ -649,7 +661,9 @@
         "raised": "16142442253306885264",
         "sold": "15644177672570445471331431",
         "sold_share": "0.015644177672570445",
-        "trade_count": 10
+        "trade_count": 10,
+        "volume": "26941395364369142601",
+        "volume_usd": null
       },
       "created": {
         "block_number": "2",
@@ -667,7 +681,7 @@
       }
     },
     {
-      "schema_version": "zero-seed-launch-api/v6",
+      "schema_version": "zero-seed-launch-api/v7",
       "chain_id": "1",
       "pool_id": "0x308ea31275d8f07ae5e9fa9c6d28ca977ddbdd3e998adc5aed236aeb751cde00",
       "pool_key": {
@@ -744,7 +758,9 @@
         "raised": "16142442253306885264",
         "sold": "15644177672570445471331431",
         "sold_share": "0.015644177672570445",
-        "trade_count": 10
+        "trade_count": 10,
+        "volume": "26941395364369142601",
+        "volume_usd": null
       },
       "created": {
         "block_number": "2",
@@ -762,7 +778,7 @@
       }
     },
     {
-      "schema_version": "zero-seed-launch-api/v6",
+      "schema_version": "zero-seed-launch-api/v7",
       "chain_id": "1",
       "pool_id": "0xaa78fa03ddee1a891732cb98b043b7bd68cfe0ea0a13909ef987a2af5064465a",
       "pool_key": {
@@ -839,7 +855,9 @@
         "raised": "16142442253306885264",
         "sold": "15644177672570445471331431",
         "sold_share": "0.015644177672570445",
-        "trade_count": 10
+        "trade_count": 10,
+        "volume": "26941395364369142601",
+        "volume_usd": null
       },
       "created": {
         "block_number": "2",
@@ -857,7 +875,7 @@
       }
     },
     {
-      "schema_version": "zero-seed-launch-api/v6",
+      "schema_version": "zero-seed-launch-api/v7",
       "chain_id": "1",
       "pool_id": "0x312fc1952ac0b59b5846b540c2f5912b93644fb38a33d2b0163505453bb6d651",
       "pool_key": {
@@ -934,7 +952,9 @@
         "raised": "16142442253306885264",
         "sold": "15644177672570445471331431",
         "sold_share": "0.015644177672570445",
-        "trade_count": 10
+        "trade_count": 10,
+        "volume": "26941395364369142601",
+        "volume_usd": null
       },
       "created": {
         "block_number": "2",
@@ -952,7 +972,7 @@
       }
     },
     {
-      "schema_version": "zero-seed-launch-api/v6",
+      "schema_version": "zero-seed-launch-api/v7",
       "chain_id": "1",
       "pool_id": "0xbb1eac9e1f34ad75e78e7f2be96ccbe17987317bc7cbbcf50b20faa44ec7de23",
       "pool_key": {
@@ -1029,7 +1049,9 @@
         "raised": "16142442253306885264",
         "sold": "15644177672570445471331431",
         "sold_share": "0.015644177672570445",
-        "trade_count": 10
+        "trade_count": 10,
+        "volume": "26941395364369142601",
+        "volume_usd": null
       },
       "created": {
         "block_number": "2",
@@ -1047,7 +1069,7 @@
       }
     },
     {
-      "schema_version": "zero-seed-launch-api/v6",
+      "schema_version": "zero-seed-launch-api/v7",
       "chain_id": "1",
       "pool_id": "0xbd8c3d21f1a9c5c9c9585b52e325169aa01dd6833b4a8d43fedbb6d36db1ad97",
       "pool_key": {
@@ -1124,7 +1146,9 @@
         "raised": "16142442253306885264",
         "sold": "15644177672570445471331431",
         "sold_share": "0.015644177672570445",
-        "trade_count": 10
+        "trade_count": 10,
+        "volume": "26941395364369142601",
+        "volume_usd": null
       },
       "created": {
         "block_number": "2",
@@ -1142,7 +1166,7 @@
       }
     },
     {
-      "schema_version": "zero-seed-launch-api/v6",
+      "schema_version": "zero-seed-launch-api/v7",
       "chain_id": "10",
       "pool_id": "0xf63c2ee8f15bf5d6675e8e18500bdfce2e66ac7accd94859b2b88d417c740be8",
       "pool_key": {
@@ -1219,7 +1243,9 @@
         "raised": "16142442253306885264",
         "sold": "15644177672570445471331431",
         "sold_share": "0.015644177672570445",
-        "trade_count": 10
+        "trade_count": 10,
+        "volume": "26941395364369142601",
+        "volume_usd": null
       },
       "created": {
         "block_number": "2",
@@ -1237,7 +1263,7 @@
       }
     },
     {
-      "schema_version": "zero-seed-launch-api/v6",
+      "schema_version": "zero-seed-launch-api/v7",
       "chain_id": "1",
       "pool_id": "0x7f0369e462f6c2bd6ecfb81161779aba5499bd0af327ebd59a489ce1a5c2acf4",
       "pool_key": {
@@ -1314,7 +1340,9 @@
         "raised": "16142442253306885264",
         "sold": "15644177672570445471331431",
         "sold_share": "0.015644177672570445",
-        "trade_count": 10
+        "trade_count": 10,
+        "volume": "26941395364369142601",
+        "volume_usd": null
       },
       "created": {
         "block_number": "2",
@@ -1332,7 +1360,7 @@
       }
     },
     {
-      "schema_version": "zero-seed-launch-api/v6",
+      "schema_version": "zero-seed-launch-api/v7",
       "chain_id": "1",
       "pool_id": "0xd853a1b30e8cc6b8b4fd84d5c6cd659bca5c6628141b98e58378bc8c6974b56e",
       "pool_key": {
@@ -1409,7 +1437,9 @@
         "raised": "16142442253306885264",
         "sold": "15644177672570445471331431",
         "sold_share": "0.015644177672570445",
-        "trade_count": 10
+        "trade_count": 10,
+        "volume": "26941395364369142601",
+        "volume_usd": null
       },
       "created": {
         "block_number": "2",
@@ -1432,6 +1462,40 @@
     "all": 15,
     "trading": 13,
     "upcoming": 1
+  },
+  "aggregates": {
+    "launch_count": 15,
+    "trade_count": 150,
+    "by_quote": [
+      {
+        "chain_id": "1",
+        "quote_token": "0x0000000000000000000000000000000000000000",
+        "launch_count": 14,
+        "trade_count": 140,
+        "volume": "377179535101167996414",
+        "market_cap": "14651990268973748050024",
+        "usd_priced": false,
+        "volume_usd": null,
+        "market_cap_usd": null
+      },
+      {
+        "chain_id": "10",
+        "quote_token": "0x0000000000000000000000000000000000000000",
+        "launch_count": 1,
+        "trade_count": 10,
+        "volume": "26941395364369142601",
+        "market_cap": "1046570733498124860716",
+        "usd_priced": false,
+        "volume_usd": null,
+        "market_cap_usd": null
+      }
+    ],
+    "usd": {
+      "volume": null,
+      "market_cap": null,
+      "priced_launch_count": 0,
+      "excluded_launch_count": 15
+    }
   },
   "next_offset": null,
   "evaluated_at": 2115361000,
