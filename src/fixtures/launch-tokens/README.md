@@ -11,8 +11,8 @@
   `zero-seed-launch-api/v7` shape. Every record and the envelope start from
   the `l1` launch and `list` of the API's golden response file
   (`src/routes/launches/fixtures/zero-seed-launch-api-v7.golden.json` at API
-  commit `90d13a6e83de5f0df69539586f243a050e573f32`, SHA-256
-  `8eb9e7537158561d5a937866e5b8af36d28b51030d0aa574deb7adfd1a5b92b1`;
+  commit `75ee5bea794e5dd9fd160a85b913b2c694e9d6c3`, SHA-256
+  `df609c30c394c9278f6a89d9bf9690bbf7190adf9eb5640232921567904ea244`;
   `aggregates` is recomputed over these records), with
   `chain_id`, `pool_id`, `token`, `pool_key.token1`, the packed
   `parameters.name`/`symbol` (when 1 to 31 bytes), `logo_url` and `status`
