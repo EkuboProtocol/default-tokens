@@ -6,6 +6,8 @@
   "ignorePatterns": [
     "assets/**",
     "jurisdiction-policy/**",
+    "src/fixtures/**",
+    "launch-tokens.json",
     "tokens.json",
     "coingecko-markets.json",
     "curated-tokens.json",
