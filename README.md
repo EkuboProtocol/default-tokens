@@ -5,6 +5,22 @@ written to Ekubo's database. The database synchronization command reads only
 committed files from this repository; it never downloads third-party token
 lists.
 
+## Canonical EKUBO
+
+Ethereum EKUBO is `0x04C46E830Bb56ce22735d5d8Fc9CB90309317d0f`.
+Its canonical bridged deployments, all with 18 decimals, are:
+
+| Chain                  | Token address                                |
+| ---------------------- | -------------------------------------------- |
+| Arbitrum One (42161)   | `0x0A08E175c0350dF6119d21e32FE628799F804179` |
+| Robinhood Chain (4663) | `0x9bdf2327e1EA6EDDF1adD2048d4c9dF2cc8C7cc6` |
+| Base (8453)            | `0x5db2469C0D07Efd371AE0A774537ABb1D68485Bf` |
+
+[`provenance/ekubo-canonical-bridges.json`](provenance/ekubo-canonical-bridges.json)
+records the Ethereum deposits, L2 mints, factory deployment, and onchain
+forward/reverse mapping checks. The curated bridge relationships name the
+actual gateway or standard bridge on both sides, not the gateway router.
+
 ## Files
 
 - `curated-tokens.json` is the human-maintained, highest-precedence input. Its
@@ -182,7 +198,8 @@ On Robinhood Chain (4663) every address falls into one of three groups:
 - `rhj_stock_token`: Robinhood Assets (Jersey) Stock Tokens, restricted for
   buying and selling alike in AE, BY, CA, CH, CU, GB, IR, KP, MM, RU, SD, SG,
   SS, SY, UA, US and VE, and when the country is unknown.
-- `non_class`: ETH, WETH, USDG and STONX, verified not to be Stock Tokens.
+- `non_class`: ETH, WETH, USDG, STONX and canonical bridged EKUBO, verified not
+  to be Stock Tokens.
   Adding an address here needs on-chain verification and CTO sign-off.
 - anything else is `unknown`, and consumers hold it in every country.
 
