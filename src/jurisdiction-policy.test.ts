@@ -12,7 +12,7 @@ import type { Token, TokenListDocument } from "./types";
 
 // Pinned in ekubo-mcp-server and the interface too; change all three together.
 const POLICY_SHA256 =
-  "2897e242c7030f9d0c5b99a548bb62bfefc91f4b665785814bbeca8a41eb776a";
+  "842f18d157deb548290c9da6402bb89f00406f1a0f48ec3a84944ae4dada7a09";
 
 const root = resolve(import.meta.dir, "..");
 const policyBytes = readFileSync(resolve(root, JURISDICTION_POLICY_PATH));
@@ -42,16 +42,37 @@ describe("jurisdiction policy v2", () => {
     expect(policy.policy_version).toBe("ekubo-token-jurisdictions-v2");
   });
 
-  test("class has 200 addresses and the four non_class tokens", () => {
+  test("class has 200 addresses and the five non_class tokens", () => {
     const chain = policy.chains["4663"]!;
     expect(chain.unknown).toBe("hold");
     expect(chain.rhj_stock_token).toHaveLength(200);
     expect(chain.non_class.map((entry) => entry.symbol).sort()).toEqual([
+      "EKUBO",
       "ETH",
       "STONX",
       "USDG",
       "WETH",
     ]);
+  });
+
+  test("canonical bridged EKUBO is classified by its exact address", () => {
+    const canonical = token(
+      "4663",
+      "0x9bdf2327e1EA6EDDF1adD2048d4c9dF2cc8C7cc6",
+      "EKUBO",
+    );
+    expect(unclassifiedTokens([canonical], policy)).toEqual([]);
+    expect(
+      unclassifiedTokens(
+        [token("4663", "0x1111111111111111111111111111111111111111", "EKUBO")],
+        policy,
+      ),
+    ).toHaveLength(1);
+    expect(
+      policy.chains["4663"].non_class.find(
+        (entry) => BigInt(entry.address) === BigInt(canonical.token_address),
+      )?.provenance[0]?.source,
+    ).toBe("onchain-verification");
   });
 
   test("every entry carries provenance", () => {

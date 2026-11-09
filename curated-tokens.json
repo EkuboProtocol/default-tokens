@@ -383,6 +383,16 @@
     },
     {
       "chain_id": "4663",
+      "token_address": "0x9bdf2327e1EA6EDDF1adD2048d4c9dF2cc8C7cc6",
+      "token_name": "Ekubo Protocol",
+      "token_symbol": "EKUBO",
+      "token_decimals": 18,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/634d9c36-2f0b-4781-93e6-72d701b5af00/logo",
+      "visibility_priority": 3,
+      "sort_order": 2
+    },
+    {
+      "chain_id": "4663",
       "token_address": "0x5fc5360d0400a0fd4f2af552add042d716f1d168",
       "token_name": "Global Dollar",
       "token_symbol": "USDG",
@@ -1390,6 +1400,16 @@
       "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/e07829b7-0382-4e03-7ecd-a478c5aa9f00/logo",
       "visibility_priority": 3,
       "sort_order": 3
+    },
+    {
+      "chain_id": "8453",
+      "token_address": "0x5db2469C0D07Efd371AE0A774537ABb1D68485Bf",
+      "token_name": "Ekubo Protocol",
+      "token_symbol": "EKUBO",
+      "token_decimals": 18,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/634d9c36-2f0b-4781-93e6-72d701b5af00/logo",
+      "visibility_priority": 3,
+      "sort_order": 2
     },
     {
       "chain_id": "8453",
@@ -4122,5 +4142,72 @@
       "sort_order": 0
     }
   ],
-  "bridge_relationships": []
+  "bridge_relationships": [
+    {
+      "source_chain_id": "1",
+      "source_token_address": "0x04C46E830Bb56ce22735d5d8Fc9CB90309317d0f",
+      "source_bridge_address": "0x85001CC4867C5e1C22dA4B79BB8852B9e2a06da0",
+      "dest_chain_id": "4663",
+      "dest_token_address": "0x9bdf2327e1EA6EDDF1adD2048d4c9dF2cc8C7cc6",
+      "relationship": "canonical_bridge",
+      "bridge_name": "Robinhood Chain canonical bridge (Arbitrum Orbit)",
+      "source_name": "Ekubo canonical EKUBO bridge verification",
+      "source_url": "https://github.com/EkuboProtocol/default-tokens/blob/main/provenance/ekubo-canonical-bridges.json"
+    },
+    {
+      "source_chain_id": "4663",
+      "source_token_address": "0x9bdf2327e1EA6EDDF1adD2048d4c9dF2cc8C7cc6",
+      "source_bridge_address": "0xfd9b17206278C16DdaacF6AC8f05dBf97EdCb31e",
+      "dest_chain_id": "1",
+      "dest_token_address": "0x04C46E830Bb56ce22735d5d8Fc9CB90309317d0f",
+      "relationship": "canonical_bridge",
+      "bridge_name": "Robinhood Chain canonical bridge (Arbitrum Orbit)",
+      "source_name": "Ekubo canonical EKUBO bridge verification",
+      "source_url": "https://github.com/EkuboProtocol/default-tokens/blob/main/provenance/ekubo-canonical-bridges.json"
+    },
+    {
+      "source_chain_id": "1",
+      "source_token_address": "0x04C46E830Bb56ce22735d5d8Fc9CB90309317d0f",
+      "source_bridge_address": "0xa3A7B6F88361F48403514059F1F16C8E78d60EeC",
+      "dest_chain_id": "42161",
+      "dest_token_address": "0x0A08E175c0350dF6119d21e32FE628799F804179",
+      "relationship": "canonical_bridge",
+      "bridge_name": "Arbitrum One canonical bridge",
+      "source_name": "Ekubo canonical EKUBO bridge verification",
+      "source_url": "https://github.com/EkuboProtocol/default-tokens/blob/main/provenance/ekubo-canonical-bridges.json"
+    },
+    {
+      "source_chain_id": "42161",
+      "source_token_address": "0x0A08E175c0350dF6119d21e32FE628799F804179",
+      "source_bridge_address": "0x09e9222E96E7B4AE2a407B98d48e330053351EEe",
+      "dest_chain_id": "1",
+      "dest_token_address": "0x04C46E830Bb56ce22735d5d8Fc9CB90309317d0f",
+      "relationship": "canonical_bridge",
+      "bridge_name": "Arbitrum One canonical bridge",
+      "source_name": "Ekubo canonical EKUBO bridge verification",
+      "source_url": "https://github.com/EkuboProtocol/default-tokens/blob/main/provenance/ekubo-canonical-bridges.json"
+    },
+    {
+      "source_chain_id": "1",
+      "source_token_address": "0x04C46E830Bb56ce22735d5d8Fc9CB90309317d0f",
+      "source_bridge_address": "0x3154Cf16ccdb4C6d922629664174b904d80F2C35",
+      "dest_chain_id": "8453",
+      "dest_token_address": "0x5db2469C0D07Efd371AE0A774537ABb1D68485Bf",
+      "relationship": "canonical_bridge",
+      "bridge_name": "Base standard bridge",
+      "source_name": "Ekubo canonical EKUBO bridge verification",
+      "source_url": "https://github.com/EkuboProtocol/default-tokens/blob/main/provenance/ekubo-canonical-bridges.json"
+    },
+    {
+      "source_chain_id": "8453",
+      "source_token_address": "0x5db2469C0D07Efd371AE0A774537ABb1D68485Bf",
+      "source_bridge_address": "0x4200000000000000000000000000000000000010",
+      "dest_chain_id": "1",
+      "dest_token_address": "0x04C46E830Bb56ce22735d5d8Fc9CB90309317d0f",
+      "relationship": "canonical_bridge",
+      "bridge_name": "Base standard bridge",
+      "source_name": "Ekubo canonical EKUBO bridge verification",
+      "source_url": "https://github.com/EkuboProtocol/default-tokens/blob/main/provenance/ekubo-canonical-bridges.json"
+    }
+  ]
 }
