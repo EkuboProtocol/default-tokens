@@ -131,6 +131,7 @@ export const COINGECKO_PRO_TOKEN_LISTS: CoinGeckoTokenSource[] = [
   coinGeckoTokenSource("linea", 59144, "Linea"),
   coinGeckoTokenSource("berachain", 80094, "Berachain"),
   coinGeckoTokenSource("blast", 81457, "Blast"),
+  coinGeckoTokenSource("elysium-kinetiq", 99901, "Elysium"),
   coinGeckoTokenSource("zora-network", 7777777, "Zora"),
   coinGeckoTokenSource("aurora", 1313161554, "Aurora"),
 ];
@@ -195,6 +196,7 @@ export const NATIVE_CURRENCIES: NativeCurrency[] = [
   { chainId: "59144", name: "Ether", symbol: "ETH", decimals: 18 },
   { chainId: "80094", name: "Berachain", symbol: "BERA", decimals: 18 },
   { chainId: "81457", name: "Ether", symbol: "ETH", decimals: 18 },
+  { chainId: "99901", name: "HYPE", symbol: "HYPE", decimals: 18 },
   { chainId: "7777777", name: "Ether", symbol: "ETH", decimals: 18 },
   { chainId: "1313161554", name: "Ether", symbol: "ETH", decimals: 18 },
 ];
