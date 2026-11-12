@@ -4122,6 +4122,36 @@
       "sort_order": 6
     },
     {
+      "chain_id": "99901",
+      "token_address": "0x0000000000000000000000000000000000000000",
+      "token_name": "HYPE",
+      "token_symbol": "HYPE",
+      "token_decimals": 18,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/f7cd23ca2e51b82af681720af37b5158a36fcf564bd4bc8227151853091652d5/logo",
+      "visibility_priority": 3,
+      "sort_order": 3
+    },
+    {
+      "chain_id": "99901",
+      "token_address": "0xb47c4C8F73F009CC0C0d3f92B388d13E293F0B65",
+      "token_name": "USDC",
+      "token_symbol": "USDC",
+      "token_decimals": 6,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/2ec9cc74be1729ff917f88a96b37d997ffdc641020aa4a5d10d9b2faff584dfb/logo",
+      "visibility_priority": 3,
+      "sort_order": 6
+    },
+    {
+      "chain_id": "99901",
+      "token_address": "0xbA876237B0F021A6c6D852d6c26E107997cC5E81",
+      "token_name": "Wrapped HYPE",
+      "token_symbol": "WHYPE",
+      "token_decimals": 18,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/19e1b7e2ecd8ce7050252036b43b3d4b8eeb2c990ece9b39c3112182662fccc0/logo",
+      "visibility_priority": 1,
+      "sort_order": 4
+    },
+    {
       "chain_id": "0x534e5f4d41494e",
       "token_address": "0x06557d79fc6cdce28c1eba2b1024cb854394a36e44ef4c43a8522c71b321a80e",
       "token_name": "Lighter",
