@@ -12,7 +12,7 @@ import type { Token, TokenListDocument } from "./types";
 
 // Pinned in ekubo-mcp-server and the interface too; change all three together.
 const POLICY_SHA256 =
-  "842f18d157deb548290c9da6402bb89f00406f1a0f48ec3a84944ae4dada7a09";
+  "7de0c65b863fdf2a69d95f7a9a6509e36f19d846035a2a77b15b5fe059cc55ff";
 
 const root = resolve(import.meta.dir, "..");
 const policyBytes = readFileSync(resolve(root, JURISDICTION_POLICY_PATH));
@@ -42,10 +42,10 @@ describe("jurisdiction policy v2", () => {
     expect(policy.policy_version).toBe("ekubo-token-jurisdictions-v2");
   });
 
-  test("class has 200 addresses and the five non_class tokens", () => {
+  test("class has 211 addresses and the five non_class tokens", () => {
     const chain = policy.chains["4663"]!;
     expect(chain.unknown).toBe("hold");
-    expect(chain.rhj_stock_token).toHaveLength(200);
+    expect(chain.rhj_stock_token).toHaveLength(211);
     expect(chain.non_class.map((entry) => entry.symbol).sort()).toEqual([
       "EKUBO",
       "ETH",
