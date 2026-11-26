@@ -2573,6 +2573,16 @@
     },
     {
       "chain_id": "0x534e5f4d41494e",
+      "token_address": "0x0752c64c8430f1a81a8f87e6252a8853cb9428352d585d90b4151cfe3702dcfe",
+      "token_name": "Solana",
+      "token_symbol": "SOL",
+      "token_decimals": 9,
+      "logo_url": "https://imagedelivery.net/0xPAQaDtnQhBs8IzYRIlNg/token-logos/8115131cf645daab3a275f895babcff34c1d0c8e85b0f43afb07d9b77b03d163/logo",
+      "visibility_priority": 1,
+      "sort_order": 1
+    },
+    {
+      "chain_id": "0x534e5f4d41494e",
       "token_address": "0x2e82800f97afded96e8e88f9788f2d8f097edb04c9e9b920ceb1ec11f265158",
       "token_name": "Nums",
       "token_symbol": "NUMS",
