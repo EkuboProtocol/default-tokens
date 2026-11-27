@@ -31,10 +31,16 @@ import {
 import { linksFromTokenList, type ProvenancedLink } from "../src/bridges";
 import { fetchJson, isRateLimited } from "../src/fetch-json";
 import {
+  addLaunchTokens,
+  emptyLaunchTokenDocument,
+  validateLaunchTokenDocument,
+} from "../src/launch-tokens";
+import {
   COINGECKO_PRO_API_BASE_URL,
   COINGECKO_PRO_TOKEN_LISTS,
   COINGECKO_SUPPLY_PLATFORMS,
   CURATED_SOURCE,
+  LAUNCH_SOURCE,
   NATIVE_CURRENCIES,
   PREVIOUS_OUTPUT_SOURCE,
   REMOTE_TOKEN_LISTS,
@@ -486,6 +492,11 @@ async function main(): Promise<void> {
     curatedDocument,
   );
   validateTokenListSchema(previousDocument, "tokens.json");
+  const launchDocument = await readJson<TokenListDocument>(
+    LAUNCH_SOURCE.url,
+    emptyLaunchTokenDocument(),
+  );
+  validateLaunchTokenDocument(launchDocument);
   const imageSourceCache = await readJson<ImageSourceCache>(
     "image-sources.json",
     {},
@@ -517,6 +528,11 @@ async function main(): Promise<void> {
   skippedSources.push(...skippedCoinGecko);
 
   skippedSources.push(...(await addAvnuTokens(accumulator)));
+
+  // Lowest precedence: a launch never replaces a row another source lists.
+  console.log(
+    `Added ${addLaunchTokens(accumulator, launchDocument)} zero-seed launch tokens`,
+  );
 
   const bridgeSources = await collectBridgeSourceLinks();
 
